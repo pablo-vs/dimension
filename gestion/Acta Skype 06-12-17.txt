@@ -1,0 +1,14 @@
+Arreglar diagrama CU: Encargado Edu, lo hace Inma.
+Casos de uso (al menos 1 cada 1): Encargado Edu, cada uno lo suyo.
+Interfaz (pantallas): Encargado Arturo, lo hace Javi G.
+Juntar el SRS + introducción: Encargada Inma, lo hace Pablo
+Interacción base de datos: Encargado Pablo, lo hace Javi N.
+Requisitos funcionales: Encargado Javi N, lo hace Eloy
+Gestión configuración software: Encargado Eloy, lo hace Brian
+Estimaciones del proyecto: Encargado Inma, lo hace Edu.
+Estrategia de gestión del riesgo(CRC): Encargado Javi N, lo hace Eloy
+Planificación temporal: Encargado Javi G, lo hace Inma.
+Gestión del equipo: Encargado Brian, lo hace Javi N.
+Recursos del proyecto: Encargado Pablo, lo hace Arturo.
+Mecanismos de Gestión y Control: Encargado Brian, lo hace Edu.
+Plan de proyecto: Encargado Javi G, lo hace Brian.

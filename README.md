@@ -1,3 +1,3 @@
 # DIMENSION
 
-Visualización de objetos n-dimenionales
+Visualización de objetos n-dimensionales

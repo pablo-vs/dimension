@@ -20,9 +20,12 @@
 package es.ucm.fdi;
 
 import es.ucm.fdi.datos.BDMemoria;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
+import es.ucm.fdi.trabajo.*;
 
 /**
  * Unit test for simple App.
@@ -54,12 +57,17 @@ public class EjemplosUsoBDConCadena
      */
     public void testCreacion()
     {    	
-    	BDMemoria<String> bdCadenas=new BDMemoria<String>();
-    	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdCadenas, bdCadenas.getIds().isEmpty());
-    	bdCadenas.insert("hola", "1");		
-    	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdCadenas, bdCadenas.getIds().size()==1);    	
-    	bdCadenas.insert("hola", "1");
-    	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdCadenas, bdCadenas.getIds().size()==1);
+    	BDMemoria<Proyecto> bdProyectos=new BDMemoria<Proyecto>();
+    	Proyecto p1 = new Proyecto("p1");
+    	Proyecto p2 = new Proyecto("p2");
+    	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdProyectos, bdProyectos.getIds().isEmpty());
+    	//bdCadenas.insert("hola", "1");	
+    	bdProyectos.insert(p1, "p1");
+    	//bdProyectos.insert(p2, "p2");
+    	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdProyectos, bdProyectos.getIds().size()==1);
+    	bdProyectos.print(System.out);
+    	//bdCadenas.insert("hola", "1");
+    	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdProyectos, bdProyectos.getIds().size()==1);
     }
     
     /**

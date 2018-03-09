@@ -3,7 +3,7 @@ package es.ucm.fdi.trabajo;
 import java.lang.Math;
 
 /**
- * 
+ * @author Inmapg
  * @author Eduardo Amaya
  * @author Javier Galiana
  *
@@ -11,8 +11,11 @@ import java.lang.Math;
 
 public class TransformarFuncion {
 	
-	private static double PI = Math.PI;
-	private static double E = Math.E;
-	private static int ID;
+	protected final static double PI = Math.PI;
+	protected final static double E = Math.E;
+	protected static int ID;
 	
+	public TransformarFuncion(int newID){
+		ID = newID;
+	}
 }

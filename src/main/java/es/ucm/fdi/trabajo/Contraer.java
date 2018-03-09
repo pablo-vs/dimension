@@ -19,4 +19,10 @@ public class Contraer extends TransformarFuncion {
     public void contraerZ(Politopo p, double d){
         
     }
+    
+    public void contraerTodo(Politopo p, double d){
+        contraerX(p, d);
+        contraerY(p, d);
+        contraerZ(p, d);
+    }
 }

@@ -21,4 +21,10 @@ public class Trasladar extends TransformarFuncion{
     public void trasladarZ(Politopo p, double d){
         
     }
+    
+    public void trasladarTodo(Politopo p, double d){
+        trasladarX(p, d);
+        trasladarY(p, d);
+        trasladarZ(p, d);
+    }
 }

@@ -22,4 +22,9 @@ public class Girar extends TransformarFuncion {
         
     }
     
+    public void girarTodo(Politopo p, double d){
+        girarX(p, d);
+        girarY(p, d);
+        girarZ(p, d);
+    }
 }

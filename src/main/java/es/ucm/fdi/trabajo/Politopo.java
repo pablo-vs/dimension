@@ -1,7 +1,7 @@
 package es.ucm.fdi.trabajo;
 
 /**
- * 
+ * @author Inmapg
  * @author Eduardo Amaya
  * @author Javier Galiana
  *
@@ -13,10 +13,10 @@ public class Politopo {
 	
 	
 	/**
-	 * Cambia la lista de v�rtices
+	 * Cambia la lista de vertices
 	 * 
-	 * @param v
-	 * @param dim
+	 * @param v Lista de vertices
+	 * @param dim Dimension
 	 */
 	public void modificar(Vertice[] v, int dim){
 		

@@ -12,8 +12,11 @@ public class Politopo {
         public Politopo(){
             // Not implemented yet
         }
-        
-	public Politopo(int dim, ArrayList<Vertice> v){
+ /* Deberíamos cambiar aquí ArrayList por List para hacerlo más genérico porque a las demás clases les da igual el tipo de
+lista que usemos aquí. Sólo deberíamos indicar que se usa una lista.
+----Lo cambiaremos----
+*/
+	public Politopo(int dim, ArrayList<Vertice> v){ 
             dimension = dim;
             vertices = v;
         }

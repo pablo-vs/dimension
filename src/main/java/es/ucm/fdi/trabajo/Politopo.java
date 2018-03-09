@@ -11,7 +11,14 @@ public class Politopo {
 	private int dimension;
 	private Vertice[] vertices;
 	
-	
+        public Politopo(){
+            // Not implemented yet
+        }
+        
+	public Politopo(int dim, Vertice[] v){
+            dimension = dim;
+            vertices = v;
+        }
 	/**
 	 * Cambia la lista de vertices
 	 * 

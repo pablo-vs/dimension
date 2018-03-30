@@ -7,9 +7,9 @@ package es.ucm.fdi.trabajo;
  *
  */
 
+
 public class Proyecto {
 	private Grafico[] listaGraficos;
-	private CuentaUsuario usuario;
 	private String ID;
 	
 	public Proyecto(String iD) {

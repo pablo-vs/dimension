@@ -1,4 +1,4 @@
-package es.ucm.fdi.trabajo;
+package es.ucm.fdi.usuarios;
 
 public enum TipoUsuario {
 	Usuario, Administrador;

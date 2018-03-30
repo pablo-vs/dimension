@@ -1,15 +1,14 @@
 package main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes;
 
-import main.java.es.ucm.fdi.trabajo.funcion.BinaryTypes.DivideFunction;
-import main.java.es.ucm.fdi.trabajo.funcion.BinaryTypes.ExponentialFunction;
-import main.java.es.ucm.fdi.trabajo.funcion.BinaryTypes.ProductFunction;
-import main.java.es.ucm.fdi.trabajo.funcion.BinaryTypes.SubstractFunction;
-import main.java.es.ucm.fdi.trabajo.funcion.BinaryTypes.SumFunction;
-import main.java.es.ucm.fdi.trabajo.funcion.SingleTypes.ConstantFunction;
-import main.java.es.ucm.fdi.trabajo.funcion.SingleTypes.IdentityFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.BinaryTypes.*;
+import main.java.es.ucm.fdi.trabajo.funcion.UnaryTypes.*;
 
 public class Function {
 	protected String type;
+        
+        public Function(String type){
+            this.type = type;
+        }
 	public Function parser(String string) {
 		String[] chars= {string};
 		if (string.length()>1) {

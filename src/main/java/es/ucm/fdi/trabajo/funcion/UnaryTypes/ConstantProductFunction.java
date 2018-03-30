@@ -1,6 +1,7 @@
 package es.ucm.fdi.trabajo.funcion.UnaryTypes;
 
 import es.ucm.fdi.trabajo.funcion.FunctionTypes.UnaryFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.VariablesList;
 
 /**
  * @author Javier Navalon
@@ -18,7 +19,7 @@ public class ConstantProductFunction extends UnaryFunction{
         
       @Override
       public double evaluate(VariablesList list) {
-		      return list.getVariable(par);
+	  return list.getVariable(par);
       }
 }
 

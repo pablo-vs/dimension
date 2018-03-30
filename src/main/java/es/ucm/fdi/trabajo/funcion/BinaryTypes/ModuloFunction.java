@@ -1,6 +1,7 @@
 package es.ucm.fdi.trabajo.funcion.BinaryTypes;
 
 import es.ucm.fdi.trabajo.funcion.FunctionTypes.BinaryFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.VariablesList;
 
 /**
  * 
@@ -19,7 +20,7 @@ public class ModuloFunction extends BinaryFunction{
 	}
         
         @Override
-	public double evaluate(int x) {
-            return (f1.evaluate(x) % f2.evaluate(x));
+	public double evaluate(VariablesList variables) {
+            return (f1.evaluate(variables) % f2.evaluate(variables));
 	}
 }

@@ -209,4 +209,18 @@ public class Vertice implements Iterable <Double>, Cloneable{
         }
         return i == otherVertex.getDimension();
     }
+    
+    //Hola qué tal, soy Eloy, cómo andamos por aquí. 
+    //Necesito un método que me diga la distancia euclídea de un vértice al origen
+    public double dist(Vertice other) {
+    	double d2 = 0;
+    	for(int i = 0; i < dim; ++i) {
+    		d2 += cmps[i]*other.getCoord(i);
+    	}
+    	return Math.sqrt(d2);
+    }
+    
+    public double disto() { //distancia al origen
+    	return dist(new Vertice(dim));
+    }
 }

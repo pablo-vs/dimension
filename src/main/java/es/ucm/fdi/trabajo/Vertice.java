@@ -48,9 +48,9 @@ public class Vertice implements Iterable <Double>, Cloneable{
  * @param cmps array with the value of the components
  * @throws dimension.NoMatchDimensionException dim does not match cmps.length.
  */
-    public Vertice(int dim, double[] cmps) throws NoMatchDimensionException{
+	public Vertice(int dim, double[] cmps) /*throws NoMatchDimensionException*/{
         if (dim != cmps.length)
-            throw new NoMatchDimensionException(dim, cmps.length);
+		/*throw new NoMatchDimensionException(dim, cmps.length)*/;
         this.dim = dim;
         this.cmps = cmps.clone();
     }
@@ -70,9 +70,9 @@ public class Vertice implements Iterable <Double>, Cloneable{
  * @param dim number of componentes of the vertex
  * @throws dimension.NoMatchDimensionException the dimension is not valid
  */    
-    public Vertice(int dim) throws NoMatchDimensionException{
+	public Vertice(int dim) /*throws NoMatchDimensionException*/{
         if (dim < 0)
-            throw new NoMatchDimensionException(dim);
+		/* throw new NoMatchDimensionException(dim)*/;
         this.dim = dim;
         this.cmps = new double[dim];
         for(double d : this.cmps){

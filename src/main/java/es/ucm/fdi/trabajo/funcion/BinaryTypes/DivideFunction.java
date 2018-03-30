@@ -1,6 +1,7 @@
-package es.ucm.fdi.trabajo.funcion.BinaryTypes;
+package main.java.es.ucm.fdi.trabajo.funcion.BinaryTypes;
 
-import es.ucm.fdi.trabajo.funcion.FunctionTypes.BinaryFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.BinaryFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.VariablesList;
 
 public class DivideFunction extends BinaryFunction{
 	public DivideFunction(String a, String b) {
@@ -11,7 +12,9 @@ public class DivideFunction extends BinaryFunction{
 		ret+="(" + f1.toString()+ ")"+"/"+"("+f2.toString() + ")";
 		return ret;
 	}
-	public double evaluate(int x) {
-		return (f1.evaluate(x)/f2.evaluate(x));
+	public double evaluate(VariablesList variables) {
+		return (f1.evaluate(variables)/f2.evaluate(variables));
 	}
 }
+//((x_0^3)*(x_1^(x_1*3))+x_0*3)
+//x^((x^2)+x*(x^2))+x*4

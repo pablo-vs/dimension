@@ -1,19 +1,19 @@
-package es.ucm.fdi.trabajo.funcion.SingleTypes;
+package main.java.es.ucm.fdi.trabajo.funcion.SingleTypes;
 
-import es.ucm.fdi.trabajo.funcion.FunctionTypes.Function;
-import es.ucm.fdi.trabajo.funcion.FunctionTypes.SingleFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.Function;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.SingleFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.VariablesList;
 
 public class IdentityFunction extends SingleFunction{
 	public IdentityFunction(String a, int par) {
 		type="Identity";
-		par=1;
+		this.par = Integer.parseInt(a);
 		f=null;
 	}
 	public String toString() {
-		return "x";
+		return "x_"+Integer.toString(par);
 	}
-	public double evaluate(int x) {
-		System.out.println("X:" + x);
-		return (x);
+	public double evaluate(VariablesList list) {
+		return list.getVariable(par);
 	}
 }

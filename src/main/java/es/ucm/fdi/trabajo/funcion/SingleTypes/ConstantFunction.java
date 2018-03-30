@@ -1,6 +1,7 @@
-package es.ucm.fdi.trabajo.funcion.SingleTypes;
+package main.java.es.ucm.fdi.trabajo.funcion.SingleTypes;
 
-import es.ucm.fdi.trabajo.funcion.FunctionTypes.SingleFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.SingleFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.VariablesList;
 
 public class ConstantFunction extends SingleFunction{
 	public ConstantFunction(String a, int par) {
@@ -11,7 +12,7 @@ public class ConstantFunction extends SingleFunction{
 	public String toString() {
 		return Integer.toString(par);
 	}
-	public double evaluate(int x) {
+	public double evaluate(VariablesList variables) {
 		return par;
 	}
 }

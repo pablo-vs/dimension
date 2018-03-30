@@ -1,4 +1,4 @@
-package es.ucm.fdi.trabajo.funcion.FunctionTypes;
+package main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes;
 
 public class SingleFunction extends Function {
 	protected int par;
@@ -12,7 +12,7 @@ public class SingleFunction extends Function {
 		f=null;
 		par=1;
 	}
-	public double evaluate(int x) {
+	public double evaluate(VariablesList variables) {
 		return 0;
 	}
 }

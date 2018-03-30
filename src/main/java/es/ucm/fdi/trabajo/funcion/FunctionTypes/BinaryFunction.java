@@ -1,4 +1,4 @@
-package es.ucm.fdi.trabajo.funcion.FunctionTypes;
+package main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes;
 
 public class BinaryFunction extends Function {
 	protected Function f1;

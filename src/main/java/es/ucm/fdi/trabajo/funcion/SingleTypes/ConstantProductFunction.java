@@ -1,7 +1,7 @@
-package es.ucm.fdi.trabajo.funcion.SingleTypes;
+package main.java.es.ucm.fdi.trabajo.funcion.SingleTypes;
 
-import es.ucm.fdi.trabajo.funcion.FunctionTypes.Function;
-import es.ucm.fdi.trabajo.funcion.FunctionTypes.SingleFunction;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.Function;
+import main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes.SingleFunction;
 
 public class ConstantProductFunction extends SingleFunction{
 	public ConstantProductFunction(String a, int par) {

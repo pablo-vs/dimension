@@ -1,14 +1,14 @@
 package FunctionTypes;
 
-public class SingleFunction extends Function {
+public class UnaryFunction extends Function {
 	protected int par;
 	protected Function f;
-	public SingleFunction(String a, int param, String type) {
+	public UnaryFunction(String a, int param, String type) {
 		this.f=parser(a);
 		this.type=type;
 		par=param;
 	}
-	public SingleFunction() {
+	public UnaryFunction() {
 		f=null;
 		par=1;
 	}

@@ -1,9 +1,8 @@
-package SingleTypes;
+package UnaryTypes;
 
-import FunctionTypes.SingleFunction;
-import FunctionTypes.Function;
+import FunctionTypes.UnaryFunction;
 
-public class ConstantProductFunction extends SingleFunction{
+public class ConstantProductFunction extends UnaryFunction{
 	public ConstantProductFunction(String a, int par) {
 		super(a, par, "ConstantProduct");
 	}

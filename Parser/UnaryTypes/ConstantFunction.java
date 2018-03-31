@@ -1,4 +1,4 @@
-package SingleTypes;
+package UnaryTypes;
 
 import FunctionTypes.UnaryFunction;
 

@@ -1,8 +1,8 @@
 package SingleTypes;
 
-import FunctionTypes.SingleFunction;
+import FunctionTypes.UnaryFunction;
 
-public class ConstantFunction extends SingleFunction{
+public class ConstantFunction extends UnaryFunction{
 	public ConstantFunction(String a, int par) {
 		super();
 		f=null;

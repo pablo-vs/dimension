@@ -4,8 +4,8 @@ import BinaryTypes.DivideFunction;
 import BinaryTypes.ExponentialFunction;
 import BinaryTypes.ProductFunction;
 import BinaryTypes.SumFunction;
-import SingleTypes.ConstantFunction;
-import SingleTypes.IdentityFunction;
+import UnaryTypes.ConstantFunction;
+import UnaryTypes.IdentityFunction;
 
 public class Function {
 	protected String type;

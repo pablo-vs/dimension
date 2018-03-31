@@ -1,7 +1,6 @@
-package SingleTypes;
+package UnaryTypes;
 
-import FunctionTypes.SingleFunction;
-import FunctionTypes.Function;
+import FunctionTypes.UnaryFunction;
 
 public class IdentityFunction extends SingleFunction{
 	public IdentityFunction(String a, int par) {

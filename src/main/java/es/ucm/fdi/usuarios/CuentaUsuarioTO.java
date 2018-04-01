@@ -1,4 +1,4 @@
-package es.ucm.fdi.trabajo;
+package es.ucm.fdi.usuarios;
 
 import java.util.Date;
 
@@ -9,20 +9,25 @@ import java.util.Date;
  *
  */
 
-public class CuentaUsuario {
+public class CuentaUsuarioTO {
 	
 	private String ID;
 	private String nombre;
 	private String contrasenya;
 	private Date Fecha;
 	private String email;
-	private CuentaUsuario[] amigos;
 	private int telefono;
 	private String foto;
 	private String formacion;
 	private String descripcion;
-	private Proyecto[] proyectos;
 	private TipoUsuario tipo;
 	private int tiempoSancion;
 
+	public String getID() {
+		return ID;
+	}
+
+	public String getContrasenya() {
+		return contrasenya;
+	}
 }

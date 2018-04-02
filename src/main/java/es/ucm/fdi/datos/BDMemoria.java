@@ -21,8 +21,8 @@ package es.ucm.fdi.datos;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Hashtable;
-import java.util.Vector;
-
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Esta clase representa una BD con una única tabla con clave primaria. 
@@ -65,8 +65,8 @@ public class BDMemoria<T>{
 	 * 
 	 * @return la lista de identificadores.
 	 */
-	public synchronized Vector<String> getIds(){
-		return new Vector<String>(tabla.keySet());		
+	public synchronized List<String> getIds(){
+		return new ArrayList<String>(tabla.keySet());		
 	}
 	
 	/**

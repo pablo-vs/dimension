@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import es.ucm.fdi.trabajo.Vertice;
-import es.ucm.fdi.trabajo.funcion.FunctionTypes.Function;
+import es.ucm.fdi.trabajo.funcion.functiontypes.Function;
+import es.ucm.fdi.trabajo.funcion.functiontypes.VariablesList;
 
 /**
  * 
- * @author Eloy MÛsig
+ * @author Eloy M√≥sig
  *
  */
 
@@ -21,15 +22,15 @@ public class FunctionToGraphic {
 		private int dimension;
 		//cual es el mejor TAD para implementar esta mierda???
 		private List<List<Vertice>> objeto;
-		private List<List<Vertice>> dominio; //inicialmente dominio contiene (dimension) vÈrtices con todas las coordenadas nulas excepto una
+		private List<List<Vertice>> dominio; //inicialmente dominio contiene (dimension) v√©rtices con todas las coordenadas nulas excepto una
 		private int resolucion; 
-		//la cuadrÌcula va a estar formada por cubos de lado 1/2^resolucion
+		//la cuadr√≠cula va a estar formada por cubos de lado 1/2^resolucion
 
 
 		public void Grafico(int dimension) {
-			this.dimension = dimension; //n+1 si la funciÛn es de R^n a R
+			this.dimension = dimension; //n+1 si la funci√≥n es de R^n a R
 			objeto = new ArrayList<>();
-			//inicializo aquÌ objeto con un vÈrtice en el origen?
+			//inicializo aqu√≠ objeto con un v√©rtice en el origen?
 			List<Vertice> f1 = new ArrayList<>();
 			f1.add(new Vertice(dimension));
 			objeto.add(f1);
@@ -50,7 +51,7 @@ public class FunctionToGraphic {
 					}
 				}
 			}
-			//cojo la primera arista y creo hiperplanos en cada nuevo vÈrtice
+			//cojo la primera arista y creo hiperplanos en cada nuevo v√©rtice
 			
 			
 		}
@@ -58,13 +59,12 @@ public class FunctionToGraphic {
 		public void Generar(Function f, List<Vertice>dom, int res) {
 			resolucion = res;
 			Cuadricula(dom); //si esto es A, voy a dibujar f(A) 
-			//!!!Por ahora A es un rect·ngulo en el primer cuadrante con un vÈrtice en el origen
-			
+			//!!!Por ahora A es un rect√°ngulo en el primer cuadrante con un v√©rtice en el origen
+			VariablesList x = f.getVars();
 			for(int i = 0; i < dimension; ++i) {
 				objeto.add(new ArrayList<Vertice>());
 				for(Vertice v: dominio.get(i)) {
-					VariablesList x 
-					objeto.get(i).add(f.evaluate(x));
+					objeto.get(i).add(new Vertice(f.evaluate(x)));
 				}
 			}		
 		}

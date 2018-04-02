@@ -8,6 +8,7 @@ import es.ucm.fdi.trabajo.funcion.functiontypes.VariablesList;
 import es.ucm.fdi.trabajo.funcion.functiontypes.FunctionParser;
 
 /**
+ * Represents a contangent function
  *
  * @author Inmapg
  */

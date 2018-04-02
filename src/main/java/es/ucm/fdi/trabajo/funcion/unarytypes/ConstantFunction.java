@@ -1,6 +1,7 @@
 package es.ucm.fdi.trabajo.funcion.unarytypes;
 
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import es.ucm.fdi.trabajo.funcion.functiontypes.UnaryFunction;
 import es.ucm.fdi.trabajo.funcion.functiontypes.VariablesList;
@@ -32,12 +33,20 @@ public class ConstantFunction extends UnaryFunction{
 
 	public static class Parser extends UnaryFunction.Parser{
 		private static final Pattern REGEX = Pattern.compile("\\d+");
+		private static final Pattern PI_REGEX = Pattern.compile("PI");
+		private static final Pattern E_REGEX = Pattern.compile("e");
 
 		@Override
 		public ConstantFunction parse(String strParam, VariablesList variables, FunctionParser parser) {
 			String str = ParserUtils.stripExtraParenthesis(strParam);
-			if(parsePattern(str, REGEX)) {
+			Matcher digitMatcher = REGEX.matcher(str), piMatcher = PI_REGEX.matcher(str),
+				eMatcher = E_REGEX.matcher(str);
+			if(digitMatcher.matches()) {
 				return new ConstantFunction(Double.parseDouble(str), variables);
+			} else if (piMatcher.matches()) {
+				return new ConstantFunction(Math.PI, variables);
+			} else if (eMatcher.matches()) {
+				return new ConstantFunction(Math.E, variables);
 			} else {
 				return null;
 			}

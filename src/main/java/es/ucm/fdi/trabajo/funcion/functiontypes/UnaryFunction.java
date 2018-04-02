@@ -12,6 +12,13 @@ import es.ucm.fdi.util.ParserUtils;
  */
 public abstract class UnaryFunction extends Function {
 
+	protected Function argument;
+
+	public UnaryFunction(Function f, VariablesList vars) {
+		super(vars);
+		argument = f;
+	}
+	
 	public UnaryFunction(VariablesList vars) {
 		super(vars);
 	}
@@ -21,9 +28,14 @@ public abstract class UnaryFunction extends Function {
 		@Override
 		public abstract UnaryFunction parse(String str, VariablesList variables, FunctionParser parser);
 		
-		public boolean parsePattern(String str, Pattern patron) {
+		public static String parsePattern(String strParam, Pattern patron) {
+			String result = null;
+			String str = ParserUtils.stripExtraParenthesis(strParam);
 			Matcher m = patron.matcher(str);
-			return m.matches();
+			if(m.matches()) {
+				result = m.group(1);
+			}
+			return result;
 		}
 	}
 }

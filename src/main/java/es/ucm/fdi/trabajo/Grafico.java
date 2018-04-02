@@ -6,13 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import es.ucm.fdi.trabajo.funcion.FunctionTypes.Function;
+import es.ucm.fdi.trabajo.funcion.functiontypes.Function;
 
 /**
  * 
  * @author Eduardo Amaya
  * @author Javier Galiana
- * @author Eloy M�sig
+ * @author Eloy Mósig
  *
  */
 
@@ -24,18 +24,17 @@ public class Grafico {
 	private Map<Vertice, Vertice> objeto;
 	private List<Vertice> dominio;
 	private double resolucion;
-
 	/**
-	 * Aproxima la funci�n f mediante un confunto de politopos con la resoluci�n
+	 * Aproxima la funciï¿½n f mediante un confunto de politopos con la resoluciï¿½n
 	 * deseada
 	 * 
 	 * @param f
 	 * @param res
 	 */
 	/*public void Grafico(int dimension) {
-		this.dimension = dimension; //n+1 si la funci�n es de R^n a R
+		this.dimension = dimension; //n+1 si la función es de R^n a R
 		objeto = new HashMap<>();
-		//inicializo aqu� objeto con dos v�rtices en el origen?
+		//inicializo aquí objeto con dos vértices en el origen?
 		double[] cmps = new double[dimension];
 		for(int i = 0; i < dimension; ++i)
 			cmps[i] = 0;

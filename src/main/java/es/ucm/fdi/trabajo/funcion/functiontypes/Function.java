@@ -1,15 +1,16 @@
-package main.java.es.ucm.fdi.trabajo.funcion.FunctionTypes;
+package es.ucm.fdi.trabajo.funcion.functiontypes;
 
-import main.java.es.ucm.fdi.trabajo.funcion.BinaryTypes.*;
-import main.java.es.ucm.fdi.trabajo.funcion.UnaryTypes.*;
+public abstract class Function {
+	private VariablesList variables;
+	
+	public Function() {}
 
-public class Function {
-	protected String type;
-        
-        public Function(String type){
-            this.type = type;
-        }
-	public Function parser(String string) {
+	public Function(VariablesList vars) {
+		variables = vars;
+	}
+	
+	/*
+	public Function parse(String string) {
 		String[] chars= {string};
 		if (string.length()>1) {
 			chars=string.split("");
@@ -76,8 +77,26 @@ public class Function {
 	        if(Character.digit(s.charAt(i),radix) < 0) return false;
 	    }
 	    return true;
+	    }*/
+
+	public VariablesList getVars() {
+		return variables;
 	}
-	public double evaluate(VariablesList variables) {
-		return 0;
+	
+	public double evaluate(VariablesList vars) {
+		if(variables.equals(vars)) {
+			return evaluateExpr(vars);
+		} else {
+			throw new IllegalArgumentException("Variables incorrectas");
+		}
+	}
+
+	protected abstract double evaluateExpr(VariablesList vars);
+	
+       	public abstract String toString();
+
+	public static abstract class Parser {
+		
+		public abstract Function parse(String str, VariablesList variables, FunctionParser parser);
 	}
 }

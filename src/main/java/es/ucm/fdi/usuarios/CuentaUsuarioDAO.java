@@ -1,34 +1,48 @@
 package es.ucm.fdi.usuarios;
 
 import java.util.List;
-import java.util.ArrayList;
 
-import es.ucm.fdi.datos.BDMemoria;
+/**
+ * Interfaz para gestionar la persistencia de datos de usuarios.
+ *
+ * @author Pablo Villalobos
+ * @version 01.04.2018
+ */
+public interface CuentaUsuarioDAO {
 
-public class CuentaUsuarioDAO {
-	private BDMemoria<CuentaUsuarioTO> bd;
+	/**
+	 * Añade un usuario a la base de datos.
+	 *
+	 * @param user El usuario que se desea añadir.
+	 */
+	public void addUsuario(CuentaUsuarioTO user);
 
-	public void addUsuario(CuentaUsuarioTO user) {
-		bd.insert(user, user.getID());
-	}
+	/**
+	 * Elimina el usuario con el identificador dado, si existe.
+	 *
+	 * @param id El identificador del usuario a eliminar.
+	 */
+	public void eliminarUsuario(String id);
 
-	public void eliminarUsuario(String id) {
-		bd.removeId(id);
-	}
+	/**
+	 * Si el usuario dado ya existe, cambia los datos de su cuenta por los dados.
+	 *
+	 * @param user El TO que contiene los nuevos datos del usuario.
+	 */
+	public void modificarUsuario(CuentaUsuarioTO user);
 
-	public void modificarUsuario(CuentaUsuarioTO user) {
-		bd.insert(user, user.getID());
-	}
+	/**
+	 * Devuelve el usuario con el identificador dado.
+	 *
+	 * @param id Identificador del usuario que se busca.
+	 * @return Un TO con los datos del usuario correspondiente.
+	 */
+	public CuentaUsuarioTO buscarUsuario(String id);
 
-	public CuentaUsuarioTO buscarUsuario(String id) {
-		return bd.find(id);
-	}
-
-	public List<CuentaUsuarioTO> getUsuarios() {
-		ArrayList<CuentaUsuarioTO> lista = new ArrayList<>();
-		for (String id : bd.getIds()) {
-			lista.add(bd.find(id));
-		}
-		return lista;
-	}
+	/**
+	 * Devuelve una lista con todos los usuarios registrados
+	 *
+	 * @return La lista de usuarios.
+	 */
+	public List<CuentaUsuarioTO> getUsuarios();
 }

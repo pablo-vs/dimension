@@ -3,7 +3,8 @@ package es.ucm.fdi.usuarios;
 import java.util.Date;
 
 /**
- * 
+ * Objeto que contiene los datos de una cuenta de usuario; 
+ *
  * @author Eduardo Amaya
  * @author Javier Galiana
  *
@@ -23,6 +24,14 @@ public class CuentaUsuarioTO {
 	private TipoUsuario tipo;
 	private int tiempoSancion;
 
+	/**
+	 * Constructor mínimo para hacer tests.
+	 */
+	public CuentaUsuarioTO(String ID, String contrasenya) {
+		this.ID = ID;
+		this.contrasenya = contrasenya;
+	}
+	
 	public String getID() {
 		return ID;
 	}

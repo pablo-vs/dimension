@@ -8,7 +8,7 @@ import es.ucm.fdi.trabajo.function.functiontypes.VariablesList;
 import es.ucm.fdi.trabajo.function.FunctionParser;
 
 /**
- * Representa la función coseno
+ * Represents a cosine function
  *
  * @author Inmapg
  * @version 02.04.2018

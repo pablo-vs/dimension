@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import es.ucm.fdi.trabajo.Vertice;
-import es.ucm.fdi.trabajo.funcion.functiontypes.Function;
-import es.ucm.fdi.trabajo.funcion.functiontypes.VariablesList;
+import es.ucm.fdi.trabajo.function.Function;
+import es.ucm.fdi.trabajo.function.functiontypes.VariablesList;
 
 /**
  * 

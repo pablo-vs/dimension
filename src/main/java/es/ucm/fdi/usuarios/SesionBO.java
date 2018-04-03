@@ -1,6 +1,7 @@
 package es.ucm.fdi.usuarios;
 
 import java.time.ZonedDateTime;
+import java.io.Serializable;
 
 /**
  * Representa una sesión de un usuario.
@@ -8,16 +9,16 @@ import java.time.ZonedDateTime;
  * @author Pablo Villalobos
  * @version 01.04.2018
  */
-public class SesionBO {
-	private String nombreUsuario;
-	private ZonedDateTime fecha;
+public class SesionBO implements Serializable{
+	private String username;
+	private ZonedDateTime date;
 
 	/**
 	 * Constructor.
 	 */
-	public SesionBO(String usu, ZonedDateTime time) {
-		nombreUsuario = usu;
-		fecha = time;
+	public SesionBO(String user, ZonedDateTime time) {
+		username = user;
+		date = time;
 	}
 
 	/**
@@ -26,7 +27,7 @@ public class SesionBO {
 	 * @return Un String que identifica unívocamente la sesión.
 	 */
 	public String getID() {
-		return (nombreUsuario + fecha.toString().hashCode());
+		return Integer.toString((username + date.toString().hashCode()).hashCode());
 	}
 
 	/**
@@ -34,16 +35,16 @@ public class SesionBO {
 	 *
 	 * @return Identificador del usuario.
 	 */
-	public String getUsuario() {
-		return nombreUsuario;
+	public String getUser() {
+		return username;
 	}
 
 	/**
-	 * Devuelve la fecha en la que se inició la sesión.
+	 * Devuelve la date en la que se inició la sesión.
 	 *
-	 * @return Una ZonedDateTime que representa la fecha.
+	 * @return Una ZonedDateTime que representa la date.
 	 */
-	public ZonedDateTime getFecha() {
-		return fecha;
+	public ZonedDateTime getDate() {
+		return date;
 	}
 }

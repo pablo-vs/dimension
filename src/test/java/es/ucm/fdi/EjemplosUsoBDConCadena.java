@@ -57,17 +57,17 @@ public class EjemplosUsoBDConCadena
      */
     public void testCreacion()
     {    	
-    	BDMemoria<Proyecto> bdProyectos=new BDMemoria<Proyecto>();
-    	Proyecto p1 = new Proyecto("p1");
-    	Proyecto p2 = new Proyecto("p2");
-    	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdProyectos, bdProyectos.getIds().isEmpty());
+    	BDMemoria<ProjectTO> bdProjectTOs=new BDMemoria<ProjectTO>();
+    	ProjectTO p1 = new ProjectTO("p1");
+    	ProjectTO p2 = new ProjectTO("p2");
+    	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdProjectTOs, bdProjectTOs.getIds().isEmpty());
     	//bdCadenas.insert("hola", "1");	
-    	bdProyectos.insert(p1, "p1");
-    	//bdProyectos.insert(p2, "p2");
-    	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdProyectos, bdProyectos.getIds().size()==1);
-    	bdProyectos.print(System.out);
+    	bdProjectTOs.insert(p1, "p1");
+    	//bdProjectTOs.insert(p2, "p2");
+    	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdProjectTOs, bdProjectTOs.getIds().size()==1);
+    	bdProjectTOs.print(System.out);
     	//bdCadenas.insert("hola", "1");
-    	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdProyectos, bdProyectos.getIds().size()==1);
+    	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdProjectTOs, bdProjectTOs.getIds().size()==1);
     }
     
     /**

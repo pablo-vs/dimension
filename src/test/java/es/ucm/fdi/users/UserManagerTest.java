@@ -1,4 +1,4 @@
-package es.ucm.fdi.usuarios;
+package es.ucm.fdi.users;
 
 import java.time.ZonedDateTime;
 
@@ -12,10 +12,10 @@ public class UserManagerTest {
 
 	@Test
 	public void userManagementTest() {
-		UserManagerAS userMgr = UserManagerAS.getManager(new CuentaUsuarioDAOHashTableImp());
+		UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
 		HashGenerator hashgen = new HashGenerator();
-		CuentaUsuarioTO pepe = new CuentaUsuarioTO("pepe", hashgen.hash("1234".toCharArray())),
-			paco = new CuentaUsuarioTO("paco", hashgen.hash("4321".toCharArray()));
+		UserTO pepe = new UserTO("pepe", hashgen.hash("1234".toCharArray())),
+			paco = new UserTO("paco", hashgen.hash("4321".toCharArray()));
 		userMgr.newUser(pepe);
 		userMgr.newUser(paco);
 		String sesionPepe = userMgr.login("pepe", "1234"),
@@ -40,10 +40,10 @@ public class UserManagerTest {
 	@Test
 	public void validSessionTest() {
 		HashGenerator hashgen = new HashGenerator();
-		CuentaUsuarioDAO dao = new CuentaUsuarioDAOHashTableImp();
+		UserDAO dao = new UserDAOHashTableImp();
 		String passwd = hashgen.hash("1234".toCharArray());
-		CuentaUsuarioTO user = new CuentaUsuarioTO("pedro", passwd);
-		dao.addUsuario(user);
+		UserTO user = new UserTO("pedro", passwd);
+		dao.addUser(user);
 		UserManagerAS userMgr = UserManagerAS.getManager(dao);
 		String sesion = userMgr.login("pedro", "1234");
 		assertTrue(userMgr.validateSession(sesion));
@@ -54,10 +54,10 @@ public class UserManagerTest {
 	@Test
 	public void invalidSessionTest() {
 		HashGenerator hashgen = new HashGenerator();
-		CuentaUsuarioDAO dao = new CuentaUsuarioDAOHashTableImp();
+		UserDAO dao = new UserDAOHashTableImp();
 		String passwd = hashgen.hash("1234".toCharArray());
-		CuentaUsuarioTO user = new CuentaUsuarioTO("pedro", passwd);
-		dao.addUsuario(user);
+		UserTO user = new UserTO("pedro", passwd);
+		dao.addUser(user);
 		UserManagerAS userMgr = UserManagerAS.getManager(dao);
 		try{
 			String sesion = userMgr.login("pedro", "12345");
@@ -66,7 +66,7 @@ public class UserManagerTest {
 			//Todo correcto
 		}
 
-		SesionBO sesion = new SesionBO("pedro", ZonedDateTime.now());
+		SessionBO sesion = new SessionBO("pedro", ZonedDateTime.now());
 		assertFalse(userMgr.validateSession(sesion.getID()));
 	}
 }

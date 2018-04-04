@@ -13,7 +13,7 @@ public class Visualization {
 	private int tam;
 	
 	/**
-	 * Muestra el gr�fico por pantalla
+	 * Muestra el gráfico por pantalla
 	 * 
 	 */
 	public void dibujar(){

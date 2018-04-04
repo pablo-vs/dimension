@@ -1,10 +1,10 @@
-package es.ucm.fdi.usuarios;
+package es.ucm.fdi.users;
 
 /**
  * Represents the distinct types of users:
  * User and admin.
  *
  */
-public enum TipoUsuario {
+public enum UserType {
 	USER, ADMIN;
 }

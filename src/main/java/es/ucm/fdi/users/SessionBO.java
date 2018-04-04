@@ -1,48 +1,48 @@
-package es.ucm.fdi.usuarios;
+package es.ucm.fdi.users;
 
 import java.time.ZonedDateTime;
 import java.io.Serializable;
 
 /**
- * Representa una sesión de un usuario.
+ * Represents a user session.
  *
  * @author Pablo Villalobos
  * @version 01.04.2018
  */
-public class SesionBO implements Serializable{
+public class SessionBO implements Serializable{
 	private String username;
 	private ZonedDateTime date;
 
 	/**
 	 * Constructor.
 	 */
-	public SesionBO(String user, ZonedDateTime time) {
+	public SessionBO(String user, ZonedDateTime time) {
 		username = user;
 		date = time;
 	}
 
 	/**
-	 * Devuelve un identificador único para cada sesión.
+	 * Returns a unique session identifier.
 	 *
-	 * @return Un String que identifica unívocamente la sesión.
+	 * @return A String which uniquely determines the session.
 	 */
 	public String getID() {
 		return Integer.toString((username + date.toString().hashCode()).hashCode());
 	}
 
 	/**
-	 * Devuelve el nombre del usuario que inició la sesión.
+	 * Returns the user who started the session.
 	 *
-	 * @return Identificador del usuario.
+	 * @return Username.
 	 */
 	public String getUser() {
 		return username;
 	}
 
 	/**
-	 * Devuelve la date en la que se inició la sesión.
+	 * Returns the date of login.
 	 *
-	 * @return Una ZonedDateTime que representa la date.
+	 * @return A ZonedDateTime representing the date.
 	 */
 	public ZonedDateTime getDate() {
 		return date;

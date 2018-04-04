@@ -1,4 +1,4 @@
-package es.ucm.fdi.usuarios;
+package es.ucm.fdi.users;
 
 import java.time.ZonedDateTime;
 import java.util.HashMap;
@@ -14,11 +14,11 @@ import es.ucm.fdi.util.HashGenerator;
 public class UserManagerAS {
 	//Singleton pattern
        	private static UserManagerAS instance;
-	private CuentaUsuarioDAO dao;
+	private UserDAO dao;
 	private HashGenerator hashgen;
-	private HashMap<String, SesionBO> activeSessions;
+	private HashMap<String, SessionBO> activeSessions;
 	
-	private UserManagerAS(CuentaUsuarioDAO dao) {
+	private UserManagerAS(UserDAO dao) {
 		this.dao = dao;
 		hashgen = new HashGenerator();
 		activeSessions = new HashMap<>();
@@ -27,10 +27,10 @@ public class UserManagerAS {
 	/**
 	 * Get the current manager or create a new one if it does not exist, using the given database.
 	 *
-	 * @param dao The CuentaUsuarioDAO to use.
+	 * @param dao The UserDAO to use.
 	 * @return The User Manager.
 	 */
-	public static UserManagerAS getManager(CuentaUsuarioDAO dao) {
+	public static UserManagerAS getManager(UserDAO dao) {
 		if(instance == null) {
 			instance = new UserManagerAS(dao);
 		}
@@ -42,10 +42,10 @@ public class UserManagerAS {
 	 *
 	 * @param user The user to add.
 	 */
-	public void newUser(CuentaUsuarioTO user) {
+	public void newUser(UserTO user) {
 		if(validateAccountDetails(user)) {
-			if(dao.buscarUsuario(user.getID()) == null) {
-				dao.addUsuario(user);
+			if(dao.findUser(user.getID()) == null) {
+				dao.addUser(user);
 			} else {
 				throw new IllegalArgumentException("User " + user.getID() + " already exists");
 			}
@@ -55,15 +55,15 @@ public class UserManagerAS {
 	}
 
 	/**
-	 * Remove an user from the database. This requires an active session.
+	 * Remove a user from the database. This requires an active session.
 	 *
 	 * @param id The identifier of the user to be deleted.
 	 * @param sesion The session from which to perform the action.
 	 */
 	public void removeUser(String id, String sesion) {
 		if(authenticate(id, sesion)) {
-			if( dao.buscarUsuario(id) != null) {
-				dao.eliminarUsuario(id);
+			if( dao.findUser(id) != null) {
+				dao.removeUser(id);
 			} else {
 				throw new IllegalArgumentException("User " + id + " does not exist");
 			}
@@ -73,16 +73,16 @@ public class UserManagerAS {
 	}
 
 	/**
-	 * Modify an user's information in the database. This requires an active session.
+	 * Modify a user's information in the database. This requires an active session.
 	 *
 	 * @param id The new account details.
 	 * @param sesion The session from which to perform the action.
 	 */
-	public void modifyUser(CuentaUsuarioTO user, String sesion) {
+	public void modifyUser(UserTO user, String sesion) {
 		if(authenticate(user.getID(), sesion)) {
 			if(validateAccountDetails(user)) {
-				if(dao.buscarUsuario(user.getID()) != null) {
-					dao.modificarUsuario(user);
+				if(dao.findUser(user.getID()) != null) {
+					dao.modifyUser(user);
 				} else {
 					throw new IllegalArgumentException("User " + user.getID() + " does not exist");
 				}
@@ -103,11 +103,11 @@ public class UserManagerAS {
 	 */
 	public String login(String username, String passwd) {
 		//Busca el nombre de usuario en la base de datos
-		CuentaUsuarioTO user = dao.buscarUsuario(username);
+		UserTO user = dao.findUser(username);
 		if(user != null) {
 			//Si la contraseña introducida y la almacenada coinciden,
 			//crea una sesión nueva y la devuelve
-			if(hashgen.authenticate(passwd.toCharArray(), user.getContrasenya())) {
+			if(hashgen.authenticate(passwd.toCharArray(), user.getPassword())) {
 				return createNewSession(username).getID();
 			}
 			else {
@@ -140,7 +140,7 @@ public class UserManagerAS {
 		if(validateSession(session)) {
 			String sessionUser = activeSessions.get(session).getUser();
 			return sessionUser.equals(username) ||
-				dao.buscarUsuario(sessionUser).getTipo() == TipoUsuario.ADMIN;
+				dao.findUser(sessionUser).getType() == UserType.ADMIN;
 		} else {
 			return false;
 		}
@@ -155,20 +155,20 @@ public class UserManagerAS {
 		activeSessions.remove(id);
 	}
 	
-	private SesionBO createNewSession(String user) {
-		SesionBO sesion = null;
+	private SessionBO createNewSession(String user) {
+		SessionBO sesion = null;
 		//Si el usuario ya ha iniciado sesión, lanzar un error
 		if(activeSessions.get(user) != null) {
 			throw new IllegalArgumentException("This user is already logged in");
 		} else {
 			//Si no, crear la sesión y añadirla a la lista de sesiones activas.
-			sesion = new SesionBO(user, ZonedDateTime.now());
+			sesion = new SessionBO(user, ZonedDateTime.now());
 			activeSessions.put(sesion.getID(), sesion);
 		}
 		return sesion;
 	}	
 
-	private boolean validateAccountDetails(CuentaUsuarioTO user) {
+	private boolean validateAccountDetails(UserTO user) {
 		//TODO!!!!!!!!!!
 		return true;
 	}

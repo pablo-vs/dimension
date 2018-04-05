@@ -7,10 +7,12 @@ package es.ucm.fdi.connectivity;
  * @version 04.04.2018
  */
 public abstract class SharedProjectBO {
-	private String projectID;
+	private String sharedID;
+	private String projectName;
 	
-	public SharedProjectBO(String project) {
-		projectID = project;
+	public SharedProjectBO(String ID, String name) {
+		sharedID = ID;
+		this.projectName = name;
 	}
 
 	/**

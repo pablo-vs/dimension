@@ -38,6 +38,7 @@ public class CosineFunction extends UnaryFunction{
 			CosineFunction result = null;
 			String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
 			if(strArg != null) {
+				System.out.println("Coseno detectado, parseando argumento");
 				Function arg = parser.parse(strArg, variables);
 				if(arg != null) {
 					result = new CosineFunction(arg, variables);

@@ -43,7 +43,7 @@ public class SubstractFunction extends BinaryFunction{
 		public SubstractFunction parse(String str, VariablesList variables, FunctionParser parser) {
 			SubstractFunction func = null;
 		        Function[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX, parser);
-			if(funcs != null) {
+			if((funcs[0]!=null)&&(funcs[1]!=null)) {
 				func = new SubstractFunction(funcs[0], funcs[1], variables);
 			}
 			return func;

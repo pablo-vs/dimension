@@ -44,8 +44,9 @@ public class SumFunction extends BinaryFunction{
 		@Override
 		public SumFunction parse(String str, VariablesList variables, FunctionParser parser) {
 			SumFunction func = null;
+			System.out.println("Suma " + str);
 			Function[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX, parser);
-			if(funcs != null) {
+			if((funcs[0]!=null)&&(funcs[1]!=null)) {
 				func = new SumFunction(funcs[0], funcs[1], variables);
 			}
 			return func;

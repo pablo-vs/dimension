@@ -15,12 +15,12 @@ public class ParserUtils {
 		String str = str1.trim();
 		int ini = 0, end = 0, min = str.length(), current;
 		int i = 0;
-		while(str.charAt(i) == '(') {
+		while(i < str.length() && str.charAt(i) == '(') {
 			ini++;
 			i++;
 		}
 		i = 0;
-		while(str.charAt(str.length()-i-1) == ')') {
+		while(i < str.length() && str.charAt(str.length()-i-1) == ')') {
 			end++;
 			i++;
 		}
@@ -44,6 +44,7 @@ public class ParserUtils {
 			++i;
 		}
 		return str.substring(min, str.length()-min);
+		
 	}
 
 	/**

@@ -44,6 +44,7 @@ public class ConstantFunction extends UnaryFunction{
 			if(digitMatcher.matches()) {
 				return new ConstantFunction(Double.parseDouble(str), variables);
 			} else if (piMatcher.matches()) {
+				System.out.println("Fuck yeah!");
 				return new ConstantFunction(Math.PI, variables);
 			} else if (eMatcher.matches()) {
 				return new ConstantFunction(Math.E, variables);

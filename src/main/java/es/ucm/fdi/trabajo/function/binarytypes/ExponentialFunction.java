@@ -43,7 +43,7 @@ public class ExponentialFunction extends BinaryFunction{
 		public ExponentialFunction parse(String str, VariablesList variables, FunctionParser parser) {
 			ExponentialFunction func = null;
 		        Function[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX, parser);
-			if(funcs != null) {
+			if((funcs[0]!=null)&&(funcs[1]!=null)) {
 				func = new ExponentialFunction(funcs[0], funcs[1], variables);
 			}
 			return func;

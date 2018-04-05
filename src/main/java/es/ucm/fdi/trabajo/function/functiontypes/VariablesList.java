@@ -46,7 +46,9 @@ public class VariablesList {
 	public VariablesList(String[] nameList) {
 		variables = new TreeMap<String, Variable>();
 		for (String s : nameList) {
+			if (s.matches("[\\w]+"))
 			variables.put(s, new Variable(s));
+			else throw new IllegalArgumentException();
 		}
 	}
 	

@@ -42,8 +42,10 @@ public class ProductFunction extends BinaryFunction{
 		@Override
 		public ProductFunction parse(String str, VariablesList variables, FunctionParser parser) {
 			ProductFunction func = null;
-		        Function[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX, parser);
-			if(funcs != null) {
+			//System.out.println("INTENTO PRODUCTO, " + str);
+		    Function[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX, parser);
+			
+			if((funcs[0]!=null)&&(funcs[1]!=null)) {
 				func = new ProductFunction(funcs[0], funcs[1], variables);
 			}
 			return func;

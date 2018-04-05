@@ -35,7 +35,9 @@ public class TangentFunction extends UnaryFunction{
 		public TangentFunction parse(String strParam, VariablesList variables, FunctionParser parser) {
 			TangentFunction result = null;
 			String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
+			//System.out.println("Intento tangente " + strArg);
 			if(strArg != null) {
+				System.out.println("tangente " + strArg);
 				Function arg = parser.parse(strArg, variables);
 				if(arg != null) {
 					result = new TangentFunction(arg, variables);

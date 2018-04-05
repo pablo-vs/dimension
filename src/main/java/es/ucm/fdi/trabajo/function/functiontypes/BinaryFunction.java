@@ -46,26 +46,42 @@ public abstract class BinaryFunction extends Function {
 		public static Function[] parseFunctions(String strParam, VariablesList variables, Pattern operator, FunctionParser parser) {
 			boolean success;
 			Function[] funcs = new Function[2];
+			boolean succ=true;
 			String str = ParserUtils.stripExtraParenthesis(strParam);
 			int endFirst = 0, startSecond;
-			if(str.charAt(0) == '(') {
-				endFirst = ParserUtils.getEndOfParenthesis(str, 0);
-			}
-			Matcher m = operator.matcher(str);
-			if(m.find(endFirst)) {
-				if(endFirst == 0) {
-					endFirst = m.start();
+			if(!str.equals("")) {
+				if(str.charAt(0) == '(') {
+					try {
+						endFirst = ParserUtils.getEndOfParenthesis(str, 0);
+					} catch(IllegalArgumentException e) {
+						succ=false;
+					}
 				}
-				startSecond = m.end();
-				try {
-					funcs[0] = parser.parse(str.substring(0, endFirst), variables);
-					funcs[1] = parser.parse(str.substring(startSecond), variables);
-				} catch (IllegalArgumentException e) {
-					funcs = null;
+				if (succ) {
+					Matcher m = operator.matcher(str);
+					boolean done = false;
+					if(m.find(endFirst)) {
+						do {
+							if(endFirst == 0) {
+								endFirst = m.start();
+							}
+							startSecond = m.end();
+							if(str.substring(0, endFirst).equals("PI") && str.substring(startSecond).equals("(tan(x+y+z*y-x*z+y)+y^(1))")) {
+								System.out.println("Bingo");
+							}
+							if(str.substring(0, endFirst).equals("(tan(x+y+z*y")) System.out.println("N2");
+							funcs[0] = parser.parse(str.substring(0, endFirst), variables);	
+							if(funcs[0] != null) {
+								funcs[1] = parser.parse(str.substring(startSecond), variables);
+								done = funcs[1] != null;
+							} else funcs[1] = null;
+						} while(!done && !m.hitEnd() && m.find());
+					}
 				}
 			} else {
-				funcs = null;
+				funcs[0]=null; funcs[1]=null;
 			}
+			
 			return funcs;
 		}
 	}

@@ -19,4 +19,12 @@ public class AuthorshipBO {
 		return id;
 	}
 
+	public String getAuthor() {
+		return author;
+	}
+
+	public String getProject() {
+		return project;
+	}
+	
 }

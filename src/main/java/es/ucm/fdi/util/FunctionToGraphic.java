@@ -1,17 +1,16 @@
 package es.ucm.fdi.util;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import es.ucm.fdi.trabajo.Vertice;
 import es.ucm.fdi.trabajo.function.Function;
+import es.ucm.fdi.trabajo.function.FunctionParser;
 import es.ucm.fdi.trabajo.function.functiontypes.VariablesList;
 
 /**
  * 
+ * @author Brian Leiva
  * @author Eloy Mósig
  *
  */
@@ -20,52 +19,64 @@ public class FunctionToGraphic {
 
 	public class Grafico {
 		private int dimension;
-		//cual es el mejor TAD para implementar esta mierda???
-		private List<List<Vertice>> objeto;
-		private List<List<Vertice>> dominio; //inicialmente dominio contiene (dimension) vértices con todas las coordenadas nulas excepto una
+		private List<Vertice> dominio, imagen;
+		private MultiTreeMap<Integer, Integer> objeto;
 		private int resolucion; 
-		//la cuadrícula va a estar formada por cubos de lado 1/2^resolucion
 
-
-		public void Grafico(int dimension) {
-			this.dimension = dimension; //n+1 si la función es de R^n a R
-			objeto = new ArrayList<>();
-			//inicializo aquí objeto con un vértice en el origen?
-			List<Vertice> f1 = new ArrayList<>();
-			f1.add(new Vertice(dimension));
-			objeto.add(f1);
+		public Grafico(int dimension) {
+			this.dimension = dimension;
+			objeto = new MultiTreeMap<>((a, b) -> a - b);
+			dominio = new ArrayList<>();
 		}
 		
-		public void Cuadricula(List<Vertice>dom) {
+		public void Cuadricula(double[] dom_ini, double[] dom_fin) {
 			
+			if (dom_ini.length != dom_fin.length) throw new IllegalArgumentException();
 			double lado = 1/2^resolucion;
-			//aristas
-			for(Vertice v: dom) {
-				for(int i = 0; i < dimension; ++i) {
-					dominio.add(new ArrayList<Vertice>());
-					dominio.get(i).add(dom.get((i)));
-					for(double j = 0; j < v.at(i); j+=lado) {
-						Vertice a = v;
-						a.set(i, v.at(i) + j);
-						dominio.get(i).add(a);
+			int[] tam = new int[dom_ini.length];
+			int dim = 1;
+			for(int i = 0; i < tam.length; ++i) {
+				tam[i] = (int) ((dom_fin[i] - dom_ini[i]) / lado);
+				dim *= tam[i];
+			}
+			for(int j = 0; j < dim; ++j) {
+				dominio.add(new Vertice());
+			}
+			int n = 1;
+			for(int i = 0; i < dimension; ++i) {
+				double suma = dom_ini[i];
+				int aux = n;
+				n *= tam[i];
+				for(int j = 0; j < tam[i]; ++j) {
+					suma += lado;
+					for (int k = j * aux; k < dominio.size(); k += n){
+						int cont = 0;
+						while (cont < aux){
+							dominio.get(k).set(i, suma);
+							if (j > 0) objeto.putValue(k, k - (j * aux));
+							++cont;
+						}
 					}
 				}
 			}
-			//cojo la primera arista y creo hiperplanos en cada nuevo vértice
-			
-			
 		}
 		
-		public void Generar(Function f, List<Vertice>dom, int res) {
+		public void Generar(List<String> s, double[] dom_ini, double[] dom_fin, int res) {
 			resolucion = res;
-			Cuadricula(dom); //si esto es A, voy a dibujar f(A) 
-			//!!!Por ahora A es un rectángulo en el primer cuadrante con un vértice en el origen
-			VariablesList x = f.getVars();
-			for(int i = 0; i < dimension; ++i) {
-				objeto.add(new ArrayList<Vertice>());
-				for(Vertice v: dominio.get(i)) {
-					objeto.get(i).add(new Vertice(f.evaluate(x)));
+			Cuadricula(dom_ini, dom_fin);
+			for(int i = 0; i < dominio.size(); ++i) {
+				VariablesList varList = new VariablesList(dominio.get(i).getDimension());
+				for(int j = 0; j < dominio.get(i).getDimension(); ++j) {
+					varList.setVariable(j, dominio.get(i).at(j));
 				}
+				FunctionParser parser = new FunctionParser();
+				Vertice fv = new Vertice(s.size());
+				Function f;
+				for(int j = 0; j < s.size(); ++j) {
+					f = parser.parse(s.get(j), varList);
+					fv.set(j, f.evaluate(varList));
+				}
+				imagen.add(fv);
 			}		
 		}
 	}

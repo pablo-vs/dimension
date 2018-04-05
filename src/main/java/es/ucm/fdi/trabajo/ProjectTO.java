@@ -12,10 +12,15 @@ import es.ucm.fdi.trabajo.function.Function;
  *
  * @author Eduardo Amaya
  * @author Javier Galiana
- *
+ * @version 05.05.18
  */
 
+//TODO: javadoc
 public class ProjectTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Visualization> views;
 	private ArrayList<Function> functions;
 	private String ID;
@@ -28,6 +33,10 @@ public class ProjectTO implements Serializable{
 		ID = iD;
 		views = new ArrayList(vis);
 		functions = new ArrayList(funcs);
+	}
+	
+	public String getID() {
+		return ID;
 	}
 
 	public List<Visualization> getViews() {

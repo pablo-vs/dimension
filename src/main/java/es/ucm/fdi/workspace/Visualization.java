@@ -13,8 +13,12 @@ import java.util.ArrayList;
 public class Visualization {
 	private List<Grafico> graphics;
 	
-	public Visualization(ArrayList<Grafico> g){
+	public Visualization(){
 		graphics = new ArrayList<Grafico>();
+	}
+	
+	public List<Grafico> getGraphics(){
+		return graphics;
 	}
 	
 	/**
@@ -39,7 +43,7 @@ public class Visualization {
 			int j = 0, cont = 0;
 			boolean b = true;
 			while (b && j < hp.length) {
-				if (v.at(dim1) == dim1 && v.at(dim2) == dim2 && v.at(dim3) == dim3) 
+				while (v.at(dim1) == dim1 || v.at(dim2) == dim2 || v.at(dim3) == dim3) 
 					++cont;
 				if (v.at(cont) != hp[j]) 
 					b = false;

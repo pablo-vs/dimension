@@ -28,6 +28,7 @@ public class Grafico {
 		this.dimension = dimension;
 		objeto = new MultiTreeMap<>((a, b) -> a - b);
 		dominio = new ArrayList<>();
+		imagen = new ArrayList<>();
 	}
 	
 	public void Cuadricula(double[] dom_ini, double[] dom_fin) {

@@ -1,6 +1,7 @@
 package es.ucm.fdi.connectivity;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -13,6 +14,7 @@ import es.ucm.fdi.users.UserDAOHashTableImp;
 import es.ucm.fdi.users.UserManagerAS;
 import es.ucm.fdi.users.UserTO;
 import es.ucm.fdi.util.HashGenerator;
+
 
 public class ShareManagerTest {
 
@@ -37,11 +39,13 @@ public class ShareManagerTest {
 		SessionBO session = userMgr.login("pepe", "1234");
 		ProjectTO project = new ProjectTO("lineales");
 		ProjectTO project2 = new ProjectTO("cuadraticas");
+		// test the sharing of open projects
 		try {
 			shareMgr.shareOpenProject(project2, authors, session);	
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
+		// test the sharing of private projects
 		try {
 			shareMgr.sharePrivateProject(project, authors, authors, session);
 		} catch (Exception e) {
@@ -59,6 +63,8 @@ public class ShareManagerTest {
 		UserTO juan = new UserTO("juan", hg.hash(password));
 		userMgr.newUser(juan);
 		SessionBO juanSession = userMgr.login("juan", "1234");
+		
+		//test the rejection of unauthorised accesses
 		try {
 			shareMgr.importProject(shareMgr.findProjectByName("lineales", juanSession).get(0), juanSession);
 			fail("Unauthorised access");
@@ -79,6 +85,8 @@ public class ShareManagerTest {
 		}
 		SessionBO session = userMgr.login("pepe", "1234");
 		SessionBO luis = userMgr.login("luis", "1234");
+		
+		//test the permission of legitimate accesses
 		try {
 			shareMgr.modifySharedProject(shareMgr.findProjectByName("lineales", session).get(0), session);
 			shareMgr.importProject(shareMgr.findProjectByName("lineales", session).get(0), session);

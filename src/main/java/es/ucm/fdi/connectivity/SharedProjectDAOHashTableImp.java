@@ -5,6 +5,13 @@ import java.util.ArrayList;
 
 import es.ucm.fdi.datos.MemoryDB;
 
+/**
+ * 
+ * @author Eduardo Amaya
+ * @author Pablo Villalobo
+ * @version 06.04.18
+ */
+
 public class SharedProjectDAOHashTableImp implements SharedProjectDAO{
 	private MemoryDB<SharedProjectBO> database;
 	

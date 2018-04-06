@@ -20,6 +20,7 @@ public class Graphics {
 			this.dimension = dimension;
 			objeto = new MultiTreeMap<>((a, b) -> a - b);
 			dominio = new ArrayList<>();
+			imagen = new ArrayList<>();
 		}
 		
 		public void getGrid(double[] dom_ini, double[] dom_fin) {

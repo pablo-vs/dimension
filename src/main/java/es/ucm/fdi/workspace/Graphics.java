@@ -1,8 +1,6 @@
 package es.ucm.fdi.workspace;
 
-import es.ucm.fdi.util.FunctionParserUtils;
 import es.ucm.fdi.util.MultiTreeMap;
-import es.ucm.fdi.workspace.function.types.VariablesList;
 import java.util.ArrayList;
 import java.util.List;
 

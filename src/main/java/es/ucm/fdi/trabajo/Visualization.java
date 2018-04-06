@@ -35,6 +35,6 @@ public class Visualization {
 	}
 	
 	private Grafico proyectar(Grafico g){
-		
+		return null;
 	}
 }

@@ -18,7 +18,7 @@ public class VariablesList {
 	/**
 	 * Constructor por copia.
 	 *
-	 * @param La lista que se desea copiar.
+	 * @param VariablesList lista que se desea copiar.
 	 */
 	public VariablesList(VariablesList other) {
 		variables = (TreeMap<String, Variable>) other.variables.clone();
@@ -30,7 +30,7 @@ public class VariablesList {
 	 * @param n El número de la lista.
 	 */
 	public VariablesList(int n) {
-		variables = new TreeMap<String, Variable>();
+		variables = new TreeMap<>();
 		for(int i = 0; i < n; ++i) {
 			String s = "x_" + i;
 			variables.put(s, new Variable(s));
@@ -44,7 +44,7 @@ public class VariablesList {
 	 * @param nameList La lista de nombres de variables. 
 	 */
 	public VariablesList(String[] nameList) {
-		variables = new TreeMap<String, Variable>();
+		variables = new TreeMap<>();
 		for (String s : nameList) {
 			variables.put(s, new Variable(s));
 		}
@@ -113,6 +113,7 @@ public class VariablesList {
 	 * Compara esta lista con otra y devuelve true si los nombres de las variables son iguales.
 	 *
 	 * @param other La lista con la que se desea comparar.
+         * @return 
 	 */
 	public boolean equals(VariablesList other) {
 		return (this == other) || (variables.keySet().equals(other.variables.keySet()));

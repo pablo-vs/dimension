@@ -7,11 +7,19 @@ import java.security.AccessControlException;
 import es.ucm.fdi.util.HashGenerator;
 import es.ucm.fdi.exceptions.DuplicatedIDException;
 import es.ucm.fdi.exceptions.NotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Application service to manage user accounts and sessions.
  *
  * @author Pablo Villalobos
+ * @author Inmaculada Pérez
  * @version 02.04.2018
  */
 public class UserManagerAS {
@@ -99,10 +107,13 @@ public class UserManagerAS {
 	 */
 	public void modifyUser(UserTO user, SessionBO session) throws AccessControlException, IllegalArgumentException {
 		if(authenticate(user.getID(), session)) {
-			if(validateAccountDetails(user)) {
-				dao.modifyUser(user);
-			} else {
-				throw new IllegalArgumentException("Invalid account details");
+			try{
+                                if(validateAccountDetails(user)) {
+                                        dao.modifyUser(user);
+                                } 
+                        }
+                        catch(IllegalArgumentException e){
+                                throw new IllegalArgumentException("Invalid account details");
 			}
 		} else {
 			throw new AccessControlException("Invalid session");
@@ -199,12 +210,89 @@ public class UserManagerAS {
 	}	
 
         /**
+         * Validates the e-mail.
+         * @param email User's e-mail
+         * @return true if e-mail is valid 
+         */
+        public static boolean validEmail(String email){
+                boolean isValidEmail = true;
+                if(email.equals(null))
+                    return false;
+                // Input the string for validation
+                // String email = "xyz@.com";
+                // Set the email pattern string
+                Pattern p = Pattern.compile("[^@]+@[^@]+\\.[a-z]+");
+
+                // Match the given string with the pattern
+                Matcher m = p.matcher(email);
+
+                // check whether match is found
+                boolean matchFound = m.matches();
+
+                StringTokenizer st = new StringTokenizer(email, ".");
+                String lastToken = null;
+                while (st.hasMoreTokens()) {
+                   lastToken = st.nextToken();
+                }
+
+                isValidEmail = matchFound && lastToken.length() >= 2
+                        && email.length() - 1 != lastToken.length(); // validate the country code
+
+                return isValidEmail;
+        } 
+  
+        /**
+         * Validates a word format.
+         * 
+         * @param word Word to validate
+         * @return wether the word is valid
+         */
+        public boolean validString(String word){
+                return !word.equals(null) && word.matches("[a-zA-Z1-9_]+");
+        }
+        
+        /**
+         * Validates a number format.
+         * 
+         * @param num Number to validate
+         * @return wether the word is valid
+         */
+        public boolean validInt(String num){
+                return !num.equals(null) && num.matches("[0-9]+");
+        }
+        
+        /**
+         * Validates an url format.
+         * 
+         * @param num Url to validate
+         * @return wether the url is valid
+         */
+        public boolean validUrl(String site){
+            boolean r = true;
+            try {
+                URL url = new URL(site);
+                URLConnection conn = url.openConnection();
+                conn.connect();
+            } catch (MalformedURLException e) {
+                // the URL is not in a valid form
+                r = false;
+            } catch (IOException e) {
+                // the connection couldn't be established
+                r = false;
+            }
+            return r;
+        }
+        /**
          * Validates an account.
          * @param user User
          * @return if the account has been validated
          */
 	private boolean validateAccountDetails(UserTO user) {
-		//TODO!!!!!!!!!!
-		return true;
+                if(validString(user.getID()) && validString(user.getName()) && validString(user.getDescription())
+                        && validString(user.getPassword()) && validEmail(user.getEmail()) 
+                        && validInt(user.getTelephone()) && validUrl(user.getPicture())){
+                            return true;
+                }
+                throw new IllegalArgumentException("");
 	}
 }

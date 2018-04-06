@@ -6,8 +6,8 @@ import java.util.ArrayList;
  */
 
 public class Politopo {
-	private int dimension;
-	private ArrayList<Vertex> vertices; 
+	private int dim;
+	private ArrayList<Vertex> vertexes; 
 	
         public Politopo(){
             // Not implemented yet
@@ -17,8 +17,8 @@ lista que usemos aquí. Sólo deberíamos indicar que se usa una lista.
 ----Lo cambiaremos----
 */
 	public Politopo(int dim, ArrayList<Vertex> v){ 
-            dimension = dim;
-            vertices = v;
+            dim = dim;
+            vertexes = v;
         }
 	/**
 	 * Cambia la lista de vertices

@@ -54,49 +54,91 @@ public class UserTO implements Serializable {
 	private Period banTime;
 
 	/**
-	 * Constructor mínimo.
-	 */
+         * Class constructor specifying id and password
+         * @param ID Identifier
+         * @param password Password
+         */
 	public UserTO(String ID, String password) {
 		this.ID = ID;
 		this.password = password;
 	}
 
+        /**
+         * 
+         * @return the user's identifier
+         */
 	public String getID() {
 		return ID;
 	}
 
+        /**
+         * 
+         * @return the username
+         */
 	public String getName() {
 		return name;
 	}
 
+        /**
+         * 
+         * @return the user's password
+         */
 	public String getPassword() {
 		return password;
 	}
 
+        /**
+         * 
+         * @return the login date
+         */
 	public Date getDate() {
 		return date;
 	}
 
+        /**
+         * 
+         * @return the user's e-mail
+         */
 	public String getEmail() {
 		return email;
 	}
 
+        /**
+         * 
+         * @return the user's phone number 
+         */
 	public String getTelephone() {
 		return telephone;
 	}
 
+        /**
+         * 
+         * @return the url from the user's icon
+         */
 	public String getPicture() {
 		return picture;
 	}
 
+        /**
+         * 
+         * @return the user's profile description
+         */
 	public String getDescription() {
 		return description;
 	}
 
+        /**
+         * 
+         * @return the user's range
+         */
 	public UserType getType() {
 		return type;
 	}
 
+        /**
+         * 
+         * @return the ban period 
+         */
 	public Period getBanTime() {
 		return banTime;
 	}

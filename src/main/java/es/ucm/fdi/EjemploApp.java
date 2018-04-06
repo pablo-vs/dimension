@@ -38,7 +38,7 @@ public class EjemploApp
         // Inicializar datos
     	
     	// Esto es un ejemplo
-    	es.ucm.fdi.datos.BDMemoria<String> tablaCadena=new es.ucm.fdi.datos.BDMemoria<String>();
+    	es.ucm.fdi.datos.MemoryDB<String> tablaCadena=new es.ucm.fdi.datos.MemoryDB<String>();
     	tablaCadena.insert("dato1","1");
     	tablaCadena.insert("dato2", "2");    	
     	System.out.println(tablaCadena);

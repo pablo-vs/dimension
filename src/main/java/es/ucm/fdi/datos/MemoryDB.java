@@ -35,7 +35,7 @@ import java.util.ArrayList;
  * @param <T> El parámetro que se quiere usar para la tabla. Se pueden poner
  * tantos como se quiera
  */
-public class BDMemoria<T>{
+public class MemoryDB<T>{
 	private Hashtable<String,T> tabla=new Hashtable<String,T>();
 	
 	/**
@@ -90,13 +90,14 @@ public class BDMemoria<T>{
 	 */
 	public void print(OutputStream os){
 		PrintStream ps=new java.io.PrintStream(os);
-		for (String key:tabla.keySet()){
-			ps.println(key+":"+tabla.get(key));
-		}		
+                tabla.keySet().forEach((key) -> {
+                    ps.println(key+":"+tabla.get(key));
+            });		
 	}
 	/**
 	 * Convierte la BD a una cadena
 	 */
+        @Override
 	public String toString(){
 		java.io.ByteArrayOutputStream baos=new java.io.ByteArrayOutputStream();
 		print(baos);

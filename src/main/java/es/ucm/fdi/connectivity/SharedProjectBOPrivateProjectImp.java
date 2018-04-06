@@ -12,16 +12,34 @@ import es.ucm.fdi.workspace.project.ProjectTO;
  * @version 05.04.2018
  */
 public class SharedProjectBOPrivateProjectImp extends SharedProjectBO {
-
+        /**
+         * List of authors
+         */
 	private List<String> authors;
+        /**
+         * List of viewers
+         */
 	private List<String> viewers;
 	
+        /**
+         * Class constructor specifying id, project and list of authors and viewers.
+         * @param ID Identifier
+         * @param proj Shared project
+         * @param auth List of authors
+         * @param view List of viewers
+         */
 	public SharedProjectBOPrivateProjectImp(String ID, ProjectTO proj, List<String> auth, List<String> view) {
 		super(ID, proj);
 		authors = new ArrayList<>(auth);
 		viewers = new ArrayList<>(view);
 	}
 	
+        /**
+         * Class constructor specifying id, project and author.
+         * @param ID Identifier
+         * @param proj Shared projects
+         * @param author List of authors
+         */
 	public SharedProjectBOPrivateProjectImp(String ID, ProjectTO proj, String author) {
 		super(ID, proj);
 		authors = new ArrayList<>();

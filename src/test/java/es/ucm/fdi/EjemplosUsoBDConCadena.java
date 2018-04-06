@@ -20,7 +20,7 @@
 package es.ucm.fdi;
 
 import es.ucm.fdi.workspace.project.ProjectTO;
-import es.ucm.fdi.datos.BDMemoria;
+import es.ucm.fdi.datos.MemoryDB;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -57,7 +57,7 @@ public class EjemplosUsoBDConCadena
      */
     public void testCreacion()
     {    	
-    	BDMemoria<ProjectTO> bdProjectTOs=new BDMemoria<ProjectTO>();
+    	MemoryDB<ProjectTO> bdProjectTOs=new MemoryDB<ProjectTO>();
     	ProjectTO p1 = new ProjectTO("p1");
     	ProjectTO p2 = new ProjectTO("p2");
     	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdProjectTOs, bdProjectTOs.getIds().isEmpty());
@@ -75,7 +75,7 @@ public class EjemplosUsoBDConCadena
      */
     public void testDestruccion()
     {
-    	BDMemoria<String> bdCadenas=new BDMemoria<String>();
+    	MemoryDB<String> bdCadenas=new MemoryDB<String>();
     	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdCadenas, bdCadenas.getIds().isEmpty());
     	bdCadenas.insert("hola", "1");		
     	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdCadenas, bdCadenas.getIds().size()==1);
@@ -88,7 +88,7 @@ public class EjemplosUsoBDConCadena
      */
     public void testBuscar()
     {
-    	BDMemoria<String> bdCadenas=new BDMemoria<String>();
+    	MemoryDB<String> bdCadenas=new MemoryDB<String>();
     	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdCadenas, bdCadenas.getIds().isEmpty());
     	bdCadenas.insert("hola", "1");		
     	assertTrue("La BD debe tener sólo un elemento. Contenido actual \n"+bdCadenas, bdCadenas.getIds().size()==1);    	

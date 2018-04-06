@@ -103,4 +103,13 @@ public class HashGenerator
 			throw new IllegalStateException("Invalid SecretKeyFactory", ex);
 		}
 	}
+
+	/**
+	 * Checks if a string matches the hash layout.
+	 *
+	 * @param s The string to check.
+	 */
+	public static boolean checkFormat(String s) {
+		return layout.matcher(s).matches();
+	}
 }

@@ -288,9 +288,13 @@ public class UserManagerAS {
          * @return if the account has been validated
          */
 	private boolean validateAccountDetails(UserTO user) {
-                if(validString(user.getID()) && validString(user.getName()) && validString(user.getDescription())
-                        && validString(user.getPassword()) && validEmail(user.getEmail()) 
-                        && validInt(user.getTelephone()) && validUrl(user.getPicture())){
+                if(validString(user.getID()) &&
+		   hashgen.checkFormat(user.getPassword()) &&
+		   (user.getName() == null || validString(user.getName())) &&
+		   (user.getDescription() == null || validString(user.getDescription())) &&
+		   (user.getEmail() == null || validEmail(user.getEmail())) && 
+		   (user.getTelephone() == null || validInt(user.getTelephone())) &&
+		   (user.getPicture() == null || validUrl(user.getPicture()))){
                             return true;
                 }
                 throw new IllegalArgumentException("");

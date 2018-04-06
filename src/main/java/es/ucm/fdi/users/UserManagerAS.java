@@ -247,7 +247,7 @@ public class UserManagerAS {
          * @param word Word to validate
          * @return wether the word is valid
          */
-        public boolean validString(String word){
+        private static boolean validString(String word){
                 return !word.equals(null) && word.matches("[a-zA-Z1-9_]+");
         }
         
@@ -257,7 +257,7 @@ public class UserManagerAS {
          * @param num Number to validate
          * @return wether the word is valid
          */
-        public boolean validInt(String num){
+        private static boolean validInt(String num){
                 return !num.equals(null) && num.matches("[0-9]+");
         }
         
@@ -267,7 +267,7 @@ public class UserManagerAS {
          * @param num Url to validate
          * @return wether the url is valid
          */
-        public boolean validUrl(String site){
+        private static boolean validUrl(String site){
             boolean r = true;
             try {
                 URL url = new URL(site);

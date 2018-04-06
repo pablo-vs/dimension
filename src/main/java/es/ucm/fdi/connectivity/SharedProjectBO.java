@@ -1,5 +1,7 @@
 package es.ucm.fdi.connectivity;
 
+import java.util.List;
+
 /**
  * Represents a project which has been shared.
  *
@@ -13,6 +15,11 @@ public abstract class SharedProjectBO {
 	public SharedProjectBO(String ID, String name) {
 		sharedID = ID;
 		this.projectName = name;
+	}
+
+	public SharedProjectBO(String name, List<String> authors) {
+		projectName = name;
+		
 	}
 
 	/**

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import es.ucm.fdi.trabajo.ProjectManagerAS;
 import es.ucm.fdi.trabajo.ProjectTO;
+import es.ucm.fdi.user.SessionBO;
 
 /**
  * Application service to manage sharing and importing projects.
@@ -32,25 +33,36 @@ public class ShareAS {
 		return instance;
 	}
 	
-	public void shareProject(String project, List<String> authors) {
-		ProjectTO proj = projectMan.openProject(project);
-		if(proj != null) {
-			StringBuilder sb = new StringBuilder().append(proj.getID());
-			ArrayList<AuthorshipBO> authorships = new ArrayList<>();
-			for(String auth : authors) {
-			        sb.append(auth);
-				authorships.add(new AuthorshipBO(auth, proj.getID()));
-			}
-			String shareID = Integer.toString(sb.toString().hashCode());
-			if(projectDB.findSharedProjects(shareID) == null) {
-				SharedProjectTO sharedProj = new SharedProjectTO(shareID, proj.getID());
-				projectDB.addSharedProject(sharedProj);
-			} else {
-				throw new IllegalArgumentException("Project " + project + " is already shared");
-			}
-		} else {
-			throw new IllegalArgumentException("Project " + project + " does not exist");
+	private String createShareProjectID(String project, List<String> authors) {
+		StringBuilder sb = new StringBuilder().append(proj.getID());
+		for(String auth : authors) {
+			sb.append(auth);
 		}
+		return Integer.toString(sb.toString().hashCode());
+	}
+
+	public void shareOpenProject(ProjectTO proj, List<String> authors, SessionBO session) {
+		
+	}
+
+	public void sharePrivateProject(ProjectTO proj, List<String> authors, List<String> users, SessionBO session) {
+
+	}
+
+	public void modifySharedProject(SharedProjectBO proj, SessionBO session) {
+		
+	}
+	
+	public ProjectTO importProject(SharedProjectTO proj, SessionBO session) {
+
+	}
+
+	public List<SharedProjectTO> findProjectByAuthor(String author) {
+
+	}
+
+	public List<SharedProjectTO> findProjectByName(String name) {
+
 	}
 
 }

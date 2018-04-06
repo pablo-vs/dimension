@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
  * Application service to manage user accounts and sessions.
  *
  * @author Pablo Villalobos
+ * @author Inmaculada Pérez
  * @version 02.04.2018
  */
 public class UserManagerAS {

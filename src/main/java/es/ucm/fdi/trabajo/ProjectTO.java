@@ -34,6 +34,12 @@ public class ProjectTO implements Serializable{
 		views = new ArrayList(vis);
 		functions = new ArrayList(funcs);
 	}
+
+	public ProjectTO(ProjectTO other) {
+		views = new ArrayList<Visualization>(other.views);
+		functions = new ArrayList<Function>(other.functions);
+		ID = other.ID;
+	}
 	
 	public String getID() {
 		return ID;

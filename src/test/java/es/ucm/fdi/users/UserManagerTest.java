@@ -1,12 +1,14 @@
 package es.ucm.fdi.users;
 
 import java.time.ZonedDateTime;
+import java.security.AccessControlException;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Assert;
 
 import es.ucm.fdi.util.HashGenerator;
+import es.ucm.fdi.exceptions.NotFoundException;
 
 public class UserManagerTest {
 
@@ -18,12 +20,12 @@ public class UserManagerTest {
 			paco = new UserTO("paco", hashgen.hash("4321".toCharArray()));
 		userMgr.newUser(pepe);
 		userMgr.newUser(paco);
-		String sesionPepe = userMgr.login("pepe", "1234"),
+		SessionBO sesionPepe = userMgr.login("pepe", "1234"),
 			sesionPaco = userMgr.login("paco", "4321");
 		try {
 			userMgr.removeUser("pepe", sesionPaco);
 			fail("Illegal account access!!");
-		} catch(IllegalArgumentException e) {
+		} catch(AccessControlException e) {
 			//System.out.println("Authentication works");
 		}
 
@@ -32,7 +34,7 @@ public class UserManagerTest {
 		try {
 			sesionPepe = userMgr.login("pepe", "1234");
 			fail("Logged in to nonexistent account!");
-		} catch(IllegalArgumentException e) {
+		} catch(NotFoundException e) {
 			//Todo correcto
 		}
 	}
@@ -45,7 +47,7 @@ public class UserManagerTest {
 		UserTO user = new UserTO("pedro", passwd);
 		dao.addUser(user);
 		UserManagerAS userMgr = UserManagerAS.getManager(dao);
-		String sesion = userMgr.login("pedro", "1234");
+		SessionBO sesion = userMgr.login("pedro", "1234");
 		assertTrue(userMgr.validateSession(sesion));
 		userMgr.logout(sesion);
 		assertFalse(userMgr.validateSession(sesion));
@@ -60,13 +62,13 @@ public class UserManagerTest {
 		dao.addUser(user);
 		UserManagerAS userMgr = UserManagerAS.getManager(dao);
 		try{
-			String sesion = userMgr.login("pedro", "12345");
+			SessionBO sesion = userMgr.login("pedro", "12345");
 			fail("La sesión no debería haberse iniciado");
-		} catch(IllegalArgumentException e) {
+		} catch(AccessControlException e) {
 			//Todo correcto
 		}
 
 		SessionBO sesion = new SessionBO("pedro", ZonedDateTime.now());
-		assertFalse(userMgr.validateSession(sesion.getID()));
+		assertFalse(userMgr.validateSession(sesion));
 	}
 }

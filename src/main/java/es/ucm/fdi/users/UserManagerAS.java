@@ -2,8 +2,11 @@ package es.ucm.fdi.users;
 
 import java.time.ZonedDateTime;
 import java.util.HashMap;
+import java.security.AccessControlException;
 
 import es.ucm.fdi.util.HashGenerator;
+import es.ucm.fdi.exceptions.DuplicatedIDException;
+import es.ucm.fdi.exceptions.NotFoundException;
 
 /**
  * Application service to manage user accounts and sessions.
@@ -42,15 +45,16 @@ public class UserManagerAS {
 	 *
 	 * @param user The user to add.
 	 */
-	public void newUser(UserTO user) {
-		if(validateAccountDetails(user)) {
-			if(dao.findUser(user.getID()) == null) {
+	public void newUser(UserTO user) throws DuplicatedIDException, IllegalArgumentException{
+		if(!existsUser(user.getID())) {
+			if(validateAccountDetails(user)) {
 				dao.addUser(user);
+				
 			} else {
-				throw new IllegalArgumentException("User " + user.getID() + " already exists");
+				throw new IllegalArgumentException("Invalid account details");
 			}
 		} else {
-			throw new IllegalArgumentException("Invalid account details");
+			throw new DuplicatedIDException("User " + user.getID() + " already exists");
 		}
 	}
 
@@ -60,15 +64,15 @@ public class UserManagerAS {
 	 * @param id The identifier of the user to be deleted.
 	 * @param sesion The session from which to perform the action.
 	 */
-	public void removeUser(String id, String sesion) {
-		if(authenticate(id, sesion)) {
-			if( dao.findUser(id) != null) {
+	public void removeUser(String id, SessionBO session) throws NotFoundException, AccessControlException {
+		if(authenticate(id, session)) {
+			if(existsUser(id)) {
 				dao.removeUser(id);
 			} else {
-				throw new IllegalArgumentException("User " + id + " does not exist");
+				throw new NotFoundException("User " + id + " does not exist");
 			}
 		} else {
-			throw new IllegalArgumentException("Invalid session");
+			throw new AccessControlException("Invalid session");
 		}
 	}
 
@@ -78,19 +82,15 @@ public class UserManagerAS {
 	 * @param id The new account details.
 	 * @param sesion The session from which to perform the action.
 	 */
-	public void modifyUser(UserTO user, String sesion) {
-		if(authenticate(user.getID(), sesion)) {
+	public void modifyUser(UserTO user, SessionBO session) throws AccessControlException, IllegalArgumentException {
+		if(authenticate(user.getID(), session)) {
 			if(validateAccountDetails(user)) {
-				if(dao.findUser(user.getID()) != null) {
-					dao.modifyUser(user);
-				} else {
-					throw new IllegalArgumentException("User " + user.getID() + " does not exist");
-				}
+				dao.modifyUser(user);
 			} else {
 				throw new IllegalArgumentException("Invalid account details");
 			}
 		} else {
-			throw new IllegalArgumentException("Invalid session");
+			throw new AccessControlException("Invalid session");
 		}
 	}
 
@@ -101,32 +101,32 @@ public class UserManagerAS {
 	 * @param passwd The password provided
 	 * @return The new session.
 	 */
-	public String login(String username, String passwd) {
-		//Busca el nombre de usuario en la base de datos
-		UserTO user = dao.findUser(username);
-		if(user != null) {
-			//Si la contraseña introducida y la almacenada coinciden,
-			//crea una sesión nueva y la devuelve
+	public SessionBO login(String username, String passwd) throws AccessControlException, NotFoundException {
+		//Looks for this username in the database.
+		if(existsUser(username)) {
+			UserTO user = dao.findUser(username);
+			//If the introduced password matches the given one
+			//create and return a new session
 			if(hashgen.authenticate(passwd.toCharArray(), user.getPassword())) {
-				return createNewSession(username).getID();
+				return createNewSession(username);
 			}
 			else {
-				throw new IllegalArgumentException("Incorrect password");
+				throw new AccessControlException("Incorrect password");
 			}
 		}
 		else {
-			throw new IllegalArgumentException("This user does not exist");
+			throw new NotFoundException("User " + username + " does not exist");
 		}
 	}
 
 	/**
-	 * Checks if a session ID is valid.
+	 * Checks if a session is valid.
 	 *
-	 * @param id The ID to check.
-	 * @return True if the ID is valid.
+	 * @param id The session to check.
+	 * @return True if the session is valid.
 	 */
-	public boolean validateSession(String id) {
-		return activeSessions.containsKey(id);
+	public boolean validateSession(SessionBO session) {
+		return activeSessions.containsKey(session.getID());
 	}
 
 	/**
@@ -136,9 +136,9 @@ public class UserManagerAS {
 	 * @param username The claimed user name.
 	 * @param session The session to check.
 	 */
-	public boolean authenticate(String username, String session) {
+	public boolean authenticate(String username, SessionBO session) {
 		if(validateSession(session)) {
-			String sessionUser = activeSessions.get(session).getUser();
+		        String sessionUser = session.getUser();
 			return sessionUser.equals(username) ||
 				dao.findUser(sessionUser).getType() == UserType.ADMIN;
 		} else {
@@ -151,11 +151,20 @@ public class UserManagerAS {
 	 *
 	 * @param sesion The session to close.
 	 */
-	public void logout(String id) {
-		activeSessions.remove(id);
+	public void logout(SessionBO session) {
+		activeSessions.remove(session.getID());
 	}
-	
-	private SessionBO createNewSession(String user) {
+
+	/**
+	 * Checks if a user exists.
+	 *
+	 * @param username The name to check.
+	 */
+	public boolean existsUser(String username) {
+		return dao.findUser(username) != null;
+	}
+
+	private SessionBO createNewSession(String user) throws IllegalArgumentException {
 		SessionBO sesion = null;
 		//Si el usuario ya ha iniciado sesión, lanzar un error
 		if(activeSessions.get(user) != null) {

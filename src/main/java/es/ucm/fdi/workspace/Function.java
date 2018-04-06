@@ -55,6 +55,11 @@ public abstract class Function {
 		}
 	}
 
+	public double evaluate(double [] vars) {
+		variables.setVariables(vars);
+		return evaluate(variables);
+	}
+	
 	protected abstract double evaluateExpr(VariablesList vars);
 	
        	public abstract String toString();

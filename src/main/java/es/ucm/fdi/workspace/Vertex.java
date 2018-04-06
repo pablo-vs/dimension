@@ -225,7 +225,14 @@ public class Vertex implements Iterable <Double>, Cloneable{
 			throw new IllegalArgumentException("Distance cannot be calculated when mismatching dimensions.");
 		}
 	}
-        
+
+	/**
+	 * @return The components of the Vertex.
+	 */
+	public double[] getComps(){
+		return cmps;
+	}
+	
         /**
          * @return The distance from the vertex origin.
          */

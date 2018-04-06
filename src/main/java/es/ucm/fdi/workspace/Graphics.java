@@ -14,18 +14,19 @@ public class Graphics {
 		private int dimension;
 		private List<Vertex> dominio, imagen;
 		private MultiTreeMap<Integer, Integer> objeto;
-		private int resolucion; 
+		private int resolution; 
 
 		public Graphics(int dimension) {
 			this.dimension = dimension;
 			objeto = new MultiTreeMap<>((a, b) -> a - b);
 			dominio = new ArrayList<>();
+			imagen = new ArrayList<>();
 		}
 		
 		public void getGrid(double[] dom_ini, double[] dom_fin) {
 			
 			if (dom_ini.length != dom_fin.length) throw new IllegalArgumentException();
-			double lado = 1/2^resolucion;
+			double lado = 1/2^resolution;
 			int[] tam = new int[dom_ini.length];
 			int dim = 1;
 			for(int i = 0; i < tam.length; ++i) {
@@ -54,20 +55,13 @@ public class Graphics {
 			}
 		}
 		
-		public void generate(List<String> s, double[] dom_ini, double[] dom_fin, int res) {
-			resolucion = res;
+		public void generate(List<Function> functions, double[] dom_ini, double[] dom_fin, int res) {
+			resolution = res;
 			getGrid(dom_ini, dom_fin);
 			for(int i = 0; i < dominio.size(); ++i) {
-				VariablesList varList = new VariablesList(dominio.get(i).getDimension());
-				for(int j = 0; j < dominio.get(i).getDimension(); ++j) {
-					varList.setVariable(j, dominio.get(i).at(j));
-				}
-				Vertex fv = new Vertex(s.size());
-				Function f;
-				for(int j = 0; j < s.size(); ++j) {
-					f = FunctionParserUtils.parse(s.get(j), varList);
-
-					fv.set(j, f.evaluate(varList));
+				Vertex fv = new Vertex(functions.size());
+				for(int j = 0; j < functions.size(); ++j) {
+					fv.set(j, functions.get(i).evaluate(dominio.get(i).getComps()));
 				}
 				imagen.add(fv);
 			}		

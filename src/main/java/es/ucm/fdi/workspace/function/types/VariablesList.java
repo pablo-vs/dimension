@@ -76,6 +76,16 @@ public class VariablesList {
 		}
 	}
 
+	public void setVariables(double[] vals) {
+		if(vals.length == variables.size()) {
+			for(int i = 0; i < vals.length; ++i) {
+				setVariable(i, vals[i]);
+			}
+		} else {
+			throw new IllegalArgumentException("Number of values does not match number of variables");
+		}
+	}
+
 	/**
 	 * Devuelve el valor de la variable indicada.
 	 *

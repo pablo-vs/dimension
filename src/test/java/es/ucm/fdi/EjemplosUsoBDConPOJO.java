@@ -21,7 +21,7 @@ package es.ucm.fdi;
 
 import java.io.Serializable;
 
-import es.ucm.fdi.datos.BDMemoria;
+import es.ucm.fdi.datos.MemoryDB;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -93,7 +93,7 @@ public class EjemplosUsoBDConPOJO
      */
     public void testCreacion()
     {    	
-    	BDMemoria<EjemploTO> bdCadenas=new BDMemoria<EjemploTO>();
+    	MemoryDB<EjemploTO> bdCadenas=new MemoryDB<EjemploTO>();
     	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdCadenas, bdCadenas.getIds().isEmpty());
     	bdCadenas.insert(new EjemploTO("1","2"), "1");				
     	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdCadenas, bdCadenas.getIds().size()==1);    	
@@ -107,7 +107,7 @@ public class EjemplosUsoBDConPOJO
      */
     public void testDestruccion()
     {
-    	BDMemoria<EjemploTO> bdCadenas=new BDMemoria<EjemploTO>();
+    	MemoryDB<EjemploTO> bdCadenas=new MemoryDB<EjemploTO>();
     	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdCadenas, bdCadenas.getIds().isEmpty());
     	bdCadenas.insert(new EjemploTO("1","2"), "1");		
     	assertTrue("La BD debe tener sólo un elemento.Contenido actual \n"+bdCadenas, bdCadenas.getIds().size()==1);
@@ -120,7 +120,7 @@ public class EjemplosUsoBDConPOJO
      */
     public void testBuscar()
     {
-    	BDMemoria<EjemploTO> bdCadenas=new BDMemoria<EjemploTO>();
+    	MemoryDB<EjemploTO> bdCadenas=new MemoryDB<EjemploTO>();
     	assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n"+bdCadenas, bdCadenas.getIds().isEmpty());
     	bdCadenas.insert(new EjemploTO("1","2"), "1");				
     	assertTrue("La BD debe tener sólo un elemento. Contenido actual \n"+bdCadenas, bdCadenas.getIds().size()==1);

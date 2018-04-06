@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
 
-import es.ucm.fdi.trabajo.Visualization;
 import es.ucm.fdi.trabajo.function.Function;
 
 /**

@@ -7,23 +7,52 @@ package es.ucm.fdi.connectivity;
  * @version 04.04.2018
  */
 public class AuthorshipBO {
-	private String author, project, id;
+        /**
+         * Author of the project
+         */
+        private String author;
+        /**
+         * Shared project
+         */
+        private String project;
+        /**
+         * Authorship id
+         */
+        private String id;
 
-	public AuthorshipBO(String user, String proj) {
-		author = user;
-		project = proj;
-		id = user + project;
-	}
+        /**
+         * Class constructor specifying author and shared project.
+         * Id is made by the joint of user and project
+         * @param user Author
+         * @param proj Shared project
+         */
+        public AuthorshipBO(String user, String proj) {
+                author = user;
+                project = proj;
+                id = user + project;
+        }
 
-	public String getId() {
-		return id;
-	}
-	
-	public String getAuthor() {
-		return author;
-	}
+        /**
+         * 
+         * @return the id of the authorship
+         */
+        public String getId() {
+                return id;
+        }
 
-	public String getProject() {
-		return project;
-	}
+        /**
+         * 
+         * @return the author of the project
+         */
+        public String getAuthor() {
+                return author;
+        }
+
+        /**
+         * 
+         * @return the shared project
+         */
+        public String getProject() {
+                return project;
+        }
 }

@@ -16,23 +16,23 @@ public class UserManagerTest {
 	public void userManagementTest() {
 		UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
 		HashGenerator hashgen = new HashGenerator();
-		UserTO pepe = new UserTO("pepe", hashgen.hash("1234".toCharArray())),
-			paco = new UserTO("paco", hashgen.hash("4321".toCharArray()));
+		UserTO pepe = new UserTO("pepito", hashgen.hash("1234".toCharArray())),
+			paco = new UserTO("paquito", hashgen.hash("4321".toCharArray()));
 		userMgr.newUser(pepe);
 		userMgr.newUser(paco);
-		SessionBO sesionPepe = userMgr.login("pepe", "1234"),
-			sesionPaco = userMgr.login("paco", "4321");
+		SessionBO sesionPepe = userMgr.login("pepito", "1234"),
+			sesionPaco = userMgr.login("paquito", "4321");
 		try {
-			userMgr.removeUser("pepe", sesionPaco);
+			userMgr.removeUser("pepito", sesionPaco);
 			fail("Illegal account access!!");
 		} catch(AccessControlException e) {
 			//System.out.println("Authentication works");
 		}
 
-		userMgr.removeUser("pepe", sesionPepe);
+		userMgr.removeUser("pepito", sesionPepe);
 		userMgr.logout(sesionPepe);
 		try {
-			sesionPepe = userMgr.login("pepe", "1234");
+			sesionPepe = userMgr.login("pepito", "1234");
 			fail("Logged in to nonexistent account!");
 		} catch(NotFoundException e) {
 			//Todo correcto
@@ -40,27 +40,13 @@ public class UserManagerTest {
 	}
 		
 	@Test
-	public void validSessionTest() {
-		HashGenerator hashgen = new HashGenerator();
-		UserDAO dao = new UserDAOHashTableImp();
-		String passwd = hashgen.hash("1234".toCharArray());
-		UserTO user = new UserTO("pedro", passwd);
-		dao.addUser(user);
-		UserManagerAS userMgr = UserManagerAS.getManager(dao);
-		SessionBO sesion = userMgr.login("pedro", "1234");
-		assertTrue(userMgr.validateSession(sesion));
-		userMgr.logout(sesion);
-		assertFalse(userMgr.validateSession(sesion));
-	}
-
-	@Test
 	public void invalidSessionTest() {
 		HashGenerator hashgen = new HashGenerator();
 		UserDAO dao = new UserDAOHashTableImp();
 		String passwd = hashgen.hash("1234".toCharArray());
 		UserTO user = new UserTO("pedro", passwd);
-		dao.addUser(user);
 		UserManagerAS userMgr = UserManagerAS.getManager(dao);
+		userMgr.newUser(user);
 		try{
 			SessionBO sesion = userMgr.login("pedro", "12345");
 			fail("La sesión no debería haberse iniciado");

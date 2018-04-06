@@ -17,7 +17,11 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
          */
         private MemoryDB<AuthorshipBO> db;
 
-        @Override
+        public AuthorshipDAOHashTableImp() {
+			db = new MemoryDB<AuthorshipBO>();
+		}
+
+		@Override
         public void addAuthorship(AuthorshipBO auth) {
                 db.insert(auth, auth.getId());
         }

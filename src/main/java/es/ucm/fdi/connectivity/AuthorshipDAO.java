@@ -3,6 +3,8 @@ package es.ucm.fdi.connectivity;
 import java.util.List;
 
 import es.ucm.fdi.connectivity.AuthorshipBO;
+import es.ucm.fdi.datos.BDMemoria;
+import es.ucm.fdi.users.UserTO;
 
 /**
  * The DAO for Authorships.
@@ -11,7 +13,6 @@ import es.ucm.fdi.connectivity.AuthorshipBO;
  * @version 03.04.2018
  */
 public interface AuthorshipDAO {
-
 	/**
 	 * Adds a new authorship to the database.
 	 *

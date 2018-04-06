@@ -40,7 +40,6 @@ public class Visualization {
 			Vertex v = g.getImagen().get(i);
 			int j = 0, cont = 0;
 			boolean b = true;
-			System.out.println("H10");
 			while (b && j < hp.length) {
 				while (cont == dim1 || cont == dim2 || cont == dim3) 
 					++cont;

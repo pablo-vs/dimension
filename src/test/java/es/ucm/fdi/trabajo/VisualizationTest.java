@@ -9,14 +9,10 @@ import es.ucm.fdi.workspace.Visualization;
 import static org.junit.Assert.*;
 import java.util.List;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class VisualizationTest {
 	double[] n1 = {1, 3, 2, 4, 6}, n2 = {3, 7, 5, 1, 4}, n3 = {2, 8, 4, 2, 1},
 			 n4 = {3, 3, 5, 5, 6}, n5 = {3, 8, 5, 3, 0}, n6 = {1, 0, 0, 0, 0},
 			 n7 = {1, 2, 2, 4, 4}, n8 = {1, 0, 2, 5, 0}, n9 = {1, 1, 2, 1, 2},
-
 			 n10 = {3, 0, 5, 0, 0}, n11 = {3, 2, 5, 9, 6}, n12 = {5, 3, 5, 2, 1},
 			 hp = {3, 5};
 	Vertex v1 = new Vertex(n1), v2 = new Vertex(n2), v3 = new Vertex(n3),

@@ -1,9 +1,0 @@
-TODO:
-Create TransferObject from Function.
-Create RecursiveFunction and its TransferObject.
-Create the abstract class SimpleFunction and its TransferObject.
-Create SimpleFunction, from where Logarithm, Monomial, Exponential, Trigonometric inherit their methods.
-Create dimension.util class FunctionToGraphic. This class transform Function objects into Graphic objects (which contais the politopo density and a List<Politopo>).
-
-COMMENTS:
-Ecuation is useless due to the fact that Function knows how to get solved itself.

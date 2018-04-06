@@ -25,7 +25,7 @@ public class WorkASTest {
 		
 		ArrayList<Grafico> g = new ArrayList<>();
 		g.add(new Grafico(3));
-		g.add(new Grafico(4));
+		g.add(new Grafico(5));
 		
 		Visualization views = new Visualization(g);
 		

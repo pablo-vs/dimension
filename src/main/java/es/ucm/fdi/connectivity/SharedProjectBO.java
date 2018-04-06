@@ -36,7 +36,7 @@ public abstract class SharedProjectBO extends ProjectTO{
 	}
 	
 	/**
-	 * Checks if an user can read the project.
+	 * Checks if a user can read the project.
 	 *
 	 * @param username Identifier of the user to check.
 	 * @return True if this user has read access to the project.
@@ -44,7 +44,7 @@ public abstract class SharedProjectBO extends ProjectTO{
 	public abstract boolean hasReadAccess(String username);
 
 	/**
-	 * Checks if an user can modify the project.
+	 * Checks if a user can modify the project.
 	 *
 	 * @param username Identifier of the user to check.
 	 * @return True if this user has write access to the project.

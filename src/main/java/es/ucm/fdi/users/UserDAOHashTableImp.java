@@ -16,12 +16,14 @@ public class UserDAOHashTableImp implements UserDAO {
          * Database
          */
 	private MemoryDB<UserTO> db;
+	private MemoryDB<UserTO> bd;
 
         /**
          * Class constructor that initializes the db.
          */
 	public UserDAOHashTableImp() {
 		db = new MemoryDB<UserTO>();
+
 	}
 	
         @Override

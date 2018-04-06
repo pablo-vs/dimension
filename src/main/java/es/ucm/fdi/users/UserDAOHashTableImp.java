@@ -3,7 +3,7 @@ package es.ucm.fdi.users;
 import java.util.List;
 import java.util.ArrayList;
 
-import es.ucm.fdi.datos.BDMemoria;
+import es.ucm.fdi.datos.MemoryDB;
 
 /**
  * UserDAO implementation using a HashTable-based database.
@@ -12,10 +12,10 @@ import es.ucm.fdi.datos.BDMemoria;
  * @version 01.04.2018
  */
 public class UserDAOHashTableImp implements UserDAO {
-	private BDMemoria<UserTO> bd;
+	private MemoryDB<UserTO> bd;
 
 	public UserDAOHashTableImp() {
-		bd = new BDMemoria<UserTO>();
+		bd = new MemoryDB<UserTO>();
 	}
 	
 	public void addUser(UserTO user) {

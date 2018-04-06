@@ -1,9 +1,12 @@
 package es.ucm.fdi.connectivity;
 
-import es.ucm.fdi.datos.BDMemoria;
+import java.util.List;
+import java.util.ArrayList;
 
-public class SharedProjectDAOHashTableImp {
-	private BDMemoria<SharedProjectBO> database;
+import es.ucm.fdi.datos.MemoryDB;
+
+public class SharedProjectDAOHashTableImp implements SharedProjectDAO{
+	private MemoryDB<SharedProjectBO> database;
 
 	/**
 	 * Adds a new project to the database.
@@ -12,7 +15,7 @@ public class SharedProjectDAOHashTableImp {
 	 */
 	@Override
 	public void addSharedProject(SharedProjectBO proj) {
-
+		database.insert(proj, proj.getSharedID());
 	}
 
 	/**
@@ -22,7 +25,7 @@ public class SharedProjectDAOHashTableImp {
 	 */
 	@Override
 	public void removeSharedProject(String id) {
-
+		database.removeId(id);
 	}
 
 	/**
@@ -33,7 +36,7 @@ public class SharedProjectDAOHashTableImp {
 	 */
 	@Override
 	public void modifySharedProject(SharedProjectBO proj) {
-
+		database.insert(proj, proj.getSharedID());
 	}
 
 	/**
@@ -45,7 +48,7 @@ public class SharedProjectDAOHashTableImp {
 	 */
 	@Override
 	public SharedProjectBO findSharedProject(String id) {
-		return null;
+		return database.find(id);
 	}
 
 	/**
@@ -56,7 +59,14 @@ public class SharedProjectDAOHashTableImp {
 	 */
 	@Override
 	public List<SharedProjectBO> findByName(String name) {
-		return null;
+	        ArrayList<SharedProjectBO> results = new ArrayList<>();
+		for(String s: database.getIds()) {
+			SharedProjectBO proj = database.find(s);
+			if(proj.getID().equals(name)) {
+				results.add(proj);
+			}
+		}
+		return results;
 	}
 
 	/**
@@ -66,7 +76,11 @@ public class SharedProjectDAOHashTableImp {
 	 */
 	@Override
 	public List<SharedProjectBO> getSharedProjects() {
-		return null;
+		ArrayList<SharedProjectBO> results = new ArrayList<>();
+		for(String s: database.getIds()) {
+			results.add(database.find(s));
+		}
+		return results;
 	}
 
 }

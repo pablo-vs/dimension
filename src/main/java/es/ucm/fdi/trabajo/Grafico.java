@@ -20,7 +20,7 @@ import es.ucm.fdi.util.MultiTreeMap;
 //TODO BROMA, SE PASA A FUNCTION TO GRAPHIC
 
 public class Grafico {
-	private int dimension, dimImagen;
+	private int dimension;
 	private List<Vertice> dominio, imagen;
 	private MultiTreeMap<Integer, Integer> objeto;
 	private int resolucion; 
@@ -75,7 +75,7 @@ public class Grafico {
 			Vertice fv = new Vertice(s.size());
 			Function f;
 			dimension = s.size();
-			for(int j = 0; j < dimImagen; ++j) {
+			for(int j = 0; j < dimension; ++j) {
 				f = parser.parse(s.get(j), varList);
 				fv.set(j, f.evaluate(varList));
 			}

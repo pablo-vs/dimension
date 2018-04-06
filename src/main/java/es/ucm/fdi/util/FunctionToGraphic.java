@@ -18,17 +18,15 @@ import es.ucm.fdi.trabajo.function.functiontypes.VariablesList;
 public class FunctionToGraphic {
 
 	public class Grafico {
-		private int dimension, dimImagen;
+		private int dimension;
 		private List<Vertice> dominio, imagen;
 		private MultiTreeMap<Integer, Integer> objeto;
 		private int resolucion; 
 
-		public Grafico(int dimension, int res, List<String> s, double[] dom_ini, double[] dom_fin) {
+		public Grafico(int dimension) {
 			this.dimension = dimension;
 			objeto = new MultiTreeMap<>((a, b) -> a - b);
 			dominio = new ArrayList<>();
-			dimImagen = s.size();
-			generate(s, dom_ini, dom_fin, res);
 		}
 		
 		public void getGrid(double[] dom_ini, double[] dom_fin) {
@@ -74,7 +72,8 @@ public class FunctionToGraphic {
 				FunctionParser parser = new FunctionParser();
 				Vertice fv = new Vertice(s.size());
 				Function f;
-				for(int j = 0; j < dimImagen; ++j) {
+				dimension = s.size();
+				for(int j = 0; j < dimension; ++j) {
 					f = parser.parse(s.get(j), varList);
 					fv.set(j, f.evaluate(varList));
 				}
@@ -82,5 +81,12 @@ public class FunctionToGraphic {
 			}		
 		}
 		
+		public int getDim(){
+			return dimension;
+		}
+		
+		public List<Vertice> getImagen(){
+			return imagen;
+		}
 	}
 }

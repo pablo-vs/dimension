@@ -28,11 +28,11 @@ public class Visualization {
 	 * Añade un nuevo gráfico
 	 * 
 	 */
-	public void addGraphic(Grafico g, int dim1, int dim2, int dim3, int[] hp){
+	public void addGraphic(Grafico g, int dim1, int dim2, int dim3, double[] hp){
 		graphics.add(proyectar(g, dim1, dim2, dim3, hp));
 	}
 		
-	private Grafico proyectar(Grafico g, int dim1, int dim2, int dim3, int[] hp){
+	private Grafico proyectar(Grafico g, int dim1, int dim2, int dim3, double[] hp){
 		Grafico graf = new Grafico(3);
 		for (int i = 0; i < g.getDim(); ++i) {
 			Vertex v = g.getImagen().get(i);

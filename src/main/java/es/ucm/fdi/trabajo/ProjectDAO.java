@@ -42,6 +42,14 @@ public interface ProjectDAO {
 	 * no project was found.
 	 */
 	public ProjectTO findProject(String id);
+	
+	
+	/**
+	 * Checks if a project exists in the database.
+	 * 
+	 * @param id The id of the project to be checked.
+	 */
+	public boolean containsProject(String id);
 
 	/**
 	 * Returns all the stored projects.

@@ -37,6 +37,7 @@ public class Visualization {
 		Grafico graf = new Grafico(3);
 		for (int i = 0; i < g.getDim(); ++i) {
 			Vertex v = g.getImagen().get(i);
+
 			if (v.at(dim1) == hp1 && v.at(dim2) == hp2 && v.at(dim3) == hp3)
 				graf.getImagen().add(v);
 		}

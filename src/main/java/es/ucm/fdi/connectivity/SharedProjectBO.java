@@ -3,6 +3,7 @@ package es.ucm.fdi.connectivity;
 
 import es.ucm.fdi.workspace.project.ProjectTO;
 
+
 /**
  * Represents a shared project by an author.
  *

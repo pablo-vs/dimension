@@ -88,6 +88,7 @@ public class Grafico {
 	}
 	
 	public List<Vertex> getImagen(){
+
 		return imagen;
 	}
 }

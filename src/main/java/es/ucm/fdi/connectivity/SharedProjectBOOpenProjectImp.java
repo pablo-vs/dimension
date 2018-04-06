@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import es.ucm.fdi.workspace.project.ProjectTO;
 
-
 /**
  * A shared project that can be read by everyone and modified by its authors.
  *

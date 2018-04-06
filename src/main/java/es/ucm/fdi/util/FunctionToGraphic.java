@@ -9,9 +9,9 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 
 /**
  * 
+ * 
  * @author Brian Leiva
  * @author Eloy Mósig
- *
  */
 
 public class FunctionToGraphic {
@@ -72,6 +72,7 @@ public class FunctionToGraphic {
 				Function f;
 				for(int j = 0; j < s.size(); ++j) {
 					f = FunctionParserUtils.parse(s.get(j), varList);
+
 					fv.set(j, f.evaluate(varList));
 				}
 				imagen.add(fv);
@@ -83,6 +84,7 @@ public class FunctionToGraphic {
 		}
 		
 		public List<Vertex> getImagen(){
+
 			return imagen;
 		}
 	}

@@ -1,6 +1,6 @@
 package es.ucm.fdi.workspace.project;
 
-import es.ucm.fdi.workspace.Grafico;
+import es.ucm.fdi.workspace.Graphics;
 
 /**
  * Application service to manage the traffic of projects.
@@ -87,7 +87,7 @@ public class ProjectManagerAS {
 		}
 	}
 	
-	public void newObj(Grafico graph) {
+	public void newObj(Graphics graph) {
 		//TODO
 	}
 	

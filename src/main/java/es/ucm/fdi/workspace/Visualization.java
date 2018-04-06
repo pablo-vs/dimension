@@ -11,10 +11,10 @@ import java.util.ArrayList;
  *
  */
 public class Visualization {
-	private List<Grafico> graphics;
+	private List<Graphics> graphics;
 	
-	public Visualization(ArrayList<Grafico> g){
-		graphics = new ArrayList<Grafico>();
+	public Visualization(ArrayList<Graphics> g){
+		graphics = new ArrayList<Graphics>();
 	}
 	
 	/**
@@ -28,12 +28,12 @@ public class Visualization {
 	 * Añade un nuevo gráfico
 	 * 
 	 */
-	public void addGraphic(Grafico g, int dim1, int dim2, int dim3, int[] hp){
+	public void addGraphic(Graphics g, int dim1, int dim2, int dim3, int[] hp){
 		graphics.add(proyectar(g, dim1, dim2, dim3, hp));
 	}
 		
-	private Grafico proyectar(Grafico g, int dim1, int dim2, int dim3, int[] hp){
-		Grafico graf = new Grafico(3);
+	private Graphics proyectar(Graphics g, int dim1, int dim2, int dim3, int[] hp){
+		Graphics graf = new Graphics(3);
 		for (int i = 0; i < g.getDim(); ++i) {
 			Vertex v = g.getImagen().get(i);
 			int j = 0, cont = 0;

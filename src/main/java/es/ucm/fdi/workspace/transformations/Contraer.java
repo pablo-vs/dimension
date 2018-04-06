@@ -1,6 +1,6 @@
 package es.ucm.fdi.workspace.transformations;
 
-import es.ucm.fdi.workspace.Grafico;
+import es.ucm.fdi.workspace.Graphics;
 
 /**
  *  @author Brian Leiva
@@ -12,7 +12,7 @@ public class Contraer extends TransformarFuncion {
         super(newID);
     }
     
-    public void contraerX(Grafico g, double d){
+    public void contraerX(Graphics g, double d){
     	double min = g.getImagen().get(0).at(0), max = min;
         for (int i = 1; i < g.getImagen().size(); ++i){
         	double n = g.getImagen().get(i).at(0);
@@ -25,7 +25,7 @@ public class Contraer extends TransformarFuncion {
         }
     }
     
-    public void contraerY(Grafico g, double d){
+    public void contraerY(Graphics g, double d){
     	double min = g.getImagen().get(0).at(1), max = min;
         for (int i = 1; i < g.getImagen().size(); ++i){
         	double n = g.getImagen().get(i).at(1);
@@ -38,7 +38,7 @@ public class Contraer extends TransformarFuncion {
         }
     }
     
-    public void contraerZ(Grafico g, double d){
+    public void contraerZ(Graphics g, double d){
     	double min = g.getImagen().get(0).at(2), max = min;
         for (int i = 1; i < g.getImagen().size(); ++i){
         	double n = g.getImagen().get(i).at(2);
@@ -51,7 +51,7 @@ public class Contraer extends TransformarFuncion {
         }
     }
     
-    public void contraerTodo(Grafico g, double d){
+    public void contraerTodo(Graphics g, double d){
         contraerX(g, d);
         contraerY(g, d);
         contraerZ(g, d);

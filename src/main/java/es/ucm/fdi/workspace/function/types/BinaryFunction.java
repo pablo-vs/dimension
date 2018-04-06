@@ -42,7 +42,6 @@ public abstract class BinaryFunction extends Function {
 		 * @param operator The infix operator.
 		 */
 		public static Function[] parseFunctions(String strParam, VariablesList variables, Pattern operator) {
-			boolean success;
 			Function[] funcs = new Function[2];
 			String str = ParserUtils.stripExtraParenthesis(strParam);
 			int endFirst = 0, startSecond;

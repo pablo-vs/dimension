@@ -1,6 +1,6 @@
 package es.ucm.fdi.workspace.transformations;
 
-import es.ucm.fdi.workspace.Grafico;
+import es.ucm.fdi.workspace.Graphics;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Girar extends TransformarFuncion {
         super(newID);
     }
     
-    public void girarX(Grafico g, double d){
+    public void girarX(Graphics g, double d){
     	double minY = g.getImagen().get(0).at(1), maxY = minY,
     	       minZ = g.getImagen().get(0).at(2), maxZ = minZ;
         for (int i = 1; i < g.getImagen().size(); ++i){
@@ -33,7 +33,7 @@ public class Girar extends TransformarFuncion {
         }
     }
     
-    public void girarY(Grafico g, double d){
+    public void girarY(Graphics g, double d){
     	double minX = g.getImagen().get(0).at(0), maxX = minX,
      	       minZ = g.getImagen().get(0).at(2), maxZ = minZ;
          for (int i = 1; i < g.getImagen().size(); ++i){
@@ -52,7 +52,7 @@ public class Girar extends TransformarFuncion {
          }
     }
     
-    public void girarZ(Grafico g, double d){
+    public void girarZ(Graphics g, double d){
     	double minX = g.getImagen().get(0).at(0), maxX = minX,
     		   minY = g.getImagen().get(0).at(1), maxY = minY;
          for (int i = 1; i < g.getImagen().size(); ++i){
@@ -71,7 +71,7 @@ public class Girar extends TransformarFuncion {
          }
     }
     
-    public void girarTodo(Grafico g, double d){
+    public void girarTodo(Graphics g, double d){
         girarX(g, d);
         girarY(g, d);
         girarZ(g, d);

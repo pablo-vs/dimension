@@ -27,7 +27,7 @@ public class SessionBO implements Serializable{
 	 * @return A String which uniquely determines the session.
 	 */
 	public String getID() {
-		return Integer.toString((username + date.toString().hashCode()).hashCode());
+		return Integer.toString((username + date.toString()).hashCode());
 	}
 
 	/**

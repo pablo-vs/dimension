@@ -13,4 +13,12 @@ public class AuthorshipBO {
 		author = user;
 		project = proj;
 	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public String getProject() {
+		return project;
+	}
 }

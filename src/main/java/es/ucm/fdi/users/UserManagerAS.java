@@ -15,12 +15,27 @@ import es.ucm.fdi.exceptions.NotFoundException;
  * @version 02.04.2018
  */
 public class UserManagerAS {
-	//Singleton pattern
+	/**
+         * Instance of singleton pattern
+         */
        	private static UserManagerAS instance;
+        /**
+         * User data access object
+         */
 	private UserDAO dao;
+        /**
+         * Hash generator
+         */
 	private HashGenerator hashgen;
+        /**
+         * Current active sessions
+         */
 	private HashMap<String, SessionBO> activeSessions;
 	
+        /**
+         * Class constructor specifying user DAO
+         * @param dao Data access object from user
+         */
 	private UserManagerAS(UserDAO dao) {
 		this.dao = dao;
 		hashgen = new HashGenerator();
@@ -28,7 +43,7 @@ public class UserManagerAS {
 	}
 
 	/**
-	 * Get the current manager or create a new one if it does not exist, using the given database.
+	 * Gets the current manager or creates a new one if it does not exist, using the given database.
 	 *
 	 * @param dao The UserDAO to use.
 	 * @return The User Manager.
@@ -59,10 +74,10 @@ public class UserManagerAS {
 	}
 
 	/**
-	 * Remove a user from the database. This requires an active session.
+	 * Removes a user from the database. Requires an active session.
 	 *
 	 * @param id The identifier of the user to be deleted.
-	 * @param sesion The session from which to perform the action.
+	 * @param session The session from which to perform the action.
 	 */
 	public void removeUser(String id, SessionBO session) throws NotFoundException, AccessControlException {
 		if(authenticate(id, session)) {
@@ -79,8 +94,8 @@ public class UserManagerAS {
 	/**
 	 * Modify a user's information in the database. This requires an active session.
 	 *
-	 * @param id The new account details.
-	 * @param sesion The session from which to perform the action.
+	 * @param user The new account details.
+	 * @param session The session from which to perform the action.
 	 */
 	public void modifyUser(UserTO user, SessionBO session) throws AccessControlException, IllegalArgumentException {
 		if(authenticate(user.getID(), session)) {
@@ -122,8 +137,8 @@ public class UserManagerAS {
 	/**
 	 * Checks if a session is valid.
 	 *
-	 * @param id The session to check.
-	 * @return True if the session is valid.
+	 * @param session The session to check.
+	 * @return if the session is valid.
 	 */
 	public boolean validateSession(SessionBO session) {
 		return activeSessions.containsKey(session.getID());
@@ -131,10 +146,11 @@ public class UserManagerAS {
 
 	/**
 	 * Checks if the given session is an active session with privileges over
-	 * the given user acount.
+	 * the given user account.
 	 *
 	 * @param username The claimed user name.
 	 * @param session The session to check.
+         * @return if the session has been validated
 	 */
 	public boolean authenticate(String username, SessionBO session) {
 		if(validateSession(session)) {
@@ -149,34 +165,44 @@ public class UserManagerAS {
 	/**
 	 * Closes the given session.
 	 *
-	 * @param sesion The session to close.
+	 * @param session The session to close.
 	 */
 	public void logout(SessionBO session) {
 		activeSessions.remove(session.getID());
 	}
 
 	/**
-	 * Checks if a user exists.
 	 *
 	 * @param username The name to check.
+         * @return if the user exists
 	 */
 	public boolean existsUser(String username) {
 		return dao.findUser(username) != null;
 	}
-
+        
+        /**
+         * Creates a new session for a given user.
+         * 
+         * @param user User
+         * @return the new session
+         * @throws IllegalArgumentException if the user is already logged in. 
+         */
 	private SessionBO createNewSession(String user) throws IllegalArgumentException {
 		SessionBO sesion = null;
-		//Si el usuario ya ha iniciado sesión, lanzar un error
 		if(activeSessions.get(user) != null) {
 			throw new IllegalArgumentException("This user is already logged in");
 		} else {
-			//Si no, crear la sesión y añadirla a la lista de sesiones activas.
 			sesion = new SessionBO(user, ZonedDateTime.now());
 			activeSessions.put(sesion.getID(), sesion);
 		}
 		return sesion;
 	}	
 
+        /**
+         * Validates an account.
+         * @param user User
+         * @return if the account has been validated
+         */
 	private boolean validateAccountDetails(UserTO user) {
 		//TODO!!!!!!!!!!
 		return true;

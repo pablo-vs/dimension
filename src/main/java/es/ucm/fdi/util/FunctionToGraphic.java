@@ -10,9 +10,9 @@ import es.ucm.fdi.trabajo.function.functiontypes.VariablesList;
 
 /**
  * 
+ * 
  * @author Brian Leiva
  * @author Eloy Mósig
- *
  */
 
 public class FunctionToGraphic {

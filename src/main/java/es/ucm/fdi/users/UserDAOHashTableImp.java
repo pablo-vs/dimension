@@ -3,7 +3,7 @@ package es.ucm.fdi.users;
 import java.util.List;
 import java.util.ArrayList;
 
-import es.ucm.fdi.datos.BDMemoria;
+import es.ucm.fdi.datos.MemoryDB;
 
 /**
  * UserDAO implementation using a HashTable-based database.
@@ -12,37 +12,48 @@ import es.ucm.fdi.datos.BDMemoria;
  * @version 01.04.2018
  */
 public class UserDAOHashTableImp implements UserDAO {
-	private BDMemoria<UserTO> bd;
+        /**
+         * Database
+         */
+	private MemoryDB<UserTO> db;
 
+        /**
+         * Class constructor that initializes the db.
+         */
 	public UserDAOHashTableImp() {
-		bd = new BDMemoria<UserTO>();
+		db = new MemoryDB<UserTO>();
 	}
 	
+        @Override
 	public void addUser(UserTO user) {
-		bd.insert(user, user.getID());
+		db.insert(user, user.getID());
 	}
 
+        @Override
 	public void removeUser(String id) {
-		bd.removeId(id);
+		db.removeId(id);
 	}
 
+        @Override
 	public void modifyUser(UserTO user) {
 		if (findUser(user.getID()) != null) {
-			bd.insert(user, user.getID());
+			db.insert(user, user.getID());
 		} else {
 			throw new IllegalArgumentException("The user " + user.getID() + " does not exist");
 		}
 	}
 
+        @Override
 	public UserTO findUser(String id) {
-		return bd.find(id);
+		return db.find(id);
 	}
 
+        @Override
 	public List<UserTO> getUsers() {
 		ArrayList<UserTO> lista = new ArrayList<>();
-		for (String id : bd.getIds()) {
-			lista.add(bd.find(id));
-		}
+                db.getIds().forEach((id) -> {
+                    lista.add(db.find(id));
+                });
 		return lista;
 	}
 }

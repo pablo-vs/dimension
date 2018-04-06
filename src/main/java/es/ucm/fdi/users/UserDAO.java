@@ -3,7 +3,7 @@ package es.ucm.fdi.users;
 import java.util.List;
 
 /**
- * Interface to manage user data persistence
+ * Interface to manage user data persistence.
  *
  * @author Pablo Villalobos
  * @version 01.04.2018
@@ -32,7 +32,7 @@ public interface UserDAO {
 	public void modifyUser(UserTO user);
 
 	/**
-	 * Returns the account details of the user with the given id.
+	 * Returns the account details of the user for the given id.
 	 *
 	 * @param id Identifier of the user.
 	 * @return A TO containing the relevant data.
@@ -40,7 +40,7 @@ public interface UserDAO {
 	public UserTO findUser(String id);
 
 	/**
-	 * Returns a list of all registered users.
+	 * Returns a list of all the registered users.
 	 *
 	 * @return A list of users.
 	 */

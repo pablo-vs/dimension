@@ -3,7 +3,7 @@ package es.ucm.fdi.trabajo;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.datos.BDMemoria;
+import es.ucm.fdi.datos.MemoryDB;
 
 /**
  * ProjectDAO implementation using a HashTable-based database.
@@ -14,10 +14,10 @@ import es.ucm.fdi.datos.BDMemoria;
 
 public class ProjectDAOHashTableImp implements ProjectDAO {
 
-	private BDMemoria<ProjectTO> bd;
+	private MemoryDB<ProjectTO> bd;
 	
 	public ProjectDAOHashTableImp() {
-		bd = new BDMemoria<ProjectTO>();
+		bd = new MemoryDB<ProjectTO>();
 	}
 	
 	public void addProject(ProjectTO proj) {

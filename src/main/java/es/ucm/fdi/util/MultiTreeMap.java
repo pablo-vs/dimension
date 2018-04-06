@@ -8,6 +8,8 @@ import java.util.*;
  * Values for the same key will be returned and traversed in order of insertion;
  * that is, newer values with the same key will be stored after any other values
  * with the same key.
+ * @param <K> key
+ * @param <V> value
  */
 public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
 
@@ -51,6 +53,7 @@ public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
 
     /**
      * Returns the total number of values stored in this multimap
+     * @return size of values
      */
     public int sizeOfValues() {
         int total = 0;
@@ -63,6 +66,7 @@ public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
     /**
      * Returns the values as a read-only list. Changes to this structure
      * will be immediately reflected in the list.
+     * @return values list
      */
     public List<V> valuesList() {
         return new InnerList();

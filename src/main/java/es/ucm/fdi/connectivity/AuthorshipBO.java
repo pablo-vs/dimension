@@ -1,7 +1,7 @@
 package es.ucm.fdi.connectivity;
 
 /**
- * Represents a relationship of authorship between an user and a shared project.
+ * Represents a relationship of authorship between a user and a shared project.
  *
  * @author Pablo Villalobos
  * @version 04.04.2018

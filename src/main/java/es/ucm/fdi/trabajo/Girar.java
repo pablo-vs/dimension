@@ -10,19 +10,20 @@ public class Girar extends TransformarFuncion {
         super(newID);
     }
     
-    public void girarX(Politopo p, double d){
+    public void girarX(Visualization p, double d){
+    	
+        p.dibujar();
+    }
+    
+    public void girarY(Visualization p, double d){
         
     }
     
-    public void girarY(Politopo p, double d){
+    public void girarZ(Visualization p, double d){
         
     }
     
-    public void girarZ(Politopo p, double d){
-        
-    }
-    
-    public void girarTodo(Politopo p, double d){
+    public void girarTodo(Visualization p, double d){
         girarX(p, d);
         girarY(p, d);
         girarZ(p, d);

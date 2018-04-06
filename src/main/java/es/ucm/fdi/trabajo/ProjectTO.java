@@ -31,8 +31,8 @@ public class ProjectTO implements Serializable{
 
 	public ProjectTO(String iD, List<Visualization> vis, List<Function>  funcs) {
 		ID = iD;
-		views = new ArrayList(vis);
-		functions = new ArrayList(funcs);
+		views = new ArrayList<>(vis);
+		functions = new ArrayList<>(funcs);
 	}
 	
 	public String getID() {
@@ -48,11 +48,11 @@ public class ProjectTO implements Serializable{
 	}
 
 	public void setFunctions(List<Function> funcs) {
-		functions = new ArrayList(funcs);
+		functions = new ArrayList<>(funcs);
 	}
 
 	public void setViews(List<Visualization> vis) {
-		views = new ArrayList(vis);
+		views = new ArrayList<>(vis);
 	}
 	
 }

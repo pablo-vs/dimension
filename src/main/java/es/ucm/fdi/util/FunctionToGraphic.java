@@ -18,18 +18,20 @@ import es.ucm.fdi.trabajo.function.functiontypes.VariablesList;
 public class FunctionToGraphic {
 
 	public class Grafico {
-		private int dimension;
+		private int dimension, dimImagen;
 		private List<Vertice> dominio, imagen;
 		private MultiTreeMap<Integer, Integer> objeto;
 		private int resolucion; 
 
-		public Grafico(int dimension) {
+		public Grafico(int dimension, int res, List<String> s, double[] dom_ini, double[] dom_fin) {
 			this.dimension = dimension;
 			objeto = new MultiTreeMap<>((a, b) -> a - b);
 			dominio = new ArrayList<>();
+			dimImagen = s.size();
+			generate(s, dom_ini, dom_fin, res);
 		}
 		
-		public void Cuadricula(double[] dom_ini, double[] dom_fin) {
+		public void getGrid(double[] dom_ini, double[] dom_fin) {
 			
 			if (dom_ini.length != dom_fin.length) throw new IllegalArgumentException();
 			double lado = 1/2^resolucion;
@@ -61,9 +63,9 @@ public class FunctionToGraphic {
 			}
 		}
 		
-		public void Generar(List<String> s, double[] dom_ini, double[] dom_fin, int res) {
+		public void generate(List<String> s, double[] dom_ini, double[] dom_fin, int res) {
 			resolucion = res;
-			Cuadricula(dom_ini, dom_fin);
+			getGrid(dom_ini, dom_fin);
 			for(int i = 0; i < dominio.size(); ++i) {
 				VariablesList varList = new VariablesList(dominio.get(i).getDimension());
 				for(int j = 0; j < dominio.get(i).getDimension(); ++j) {
@@ -72,12 +74,13 @@ public class FunctionToGraphic {
 				FunctionParser parser = new FunctionParser();
 				Vertice fv = new Vertice(s.size());
 				Function f;
-				for(int j = 0; j < s.size(); ++j) {
+				for(int j = 0; j < dimImagen; ++j) {
 					f = parser.parse(s.get(j), varList);
 					fv.set(j, f.evaluate(varList));
 				}
 				imagen.add(fv);
 			}		
 		}
+		
 	}
 }

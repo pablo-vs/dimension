@@ -7,6 +7,10 @@ import es.ucm.fdi.datos.MemoryDB;
 
 public class SharedProjectDAOHashTableImp implements SharedProjectDAO{
 	private MemoryDB<SharedProjectBO> database;
+	
+	public SharedProjectDAOHashTableImp() {
+		database = new MemoryDB<SharedProjectBO>();
+	}
 
 	/**
 	 * Adds a new project to the database.

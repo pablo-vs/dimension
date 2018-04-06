@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Visualization {
 	private ArrayList<Graphics> graphics;
-        
+	
 	public Visualization(){
 		graphics = new ArrayList<Graphics>();
 	}
@@ -20,7 +20,7 @@ public class Visualization {
 	public Visualization(List<Graphics> g){
 		graphics = new ArrayList<Graphics>(g);
 	}
-	
+        
 	public List<Graphics> getGraphics(){
 		return graphics;
 	}
@@ -35,19 +35,18 @@ public class Visualization {
 		
 	private Graphics proyectar(Graphics g, int dim1, int dim2, int dim3, double[] hp){
 		Graphics graf = new Graphics(3);
-
+		
 		for (int i = 0; i < g.getImagen().size(); ++i) {
 			Vertex v = g.getImagen().get(i);
 			int j = 0, cont = 0;
 			boolean b = true;
 			System.out.println("H10");
 			while (b && j < hp.length) {
-				System.out.println("H11");
-				while (cont == dim1 || cont == dim2 || cont == dim3)
+				while (cont == dim1 || cont == dim2 || cont == dim3) 
 					++cont;
-			        if (cont < g.getDim()) {
+				if (cont < g.getDim()) {
 					if (Math.abs(v.at(cont) - hp[j]) > 0.1) 
-						b = false;
+					b = false;
 				}
 				++j;
 				++cont;

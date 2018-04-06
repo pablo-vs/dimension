@@ -6,6 +6,7 @@ import es.ucm.fdi.workspace.Grafico;
  *
  * @author Brian Leiva
  * @author Inmapg
+ * 
  */
 public class Girar extends TransformarFuncion {
     

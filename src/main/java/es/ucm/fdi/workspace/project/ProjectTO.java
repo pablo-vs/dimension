@@ -28,6 +28,8 @@ public class ProjectTO implements Serializable{
 	
 	public ProjectTO(String iD) {
 		ID = iD;
+		views = new ArrayList<>();
+		functions = new ArrayList<>();
 	}
 
 	public ProjectTO(String iD, List<Visualization> vis, List<Function>  funcs) {

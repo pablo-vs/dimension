@@ -3,7 +3,6 @@ package es.ucm.fdi.connectivity;
 import java.util.List;
 import java.util.ArrayList;
 
-import es.ucm.fdi.connectivity.SharedProjectBO;
 import es.ucm.fdi.trabajo.ProjectTO;
 
 /**
@@ -13,13 +12,28 @@ import es.ucm.fdi.trabajo.ProjectTO;
  * @version 04.04.2018
  */
 public class SharedProjectBOOpenProjectImp extends SharedProjectBO {
+        /**
+         * List of authors
+         */
 	private List<String> authors;
-
+        
+        /**
+         * Class constructor specifying id, existing project and list of authors.
+         * @param ID Identifier
+         * @param proj Project
+         * @param auth List of authors
+         */
 	public SharedProjectBOOpenProjectImp(String ID, ProjectTO proj, List<String> auth) {
 		super(ID, proj);
 		authors = new ArrayList<>(auth);
 	}
-
+        
+        /**
+         * Class constructor specifying id, existing project and an author.
+         * @param ID Identifier
+         * @param proj Project
+         * @param author Owner
+         */
 	public SharedProjectBOOpenProjectImp(String ID, ProjectTO proj, String author) {
 		super(ID, proj);
 		authors = new ArrayList<>();

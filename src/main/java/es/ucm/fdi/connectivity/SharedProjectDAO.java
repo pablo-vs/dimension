@@ -2,8 +2,6 @@ package es.ucm.fdi.connectivity;
 
 import java.util.List;
 
-import es.ucm.fdi.connectivity.SharedProjectBO;
-
 /**
  * The DAO for SharedProjects.
  *
@@ -35,7 +33,7 @@ public interface SharedProjectDAO {
 	public void modifySharedProject(SharedProjectBO proj);
 
 	/**
-	 * Find a project in the database.
+	 * Finds a project in the database.
 	 *
 	 * @param id The identifier of the project.
 	 * @return A SharedProjectBO containing the data of the project, or null if

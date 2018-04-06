@@ -3,10 +3,9 @@ package es.ucm.fdi.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.trabajo.Vertice;
-import es.ucm.fdi.trabajo.function.Function;
-import es.ucm.fdi.trabajo.function.FunctionParser;
-import es.ucm.fdi.trabajo.function.functiontypes.VariablesList;
+import es.ucm.fdi.workspace.Vertex;
+import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.function.types.VariablesList;
 
 /**
  * 
@@ -19,7 +18,7 @@ public class FunctionToGraphic {
 
 	public class Grafico {
 		private int dimension;
-		private List<Vertice> dominio, imagen;
+		private List<Vertex> dominio, imagen;
 		private MultiTreeMap<Integer, Integer> objeto;
 		private int resolucion; 
 
@@ -40,7 +39,7 @@ public class FunctionToGraphic {
 				dim *= tam[i];
 			}
 			for(int j = 0; j < dim; ++j) {
-				dominio.add(new Vertice());
+				dominio.add(new Vertex());
 			}
 			int n = 1;
 			for(int i = 0; i < dimension; ++i) {
@@ -69,11 +68,10 @@ public class FunctionToGraphic {
 				for(int j = 0; j < dominio.get(i).getDimension(); ++j) {
 					varList.setVariable(j, dominio.get(i).at(j));
 				}
-				FunctionParser parser = new FunctionParser();
-				Vertice fv = new Vertice(s.size());
+				Vertex fv = new Vertex(s.size());
 				Function f;
 				for(int j = 0; j < s.size(); ++j) {
-					f = parser.parse(s.get(j), varList);
+					f = FunctionParserUtils.parse(s.get(j), varList);
 					fv.set(j, f.evaluate(varList));
 				}
 				imagen.add(fv);

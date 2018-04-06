@@ -2,7 +2,7 @@ package es.ucm.fdi.connectivity;
 
 import java.util.List;
 
-import es.ucm.fdi.trabajo.ProjectTO;
+import es.ucm.fdi.workspace.project.ProjectTO;
 
 /**
  * Represents a project which has been shared.

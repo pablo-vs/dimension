@@ -1,5 +1,6 @@
 package es.ucm.fdi.trabajo.function;
 
+import es.ucm.fdi.workspace.Function;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -7,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import es.ucm.fdi.trabajo.function.functiontypes.VariablesList;
+import es.ucm.fdi.workspace.function.types.VariablesList;
 
 public class ParserTest {
 

@@ -1,5 +1,8 @@
 package es.ucm.fdi.trabajo;
 
+import es.ucm.fdi.workspace.project.ProjectDAOHashTableImp;
+import es.ucm.fdi.workspace.project.ProjectManagerAS;
+import es.ucm.fdi.workspace.project.ProjectTO;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -7,7 +10,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import es.ucm.fdi.trabajo.function.Function;
+import es.ucm.fdi.workspace.Function;
 
 public class ProjectManagerTest {
 	@Test

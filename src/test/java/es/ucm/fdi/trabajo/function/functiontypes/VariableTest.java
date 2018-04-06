@@ -1,5 +1,6 @@
 package es.ucm.fdi.trabajo.function.functiontypes;
 
+import es.ucm.fdi.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

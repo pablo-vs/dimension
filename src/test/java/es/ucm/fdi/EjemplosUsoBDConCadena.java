@@ -19,13 +19,13 @@
 
 package es.ucm.fdi;
 
+import es.ucm.fdi.workspace.project.ProjectTO;
 import es.ucm.fdi.datos.BDMemoria;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import es.ucm.fdi.trabajo.*;
 
 /**
  * Unit test for simple App.

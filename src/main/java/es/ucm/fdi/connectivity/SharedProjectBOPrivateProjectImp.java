@@ -3,7 +3,7 @@ package es.ucm.fdi.connectivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.trabajo.ProjectTO;
+import es.ucm.fdi.workspace.project.ProjectTO;
 
 /**
  * A shared project that can be read only by a list of people allowed and modified by its authors.

@@ -11,6 +11,7 @@ import es.ucm.fdi.util.MultiTreeMap;
  * 
  * @author Eduardo Amaya
  * @author Javier Galiana
+ * @author Brian Leiva
  * @author Eloy Mósig
  *
  */
@@ -71,7 +72,8 @@ public class Grafico {
 			}
 			Vertex fv = new Vertex(s.size());
 			Function f;
-			for(int j = 0; j < s.size(); ++j) {
+			dimension = s.size();
+			for(int j = 0; j < dimension; ++j) {
 				f = FunctionParserUtils.parse(s.get(j), varList);
 				fv.set(j, f.evaluate(varList));
 			}
@@ -81,5 +83,9 @@ public class Grafico {
 	
 	public List<Vertex> getImagen(){
 		return imagen;
+	}
+	
+	public int getDim(){
+		return dimension;
 	}
 }

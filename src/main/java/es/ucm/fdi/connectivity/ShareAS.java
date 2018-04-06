@@ -3,9 +3,12 @@ package es.ucm.fdi.connectivity;
 import java.util.List;
 import java.util.ArrayList;
 
+import es.ucm.fdi.trabajo.ProjectDAOHashTableImp;
 import es.ucm.fdi.trabajo.ProjectManagerAS;
 import es.ucm.fdi.trabajo.ProjectTO;
-import es.ucm.fdi.user.SessionBO;
+import es.ucm.fdi.users.SessionBO;
+import es.ucm.fdi.users.UserManagerAS;
+import es.ucm.fdi.users.UserDAOHashTableImp;
 
 /**
  * Application service to manage sharing and importing projects.
@@ -15,9 +18,9 @@ import es.ucm.fdi.user.SessionBO;
  */
 public class ShareAS {
 	//Singleton pattern
-	private ShareAS instance;
-	private ProjectManagerAS projectMan = ProjectManagerAS.getManager();
-	private UserManagerAS userMan = UserManagerAS.getManager(new UserManagerDAOHashTableImp);
+	private static ShareAS instance;
+	private ProjectManagerAS projectMan = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
+	private UserManagerAS userMan = UserManagerAS.getManager(new UserDAOHashTableImp());
 	private SharedProjectDAO projectDB;
 	private AuthorshipDAO authorDB;
 
@@ -26,15 +29,15 @@ public class ShareAS {
 		authorDB = authorDao;
 	}
 
-	public static SharedProjectDAO getInstance(SharedProjectDAO projDao, AuthorshipDAO authorDao) {
+	public static ShareAS getInstance(SharedProjectDAO projDao, AuthorshipDAO authorDao) {
 		if (instance == null) {
-			instance = new SharedProjectDAO(projDao, authorDao);
+			instance = new ShareAS(projDao, authorDao);
 		}
 		return instance;
 	}
 	
 	private String createShareProjectID(String project, List<String> authors) {
-		StringBuilder sb = new StringBuilder().append(proj.getID());
+		StringBuilder sb = new StringBuilder().append(project);
 		for(String auth : authors) {
 			sb.append(auth);
 		}
@@ -53,16 +56,16 @@ public class ShareAS {
 		
 	}
 	
-	public ProjectTO importProject(SharedProjectTO proj, SessionBO session) {
-
+	public ProjectTO importProject(SharedProjectBO proj, SessionBO session) {
+		return null;
 	}
 
-	public List<SharedProjectTO> findProjectByAuthor(String author) {
-
+	public List<SharedProjectBO> findProjectByAuthor(String author) {
+		return null;
 	}
 
-	public List<SharedProjectTO> findProjectByName(String name) {
-
+	public List<SharedProjectBO> findProjectByName(String name) {
+		return null;
 	}
 
 }

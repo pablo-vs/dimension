@@ -1,12 +1,12 @@
 package es.ucm.fdi.trabajo;
 
-import es.ucm.fdi.trabajo.funcion.Function;
+import es.ucm.fdi.trabajo.function.Function;
 
 public class WorkAS {
 	private ProjectTO project;
-	private ProjectManagerAS projManager = ProjectManagerAS.getInstance();
+	private ProjectManagerAS projManager = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
 
-	public WorkAS(ProjecTO proj) {
+	public WorkAS(ProjectTO proj) {
 
 	}
 	

@@ -28,17 +28,5 @@
       <artifactId>mariadb-java-client</artifactId>
       <version>2.2.3</version>
     </dependency>
-    <dependency>
-      <groupId>com.spothero.emailvalidator</groupId>
-      <artifactId>EmailValidator</artifactId>
-      <version>2.0.0</version>
-      <scope>test</scope>
-      <type>aar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.opendof.core-java-internal</groupId>
-      <artifactId>dof-domain-storage-javadb-routines</artifactId>
-      <version>3.0.1</version>
-    </dependency>
   </dependencies>
 </project>

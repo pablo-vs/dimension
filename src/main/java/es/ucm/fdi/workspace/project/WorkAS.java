@@ -13,7 +13,15 @@ public class WorkAS {
 	public WorkAS(ProjectTO proj) {
 		project = proj;
 	}
-	
+
+	public ProjectManagerAS getProjManager() {
+		return projManager;
+	}
+
+	public ProjectTO getProject() {
+		return project;
+	}
+
 	public void addFunction(Function f) {
 		project.getFunctions().add(f);
 	}

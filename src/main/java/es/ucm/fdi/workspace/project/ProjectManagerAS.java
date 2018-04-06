@@ -18,6 +18,10 @@ public class ProjectManagerAS {
 		this.dao = dao;
 	}
 
+	public ProjectDAO getDao() {
+		return dao;
+	}
+
 	/**
 	 * Get the current manager or create a new one if it does not exist, using
 	 * the given database.

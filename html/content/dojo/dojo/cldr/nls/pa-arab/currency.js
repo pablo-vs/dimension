@@ -1,1 +1,0 @@
-({"EUR_displayName":"يورو","USD_symbol":"US$","GBP_displayName":"GBP","JPY_displayName":"JPY","GBP_symbol":"UK£","JPY_symbol":"JP¥","EUR_symbol":"€","USD_displayName":"USD"})

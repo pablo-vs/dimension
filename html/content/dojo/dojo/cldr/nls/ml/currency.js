@@ -1,0 +1,1 @@
+({"EUR_displayName":"യൂറോ","GBP_displayName":"ബ്രിട്ടീഷ് പൌണ്ട് സ്റ്റെര്ലിംങ്","JPY_displayName":"ജപ്പാനീസ് യെന്","AUD_displayName":"ആസ്ട്രേലിയന് ഡോളര്","USD_displayName":"യു.എസ്. ഡോളര്","USD_symbol":"US$","GBP_symbol":"UK£","JPY_symbol":"JP¥","EUR_symbol":"€"})

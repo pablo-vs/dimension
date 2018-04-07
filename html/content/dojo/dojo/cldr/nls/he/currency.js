@@ -1,0 +1,1 @@
+({"HKD_displayName":"דולר הונג קונגי","CHF_displayName":"פרנק שוויצרי","JPY_symbol":"JP¥","CAD_displayName":"דולר קנדי","USD_symbol":"US$","AUD_displayName":"דולר אוסטרלי","JPY_displayName":"ין יפני","USD_displayName":"דולר אמריקאי","EUR_symbol":"€","GBP_displayName":"לירה שטרלינג","GBP_symbol":"UK£","EUR_displayName":"אירו"})

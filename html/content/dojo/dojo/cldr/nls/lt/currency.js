@@ -1,0 +1,1 @@
+({"EUR_displayName":"Euras","GBP_displayName":"Svaras sterlingų","JPY_displayName":"Jena","CNY_displayName":"Ženminbi juanis","USD_displayName":"JAV doleris","USD_symbol":"US$","GBP_symbol":"UK£","JPY_symbol":"JP¥","EUR_symbol":"€"})

@@ -1,0 +1,229 @@
+ 
+		body {
+			background:#fff url("");
+			padding:0em 0em 0em 0em;
+		}
+		
+		.NavigationBar
+		{
+			background-color:#CCFFFF;
+			border-collapse:collapse;
+			width:100%;
+		}
+
+		.NavBarLeft
+		{
+			font-weight:500;
+			font-size:larger;
+		}
+
+		.NavBarLeft td
+		{
+			padding-right: 10px;
+			padding-left: 10px;
+		}
+
+		.NavBarRight
+		{
+			text-align:right;
+			font-weight:500;
+			font-size:larger;
+			width:25%;
+			white-space:nowrap;
+		}
+
+		.NavBarMainHighlight
+		{
+			background-color: #006699;
+			color:#FFFFFF;
+		}
+
+		.NavBarBookmarks
+		{
+			text-align:left;
+			font-size:small;
+		}
+
+		.BookMarkSections
+		{
+			padding-right:20px;
+		}
+
+		.BookMarkElements
+		{
+			padding-right:10px;
+		}
+
+		.ElementTitle
+		{
+			font-size:large;
+			font-weight:600;
+		}
+		
+		.PackageFullyQualifiedName
+		{
+			font-size:medium;
+			font-weight:500;
+		}
+
+		.SummaryTable
+		{
+			border-style:solid;
+			border-width: thin;
+			width: 100%;
+			border-collapse:collapse;
+		}
+
+		.SummaryTitle
+		{
+			background-color: #009BB9;
+			font-size:large;
+		}
+
+		.DetailsTable
+		{
+			border-style:none;
+			border-width: thin;
+			width: 100%;
+			border-collapse:collapse;
+		}
+
+		.DetailsTitle
+		{
+			background-color: #009BB9;
+			font-size:large;
+		}
+
+		.PackagesTable
+		{
+			width: 100%;
+			border-collapse:collapse;
+		}
+
+		.PackagesTitle
+		{
+			background-color: #009BB9;
+			font-size:large;
+		}
+		
+		.ListItem
+		{
+			font-size: larger;
+			font-weight: 500;
+		}
+		
+		.OwnedMemberType
+		{
+			width: 25%;
+		}
+		
+		.LargeTitle
+		{
+			font-size:large;
+			font-weight:600;
+		}
+		
+		.RegularTitle
+		{
+			font-size: larger;
+			font-weight:400;
+		}
+		
+		.Title
+		{
+			font-size: larger;
+			font-weight:500;
+		}
+		
+		.PackageList
+		{
+			border-style:none;
+			width: 100%;
+		}
+		
+		.ContainedElements
+		{
+			border-style: solid;
+			border-width: thin;
+			border-collapse: collapse;
+			width: 100%;
+			cellspacing: 0;
+			cellpadding: 3;
+		}
+		
+		.PackageNavigationList
+		{
+			border-style: none;
+			width: 100%;
+		}
+		
+		.PackageList
+		{
+			font-weight: 500;
+			border-style: none;
+		}
+		
+		.ClassesTableHeading
+		{
+			font-weight: 500;
+			font-size: larger;
+		}
+		
+		.ClassTableEntry
+		{
+			background-color: white;
+		}
+		
+		.ClassTableEntryLink
+		{
+			width: 15%;
+		}
+		
+		.ElementDocumentation
+		{
+			font-style: normal;
+
+			font-family: Times New Roman;
+		}
+		
+		.ImageTable
+		{
+			border-style: solid;
+			border-width: thin;
+			border-collapse: collapse;
+			cellspacing: 0;
+			cellpadding: 3;
+		}
+		
+		.PropertiesTable
+		{
+			border-style: solid;
+			border-width: thin;
+			border-collapse: collapse;
+			cellspacing: 0;
+			cellpadding: 4;
+		}
+		
+		.CategoryTitle
+		{
+			font-weight: 600;
+		}
+		
+		.PropertyName
+		{
+			width: 25%;
+			font-weight: 600;
+		}
+		
+		.PropertyValue
+		{
+			width: 25%;
+			font-weight: 400;
+		}
+		
+		.dijitTreeLabel
+		{
+			white-space:nowrap;
+		}
+		
+		

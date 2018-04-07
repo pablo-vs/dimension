@@ -1,0 +1,1 @@
+({"EUR_displayName":"еўра","GBP_displayName":"англійскі фунт","JPY_displayName":"японская іена","CNY_displayName":"кітайскі юань Renminbi","USD_displayName":"долар ЗША","USD_symbol":"US$","GBP_symbol":"UK£","JPY_symbol":"JP¥","EUR_symbol":"€"})

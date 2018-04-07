@@ -2,7 +2,7 @@ package es.ucm.fdi.workspace.function.binarytypes;
 
 import java.util.regex.Pattern;
 
-import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.FunctionBO;
 import es.ucm.fdi.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 
@@ -19,7 +19,7 @@ public class SubstractFunction extends BinaryFunction{
 		super();
 	}
 	
-	public SubstractFunction(Function f1, Function f2, VariablesList vars) {
+	public SubstractFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
 		super(f1, f2, vars);
 	}
 	
@@ -41,7 +41,7 @@ public class SubstractFunction extends BinaryFunction{
 		@Override
 		public SubstractFunction parse(String str, VariablesList variables) {
 			SubstractFunction func = null;
-		        Function[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
+		        FunctionBO[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
 			if(funcs[0] != null && funcs[1] != null) {
 				func = new SubstractFunction(funcs[0], funcs[1], variables);
 			}

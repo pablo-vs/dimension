@@ -5,7 +5,8 @@ import java.util.regex.Matcher;
 
 import es.ucm.fdi.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
-import es.ucm.fdi.util.ParserUtils;
+import es.ucm.fdi.util.FunctionParserUtils;
+
 
 /**
  * Represents a constant function.
@@ -37,7 +38,7 @@ public class ConstantFunction extends UnaryFunction{
 
 		@Override
 		public ConstantFunction parse(String strParam, VariablesList variables) {
-			String str = ParserUtils.stripExtraParenthesis(strParam);
+			String str =FunctionParserUtils.stripExtraParenthesis(strParam);
 			Matcher digitMatcher = REGEX.matcher(str), piMatcher = PI_REGEX.matcher(str),
 				eMatcher = E_REGEX.matcher(str);
 			if(digitMatcher.matches()) {

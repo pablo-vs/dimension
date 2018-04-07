@@ -4,8 +4,8 @@ import es.ucm.fdi.util.FunctionParserUtils;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import es.ucm.fdi.util.ParserUtils;
-import es.ucm.fdi.workspace.Function;
+
+import es.ucm.fdi.workspace.FunctionBO;
 
 /**
  * Represents a binary function.
@@ -13,21 +13,21 @@ import es.ucm.fdi.workspace.Function;
  * @author Javier Navalón
  * @version 01.04.2018
  */
-public abstract class BinaryFunction extends Function {
-	protected Function f1;
-	protected Function f2;
+public abstract class BinaryFunction extends FunctionBO {
+	protected FunctionBO f1;
+	protected FunctionBO f2;
 
 	public BinaryFunction() {
 		super();
 	}
 	
-	public BinaryFunction(Function fun1, Function fun2, VariablesList vars) {
+	public BinaryFunction(FunctionBO fun1, FunctionBO fun2, VariablesList vars) {
 		super(vars);
 		f1 = fun1;
 		f2 = fun2;
 	}
 
-	public static abstract class Parser extends Function.Parser {
+	public static abstract class Parser extends FunctionBO.Parser {
 		
 		@Override
 		public abstract BinaryFunction parse(String strParam, VariablesList variables);
@@ -41,16 +41,16 @@ public abstract class BinaryFunction extends Function {
 		 * @param variables The variable list.
 		 * @param operator The infix operator.
 		 */
-		public static Function[] parseFunctions(String strParam, VariablesList variables, Pattern operator) {
+		public static FunctionBO[] parseFunctions(String strParam, VariablesList variables, Pattern operator) {
 		        boolean success;
-			Function[] funcs = {null, null};
+			FunctionBO[] funcs = {null, null};
 			boolean succ=true;
-			String str = ParserUtils.stripExtraParenthesis(strParam);
+			String str =FunctionParserUtils.stripExtraParenthesis(strParam);
 			int endFirst = 0, startSecond;
 			if(!str.equals("")) {
 				if(str.charAt(0) == '(') {
 					try {
-						endFirst = ParserUtils.getEndOfParenthesis(str, 0);
+						endFirst =FunctionParserUtils.getEndOfParenthesis(str, 0);
 					} catch(IllegalArgumentException e) {
 						succ=false;
 					}

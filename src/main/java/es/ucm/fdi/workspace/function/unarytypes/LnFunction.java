@@ -4,7 +4,7 @@ package es.ucm.fdi.workspace.function.unarytypes;
 import es.ucm.fdi.util.FunctionParserUtils;
 import java.util.regex.Pattern;
 
-import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.FunctionBO;
 import es.ucm.fdi.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 
@@ -16,7 +16,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
  */
 public class LnFunction extends UnaryFunction{
         
-    	public LnFunction(Function f, VariablesList vars) {
+    	public LnFunction(FunctionBO f, VariablesList vars) {
 		super(f, vars);
 	}
 
@@ -39,7 +39,7 @@ public class LnFunction extends UnaryFunction{
 			LnFunction result = null;
 			String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
 			if(strArg != null) {
-				Function arg = FunctionParserUtils.parse(strArg, variables);
+				FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
 				if(arg != null) {
 					result = new LnFunction(arg, variables);
 				}

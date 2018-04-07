@@ -3,11 +3,11 @@ package es.ucm.fdi.workspace.function.binarytypes;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.FunctionBO;
 import es.ucm.fdi.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 import es.ucm.fdi.util.FunctionParserUtils;
-import es.ucm.fdi.util.ParserUtils;
+
 
 /**
  * Representa la funcion logarítmica.
@@ -21,7 +21,7 @@ public class LogarithmicFunction extends BinaryFunction{
 		super();
 	}
 	
-	public LogarithmicFunction(Function f1, Function f2, VariablesList vars) {
+	public LogarithmicFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
 		super(f1, f2, vars);
 	}
 	
@@ -44,11 +44,11 @@ public class LogarithmicFunction extends BinaryFunction{
 
 		@Override
 		public LogarithmicFunction parse(String strParam, VariablesList variables) {
-			String str = ParserUtils.stripExtraParenthesis(strParam);
+			String str =FunctionParserUtils.stripExtraParenthesis(strParam);
 			LogarithmicFunction result = null;
 			Matcher m = REGEX.matcher(str);
 			if(m.matches()) {
-				Function f1 = FunctionParserUtils.parse(m.group(1), variables),
+				FunctionBO f1 = FunctionParserUtils.parse(m.group(1), variables),
 					f2 = FunctionParserUtils.parse(m.group(2), variables);
 				if(f1 != null && f2 != null) {
 					result = new LogarithmicFunction(f1, f2, variables);

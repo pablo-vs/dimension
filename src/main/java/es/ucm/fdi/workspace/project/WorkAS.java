@@ -1,40 +1,68 @@
 package es.ucm.fdi.workspace.project;
 
-import es.ucm.fdi.workspace.Function;
-import es.ucm.fdi.workspace.Visualization;
+import es.ucm.fdi.workspace.FunctionBO;
+import es.ucm.fdi.workspace.VisualizationBO;
+import es.ucm.fdi.workspace.GraphBO;
 import es.ucm.fdi.workspace.project.ProjectTO;
 import es.ucm.fdi.workspace.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.workspace.project.ProjectManagerAS;
+import es.ucm.fdi.workspace.transformations.GraphTransformationBO;
 
+/**
+ * Application service which provides functions for working in projects.
+ *
+ * @author Brian Leiva
+ *
+ */
 public class WorkAS {
 	private ProjectTO project;
-	private ProjectManagerAS projManager = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
 
+	/**
+	 * Create a Work Application Service using the given project.
+	 *
+	 * @param proj The project to work on.
+	 */
 	public WorkAS(ProjectTO proj) {
 		project = proj;
 	}
 
-	public ProjectManagerAS getProjManager() {
-		return projManager;
-	}
-
+	/**
+	 * @return The current project.
+	 */
 	public ProjectTO getProject() {
 		return project;
 	}
 
-	public void addFunction(Function f) {
+	/**
+	 * Adds a new Function to the project.
+	 *
+	 * @param f The new Function to add.
+	 */
+	public void addFunction(FunctionBO f) {
 		project.getFunctions().add(f);
 	}
 
-	public void addVisualization(Visualization v) {
+	/**
+	 * Adds a new Visualization to the project.
+	 *
+	 * @param v The new Visualization to add.
+	 */
+	public void addVisualizationBO(VisualizationBO v) {
 		project.getViews().add(v);
 	}
 
-	public void saveProject() {
-		projManager.saveChanges(project);
-	}
-	
-	public void TransformFunction(int n, Visualization v) {
-		project.getViews().set(n, v);
+	/**
+	 * Transforms a visualized function according to the given transformation.
+	 *
+	 * @param view The view to transform.
+	 * @param func The function to transform.
+	 * @param transformation The GraphTransformation to apply.
+	 */
+	public void transformFunction(int view, int func, GraphTransformationBO transformation) {
+		VisualizationBO visual = project.getViews().get(view);
+		GraphBO graph = visual.getGraph().get(func);
+		transformation.apply(graph);
+		visual.getGraph().set(func, graph);
+		project.getViews().set(view, visual);
 	}
 }

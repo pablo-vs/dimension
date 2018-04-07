@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.FunctionBO;
 
 public class ProjectManagerTest {
 	@Test
@@ -33,7 +33,7 @@ public class ProjectManagerTest {
 			// todo correcto
 		}
 
-		List<Function> funcs = new ArrayList<Function>();
+		List<FunctionBO> funcs = new ArrayList<FunctionBO>();
 		polinomios.setFunctions(funcs);
 
 		projectMgr.saveChanges(polinomios);

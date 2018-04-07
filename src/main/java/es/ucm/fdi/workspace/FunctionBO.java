@@ -14,20 +14,20 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
  * @author Javier Navalón
  * @version 02.04.2018
  */
-public abstract class Function {
+public abstract class FunctionBO {
     
 	private VariablesList variables;
         
         /**
 	 * Prevent from no-parameters declaration of new function variables for containers.
 	 */
-	public Function() {}
+	public FunctionBO() {}
 
 	/**
 	 * Constructor specifying the list of variables of the function.
 	 * @param vars The variable list.
 	 */
-	public Function(VariablesList vars) {
+	public FunctionBO(VariablesList vars) {
 		variables = vars;
 	}
 	
@@ -79,6 +79,6 @@ public abstract class Function {
 		 * @param variables The list of variables.
                  * @return the function which matches the type or null
 		 */
-		public abstract Function parse(String str, VariablesList variables);
+		public abstract FunctionBO parse(String str, VariablesList variables);
 	}
 }

@@ -2,7 +2,7 @@ package es.ucm.fdi.workspace.function.binarytypes;
 
 import java.util.regex.Pattern;
 
-import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.FunctionBO;
 import es.ucm.fdi.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 
@@ -19,7 +19,7 @@ public class ModuloFunction extends BinaryFunction{
 		super();
 	}
 	
-	public ModuloFunction(Function f1, Function f2, VariablesList vars) {
+	public ModuloFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
 		super(f1, f2, vars);
 	}
 	
@@ -42,7 +42,7 @@ public class ModuloFunction extends BinaryFunction{
 		@Override
 		public ModuloFunction parse(String str, VariablesList variables) {
 			ModuloFunction func = null;
-		        Function[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
+		        FunctionBO[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
 			if(funcs[0] != null && funcs[1] != null) {
 				func = new ModuloFunction(funcs[0], funcs[1], variables);
 			}

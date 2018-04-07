@@ -3,7 +3,7 @@ package es.ucm.fdi.workspace.function.unarytypes;
 import es.ucm.fdi.util.FunctionParserUtils;
 import java.util.regex.Pattern;
 
-import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.FunctionBO;
 import es.ucm.fdi.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 
@@ -15,7 +15,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
  */
 public class Log10Function extends UnaryFunction{
 
-	public Log10Function(Function f, VariablesList vars) {
+	public Log10Function(FunctionBO f, VariablesList vars) {
 		super(f, vars);
 	}
         
@@ -37,7 +37,7 @@ public class Log10Function extends UnaryFunction{
 			Log10Function result = null;
 			String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
 			if(strArg != null) {
-				Function arg = FunctionParserUtils.parse(strArg, variables);
+				FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
 				if(arg != null) {
 					result = new Log10Function(arg, variables);
 				}

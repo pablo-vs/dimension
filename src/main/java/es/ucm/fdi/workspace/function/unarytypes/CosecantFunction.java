@@ -2,7 +2,7 @@ package es.ucm.fdi.workspace.function.unarytypes;
 
 import java.util.regex.Pattern;
 
-import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.FunctionBO;
 import es.ucm.fdi.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 import es.ucm.fdi.util.FunctionParserUtils;
@@ -14,7 +14,7 @@ import es.ucm.fdi.util.FunctionParserUtils;
  */
 public class CosecantFunction extends UnaryFunction{
 	
-	public CosecantFunction(Function f, VariablesList vars) {
+	public CosecantFunction(FunctionBO f, VariablesList vars) {
 		super(f, vars);
 	}
 
@@ -37,7 +37,7 @@ public class CosecantFunction extends UnaryFunction{
 			CosecantFunction result = null;
 			String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
 			if(strArg != null) {
-				Function arg = FunctionParserUtils.parse(strArg, variables);
+				FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
 				if(arg != null) {
 					result = new CosecantFunction(arg, variables);
 				}

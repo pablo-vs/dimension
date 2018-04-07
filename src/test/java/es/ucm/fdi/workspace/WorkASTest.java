@@ -11,34 +11,35 @@ import java.util.List;
 
 import org.junit.Test;
 
-import es.ucm.fdi.workspace.Function;
-import es.ucm.fdi.workspace.Graphics;
-import es.ucm.fdi.workspace.Visualization;
+import es.ucm.fdi.workspace.FunctionBO;
+import es.ucm.fdi.workspace.GraphBO;
+import es.ucm.fdi.workspace.VisualizationBO;
 
 public class WorkASTest {
 	
 	@Test
 	public void workASTest(){
 		
-		ProjectTO exponencial = new ProjectTO("exponencialex"); 
+		ProjectTO exponencial = new ProjectTO("exponentialex");
+		ProjectManagerAS projMan = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
 		WorkAS proj = new WorkAS(exponencial);
 		
-		ArrayList<Graphics> g = new ArrayList<>();
-		g.add(new Graphics(3));
-		g.add(new Graphics(5));
+		ArrayList<GraphBO> g = new ArrayList<>();
+		g.add(new GraphBO(3));
+		g.add(new GraphBO(5));
 		
-		Visualization views = new Visualization(g);
+		VisualizationBO views = new VisualizationBO(g);
 		
-		proj.addVisualization(views);
+		proj.addVisualizationBO(views);
 		
 		if(!proj.getProject().getViews().contains(views)) {
-			fail("Visualizations not being added to project");
+			fail("VisualizationBOs not being added to project");
 		}
 		
-		proj.saveProject();
+		projMan.saveChanges(proj.getProject());
 	
-		if(!proj.getProjManager().getDao().getProjects().contains(exponencial)) {
-			fail("Project not being saved!");
+		if(projMan.openProject("exponentialex") == null) {
+			fail("Project was not saved!");
 		}
 		
 	}

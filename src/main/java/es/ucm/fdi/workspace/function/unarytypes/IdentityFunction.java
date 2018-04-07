@@ -3,7 +3,7 @@ package es.ucm.fdi.workspace.function.unarytypes;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.FunctionBO;
 import es.ucm.fdi.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 import es.ucm.fdi.workspace.function.types.Variable;

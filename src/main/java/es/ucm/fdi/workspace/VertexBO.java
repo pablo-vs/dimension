@@ -18,7 +18,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * VertexN defines a new type which uses an internal array with an specified number 
+ * VertexBON defines a new type which uses an internal array with an specified number 
  * of components. The vertex could be initalized using an array of double values, 
  * or using directly a list of double values as parameters. It could also be 
  * declared by indicating just the dimension, creating a vertex at the origin. 
@@ -31,7 +31,7 @@ import java.util.NoSuchElementException;
  * 
  */
 
-public class Vertex implements Iterable <Double>, Cloneable{
+public class VertexBO implements Iterable <Double>, Cloneable{
 	/**
 	 *The value of the dimension of the space in which the vertex is instantiated.
 	 */
@@ -48,7 +48,7 @@ public class Vertex implements Iterable <Double>, Cloneable{
 	 * @param cmps array with the value of the components
 	 * @throws dimension.NoMatchDimensionException dim does not match cmps.length.
 	 */
-	public Vertex(int dim, double[] cmps) /*throws NoMatchDimensionException*/{
+	public VertexBO(int dim, double[] cmps) /*throws NoMatchDimensionException*/{
 		if (dim != cmps.length)
 			/*throw new NoMatchDimensionException(dim, cmps.length)*/;
 		this.dim = dim;
@@ -59,7 +59,7 @@ public class Vertex implements Iterable <Double>, Cloneable{
 	 * Class constructor specifying a number of points for the vertex
 	 * @param cmps array with the values of the points 
 	 */    
-	public Vertex(double ... cmps){
+	public VertexBO(double ... cmps){
 		this.dim = cmps.length;
 		this.cmps = cmps.clone();
 	}
@@ -70,7 +70,7 @@ public class Vertex implements Iterable <Double>, Cloneable{
 	 * @param dim number of componentes of the vertex
 	 * @throws dimension.NoMatchDimensionException the dimension is not valid
 	 */    
-	public Vertex(int dim) /*throws NoMatchDimensionException*/{
+	public VertexBO(int dim) /*throws NoMatchDimensionException*/{
 		if (dim < 0)
 			/* throw new NoMatchDimensionException(dim)*/;
 		this.dim = dim;
@@ -83,7 +83,7 @@ public class Vertex implements Iterable <Double>, Cloneable{
 	/**
 	 * Class constructor specifying no parameters, creates a null vertex
 	 */    
-	public Vertex(){
+	public VertexBO(){
 		this.dim = 0;
 		this.cmps = null;
 	}
@@ -122,14 +122,14 @@ public class Vertex implements Iterable <Double>, Cloneable{
 	}
 
 	/**
-	 * Generates a VertexIterator in order to provide a way of iterate the Vertex
+	 * Generates a VertexBOIterator in order to provide a way of iterate the VertexBO
 	 */
 	@Override
 	public Iterator<Double> iterator() {
-		return new VertexIterator(); 
+		return new VertexBOIterator(); 
 	}
 	/**
-	 * Returns a string with all the values of the Vertex concatenated
+	 * Returns a string with all the values of the VertexBO concatenated
 	 * @return s coordinates concatenated in a string
 	 */
 	public String toString(){
@@ -141,9 +141,9 @@ public class Vertex implements Iterable <Double>, Cloneable{
 	}
    
 	/**
-	 * Iterator inner class VertexIterator for a Double Vertex. 
+	 * Iterator inner class VertexBOIterator for a Double VertexBO. 
 	 */
-	private final class VertexIterator implements Iterator<Double> {
+	private final class VertexBOIterator implements Iterator<Double> {
            
 		/**
 		 * Index for the iterator
@@ -153,39 +153,39 @@ public class Vertex implements Iterable <Double>, Cloneable{
 		/**
 		 * Class constructor which sets the cursor of the iterator to zero.
 		 */
-		public VertexIterator() {
+		public VertexBOIterator() {
 			this.cursor = 0;
 		}
 
 		/**
 		 * It returns if there are more elements available in the vertex.
-		 * @return this.cursor < Vertex.this.dim
+		 * @return this.cursor < VertexBO.this.dim
 		 */
 		public boolean hasNext() {
-			return this.cursor < Vertex.this.dim;
+			return this.cursor < VertexBO.this.dim;
 		}   
 
 		/**
-		 * It returns the next value in the Vertex, if there are no more 
+		 * It returns the next value in the VertexBO, if there are no more 
 		 elements it throws an exception NoSuchElementException.
 		 * @throws NoSuchElementException iterator out of range.
-		 * @return Vertex.this.cmps[this.cursor]
+		 * @return VertexBO.this.cmps[this.cursor]
 		 */
 		public Double next() {
 			if(!this.hasNext())
 				throw new NoSuchElementException();
-			return Vertex.this.cmps[this.cursor++];
+			return VertexBO.this.cmps[this.cursor++];
                 }
 	}
     
 	/**
-	 * Returns a Vertex with the same values of this Vertex
-	 * @return clone a copy of Vertex
+	 * Returns a VertexBO with the same values of this VertexBO
+	 * @return clone a copy of VertexBO
 	 */
-	protected Vertex clone() { 
-		Vertex clone = null;
+	protected VertexBO clone() { 
+		VertexBO clone = null;
 		try{ 
-			clone = (Vertex) super.clone();
+			clone = (VertexBO) super.clone();
 			clone.cmps = new double[clone.dim]; //deep copying 
 		}catch(CloneNotSupportedException cns){ 
 			cns.printStackTrace();
@@ -194,27 +194,27 @@ public class Vertex implements Iterable <Double>, Cloneable{
 	}
     
 	/**
-	 * Returns whether the object of the argument is the same as this Vertex.
+	 * Returns whether the object of the argument is the same as this VertexBO.
 	 * @param other right hand object for the comparision
 	 * @return (other == this)
 	 */
 	public boolean equals(Object other){
 		if (other == null) return false;
 		if (other == this) return true;
-		if (!(other instanceof Vertex))return false;
-		Vertex otherVertex = (Vertex)other;
-		if(otherVertex.getDimension() != this.getDimension()) return false;
+		if (!(other instanceof VertexBO))return false;
+		VertexBO otherVertexBO = (VertexBO)other;
+		if(otherVertexBO.getDimension() != this.getDimension()) return false;
 		int i = 0;
-		while(i < otherVertex.getDimension() && otherVertex.at(i) == this.at(i)){
+		while(i < otherVertexBO.getDimension() && otherVertexBO.at(i) == this.at(i)){
 		}
-		return i == otherVertex.getDimension();
+		return i == otherVertexBO.getDimension();
 	}
     
         /**
          * @param other destination vertex used to calculate distance from the current vertex (source).
          * @return The distance from the vertex to the given destination vertex <i> other </i>.
          */
-	public double dist(Vertex other) {
+	public double dist(VertexBO other) {
 		if(other.getDimension() == dim) {
 			double d2 = 0;
 			for(int i = 0; i < dim; ++i) {
@@ -227,7 +227,7 @@ public class Vertex implements Iterable <Double>, Cloneable{
 	}
 
 	/**
-	 * @return The components of the Vertex.
+	 * @return The components of the VertexBO.
 	 */
 	public double[] getComps(){
 		return cmps;
@@ -237,6 +237,6 @@ public class Vertex implements Iterable <Double>, Cloneable{
          * @return The distance from the vertex origin.
          */
 	public double disto() { 
-		return dist(new Vertex(dim));
+		return dist(new VertexBO(dim));
 	}
 }

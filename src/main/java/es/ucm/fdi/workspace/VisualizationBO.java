@@ -10,18 +10,18 @@ import java.util.ArrayList;
  * @author Brian Leiva
  *
  */
-public class Visualization {
-	private ArrayList<Graphics> graphics;
+public class VisualizationBO {
+	private ArrayList<GraphBO> graphics;
 	
-	public Visualization(){
-		graphics = new ArrayList<Graphics>();
+	public VisualizationBO(){
+		graphics = new ArrayList<GraphBO>();
 	}
 
-	public Visualization(List<Graphics> g){
-		graphics = new ArrayList<Graphics>(g);
+	public VisualizationBO(List<GraphBO> g){
+		graphics = new ArrayList<GraphBO>(g);
 	}
         
-	public List<Graphics> getGraphics(){
+	public List<GraphBO> getGraph(){
 		return graphics;
 	}
 	
@@ -29,15 +29,15 @@ public class Visualization {
 	 * Añade un nuevo gráfico
 	 * 
 	 */
-	public void addGraphic(Graphics g, int dim1, int dim2, int dim3, double[] hp){
+	public void addGraph(GraphBO g, int dim1, int dim2, int dim3, double[] hp){
 		graphics.add(proyectar(g, dim1, dim2, dim3, hp));
 	}
 		
-	private Graphics proyectar(Graphics g, int dim1, int dim2, int dim3, double[] hp){
-		Graphics graf = new Graphics(3);
+	private GraphBO proyectar(GraphBO g, int dim1, int dim2, int dim3, double[] hp){
+		GraphBO graf = new GraphBO(3);
 		
 		for (int i = 0; i < g.getImagen().size(); ++i) {
-			Vertex v = g.getImagen().get(i);
+			VertexBO v = g.getImagen().get(i);
 			int j = 0, cont = 0;
 			boolean b = true;
 			while (b && j < hp.length) {
@@ -51,7 +51,7 @@ public class Visualization {
 				++cont;
 			}
 			if (b) {
-				Vertex newV = new Vertex(3);
+				VertexBO newV = new VertexBO(3);
 				newV.set(0, v.at(dim1));
 				newV.set(1, v.at(dim2));
 				newV.set(2, v.at(dim3));

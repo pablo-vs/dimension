@@ -1,6 +1,6 @@
 package es.ucm.fdi.util;
 
-import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.FunctionBO;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 import es.ucm.fdi.workspace.function.binarytypes.DivideFunction;
 import es.ucm.fdi.workspace.function.binarytypes.ExponentialFunction;
@@ -21,10 +21,10 @@ import es.ucm.fdi.workspace.function.unarytypes.SineFunction;
 import es.ucm.fdi.workspace.function.unarytypes.TangentFunction;
 
 /**
- * Function-parser utility class. This class contains only static methods and a 
+ * FunctionBO-parser utility class. This class contains only static methods and a 
  * private constructor to avoid instantiation. Given a list of parsers <i>parserList</i>
  * containing different types of functions, the method {@link #parse parse} 
- * returns a {@link es.ucm.fdi.workspace.Function Function}. 
+ * returns a {@link es.ucm.fdi.workspace.FunctionBO FunctionBO}. 
  *
  * @author Pablo Villalobos
  * @author Arturo Acuaviva
@@ -39,9 +39,9 @@ public final class FunctionParserUtils {
         private FunctionParserUtils(){ /*Exists only to avoid instantiation.*/ }
         
         /**
-         * The list which contains all the types of {@link es.ucm.fdi.workspace.Function.Parser Parse} for each type of {@link es.ucm.fdi.workspace.Function Function}. 
+         * The list which contains all the types of {@link es.ucm.fdi.workspace.FunctionBO.Parser Parse} for each type of {@link es.ucm.fdi.workspace.FunctionBO FunctionBO}. 
          */
-	private static final Function.Parser[] parserList = {
+	private static final FunctionBO.Parser[] parserList = {
 		new IdentityFunction.Parser(),
 		new ConstantFunction.Parser(),
 		new Log10Function.Parser(),
@@ -63,7 +63,7 @@ public final class FunctionParserUtils {
 
 	/**
          * It turns a given String and a {@link es.ucm.fdi.workspace.function.types.VariablesList VariablesList} 
-         * into a {@link es.ucm.fdi.workspace.Function Function}.
+         * into a {@link es.ucm.fdi.workspace.FunctionBO FunctionBO}.
 	 * It returns null when the string does not match any of the functions in
          * {@link es.ucm.fdi.workspace.function.types function.types}.
 	 * <b>Warning:</b> Not all values from {@link es.ucm.fdi.workspace.function.types.VariablesList VariablesList} 
@@ -72,14 +72,77 @@ public final class FunctionParserUtils {
 	 * @param var List of variables the function is supposed to contain. 
          * @return the function which matches the type.
 	 */
-	public static Function parse(String str, VariablesList var) {
-		Function f = null;
-		for(Function.Parser p : parserList) {
+	public static FunctionBO parse(String str, VariablesList var) {
+		FunctionBO f = null;
+		for(FunctionBO.Parser p : parserList) {
 			f = p.parse(str, var);
 			if(f != null) {
 				break;
 			}
 		}
 		return f;
+	}
+
+	/**
+	 * Eliminates unnecessary parenthesis at the ends of the string.
+	 */
+	public static String stripExtraParenthesis(String str1) {
+		String str = str1.trim();
+		int ini = 0, end = 0, min = str.length(), current;
+		int i = 0;
+		while(str.charAt(i) == '(') {
+			ini++;
+			i++;
+		}
+		i = 0;
+		while(str.charAt(str.length()-i-1) == ')') {
+			end++;
+			i++;
+		}
+		if(ini > end) {
+			min = end;
+		} else {
+			min = ini;
+		}
+		current = ini;
+		i = ini;
+		while(i < str.length()-end) {
+			char c = str.charAt(i);
+			if(c == '(') {
+				current++;
+			} else if (c == ')' && current > 0) {
+				current--;
+				if(current < min) {
+					min = current;
+				}
+			}
+			++i;
+		}
+		return str.substring(min, str.length()-min);
+	}
+
+	/**
+	 * Given the position of an opening parenthesis, return the position
+	 * next to the corresponding closing one.
+	  */
+	public static int getEndOfParenthesis(String str, int ini) {
+		if(str.charAt(ini) == '(') {
+			int current = 1, i = ini+1;
+			while(i < str.length() && current > 0) {
+				if(str.charAt(i) == '(') {
+					current++;
+				} else if (str.charAt(i) == ')') {
+					current--;
+				}
+				++i;
+			}
+			if(current > 0) {
+				throw new IllegalArgumentException("Expected )");
+			} else {
+				return i;
+			}
+		} else {
+			throw new IllegalArgumentException("Character at position " + ini + " is not '('");
+		}
 	}
 }

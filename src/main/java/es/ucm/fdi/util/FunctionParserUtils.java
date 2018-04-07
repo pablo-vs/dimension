@@ -1,6 +1,7 @@
 package es.ucm.fdi.util;
 
 import es.ucm.fdi.workspace.Function;
+import es.ucm.fdi.workspace.function.types.VariablesList;
 import es.ucm.fdi.workspace.function.binarytypes.DivideFunction;
 import es.ucm.fdi.workspace.function.binarytypes.ExponentialFunction;
 import es.ucm.fdi.workspace.function.binarytypes.LogarithmicFunction;
@@ -8,7 +9,6 @@ import es.ucm.fdi.workspace.function.binarytypes.ModuloFunction;
 import es.ucm.fdi.workspace.function.binarytypes.ProductFunction;
 import es.ucm.fdi.workspace.function.binarytypes.SubstractFunction;
 import es.ucm.fdi.workspace.function.binarytypes.SumFunction;
-import es.ucm.fdi.workspace.function.types.VariablesList;
 import es.ucm.fdi.workspace.function.unarytypes.ConstantFunction;
 import es.ucm.fdi.workspace.function.unarytypes.CosecantFunction;
 import es.ucm.fdi.workspace.function.unarytypes.CosineFunction;

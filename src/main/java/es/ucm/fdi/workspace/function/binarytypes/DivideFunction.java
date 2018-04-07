@@ -43,7 +43,7 @@ public class DivideFunction extends BinaryFunction{
 		public DivideFunction parse(String str, VariablesList variables) {
 			DivideFunction func = null;
 			Function[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
-			if(funcs != null) {
+			if(funcs[0] != null && funcs[1] != null) {
 				func = new DivideFunction(funcs[0], funcs[1], variables);
 			}
 			return func;

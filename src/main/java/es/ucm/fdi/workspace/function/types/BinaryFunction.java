@@ -42,28 +42,38 @@ public abstract class BinaryFunction extends Function {
 		 * @param operator The infix operator.
 		 */
 		public static Function[] parseFunctions(String strParam, VariablesList variables, Pattern operator) {
-			Function[] funcs = new Function[2];
+		        boolean success;
+			Function[] funcs = {null, null};
+			boolean succ=true;
 			String str = ParserUtils.stripExtraParenthesis(strParam);
 			int endFirst = 0, startSecond;
-			if(str.charAt(0) == '(') {
-				endFirst = ParserUtils.getEndOfParenthesis(str, 0);
-			}
-			Matcher m = operator.matcher(str);
-			if(m.find(endFirst)) {
-				if(endFirst == 0) {
-					endFirst = m.start();
+			if(!str.equals("")) {
+				if(str.charAt(0) == '(') {
+					try {
+						endFirst = ParserUtils.getEndOfParenthesis(str, 0);
+					} catch(IllegalArgumentException e) {
+						succ=false;
+					}
 				}
-				startSecond = m.end();
-				try {
-					funcs[0] = FunctionParserUtils.parse(str.substring(0, endFirst), variables);
-					funcs[1] = FunctionParserUtils.parse(str.substring(startSecond), variables);
-				} catch (IllegalArgumentException e) {
-					funcs = null;
+				if (succ) {
+					Matcher m = operator.matcher(str);
+					boolean done = false;
+					int i = 0;
+					if(m.find(endFirst)) {
+						do {
+							endFirst = m.start();
+							startSecond = m.end();
+							funcs[0] = FunctionParserUtils.parse(str.substring(0, endFirst), variables);	
+							if(funcs[0] != null) {
+								funcs[1] = FunctionParserUtils.parse(str.substring(startSecond), variables);
+								done = funcs[1] != null;
+							}
+						} while(!done && !m.hitEnd() && m.find());
+					}
 				}
-			} else {
-				funcs = null;
 			}
 			return funcs;
+
 		}
 	}
 }

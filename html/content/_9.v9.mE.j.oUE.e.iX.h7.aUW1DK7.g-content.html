@@ -1,0 +1,914 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Documentación UML de project</title>
+<meta name="generator" content="IBM Rational Model Publisher">
+<meta name="description" content="Contenido de ProjectDAO">
+<link rel="stylesheet" type="text/css" href="WebPublish.css">
+</head>
+<body>
+<table class="NavigationBar">
+<tr>
+<td>
+<table class="NavBarLeft">
+<tr>
+<td class="NavBarMainLink"><a target="_top" href="../index.html">Visión general</a></td><td class="NavBarMainLink"><a href="_9.v.l.y.o.z.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Principio</a></td><td class="NavBarMainLink"><a href="_9.v.nA.wT.oUE.e.iX.h7.aUW1DK7.g-content.html">Paquete</a></td><td class="NavBarMainHighlight">Elemento</td>
+</tr>
+</table>
+</td><td class="NavBarRight">Documentación UML de project</td>
+</tr>
+</table>
+<table>
+<tr class="NavBarBookMarks">
+<td class="BookMarkSections"><span class="BookMarkElements">Resumen:</span><span class="BookMarkElements"><a href="#attributeSummary" title="Atributos">Atributos</a></span><span class="BookMarkElements"><a href="#operationSummary" title="Operaciones">Operaciones</a></span><span class="BookMarkElements"><a href="#propertiesTable" title="Propiedades">Propiedades</a></span></td><td class="BookMarkSections"><span class="BookMarkElements">Detalle:</span><span class="BookMarkElements"><a href="#attributeDetail" title="Atributos">Atributos</a></span><span class="BookMarkElements"><a href="#operationDetail" title="Operaciones">Operaciones</a></span></td>
+</tr>
+</table>
+<hr>
+<span class="PackageFullyQualifiedName">es::ucm::fdi::workspace::project</span>
+<br>
+<span class="ElementTitle">Interfaz ProjectDAO</span>
+<p>
+<a name="documentationSection"></a>The&nbsp;DAO&nbsp;for&nbsp;Projects.<br><br>@author&nbsp;Pablo&nbsp;Villalobos.<br>@version&nbsp;03.04.2018</p>
+<p></p>
+<table class="SummaryTable" border="1">
+<tr>
+<td class="SummaryTitle" colspan="3"><a name="attributeSummary">Atributos</a></td>
+</tr>
+<tr>
+<td class="packagedElementType">ProjectTO </td><td><a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::projects" href="#_90.eS.o.z.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137321376_icon.png" alt="projects"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::projects" href="#_90.eS.o.z.oUE.e.iX.h7.aUW1DK7.g">projects</a></td><td></td>
+</tr>
+</table>
+<p></p>
+<table class="SummaryTable" border="1">
+<tr>
+<td class="SummaryTitle" colspan="3"><a name="operationSummary">Operaciones</a></td>
+</tr>
+<tr>
+<td class="packagedElementType"> </td><td><a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::addProject" href="#_90.e5.s.z.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="addProject"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::addProject" href="#_90.e5.s.z.oUE.e.iX.h7.aUW1DK7.g">addProject</a></td><td>
+<p>
+<a name="documentationSection"></a>Adds&nbsp;a&nbsp;new&nbsp;project&nbsp;to&nbsp;the&nbsp;database.<br><br>@param&nbsp;proj&nbsp;The&nbsp;new&nbsp;project&nbsp;as&nbsp;a&nbsp;ProjectTO.</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType"> </td><td><a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::removeProject" href="#_90.gH0T.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="removeProject"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::removeProject" href="#_90.gH0T.oUE.e.iX.h7.aUW1DK7.g">removeProject</a></td><td>
+<p>
+<a name="documentationSection"></a>Removes&nbsp;a&nbsp;project&nbsp;from&nbsp;the&nbsp;database.<br><br>@param&nbsp;id&nbsp;The&nbsp;identifier&nbsp;of&nbsp;the&nbsp;project.</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType"> </td><td><a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::modifyProject" href="#_90.hV8T.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="modifyProject"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::modifyProject" href="#_90.hV8T.oUE.e.iX.h7.aUW1DK7.g">modifyProject</a></td><td>
+<p>
+<a name="documentationSection"></a>If&nbsp;there&nbsp;is&nbsp;a&nbsp;project&nbsp;with&nbsp;the&nbsp;same&nbsp;identifier&nbsp;as&nbsp;the&nbsp;given&nbsp;one,<br>replaces&nbsp;it.<br><br>@param&nbsp;proj&nbsp;A&nbsp;ProjectTO&nbsp;containing&nbsp;the&nbsp;new&nbsp;data&nbsp;of&nbsp;the&nbsp;project.</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType">ProjectTO </td><td><a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::findProject" href="#_90.h9A.j.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="findProject"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::findProject" href="#_90.h9A.j.oUE.e.iX.h7.aUW1DK7.g">findProject</a></td><td>
+<p>
+<a name="documentationSection"></a>Find&nbsp;a&nbsp;project&nbsp;in&nbsp;the&nbsp;database.<br><br>@param&nbsp;id&nbsp;The&nbsp;identifier&nbsp;of&nbsp;the&nbsp;project.<br>@return&nbsp;A&nbsp;ProjectTO&nbsp;containing&nbsp;the&nbsp;data&nbsp;of&nbsp;the&nbsp;project,&nbsp;or&nbsp;null&nbsp;if<br>no&nbsp;project&nbsp;was&nbsp;found.</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType">boolean </td><td><a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::containsProject" href="#_90.jLIT.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="containsProject"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::containsProject" href="#_90.jLIT.oUE.e.iX.h7.aUW1DK7.g">containsProject</a></td><td>
+<p>
+<a name="documentationSection"></a>Checks&nbsp;if&nbsp;a&nbsp;project&nbsp;exists&nbsp;in&nbsp;the&nbsp;database.<br><br>@param&nbsp;id&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;project&nbsp;to&nbsp;be&nbsp;checked.</p>
+</td>
+</tr>
+</table>
+<br>
+<a name="propertiesTable">
+<p class="LargeTitle">Propiedades:</p>
+</a>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">ProjectDAO</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v.nA.wT.oUE.e.iX.h7.aUW1DK7.g-content.html">project</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.nA.wT.oUE.e.iX.h7.aUW1DK7.g-content.html">project</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Package</b></td><td class="PropertyValue"><a href="_9.v.nA.wT.oUE.e.iX.h7.aUW1DK7.g-content.html">project</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Protocol</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::workspace::project::ProjectDAO</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Representation</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+<p></p>
+<table class="DetailsTable">
+<tr>
+<td class="DetailsTitle" colspan="2"><a name="attributeDetail">Detalles de atributo</a></td>
+</tr>
+</table>
+<span class="ListItem">
+<br>
+<img src="../images/137321376_icon.png" alt="">&nbsp;<a name="_90.eS.o.z.oUE.e.iX.h7.aUW1DK7.g">projects</a></span>
+<pre>Public&nbsp;ProjectTO projects</pre>
+<dl>
+<dd></dd>
+<dt>
+<a name="attributeConstraintsTable_90.eS.o.z.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Aggregation</b></td><td class="PropertyValue">None</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Association</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Association End</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Default</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Default Value</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue">colecciónJava</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Composite</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Derived</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Derived Union</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Read Only</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">0</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower Value</b></td><td class="PropertyValue">(0)</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Multiplicidad</b></td><td class="PropertyValue">*</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">projects</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Opposite</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Association</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::projects</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>tipoDeClave</b></td><td class="PropertyValue">nulo</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>tipoDeColección</b></td><td class="PropertyValue">java.util.List</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"><a href="_9.v.zOAD.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectTO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">*</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper Value</b></td><td class="PropertyValue">(*)</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<p></p>
+<table class="DetailsTable">
+<tr>
+<td class="DetailsTitle" colspan="2"><a name="operationDetail">Detalles de operación</a></td>
+</tr>
+</table>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_90.e5.s.z.oUE.e.iX.h7.aUW1DK7.g">addProject</a></span>
+<pre>Public&nbsp; addProject(ProjectTO )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Adds&nbsp;a&nbsp;new&nbsp;project&nbsp;to&nbsp;the&nbsp;database.<br><br>@param&nbsp;proj&nbsp;The&nbsp;new&nbsp;project&nbsp;as&nbsp;a&nbsp;ProjectTO.</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>ProjectTO </td><td>proj</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_90.e5.s.z.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">addProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::addProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_90.jLIT.oUE.e.iX.h7.aUW1DK7.g">containsProject</a></span>
+<pre>Public&nbsp;boolean containsProject(String )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Checks&nbsp;if&nbsp;a&nbsp;project&nbsp;exists&nbsp;in&nbsp;the&nbsp;database.<br><br>@param&nbsp;id&nbsp;The&nbsp;id&nbsp;of&nbsp;the&nbsp;project&nbsp;to&nbsp;be&nbsp;checked.</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>String </td><td>id</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>boolean </td><td>ParámetroDeRetorno</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_90.jLIT.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">containsProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::containsProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue">boolean</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_90.h9A.j.oUE.e.iX.h7.aUW1DK7.g">findProject</a></span>
+<pre>Public&nbsp;ProjectTO findProject(String )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Find&nbsp;a&nbsp;project&nbsp;in&nbsp;the&nbsp;database.<br><br>@param&nbsp;id&nbsp;The&nbsp;identifier&nbsp;of&nbsp;the&nbsp;project.<br>@return&nbsp;A&nbsp;ProjectTO&nbsp;containing&nbsp;the&nbsp;data&nbsp;of&nbsp;the&nbsp;project,&nbsp;or&nbsp;null&nbsp;if<br>no&nbsp;project&nbsp;was&nbsp;found.</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>String </td><td>id</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>ProjectTO </td><td>ParámetroDeRetorno</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_90.h9A.j.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">findProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::findProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"><a href="_9.v.zOAD.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectTO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_90.hV8T.oUE.e.iX.h7.aUW1DK7.g">modifyProject</a></span>
+<pre>Public&nbsp; modifyProject(ProjectTO )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>If&nbsp;there&nbsp;is&nbsp;a&nbsp;project&nbsp;with&nbsp;the&nbsp;same&nbsp;identifier&nbsp;as&nbsp;the&nbsp;given&nbsp;one,<br>replaces&nbsp;it.<br><br>@param&nbsp;proj&nbsp;A&nbsp;ProjectTO&nbsp;containing&nbsp;the&nbsp;new&nbsp;data&nbsp;of&nbsp;the&nbsp;project.</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>ProjectTO </td><td>proj</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_90.hV8T.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">modifyProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::modifyProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_90.gH0T.oUE.e.iX.h7.aUW1DK7.g">removeProject</a></span>
+<pre>Public&nbsp; removeProject(String )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Removes&nbsp;a&nbsp;project&nbsp;from&nbsp;the&nbsp;database.<br><br>@param&nbsp;id&nbsp;The&nbsp;identifier&nbsp;of&nbsp;the&nbsp;project.</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>String </td><td>id</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_90.gH0T.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">removeProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v9.mE.j.oUE.e.iX.h7.aUW1DK7.g-content.html">ProjectDAO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::workspace::project::ProjectDAO::removeProject</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<table class="NavigationBar">
+<tr>
+<td>
+<table class="NavBarLeft">
+<tr>
+<td class="NavBarMainLink"><a target="_top" href="../index.html">Visión general</a></td><td class="NavBarMainLink"><a href="_9.v.l.y.o.z.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Principio</a></td><td class="NavBarMainLink"><a href="_9.v.nA.wT.oUE.e.iX.h7.aUW1DK7.g-content.html">Paquete</a></td><td class="NavBarMainHighlight">Elemento</td>
+</tr>
+</table>
+</td><td class="NavBarRight">Documentación UML de project</td>
+</tr>
+</table>
+<table>
+<tr class="NavBarBookMarks">
+<td class="BookMarkSections"><span class="BookMarkElements">Resumen:</span><span class="BookMarkElements"><a href="#attributeSummary" title="Atributos">Atributos</a></span><span class="BookMarkElements"><a href="#operationSummary" title="Operaciones">Operaciones</a></span><span class="BookMarkElements"><a href="#propertiesTable" title="Propiedades">Propiedades</a></span></td><td class="BookMarkSections"><span class="BookMarkElements">Detalle:</span><span class="BookMarkElements"><a href="#attributeDetail" title="Atributos">Atributos</a></span><span class="BookMarkElements"><a href="#operationDetail" title="Operaciones">Operaciones</a></span></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,1140 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Documentación UML de util</title>
+<meta name="generator" content="IBM Rational Model Publisher">
+<meta name="description" content="Contenido de MultiTreeMap">
+<link rel="stylesheet" type="text/css" href="WebPublish.css">
+</head>
+<body>
+<table class="NavigationBar">
+<tr>
+<td>
+<table class="NavBarLeft">
+<tr>
+<td class="NavBarMainLink"><a target="_top" href="../index.html">Visión general</a></td><td class="NavBarMainLink"><a href="_9.v.o18.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Principio</a></td><td class="NavBarMainLink"><a href="_9.v.o18.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Paquete</a></td><td class="NavBarMainHighlight">Elemento</td>
+</tr>
+</table>
+</td><td class="NavBarRight">Documentación UML de util</td>
+</tr>
+</table>
+<table>
+<tr class="NavBarBookMarks">
+<td class="BookMarkSections"><span class="BookMarkElements">Resumen:</span><span class="BookMarkElements"><a href="#operationSummary" title="Operaciones">Operaciones</a></span><span class="BookMarkElements"><a href="#nestedClassifiersSummary" title="Clasificadores anidados">Clasificadores anidados</a></span><span class="BookMarkElements"><a href="#Signatura de plantilla" title="Signatura de plantilla">Signatura de plantilla</a></span><span class="BookMarkElements"><a href="#propertiesTable" title="Propiedades">Propiedades</a></span></td><td class="BookMarkSections"><span class="BookMarkElements">Detalle:</span><span class="BookMarkElements"><a href="#operationDetail" title="Operaciones">Operaciones</a></span><span class="BookMarkElements"><a href="#Detalles de signatura de plantilla" title="Signatura de plantilla">Signatura de plantilla</a></span></td>
+</tr>
+</table>
+<hr>
+<span class="PackageFullyQualifiedName">es::ucm::fdi::util</span>
+<br>
+<span class="ElementTitle">Clase MultiTreeMap</span>
+<p>
+<a name="documentationSection"></a>A&nbsp;TreeMap&nbsp;that&nbsp;supports&nbsp;multiple&nbsp;values&nbsp;for&nbsp;the&nbsp;same&nbsp;key,&nbsp;via&nbsp;ArrayLists.<br><br>Values&nbsp;for&nbsp;the&nbsp;same&nbsp;key&nbsp;will&nbsp;be&nbsp;returned&nbsp;and&nbsp;traversed&nbsp;in&nbsp;order&nbsp;of&nbsp;insertion;<br>that&nbsp;is,&nbsp;newer&nbsp;values&nbsp;with&nbsp;the&nbsp;same&nbsp;key&nbsp;will&nbsp;be&nbsp;stored&nbsp;after&nbsp;any&nbsp;other&nbsp;values<br>with&nbsp;the&nbsp;same&nbsp;key.<br>@param&nbsp;<K>&nbsp;key<br>@param&nbsp;<V>&nbsp;value</p>
+<p></p>
+<table class="SummaryTable" border="1">
+<tr>
+<td class="SummaryTitle" colspan="3"><a name="operationSummary">Operaciones</a></td>
+</tr>
+<tr>
+<td class="packagedElementType"> </td><td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::MultiTreeMap" href="#_9.yA0.g.j.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="MultiTreeMap"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::MultiTreeMap" href="#_9.yA0.g.j.oUE.e.iX.h7.aUW1DK7.g">MultiTreeMap</a></td><td></td>
+</tr>
+<tr>
+<td class="packagedElementType"> </td><td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::MultiTreeMap" href="#_9.yB.b.kD.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="MultiTreeMap"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::MultiTreeMap" href="#_9.yB.b.kD.oUE.e.iX.h7.aUW1DK7.g">MultiTreeMap</a></td><td></td>
+</tr>
+<tr>
+<td class="packagedElementType"> </td><td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::putValue" href="#_9.yCC.o.z.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="putValue"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::putValue" href="#_9.yCC.o.z.oUE.e.iX.h7.aUW1DK7.g">putValue</a></td><td>
+<p>
+<a name="documentationSection"></a>Adds&nbsp;a&nbsp;value&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;list&nbsp;of&nbsp;values&nbsp;for&nbsp;the&nbsp;specified&nbsp;key.<br>@param&nbsp;key&nbsp;to&nbsp;add&nbsp;the&nbsp;value&nbsp;under<br>@param&nbsp;value&nbsp;to&nbsp;add</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType">boolean </td><td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::removeValue" href="#_9.yDQ.w.j.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="removeValue"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::removeValue" href="#_9.yDQ.w.j.oUE.e.iX.h7.aUW1DK7.g">removeValue</a></td><td>
+<p>
+<a name="documentationSection"></a>Removes&nbsp;the&nbsp;first&nbsp;occurrence&nbsp;of&nbsp;a&nbsp;value&nbsp;from&nbsp;the&nbsp;list&nbsp;found&nbsp;at<br>a&nbsp;given&nbsp;key.&nbsp;Efficiency&nbsp;is&nbsp;O(size-of-that-list)<br>@param&nbsp;key&nbsp;to&nbsp;look&nbsp;into<br>@param&nbsp;value&nbsp;within&nbsp;the&nbsp;list&nbsp;found&nbsp;at&nbsp;that&nbsp;key&nbsp;to&nbsp;remove.&nbsp;The&nbsp;first<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element&nbsp;that&nbsp;is&nbsp;equals&nbsp;to&nbsp;this&nbsp;one&nbsp;will&nbsp;be&nbsp;removed.<br>@return&nbsp;true&nbsp;if&nbsp;removed,&nbsp;false&nbsp;if&nbsp;not&nbsp;found</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType">int </td><td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::sizeOfValues" href="#_9.yFF8D.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="sizeOfValues"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::sizeOfValues" href="#_9.yFF8D.oUE.e.iX.h7.aUW1DK7.g">sizeOfValues</a></td><td>
+<p>
+<a name="documentationSection"></a>Returns&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;values&nbsp;stored&nbsp;in&nbsp;this&nbsp;multimap<br>@return&nbsp;size&nbsp;of&nbsp;values</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType">V </td><td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::valuesList" href="#_9.yF.tAD.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="valuesList"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::valuesList" href="#_9.yF.tAD.oUE.e.iX.h7.aUW1DK7.g">valuesList</a></td><td>
+<p>
+<a name="documentationSection"></a>Returns&nbsp;the&nbsp;values&nbsp;as&nbsp;a&nbsp;read-only&nbsp;list.&nbsp;Changes&nbsp;to&nbsp;this&nbsp;structure<br>will&nbsp;be&nbsp;immediately&nbsp;reflected&nbsp;in&nbsp;the&nbsp;list.<br>@return&nbsp;values&nbsp;list</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType"> </td><td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::innerValues" href="#_9.yG7IT.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="innerValues"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::innerValues" href="#_9.yG7IT.oUE.e.iX.h7.aUW1DK7.g">innerValues</a></td><td>
+<p>
+<a name="documentationSection"></a>Allows&nbsp;iteration&nbsp;by&nbsp;base&nbsp;values.<br>@return&nbsp;iterable&nbsp;values,&nbsp;ordered&nbsp;by&nbsp;key&nbsp;and&nbsp;then&nbsp;by&nbsp;order-of-insertion</p>
+</td>
+</tr>
+</table>
+<p></p>
+<table class="SummaryTable" border="1">
+<tr>
+<td class="SummaryTitle" colspan="2"><a name="nestedClassifiersSummary">Clasificadores anidados</a></td>
+</tr>
+<tr>
+<td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::InnerIterator" href="_9.v.q.rID.oUE.e.iX.h7.aUW1DK7.g-content.html"><img border="0" src="../images/-26848688_icon.png" alt="InnerIterator"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::InnerIterator" href="_9.v.q.rID.oUE.e.iX.h7.aUW1DK7.g-content.html">InnerIterator</a>
+<br>
+</td><td>
+<p>
+<a name="documentationSection"></a>Iterates&nbsp;through&nbsp;all&nbsp;internal&nbsp;values<br>(not&nbsp;the&nbsp;arraylists&nbsp;themselves),&nbsp;first&nbsp;by&nbsp;key&nbsp;order,<br>and&nbsp;within&nbsp;each&nbsp;bucket,&nbsp;by&nbsp;insertion&nbsp;order.</p>
+</td>
+</tr>
+<tr>
+<td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::InnerList" href="_9.v.qEET.oUE.e.iX.h7.aUW1DK7.g-content.html"><img border="0" src="../images/-26848688_icon.png" alt="InnerList"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::InnerList" href="_9.v.qEET.oUE.e.iX.h7.aUW1DK7.g-content.html">InnerList</a>
+<br>
+</td><td>
+<p>
+<a name="documentationSection"></a>A&nbsp;logical,&nbsp;read-only&nbsp;list&nbsp;containing&nbsp;all&nbsp;elements&nbsp;in<br>correct&nbsp;order.</p>
+</td>
+</tr>
+</table>
+<p></p>
+<table class="SummaryTable" border="1">
+<tr>
+<td class="SummaryTitle" colspan="2"><a name="Signatura de plantilla">Signatura de plantilla</a></td>
+</tr>
+<tr>
+<td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::<RedefinableTemplateSignature>::<ClassifierTemplateParameter>::K" href="#_9.v.p.dA.z.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/-26848688_icon.png" alt="K"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::<RedefinableTemplateSignature>::<ClassifierTemplateParameter>::K" href="#_9.v.p.dA.z.oUE.e.iX.h7.aUW1DK7.g">K</a> &nbsp; </td>
+</tr>
+<tr>
+<td><a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::<RedefinableTemplateSignature>::<ClassifierTemplateParameter>::V" href="#_9.v.qEED.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/-26848688_icon.png" alt="V"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::util::MultiTreeMap::<RedefinableTemplateSignature>::<ClassifierTemplateParameter>::V" href="#_9.v.qEED.oUE.e.iX.h7.aUW1DK7.g">V</a> &nbsp; </td>
+</tr>
+</table>
+<br>
+<a name="propertiesTable">
+<p class="LargeTitle">Propiedades:</p>
+</a>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Classifier Behavior</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Active</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">MultiTreeMap</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v.o18.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">util</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"><a href="_9.v.p.dAT.oUE.e.iX.h7.aUW1DK7.g-content.html">RedefinableTemplateSignature</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.o18.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">util</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Package</b></td><td class="PropertyValue"><a href="_9.v.o18.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">util</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::util::MultiTreeMap</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Representation</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+<p></p>
+<table class="DetailsTable">
+<tr>
+<td class="DetailsTitle" colspan="2"><a name="operationDetail">Detalles de operación</a></td>
+</tr>
+</table>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_9.yG7IT.oUE.e.iX.h7.aUW1DK7.g">innerValues</a></span>
+<pre>Public&nbsp; innerValues()</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Allows&nbsp;iteration&nbsp;by&nbsp;base&nbsp;values.<br>@return&nbsp;iterable&nbsp;values,&nbsp;ordered&nbsp;by&nbsp;key&nbsp;and&nbsp;then&nbsp;by&nbsp;order-of-insertion</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td> </td><td>ParámetroDeRetorno</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_9.yG7IT.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">innerValues</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::util::MultiTreeMap::innerValues</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_9.yA0.g.j.oUE.e.iX.h7.aUW1DK7.g">MultiTreeMap</a></span>
+<pre>Public&nbsp; MultiTreeMap()</pre>
+<dl>
+<dd></dd>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_9.yA0.g.j.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">MultiTreeMap</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::util::MultiTreeMap::MultiTreeMap</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_9.yB.b.kD.oUE.e.iX.h7.aUW1DK7.g">MultiTreeMap</a></span>
+<pre>Public&nbsp; MultiTreeMap( )</pre>
+<dl>
+<dd></dd>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td> </td><td>comparator</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_9.yB.b.kD.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">MultiTreeMap</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::util::MultiTreeMap::MultiTreeMap</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_9.yCC.o.z.oUE.e.iX.h7.aUW1DK7.g">putValue</a></span>
+<pre>Public&nbsp; putValue(K, V )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Adds&nbsp;a&nbsp;value&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;list&nbsp;of&nbsp;values&nbsp;for&nbsp;the&nbsp;specified&nbsp;key.<br>@param&nbsp;key&nbsp;to&nbsp;add&nbsp;the&nbsp;value&nbsp;under<br>@param&nbsp;value&nbsp;to&nbsp;add</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>K </td><td>key</td><td> [1]</td><td></td>
+</tr>
+<tr valign="top">
+<td>V </td><td>value</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_9.yCC.o.z.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">putValue</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::util::MultiTreeMap::putValue</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_9.yDQ.w.j.oUE.e.iX.h7.aUW1DK7.g">removeValue</a></span>
+<pre>Public&nbsp;boolean removeValue(K, V )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Removes&nbsp;the&nbsp;first&nbsp;occurrence&nbsp;of&nbsp;a&nbsp;value&nbsp;from&nbsp;the&nbsp;list&nbsp;found&nbsp;at<br>a&nbsp;given&nbsp;key.&nbsp;Efficiency&nbsp;is&nbsp;O(size-of-that-list)<br>@param&nbsp;key&nbsp;to&nbsp;look&nbsp;into<br>@param&nbsp;value&nbsp;within&nbsp;the&nbsp;list&nbsp;found&nbsp;at&nbsp;that&nbsp;key&nbsp;to&nbsp;remove.&nbsp;The&nbsp;first<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element&nbsp;that&nbsp;is&nbsp;equals&nbsp;to&nbsp;this&nbsp;one&nbsp;will&nbsp;be&nbsp;removed.<br>@return&nbsp;true&nbsp;if&nbsp;removed,&nbsp;false&nbsp;if&nbsp;not&nbsp;found</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>K </td><td>key</td><td> [1]</td><td></td>
+</tr>
+<tr valign="top">
+<td>V </td><td>value</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>boolean </td><td>ParámetroDeRetorno</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_9.yDQ.w.j.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">removeValue</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::util::MultiTreeMap::removeValue</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue">boolean</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_9.yFF8D.oUE.e.iX.h7.aUW1DK7.g">sizeOfValues</a></span>
+<pre>Public&nbsp;int sizeOfValues()</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Returns&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;values&nbsp;stored&nbsp;in&nbsp;this&nbsp;multimap<br>@return&nbsp;size&nbsp;of&nbsp;values</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>int </td><td>ParámetroDeRetorno</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_9.yFF8D.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">sizeOfValues</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::util::MultiTreeMap::sizeOfValues</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue">int</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_9.yF.tAD.oUE.e.iX.h7.aUW1DK7.g">valuesList</a></span>
+<pre>Public&nbsp;V valuesList()</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Returns&nbsp;the&nbsp;values&nbsp;as&nbsp;a&nbsp;read-only&nbsp;list.&nbsp;Changes&nbsp;to&nbsp;this&nbsp;structure<br>will&nbsp;be&nbsp;immediately&nbsp;reflected&nbsp;in&nbsp;the&nbsp;list.<br>@return&nbsp;values&nbsp;list</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>V </td><td>ParámetroDeRetorno</td><td> [*]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_9.yF.tAD.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">0</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">valuesList</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.o18.z.oUE.e.iX.h7.aUW1DK7.g-content.html">MultiTreeMap</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::util::MultiTreeMap::valuesList</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"><a href="_9.v.qEED.oUE.e.iX.h7.aUW1DK7.g-content.html">V</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">*</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<p></p>
+<table class="DetailsTable">
+<tr>
+<td class="SummaryTitle" colspan="2"><a name="Detalles de signatura de plantilla">Detalles de signatura de plantilla</a></td>
+</tr>
+</table>
+<br>
+<span class="ListItem"><img border="0" src="../images/-26848688_icon.png" alt="K">&nbsp;<a name="_9.v.p.dA.z.oUE.e.iX.h7.aUW1DK7.g">K</a></span>
+<dl>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Allow Substitutable</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Default</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Default</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Parametered Element</b></td><td class="PropertyValue"><a href="_9.v.p.dA.z.oUE.e.iX.h7.aUW1DK7.g-content.html">K</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.p.dAT.oUE.e.iX.h7.aUW1DK7.g-content.html">RedefinableTemplateSignature</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Parametered Element</b></td><td class="PropertyValue"><a href="_9.v.p.dA.z.oUE.e.iX.h7.aUW1DK7.g-content.html">K</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Signature</b></td><td class="PropertyValue"><a href="_9.v.p.dAT.oUE.e.iX.h7.aUW1DK7.g-content.html">RedefinableTemplateSignature</a></td>
+</tr>
+</table>
+</dd>
+</dl>
+<br>
+<span class="ListItem"><img border="0" src="../images/-26848688_icon.png" alt="V">&nbsp;<a name="_9.v.qEED.oUE.e.iX.h7.aUW1DK7.g">V</a></span>
+<dl>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Allow Substitutable</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Default</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Default</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Parametered Element</b></td><td class="PropertyValue"><a href="_9.v.qEED.oUE.e.iX.h7.aUW1DK7.g-content.html">V</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v.p.dAT.oUE.e.iX.h7.aUW1DK7.g-content.html">RedefinableTemplateSignature</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Parametered Element</b></td><td class="PropertyValue"><a href="_9.v.qEED.oUE.e.iX.h7.aUW1DK7.g-content.html">V</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Signature</b></td><td class="PropertyValue"><a href="_9.v.p.dAT.oUE.e.iX.h7.aUW1DK7.g-content.html">RedefinableTemplateSignature</a></td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<table class="NavigationBar">
+<tr>
+<td>
+<table class="NavBarLeft">
+<tr>
+<td class="NavBarMainLink"><a target="_top" href="../index.html">Visión general</a></td><td class="NavBarMainLink"><a href="_9.v.o18.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Principio</a></td><td class="NavBarMainLink"><a href="_9.v.o18.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Paquete</a></td><td class="NavBarMainHighlight">Elemento</td>
+</tr>
+</table>
+</td><td class="NavBarRight">Documentación UML de util</td>
+</tr>
+</table>
+<table>
+<tr class="NavBarBookMarks">
+<td class="BookMarkSections"><span class="BookMarkElements">Resumen:</span><span class="BookMarkElements"><a href="#operationSummary" title="Operaciones">Operaciones</a></span><span class="BookMarkElements"><a href="#nestedClassifiersSummary" title="Clasificadores anidados">Clasificadores anidados</a></span><span class="BookMarkElements"><a href="#Signatura de plantilla" title="Signatura de plantilla">Signatura de plantilla</a></span><span class="BookMarkElements"><a href="#propertiesTable" title="Propiedades">Propiedades</a></span></td><td class="BookMarkSections"><span class="BookMarkElements">Detalle:</span><span class="BookMarkElements"><a href="#operationDetail" title="Operaciones">Operaciones</a></span><span class="BookMarkElements"><a href="#Detalles de signatura de plantilla" title="Signatura de plantilla">Signatura de plantilla</a></span></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,803 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Documentación UML de connectivity</title>
+<meta name="generator" content="IBM Rational Model Publisher">
+<meta name="description" content="Contenido de SharedProjectBO">
+<link rel="stylesheet" type="text/css" href="WebPublish.css">
+</head>
+<body>
+<table class="NavigationBar">
+<tr>
+<td>
+<table class="NavBarLeft">
+<tr>
+<td class="NavBarMainLink"><a target="_top" href="../index.html">Visión general</a></td><td class="NavBarMainLink"><a href="_9.v0.cI.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Principio</a></td><td class="NavBarMainLink"><a href="_9.v0.cI.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Paquete</a></td><td class="NavBarMainHighlight">Elemento</td>
+</tr>
+</table>
+</td><td class="NavBarRight">Documentación UML de connectivity</td>
+</tr>
+</table>
+<table>
+<tr class="NavBarBookMarks">
+<td class="BookMarkSections"><span class="BookMarkElements">Resumen:</span><span class="BookMarkElements"><a href="#attributeSummary" title="Atributos">Atributos</a></span><span class="BookMarkElements"><a href="#operationSummary" title="Operaciones">Operaciones</a></span><span class="BookMarkElements"><a href="#propertiesTable" title="Propiedades">Propiedades</a></span></td><td class="BookMarkSections"><span class="BookMarkElements">Detalle:</span><span class="BookMarkElements"><a href="#attributeDetail" title="Atributos">Atributos</a></span><span class="BookMarkElements"><a href="#operationDetail" title="Operaciones">Operaciones</a></span></td>
+</tr>
+</table>
+<hr>
+<span class="PackageFullyQualifiedName">es::ucm::fdi::connectivity</span>
+<br>
+<span class="ElementTitle">Clase SharedProjectBO</span>
+<p>
+<a name="documentationSection"></a>Represents&nbsp;a&nbsp;shared&nbsp;project&nbsp;by&nbsp;an&nbsp;author.<br><br>@author&nbsp;Pablo&nbsp;Villalobos<br>@version&nbsp;04.04.2018<br>@see&nbsp;ProjectTO</p>
+<p></p>
+<table class="SummaryTable" border="1">
+<tr>
+<td class="SummaryTitle" colspan="3"><a name="attributeSummary">Atributos</a></td>
+</tr>
+<tr>
+<td class="packagedElementType">String </td><td><a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::sharedID" href="#_90038T.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/139334096_icon.png" alt="sharedID"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::sharedID" href="#_90038T.oUE.e.iX.h7.aUW1DK7.g">sharedID</a></td><td>
+<p>
+<a name="documentationSection"></a>Project&nbsp;id</p>
+</td>
+</tr>
+</table>
+<p></p>
+<table class="SummaryTable" border="1">
+<tr>
+<td class="SummaryTitle" colspan="3"><a name="operationSummary">Operaciones</a></td>
+</tr>
+<tr>
+<td class="packagedElementType"> </td><td><a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::SharedProjectBO" href="#_902GET.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="SharedProjectBO"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::SharedProjectBO" href="#_902GET.oUE.e.iX.h7.aUW1DK7.g">SharedProjectBO</a></td><td>
+<p>
+<a name="documentationSection"></a>Class&nbsp;constructor&nbsp;specifying&nbsp;id&nbsp;and&nbsp;author&nbsp;name.<br>@param&nbsp;ID&nbsp;Identifier<br>@param&nbsp;name&nbsp;Author</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType"> </td><td><a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::SharedProjectBO" href="#_9037QT.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="SharedProjectBO"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::SharedProjectBO" href="#_9037QT.oUE.e.iX.h7.aUW1DK7.g">SharedProjectBO</a></td><td>
+<p>
+<a name="documentationSection"></a>Class&nbsp;constructor&nbsp;specifying&nbsp;id&nbsp;and&nbsp;existing&nbsp;project<br>@param&nbsp;ID&nbsp;Identifier<br>@param&nbsp;proj&nbsp;Existing&nbsp;project</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType">boolean </td><td><a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::hasReadAccess" href="#_905JYT.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="hasReadAccess"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::hasReadAccess" href="#_905JYT.oUE.e.iX.h7.aUW1DK7.g">hasReadAccess</a></td><td>
+<p>
+<a name="documentationSection"></a>Checks&nbsp;if&nbsp;a&nbsp;user&nbsp;can&nbsp;read&nbsp;the&nbsp;project.<br><br>@param&nbsp;username&nbsp;Identifier&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;check.<br>@return&nbsp;True&nbsp;if&nbsp;this&nbsp;user&nbsp;has&nbsp;read&nbsp;access&nbsp;to&nbsp;the&nbsp;project.</p>
+</td>
+</tr>
+<tr>
+<td class="packagedElementType">boolean </td><td><a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::hasWriteAccess" href="#_906X.gD.oUE.e.iX.h7.aUW1DK7.g"><img border="0" src="../images/137329536_icon.png" alt="hasWriteAccess"></a>&nbsp;<a title="UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::hasWriteAccess" href="#_906X.gD.oUE.e.iX.h7.aUW1DK7.g">hasWriteAccess</a></td><td>
+<p>
+<a name="documentationSection"></a>Checks&nbsp;if&nbsp;a&nbsp;user&nbsp;can&nbsp;modify&nbsp;the&nbsp;project.<br><br>@param&nbsp;username&nbsp;Identifier&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;check.<br>@return&nbsp;True&nbsp;if&nbsp;this&nbsp;user&nbsp;has&nbsp;write&nbsp;access&nbsp;to&nbsp;the&nbsp;project.</p>
+</td>
+</tr>
+</table>
+<p></p>
+<table class="SummaryTable" border="1">
+<tr>
+<td class="SummaryTitle" colspan="3">Operaciones heredadas de <img border="0" src="../images/-26848688_icon.png" alt="UMLModel::es::ucm::fdi::workspace::project::ProjectTO">&nbsp;UMLModel::es::ucm::fdi::workspace::project::ProjectTO</td>
+</tr>
+<tr>
+<td><img border="0" src="../images/137329536_icon.png" alt="ProjectTO">&nbsp;ProjectTO, <img border="0" src="../images/137329536_icon.png" alt="ProjectTO">&nbsp;ProjectTO, <img border="0" src="../images/137329536_icon.png" alt="ProjectTO">&nbsp;ProjectTO</td>
+</tr>
+</table>
+<br>
+<a name="propertiesTable">
+<p class="LargeTitle">Propiedades:</p>
+</a>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Classifier Behavior</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Active</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">SharedProjectBO</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v0.cI.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">connectivity</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v0.cI.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">connectivity</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Package</b></td><td class="PropertyValue"><a href="_9.v0.cI.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">connectivity</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::connectivity::SharedProjectBO</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Representation</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+<p></p>
+<table class="DetailsTable">
+<tr>
+<td class="DetailsTitle" colspan="2"><a name="attributeDetail">Detalles de atributo</a></td>
+</tr>
+</table>
+<span class="ListItem">
+<br>
+<img src="../images/139334096_icon.png" alt="">&nbsp;<a name="_90038T.oUE.e.iX.h7.aUW1DK7.g">sharedID</a></span>
+<pre>Private&nbsp;String sharedID</pre>
+<dl>
+<dd>
+<p>
+<a name="documentationSection"></a>Project&nbsp;id</p>
+</dd>
+<dt>
+<a name="attributeConstraintsTable_90038T.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Aggregation</b></td><td class="PropertyValue">None</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Association</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Association End</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Default</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Default Value</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Composite</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Derived</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Derived Union</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Read Only</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower Value</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Multiplicidad</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">sharedID</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Opposite</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Association</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::sharedID</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue">String</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper Value</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Private</td>
+</tr>
+</table>
+</dd>
+</dl>
+<p></p>
+<table class="DetailsTable">
+<tr>
+<td class="DetailsTitle" colspan="2"><a name="operationDetail">Detalles de operación</a></td>
+</tr>
+</table>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_905JYT.oUE.e.iX.h7.aUW1DK7.g">hasReadAccess</a></span>
+<pre>Public&nbsp;boolean hasReadAccess(String )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Checks&nbsp;if&nbsp;a&nbsp;user&nbsp;can&nbsp;read&nbsp;the&nbsp;project.<br><br>@param&nbsp;username&nbsp;Identifier&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;check.<br>@return&nbsp;True&nbsp;if&nbsp;this&nbsp;user&nbsp;has&nbsp;read&nbsp;access&nbsp;to&nbsp;the&nbsp;project.</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>String </td><td>username</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>boolean </td><td>ParámetroDeRetorno</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_905JYT.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">hasReadAccess</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::hasReadAccess</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue">boolean</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_906X.gD.oUE.e.iX.h7.aUW1DK7.g">hasWriteAccess</a></span>
+<pre>Public&nbsp;boolean hasWriteAccess(String )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Checks&nbsp;if&nbsp;a&nbsp;user&nbsp;can&nbsp;modify&nbsp;the&nbsp;project.<br><br>@param&nbsp;username&nbsp;Identifier&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;check.<br>@return&nbsp;True&nbsp;if&nbsp;this&nbsp;user&nbsp;has&nbsp;write&nbsp;access&nbsp;to&nbsp;the&nbsp;project.</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>String </td><td>username</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>boolean </td><td>ParámetroDeRetorno</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_906X.gD.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">hasWriteAccess</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::hasWriteAccess</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue">boolean</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_902GET.oUE.e.iX.h7.aUW1DK7.g">SharedProjectBO</a></span>
+<pre>Public&nbsp; SharedProjectBO(String, String )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Class&nbsp;constructor&nbsp;specifying&nbsp;id&nbsp;and&nbsp;author&nbsp;name.<br>@param&nbsp;ID&nbsp;Identifier<br>@param&nbsp;name&nbsp;Author</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>String </td><td>ID</td><td> [1]</td><td></td>
+</tr>
+<tr valign="top">
+<td>String </td><td>name</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_902GET.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">SharedProjectBO</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::SharedProjectBO</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<span class="ListItem"><img src="../images/137329536_icon.png" alt="">&nbsp;<a name="_9037QT.oUE.e.iX.h7.aUW1DK7.g">SharedProjectBO</a></span>
+<pre>Public&nbsp; SharedProjectBO(String, ProjectTO )</pre>
+<dl>
+<dd></dd>
+<p>
+<a name="documentationSection"></a>Class&nbsp;constructor&nbsp;specifying&nbsp;id&nbsp;and&nbsp;existing&nbsp;project<br>@param&nbsp;ID&nbsp;Identifier<br>@param&nbsp;proj&nbsp;Existing&nbsp;project</p>
+<dt>
+<b>Parámetros:</b>
+</dt>
+<dd>
+<table>
+<tbody>
+<tr valign="top">
+<td>String </td><td>ID</td><td> [1]</td><td></td>
+</tr>
+<tr valign="top">
+<td>ProjectTO </td><td>proj</td><td> [1]</td><td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<b>Retornos:</b>
+</dt>
+<dd>
+<dd>
+<table>
+<tbody></tbody>
+</table>
+</dd>
+</dd>
+<dt>
+<a name="operationConstraintsTable_9037QT.oUE.e.iX.h7.aUW1DK7.g"><b>Restricciones:</b></a>
+</dt>
+<dt>
+<b>Excepciones detectadas:</b>
+</dt>
+<dt>
+<b>Propiedades:</b>
+</dt>
+<dd>
+<br>
+<table class="PropertiesTable" cellpadding="4" cellspacing="0" border="1">
+<tr>
+<td class="PropertyName"><b>Alias</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Body Condition</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Class</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Concurrency</b></td><td class="PropertyValue">Sequential</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Datatype</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Estereotipo</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Interface</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Abstract</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Leaf</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Ordered</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Query</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Static</b></td><td class="PropertyValue">false</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Is Unique</b></td><td class="PropertyValue">true</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Lower</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name</b></td><td class="PropertyValue">SharedProjectBO</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Name Expression</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Namespace</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owned Template Signature</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owner</b></td><td class="PropertyValue"><a href="_9.v_.bQT.oUE.e.iX.h7.aUW1DK7.g-content.html">SharedProjectBO</a></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Owning Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Palabras clave</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Qualified Name</b></td><td class="PropertyValue">UMLModel::es::ucm::fdi::connectivity::SharedProjectBO::SharedProjectBO</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Template Parameter</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Type</b></td><td class="PropertyValue"></td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Upper</b></td><td class="PropertyValue">1</td>
+</tr>
+<tr>
+<td class="PropertyName"><b>Visibility</b></td><td class="PropertyValue">Public</td>
+</tr>
+</table>
+</dd>
+</dl>
+<hr>
+<br>
+<table class="NavigationBar">
+<tr>
+<td>
+<table class="NavBarLeft">
+<tr>
+<td class="NavBarMainLink"><a target="_top" href="../index.html">Visión general</a></td><td class="NavBarMainLink"><a href="_9.v0.cI.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Principio</a></td><td class="NavBarMainLink"><a href="_9.v0.cI.j.oUE.e.iX.h7.aUW1DK7.g-top-summary.html">Paquete</a></td><td class="NavBarMainHighlight">Elemento</td>
+</tr>
+</table>
+</td><td class="NavBarRight">Documentación UML de connectivity</td>
+</tr>
+</table>
+<table>
+<tr class="NavBarBookMarks">
+<td class="BookMarkSections"><span class="BookMarkElements">Resumen:</span><span class="BookMarkElements"><a href="#attributeSummary" title="Atributos">Atributos</a></span><span class="BookMarkElements"><a href="#operationSummary" title="Operaciones">Operaciones</a></span><span class="BookMarkElements"><a href="#propertiesTable" title="Propiedades">Propiedades</a></span></td><td class="BookMarkSections"><span class="BookMarkElements">Detalle:</span><span class="BookMarkElements"><a href="#attributeDetail" title="Atributos">Atributos</a></span><span class="BookMarkElements"><a href="#operationDetail" title="Operaciones">Operaciones</a></span></td>
+</tr>
+</table>
+</body>
+</html>

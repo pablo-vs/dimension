@@ -1,0 +1,1 @@
+({"EUR_displayName":"युरो","GBP_displayName":"ब्रितन का पौन्ड स्टर्लिग","JPY_displayName":"जापानी येन","CNY_symbol":"युवान","CNY_displayName":"युवान","USD_displayName":"अमरीकी डालर","USD_symbol":"US$","GBP_symbol":"UK£","JPY_symbol":"JP¥","EUR_symbol":"€"})

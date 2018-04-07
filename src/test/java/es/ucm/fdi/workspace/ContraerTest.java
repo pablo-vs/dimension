@@ -1,5 +1,5 @@
 
-package es.ucm.fdi.trabajo;
+package es.ucm.fdi.workspace;
 import org.junit.Test;
 import java.util.ArrayList;
 import static org.junit.Assert.*;

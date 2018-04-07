@@ -1,4 +1,4 @@
-package es.ucm.fdi.trabajo.function.functiontypes;
+package es.ucm.fdi.workspace.function.functiontypes;
 
 import es.ucm.fdi.workspace.function.types.VariablesList;
 import org.junit.Test;

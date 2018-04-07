@@ -1,4 +1,4 @@
-package es.ucm.fdi.trabajo;
+package es.ucm.fdi.workspace;
 
 import org.junit.Test;
 

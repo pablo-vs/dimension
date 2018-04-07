@@ -1,4 +1,4 @@
-package es.ucm.fdi.trabajo.function;
+package es.ucm.fdi.workspace.function;
 
 import es.ucm.fdi.util.FunctionParserUtils;
 import es.ucm.fdi.workspace.Function;

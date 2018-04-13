@@ -37,15 +37,16 @@ public class GraphBO {
          */
 	private int res; 
 
-		public GraphBO(int dimension) {
-			this.dim = dimension;
+		public GraphBO(int dim) {
+			this.dim = dim;
 			objeto = new MultiTreeMap<>((a, b) -> a - b);
 			domain = new ArrayList<>();
+			range = new ArrayList<>();
 		}
 		
 		public void getGrid(double[] dom_ini, double[] dom_fin) {
 			
-			if ( dom_ini.length != dom_fin.length) throw new IllegalArgumentException();
+			if (dom_ini.length != dom_fin.length) throw new IllegalArgumentException();
 			double lado = 1/(Math.pow(2,res)); 
 			int[] tam = new int[dom_ini.length];
 			int dim = 1;
@@ -75,20 +76,13 @@ public class GraphBO {
 			}
 		}
 		
-		public void generate(List<String> s, double[] dom_ini, double[] dom_fin, int res) {
-			this.res = res;
+		public void generate(List<FunctionBO> functions, double[] dom_ini, double[] dom_fin, int res) {
+			res = res;
 			getGrid(dom_ini, dom_fin);
 			for(int i = 0; i < domain.size(); ++i) {
-				VariablesList varList = new VariablesList(domain.get(i).getDimension());
-				for(int j = 0; j < domain.get(i).getDimension(); ++j) {
-					varList.setVariable(j, domain.get(i).at(j));
-				}
-				VertexBO fv = new VertexBO(s.size());
-				FunctionBO f;
-				for(int j = 0; j < s.size(); ++j) {
-					f = FunctionParserUtils.parse(s.get(j), varList);
-
-					fv.set(j, f.evaluate(varList));
+				VertexBO fv = new VertexBO(functions.size());
+				for(int j = 0; j < functions.size(); ++j) {
+					fv.set(j, functions.get(i).evaluate(domain.get(i).getComps()));
 				}
 				range.add(fv);
 			}		
@@ -102,4 +96,4 @@ public class GraphBO {
 
 			return range;
 		}
-	}
+}

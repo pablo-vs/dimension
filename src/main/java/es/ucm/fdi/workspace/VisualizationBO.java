@@ -36,8 +36,8 @@ public class VisualizationBO {
 	private GraphBO proyectar(GraphBO g, int dim1, int dim2, int dim3, double[] hp){
 		GraphBO graf = new GraphBO(3);
 		
-		for (int i = 0; i < g.getImagen().size(); ++i) {
-			VertexBO v = g.getImagen().get(i);
+		for (int i = 0; i < g.getRange().size(); ++i) {
+			VertexBO v = g.getRange().get(i);
 			int j = 0, cont = 0;
 			boolean b = true;
 			while (b && j < hp.length) {
@@ -55,7 +55,7 @@ public class VisualizationBO {
 				newV.set(0, v.at(dim1));
 				newV.set(1, v.at(dim2));
 				newV.set(2, v.at(dim3));
-				graf.getImagen().add(newV);
+				graf.getRange().add(newV);
 			}
 		}
 		return graf;

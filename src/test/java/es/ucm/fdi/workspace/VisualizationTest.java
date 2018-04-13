@@ -23,9 +23,9 @@ public class VisualizationTest {
 	
 	public void inicio() {
 
-		graf.getImagen().add(v1); graf.getImagen().add(v2); graf.getImagen().add(v3); graf.getImagen().add(v4);
-		graf.getImagen().add(v5); graf.getImagen().add(v6); graf.getImagen().add(v7); graf.getImagen().add(v8);
-		graf.getImagen().add(v9); graf.getImagen().add(v10); graf.getImagen().add(v11); graf.getImagen().add(v12);
+		graf.getRange().add(v1); graf.getRange().add(v2); graf.getRange().add(v3); graf.getRange().add(v4);
+		graf.getRange().add(v5); graf.getRange().add(v6); graf.getRange().add(v7); graf.getRange().add(v8);
+		graf.getRange().add(v9); graf.getRange().add(v10); graf.getRange().add(v11); graf.getRange().add(v12);
 	}
 	
 	@Test
@@ -33,7 +33,7 @@ public class VisualizationTest {
 		inicio();
 		VisualizationBO vis = new VisualizationBO();
 		vis.addGraph(graf, 1, 3, 4, hp);
-		List<VertexBO> v = vis.getGraph().get(0).getImagen();
+		List<VertexBO> v = vis.getGraph().get(0).getRange();
 		assertTrue("La proyección debe tener 5 puntos", v.size() == 5);
 		assertTrue("Las coordenadas de los vectores proyección son correctas (se comprueba en un punto)", v.get(0).at(0) == 7 && v.get(0).at(1) == 1 && v.get(0).at(2) == 4);
 

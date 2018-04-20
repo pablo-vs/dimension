@@ -16,10 +16,14 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
  */
 public abstract class FunctionBO {
     
-	private VariablesList variables;
+    
+        /**
+         * List of variables available 
+         */
+        private VariablesList variables;
         
         /**
-	 * Prevent from no-parameters declaration of new function variables for containers.
+	 * Prevents from no-parameters declaration of new function variables for containers.
 	 */
 	public FunctionBO() {}
 
@@ -65,7 +69,7 @@ public abstract class FunctionBO {
        	public abstract String toString();
 
 	/**
-	 * Contains the parser specific for each function.
+	 * Contains the specific parser for each function.
 	 * @author Pablo Villalobos
 	 */
 	public static abstract class Parser {

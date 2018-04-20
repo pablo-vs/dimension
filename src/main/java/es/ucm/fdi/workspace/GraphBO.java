@@ -1,30 +1,53 @@
 package es.ucm.fdi.workspace;
 
+import es.ucm.fdi.util.FunctionParserUtils;
 import es.ucm.fdi.util.MultiTreeMap;
+import es.ucm.fdi.workspace.function.types.VariablesList;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * A graph object is used to represent an abstract interpretration of a function.
+ * It contains two lists of {@link es.ucm.fdi.workspace VertexBO} with values
+ * from the range and the domain of the function. It also provides 
  * @author Brian Leiva
  * @author Eloy Mósig
  */
 public class GraphBO {
-		private int dimension;
-		private List<VertexBO> dominio, imagen;
-		private MultiTreeMap<Integer, Integer> objeto;
-		private int resolution; 
+   
+        /**
+         * Integer value representing the dimension of the object depicted by the graph.
+         */
+        private int dim;
+        
+        /**
+        *  List of {@link es.ucm.fdi.workspace VertexBO} containing the vertex in the domain.
+        */
+	private List<VertexBO> domain;
+        
+        /**
+        *  List of {@link es.ucm.fdi.workspace VertexBO} containing the vertex in the range.
+        */
+        private List<VertexBO> range;
+        
+        
+	private MultiTreeMap<Integer, Integer> objeto;
+        /**
+         * Resolution of the graph, it indicates the factor used to calculate the length of the
+         */
+	private int res; 
 
-		public GraphBO(int dimension) {
-			this.dimension = dimension;
+		public GraphBO(int dim) {
+			this.dim = dim;
 			objeto = new MultiTreeMap<>((a, b) -> a - b);
-			dominio = new ArrayList<>();
-			imagen = new ArrayList<>();
+			domain = new ArrayList<>();
+			range = new ArrayList<>();
 		}
 		
 		public void getGrid(double[] dom_ini, double[] dom_fin) {
 			
 			if (dom_ini.length != dom_fin.length) throw new IllegalArgumentException();
-			double lado = 1/2^resolution;
+			double lado = 1/(Math.pow(2,res)); 
 			int[] tam = new int[dom_ini.length];
 			int dim = 1;
 			for(int i = 0; i < tam.length; ++i) {
@@ -32,19 +55,19 @@ public class GraphBO {
 				dim *= tam[i];
 			}
 			for(int j = 0; j < dim; ++j) {
-				dominio.add(new VertexBO());
+				domain.add(new VertexBO());
 			}
 			int n = 1;
-			for(int i = 0; i < dimension; ++i) {
+			for(int i = 0; i < dim; ++i) {
 				double suma = dom_ini[i];
 				int aux = n;
 				n *= tam[i];
 				for(int j = 0; j < tam[i]; ++j) {
 					suma += lado;
-					for (int k = j * aux; k < dominio.size(); k += n){
+					for (int k = j * aux; k < domain.size(); k += n){
 						int cont = 0;
 						while (cont < aux){
-							dominio.get(k).set(i, suma);
+							domain.get(k).set(i, suma);
 							if (j > 0) objeto.putValue(k, k - (j * aux));
 							++cont;
 						}
@@ -54,23 +77,23 @@ public class GraphBO {
 		}
 		
 		public void generate(List<FunctionBO> functions, double[] dom_ini, double[] dom_fin, int res) {
-			resolution = res;
+			res = res;
 			getGrid(dom_ini, dom_fin);
-			for(int i = 0; i < dominio.size(); ++i) {
+			for(int i = 0; i < domain.size(); ++i) {
 				VertexBO fv = new VertexBO(functions.size());
 				for(int j = 0; j < functions.size(); ++j) {
-					fv.set(j, functions.get(i).evaluate(dominio.get(i).getComps()));
+					fv.set(j, functions.get(i).evaluate(domain.get(i).getComps()));
 				}
-				imagen.add(fv);
+				range.add(fv);
 			}		
 		}
 		
 		public int getDim(){
-			return dimension;
+			return dim;
 		}
 		
-		public List<VertexBO> getImagen(){
+		public List<VertexBO> getRange(){
 
-			return imagen;
+			return range;
 		}
-	}
+}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.ucm.fdi.datos.MemoryDB;
+import es.ucm.fdi.exceptions.DAOError;
 
 /**
  * AuthorshipDAO implementation using a HashTable-based database.
@@ -17,22 +18,22 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
          */
         private MemoryDB<AuthorshipBO> db;
 
-        public AuthorshipDAOHashTableImp() {
+        public AuthorshipDAOHashTableImp() throws DAOError{
 			db = new MemoryDB<AuthorshipBO>();
 		}
 
 		@Override
-        public void addAuthorship(AuthorshipBO auth) {
+        public void addAuthorship(AuthorshipBO auth) throws DAOError {
                 db.insert(auth, auth.getId());
         }
 
         @Override
-        public void removeAuthorship(AuthorshipBO auth) {
+        public void removeAuthorship(AuthorshipBO auth) throws DAOError {
                 db.removeId(auth.getId());
         }
 
         @Override
-        public List<AuthorshipBO> findByUser(String username) {
+        public List<AuthorshipBO> findByUser(String username) throws DAOError {
             ArrayList<AuthorshipBO> lista = new ArrayList<>();
             for (String id : db.getIds()) {
                     AuthorshipBO aux = db.find(id);
@@ -44,7 +45,7 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
         }
 
         @Override
-        public List<AuthorshipBO> findByProject(String project) {
+        public List<AuthorshipBO> findByProject(String project) throws DAOError {
                 ArrayList<AuthorshipBO> lista = new ArrayList<>();
                 for (String id : db.getIds()) {
                         AuthorshipBO aux = db.find(id);
@@ -56,7 +57,7 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
         }
 
         @Override
-        public List<AuthorshipBO> getAuthorships() {
+        public List<AuthorshipBO> getAuthorships() throws DAOError {
                 ArrayList<AuthorshipBO> lista = new ArrayList<>();
                 for (String id : db.getIds()) {
                         lista.add(db.find(id));

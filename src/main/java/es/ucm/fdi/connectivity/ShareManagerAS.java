@@ -105,6 +105,31 @@ public class ShareManagerAS {
 			throw new NotFoundException("Project " + proj.getSharedID() + " not found");
 		}
 	}
+	
+	/**
+	 * Adds a comment to a shared project.
+	 *
+	 * @param projID The project ID.
+	 * @param session The session to validate this operation.
+	 * @param c The new comment.
+	 */	
+	public void comment(String projID, SessionBO session, String c) {
+		SharedProjectBO project = projectDB.findSharedProject(projID);
+		if(project != null) {
+			if(userMan.authenticate(session.getUser(), session)) {
+				if(project.hasReadAccess(session.getUser())) {
+					project.getComments().put(c, session.getUser());
+					projectDB.modifySharedProject(project);
+				} else {
+					throw new AccessControlException("User " + session.getUser() + " cannot add a comment in " + projID);
+				}
+			} else {
+				throw new AccessControlException("Invalid session");
+			}
+		} else {
+			throw new NotFoundException("Project " + projID + " not found");
+		}
+	}
 
 	/**
 	 * Imports a shared project into local storage.

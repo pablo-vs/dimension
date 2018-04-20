@@ -2,6 +2,9 @@ package demo.sql;
 
 import java.sql.*;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class SQLTest {
 	@Test
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {

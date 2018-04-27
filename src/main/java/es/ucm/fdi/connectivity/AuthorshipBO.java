@@ -55,4 +55,12 @@ public class AuthorshipBO {
         public String getProject() {
                 return project;
         }
+        
+        @Override
+        public boolean equals(Object other) {
+        	if(!(other instanceof AuthorshipBO)) return false;
+        	else {
+        		return id.equals(((AuthorshipBO)other).getId());
+        	}
+        }
 }

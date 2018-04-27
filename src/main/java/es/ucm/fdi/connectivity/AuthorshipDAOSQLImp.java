@@ -8,8 +8,10 @@ import java.sql.SQLException;
 import java.sql.*;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import es.ucm.fdi.exceptions.DAOError;
+import es.ucm.fdi.util.SQLUtil;
 
 public class AuthorshipDAOSQLImp implements AuthorshipDAO{
 
@@ -51,29 +53,18 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO{
      */
 	@Override
     public void addAuthorship(AuthorshipBO auth) throws DAOError {
-    	try(Connection connection = DriverManager.getConnection
-			("jdbc:mysql://" + host + "/" + db, user, passwd)) {
-
-	    	String[] values = {auth.getId(), auth.getAuthor(), auth.getProject()};
-			try(Statement stat = connection.createStatement()) {
-				StringBuilder query = new StringBuilder();
-				query.append("INSERT INTO ");
-				query.append(TABLE);
-				query.append(" VALUES ");
-				query.append(commaList(values));
-				query.append(";");
-
-				try(ResultSet res = stat.executeQuery(query.toString())) {}
-				catch(SQLException e) {
-					throw new DAOError("DAO error: " + e.getMessage(), e);
-				}
-			} catch(SQLException e) {
-				throw new DAOError("DAO error: " + e.getMessage(), e);
-			}
-		} catch(SQLException e) {
-			throw new DAOError("DAO error: " + e.getMessage(), e);
+    	String[] values = {auth.getId(), auth.getAuthor(), auth.getProject()};
+		StringBuilder query = new StringBuilder();
+		query.append("INSERT INTO ");
+		query.append(TABLE);
+		query.append(" VALUES ");
+		query.append(commaList(values));
+		query.append(";");
+		try(Statement stat = SQLUtil.getStatement()) {
+			stat.executeQuery(query.toString());
+		} catch (SQLException e) {
+			throw new DAOError("DAO Error:\n" + e.getMessage(), e);
 		}
-
     }
 
     /**
@@ -83,27 +74,17 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO{
      */
     @Override
     public void removeAuthorship(AuthorshipBO auth) throws DAOError {
-    	try(Connection connection = DriverManager.getConnection
-    			("jdbc:mysql://" + host + "/" + db, user, passwd)) {
-
-    			try(Statement stat = connection.createStatement()) {
-    				StringBuilder query = new StringBuilder();
-    				query.append("DELETE FROM ");
-    				query.append(TABLE);
-    				query.append(" WHERE id = '");
-    				query.append(auth.getId());
-    				query.append("';");
-
-    				try(ResultSet res = stat.executeQuery(query.toString())) {}
-    				catch(SQLException e) {
-    					throw new DAOError("DAO error: " + e.getMessage(), e);
-    				}
-    			} catch(SQLException e) {
-    				throw new DAOError("DAO error: " + e.getMessage(), e);
-    			}
-    		} catch(SQLException e) {
-    			throw new DAOError("DAO error: " + e.getMessage(), e);
-    		}
+		StringBuilder query = new StringBuilder();
+		query.append("DELETE FROM ");
+		query.append(TABLE);
+		query.append(" WHERE id = '");
+		query.append(auth.getId());
+		query.append("';");
+		try(Statement stat = SQLUtil.getStatement()) {
+			stat.executeQuery(query.toString());
+		} catch (SQLException e) {
+			throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+		}
     }
 
     /**
@@ -114,7 +95,22 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO{
      */
     @Override
     public List<AuthorshipBO> findByUser(String username) throws DAOError {
-    	return null;
+    	ArrayList<AuthorshipBO> result = new ArrayList<AuthorshipBO>();
+    	try(Statement stat = SQLUtil.getStatement()) {
+    		ResultSet rs = SQLUtil.getStatement().executeQuery("SELECT * FROM authors WHERE author = '" + username + "';");
+
+			rs.first();
+			while(!rs.isAfterLast()) {
+				AuthorshipBO auth = new AuthorshipBO(rs.getString("author"), rs.getString("project"));
+				result.add(auth);
+				rs.next();
+			}
+			
+    	} catch (SQLException e) {
+			throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+		}
+    	
+    	return result;
     }
 
     /**
@@ -125,7 +121,22 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO{
      */
     @Override
     public List<AuthorshipBO> findByProject(String project) throws DAOError {
-    	return null;
+    	ArrayList<AuthorshipBO> result = new ArrayList<AuthorshipBO>();
+    	try(Statement stat = SQLUtil.getStatement()) {
+    		ResultSet rs = SQLUtil.getStatement().executeQuery("SELECT * FROM authors WHERE project = '" + project + "';");
+
+			rs.first();
+			while(!rs.isAfterLast()) {
+				AuthorshipBO auth = new AuthorshipBO(rs.getString("author"), rs.getString("project"));
+				result.add(auth);
+				rs.next();
+			}
+			
+    	} catch (SQLException e) {
+			throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+		}
+    	
+    	return result;
     }
 
     /**

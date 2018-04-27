@@ -14,11 +14,11 @@ import es.ucm.fdi.exceptions.DAOError;
 public class AuthorshipDAOSQLImp implements AuthorshipDAO{
 
 	private static final String DRIVER = "org.mariadb.jdbc.Driver";
-	private static final String TABLE = "users";
+	private static final String TABLE = "authors";
 	private static final String DEFAULT_DATABASE = "dimension";
-	private static final String DEFAULT_HOST = "83.41.170.105";
-	private static final String DEFAULT_USER = "dimension";
-	private static final String DEFAULT_PASSWD = "dimension";
+	private static final String DEFAULT_HOST = "localhost";
+	private static final String DEFAULT_USER = "root";
+	private static final String DEFAULT_PASSWD = "";
 
 	private String host, db, user, passwd;
 
@@ -32,7 +32,6 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO{
 		this.user = user;
 		this.passwd = passwd;
 
-		System.err.println("jdbc:mysql://" + host + "/" + db);
 		// Try to connect
 		try(Connection connection = DriverManager.getConnection
 			("jdbc:mysql://" + host + "/" + db, user, password)) {}
@@ -75,8 +74,6 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO{
 			throw new DAOError("DAO error: " + e.getMessage(), e);
 		}
 
-			
-		
     }
 
     /**
@@ -86,7 +83,27 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO{
      */
     @Override
     public void removeAuthorship(AuthorshipBO auth) throws DAOError {
+    	try(Connection connection = DriverManager.getConnection
+    			("jdbc:mysql://" + host + "/" + db, user, passwd)) {
 
+    			try(Statement stat = connection.createStatement()) {
+    				StringBuilder query = new StringBuilder();
+    				query.append("DELETE FROM ");
+    				query.append(TABLE);
+    				query.append(" WHERE id = '");
+    				query.append(auth.getId());
+    				query.append("';");
+
+    				try(ResultSet res = stat.executeQuery(query.toString())) {}
+    				catch(SQLException e) {
+    					throw new DAOError("DAO error: " + e.getMessage(), e);
+    				}
+    			} catch(SQLException e) {
+    				throw new DAOError("DAO error: " + e.getMessage(), e);
+    			}
+    		} catch(SQLException e) {
+    			throw new DAOError("DAO error: " + e.getMessage(), e);
+    		}
     }
 
     /**
@@ -121,6 +138,7 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO{
     	return null;
     }
 
+    
     private String commaList(String[] values) {
     	StringBuilder sb = new StringBuilder();
     	sb.append("(");

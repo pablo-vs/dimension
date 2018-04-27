@@ -8,8 +8,9 @@ public class DAOTest {
 	
 	@Test
 	public void AuthDAOSQLTest() throws SQLException, ClassNotFoundException{
-		//AuthorshipDAOSQLImp dao = new AuthorshipDAOSQLImp();
+		AuthorshipDAOSQLImp dao = new AuthorshipDAOSQLImp();
 		AuthorshipBO auth = new AuthorshipBO("paco", "superProyecto");
 		//dao.addAuthorship(auth);
+		dao.removeAuthorship(auth);
 	}
 }

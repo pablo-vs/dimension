@@ -14,7 +14,7 @@ public class SQLTest {
 
 		// Try to connect
 		Connection connection = DriverManager.getConnection
-			("jdbc:mysql://83.41.170.105/dimension", "dimension", "dimension");
+			("jdbc:mysql://localhost/dimension", "root", "");
 
 		System.out.println("It works!");
 

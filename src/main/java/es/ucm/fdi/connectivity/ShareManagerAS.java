@@ -113,13 +113,12 @@ public class ShareManagerAS {
 	 * @param session The session to validate this operation.
 	 * @param c The new comment.
 	 */	
-	public void comment(String projID, SessionBO session, String c) {
+	public void comment(CommentDAO comments, String projID, SessionBO session, String c) {
 		SharedProjectBO project = projectDB.findSharedProject(projID);
 		if(project != null) {
 			if(userMan.authenticate(session.getUser(), session)) {
 				if(project.hasReadAccess(session.getUser())) {
-					project.getComments().put(c, session.getUser());
-					projectDB.modifySharedProject(project);
+					comments.addComment(new CommentBO(session.getUser(), projID, c));
 				} else {
 					throw new AccessControlException("User " + session.getUser() + " cannot add a comment in " + projID);
 				}

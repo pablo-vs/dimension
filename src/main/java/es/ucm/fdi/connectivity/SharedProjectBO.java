@@ -1,9 +1,6 @@
 package es.ucm.fdi.connectivity;
 
 
-import java.util.HashMap;
-import java.util.Map;
-
 import es.ucm.fdi.workspace.project.ProjectTO;
 
 
@@ -19,7 +16,6 @@ public abstract class SharedProjectBO extends ProjectTO{
          * Project id
          */
 	private String sharedID;
-	private Map<String, String> comments;
 	
         /**
          * Class constructor specifying id and author name.
@@ -29,7 +25,6 @@ public abstract class SharedProjectBO extends ProjectTO{
 	public SharedProjectBO(String ID, String name) {
 		super(name);
 		sharedID = ID;
-		comments = new HashMap<>();
 	}
         
         /**
@@ -62,7 +57,4 @@ public abstract class SharedProjectBO extends ProjectTO{
 		return sharedID;
 	}
 	
-	public Map<String, String> getComments() {
-		return comments;
-	}
 }

@@ -1,10 +1,14 @@
 package es.ucm.fdi.users;
 
+import java.time.Period;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.security.AccessControlException;
 
 import es.ucm.fdi.util.HashGenerator;
+import es.ucm.fdi.connectivity.CommentBO;
+import es.ucm.fdi.connectivity.CommentDAO;
 import es.ucm.fdi.exceptions.DuplicatedIDException;
 import es.ucm.fdi.exceptions.NotFoundException;
 import java.io.IOException;
@@ -23,10 +27,10 @@ import java.util.regex.Pattern;
  * @version 02.04.2018
  */
 public class UserManagerAS {
-	/**
+		/**
          * Instance of singleton pattern
          */
-       	private static UserManagerAS instance;
+    private static UserManagerAS instance;
         /**
          * User data access object
          */
@@ -98,7 +102,53 @@ public class UserManagerAS {
 			throw new AccessControlException("Invalid session");
 		}
 	}
+	
+	/**
+	 * Ban a user. This requires an active session.
+	 *
+	 * @param user The new account details.
+	 * @param session The session from which to perform the action.
+	 * @param banTime The ban period.
+	 * @param banNotification The notification which is sent to the user.
+	 */
+	public void banUser(UserTO user, SessionBO session, Period banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
+		if (!banTime.isNegative()) {
+			if(authenticate(user.getID(), session)) {
+				if(validateAccountDetails(user)) {
+	        		user.setBanTime(banTime);
+	        		banNotification += "Banned time: ";
+	        		int days = banTime.getDays(), months = banTime.getMonths(), years = banTime.getYears();
+	        		if (years > 0) banNotification += years + " years, ";
+	        		if (months % years > 0) banNotification += months % years + " months, ";
+	        		banNotification += days % months + " days\n";
+	        		user.getNotifications().add(banNotification);
+	                dao.modifyUser(user);
+				} 
+			} else {
+				throw new AccessControlException("Invalid session");
+			}
+		}
+		else throw new IllegalArgumentException("Invalid ban period");
+	}
 
+	/**
+	 * Send a notification to a user. This requires an active session.
+	 *
+	 * @param user The new account details.
+	 * @param session The session from which to perform the action.
+	 * @param notification The notification which is sent to the user.
+	 */
+	public void notifyUser(UserTO user, SessionBO session, String notification) throws AccessControlException, IllegalArgumentException {
+		if(authenticate(user.getID(), session)) {
+			if(validateAccountDetails(user)) {
+        		user.getNotifications().add(notification);
+                dao.modifyUser(user);
+			} 
+		} else {
+			throw new AccessControlException("Invalid session");
+		}
+	}
+	
 	/**
 	 * Modify a user's information in the database. This requires an active session.
 	 *
@@ -108,12 +158,12 @@ public class UserManagerAS {
 	public void modifyUser(UserTO user, SessionBO session) throws AccessControlException, IllegalArgumentException {
 		if(authenticate(user.getID(), session)) {
 			try{
-                                if(validateAccountDetails(user)) {
-                                        dao.modifyUser(user);
-                                } 
-                        }
-                        catch(IllegalArgumentException e){
-                                throw new IllegalArgumentException("Invalid account details");
+                if(validateAccountDetails(user)) {
+                        dao.modifyUser(user);
+                } 
+            }
+            catch(IllegalArgumentException e){
+                    throw new IllegalArgumentException("Invalid account details");
 			}
 		} else {
 			throw new AccessControlException("Invalid session");
@@ -161,7 +211,7 @@ public class UserManagerAS {
 	 *
 	 * @param username The claimed user name.
 	 * @param session The session to check.
-         * @return if the session has been validated
+     * @return if the session has been validated
 	 */
 	public boolean authenticate(String username, SessionBO session) {
 		if(validateSession(session)) {
@@ -240,6 +290,17 @@ public class UserManagerAS {
 
                 return isValidEmail;
         } 
+        
+        /**
+         * See the user's comments.
+         * 
+         * @param comments List of comments
+         * @param username User ID
+         * @return The list of comments made by the user
+         */        
+        public List<CommentBO> seeComments(CommentDAO comments, String username) {
+		    return comments.findByUser(username);
+		}
   
         /**
          * Validates a word format.
@@ -299,4 +360,5 @@ public class UserManagerAS {
                 }
                 throw new IllegalArgumentException("");
 	}
+
 }

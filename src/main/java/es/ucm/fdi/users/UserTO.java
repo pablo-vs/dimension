@@ -1,6 +1,7 @@
 package es.ucm.fdi.users;
 
 import java.util.Date;
+import java.util.List;
 import java.time.Period;
 import java.io.Serializable;
 
@@ -48,10 +49,14 @@ public class UserTO implements Serializable {
          * Range
          */
 	private UserType type;
-        /**
-         * Banned period
-         */
+    /**
+     * Banned period
+     */
 	private Period banTime;
+	/**
+	 * Notifications
+	 */
+	private List<String> notifications;
 
 	/**
          * Class constructor specifying id and password
@@ -141,5 +146,21 @@ public class UserTO implements Serializable {
          */
 	public Period getBanTime() {
 		return banTime;
+	}
+	
+	    /**
+	     * 
+	     * @return the list of notifications 
+	     */
+	public List<String> getNotifications(){
+		return notifications;
+	}
+	
+	    /**
+	     * 
+	     * @param newBanTime The new ban period 
+	     */
+	public void setBanTime(Period newBanTime) {
+		banTime = newBanTime;
 	}
 }

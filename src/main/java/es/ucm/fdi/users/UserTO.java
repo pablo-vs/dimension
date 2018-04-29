@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.time.Period;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Contains a user data.
@@ -66,6 +68,37 @@ public class UserTO implements Serializable {
 	public UserTO(String ID, String password) {
 		this.ID = ID;
 		this.password = password;
+	}
+	
+		/**
+	     * Class constructor specifying more fields
+	     * @param ID Identifier
+	     * @param password Password
+	     * @param name Name
+	     * @param date Date
+	     * @param email email
+	     * @param telephone Telephone
+	     * @param picture Picture
+	     * @param description Description
+	     * @param type Type
+	     * @param banTime Ban time
+		 * @throws ParseException 
+	     */
+	public UserTO(String ID, String password, String name, String date, 
+				  String email, String telephone, String picture, String description, 
+				  String type, String banTime) throws ParseException {
+		this.ID = ID;
+		this.password = password;
+		this.name = name;
+		SimpleDateFormat formatter = new SimpleDateFormat(date);
+		this.date = formatter.parse(date);
+		this.email = email;
+		this.telephone = telephone;
+		this.picture = picture;
+		this.description = description;
+		if (type == "USER") this.type = UserType.USER;
+		else this.type = UserType.ADMIN;
+		this.banTime = Period.parse(banTime);
 	}
 
         /**

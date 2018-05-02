@@ -59,7 +59,17 @@ public class UserTO implements Serializable {
 	 * Notifications
 	 */
 	private List<String> notifications;
-
+	
+	/**
+	 * Twitter access token
+	 */
+	private String twitterToken;
+	
+	/**
+	 * Twitter access secret token
+	 */
+	private String twitterTokenSecret;
+	
 	/**
          * Class constructor specifying id and password
          * @param ID Identifier
@@ -195,5 +205,35 @@ public class UserTO implements Serializable {
 	     */
 	public void setBanTime(Period newBanTime) {
 		banTime = newBanTime;
+	}
+	
+	/**
+	 * Sets the value of twitter token.
+	 * @param twitterToken New twitter token value
+	 */
+	public void setTwitterToken(String twitterToken){
+		this.twitterToken = twitterToken;
+	}
+	
+	/**
+	 * @return the twitter token
+	 */
+	public String getTwitterToken(){
+		return twitterToken;
+	}
+	
+	/**
+	 * Sets the value of twitter secret token.
+	 * @param twitterTokenSecret New twitter secret token value
+	 */
+	public void setTwitterTokenSecret(String twitterTokenSecret){
+		this.twitterTokenSecret = twitterTokenSecret;
+	}
+	
+	/**
+	 * @return the twitter secret token
+	 */
+	public String getTwitterTokenSecret(){
+		return twitterTokenSecret;
 	}
 }

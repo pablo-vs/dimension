@@ -108,6 +108,8 @@ public class UserTO implements Serializable {
 		if (type == "USER") this.type = UserType.USER;
 		else this.type = UserType.ADMIN;
 		this.banTime = Period.parse(banTime);
+		twitterToken = "";
+		twitterTokenSecret = "";
 	}
 
         /**

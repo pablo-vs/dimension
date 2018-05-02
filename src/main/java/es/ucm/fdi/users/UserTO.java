@@ -10,8 +10,7 @@ import java.text.SimpleDateFormat;
 /**
  * Contains a user data.
  *
- * @author Eduardo Amaya
- * @author Javier Galiana
+ * @author Eduardo Amaya, Javier Galiana, Inmaculada Pérez
  *
  */
 public class UserTO implements Serializable {

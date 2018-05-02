@@ -13,11 +13,11 @@ public class SessionBO implements Serializable{
         /**
          * Username
          */
-	private String username;
+	private final String username;
         /**
          * Date of login
          */
-	private ZonedDateTime date;
+	private final ZonedDateTime date;
 
 	/**
          * Class constructor specifying username and date.

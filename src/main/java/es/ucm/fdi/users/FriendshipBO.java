@@ -10,11 +10,11 @@ public class FriendshipBO {
         /**
          * User 1
          */
-	private String user1;
+	private final String user1;
         /**
          * User 2
          */
-        private String user2;
+        private final String user2;
 
         /**
          * Class constructor specifying both users

@@ -14,11 +14,11 @@ public class VisualizationBO {
 	private ArrayList<GraphBO> graphics;
 	
 	public VisualizationBO(){
-		graphics = new ArrayList<GraphBO>();
+		graphics = new ArrayList<>();
 	}
 
 	public VisualizationBO(List<GraphBO> g){
-		graphics = new ArrayList<GraphBO>(g);
+		graphics = new ArrayList<>(g);
 	}
         
 	public List<GraphBO> getGraph(){

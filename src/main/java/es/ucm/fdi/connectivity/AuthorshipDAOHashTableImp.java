@@ -19,7 +19,7 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
         private MemoryDB<AuthorshipBO> db;
 
         public AuthorshipDAOHashTableImp() throws DAOError{
-			db = new MemoryDB<AuthorshipBO>();
+			db = new MemoryDB<>();
 		}
 
 		@Override

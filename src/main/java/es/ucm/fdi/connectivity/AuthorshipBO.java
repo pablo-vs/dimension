@@ -10,15 +10,15 @@ public class AuthorshipBO {
         /**
          * Author of the project
          */
-        private String author;
+        private final String author;
         /**
          * Shared project
          */
-        private String project;
+        private final String project;
         /**
          * Authorship id
          */
-        private String id;
+        private final String id;
 
         /**
          * Class constructor specifying author and shared project.

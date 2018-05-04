@@ -45,10 +45,10 @@ public class WorkAS {
 	/**
 	 * Adds a new Visualization to the project.
 	 *
-	 * @param v The new Visualization to add.
+	 * @param view The new Visualization to add.
 	 */
-	public void addVisualizationBO(VisualizationBO v) {
-		project.getViews().add(v);
+	public void addVisualizationBO(VisualizationBO view) {
+		project.getViews().add(view);
 	}
 
 	/**

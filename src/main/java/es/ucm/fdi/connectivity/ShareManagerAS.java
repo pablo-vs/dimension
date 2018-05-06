@@ -27,6 +27,7 @@ public class ShareManagerAS {
 			.getManager(new UserDAOHashTableImp());
 	private SharedProjectDAO projectDB;
 	private AuthorshipDAO authorDB;
+	private CommentDAO commentDB;
 
 	private ShareManagerAS(SharedProjectDAO projDao, AuthorshipDAO authorDao) {
 		projectDB = projDao;
@@ -133,14 +134,14 @@ public class ShareManagerAS {
 	 * @param c
 	 *            The new comment.
 	 */
-	public void comment(CommentDAO comments, String projID, SessionBO session,
-			String c) {
+	public void comment(String projID, SessionBO session,
+			String comment) {
 		SharedProjectBO project = projectDB.findSharedProject(projID);
 		if (project != null) {
 			if (userMan.authenticate(session.getUser(), session)) {
 				if (project.hasReadAccess(session.getUser())) {
-					comments.addComment(new CommentBO(session.getUser(),
-							projID, c));
+					commentDB.addComment(new CommentBO(session.getUser(),
+							projID, comment));
 				} else {
 					throw new AccessControlException("User "
 							+ session.getUser() + " cannot add a comment in "

@@ -21,7 +21,6 @@ import es.ucm.fdi.workspace.GraphBO;
  *
  * @author Brian Leiva
  * @author Inmaculada Pérez Garbín
- * @author Arturo Acuaviva
  */
 public class ScaleTransformation implements GraphTransformationBO {
 
@@ -40,6 +39,7 @@ public class ScaleTransformation implements GraphTransformationBO {
 
     /**
      * Class constructor specifying the amount to shrink in each axis.
+     *
      * @param x X axis
      * @param y Y axis
      * @param z Z axis
@@ -50,14 +50,25 @@ public class ScaleTransformation implements GraphTransformationBO {
         this.z = z;
     }
 
+    /**
+     * Receives a certain graph and applies the scale transformation
+     *
+     * @param g the graph which is going to modified
+     */
     @Override
     public void apply(GraphBO g) {
-        contraerX(g, x);
-        contraerY(g, y);
-        contraerZ(g, z);
+        shrinkX(g, x);
+        shrinkY(g, y);
+        shrinkZ(g, z);
     }
 
-    private static void contraerX(GraphBO g, double d) {
+    /**
+     * Shrink the X axis.
+     *
+     * @param g the graph which is going to modified
+     * @param d quantify indicating the amount which will be shrunk
+     */
+    private static void shrinkX(GraphBO g, double d) {
         double min = g.getRange().get(0).at(0), max = min;
         for (int i = 1; i < g.getRange().size(); ++i) {
             double n = g.getRange().get(i).at(0);
@@ -70,11 +81,18 @@ public class ScaleTransformation implements GraphTransformationBO {
         }
         double newMin = (max * (d - 1) + min * (d + 1) / 2 * d);
         for (int i = 0; i < g.getRange().size(); ++i) {
-            g.getRange().get(i).set(0, ((g.getRange().get(i).at(0) - min) / d) + newMin);
+            g.getRange().get(i).set(0,
+                    ((g.getRange().get(i).at(0) - min) / d) + newMin);
         }
     }
 
-    private static void contraerY(GraphBO g, double d) {
+    /**
+     * Shrink the Y axis.
+     *
+     * @param g the graph which is going to modified
+     * @param d quantify indicating the amount which will be shrunk
+     */
+    private static void shrinkY(GraphBO g, double d) {
         double min = g.getRange().get(0).at(1), max = min;
         for (int i = 1; i < g.getRange().size(); ++i) {
             double n = g.getRange().get(i).at(1);
@@ -87,11 +105,18 @@ public class ScaleTransformation implements GraphTransformationBO {
         }
         double newMin = (max * (d - 1) + min * (d + 1) / 2 * d);
         for (int i = 0; i < g.getRange().size(); ++i) {
-            g.getRange().get(i).set(1, ((g.getRange().get(i).at(1) - min) / d) + newMin);
+            g.getRange().get(i).set(1,
+                    ((g.getRange().get(i).at(1) - min) / d) + newMin);
         }
     }
 
-    private static void contraerZ(GraphBO g, double d) {
+    /**
+     * Shrink the Z axis.
+     *
+     * @param g the graph which is going to modified
+     * @param d quantify indicating the amount which will be shrunk
+     */
+    private static void shrinkZ(GraphBO g, double d) {
         double min = g.getRange().get(0).at(2), max = min;
         for (int i = 1; i < g.getRange().size(); ++i) {
             double n = g.getRange().get(i).at(2);
@@ -104,7 +129,8 @@ public class ScaleTransformation implements GraphTransformationBO {
         }
         double newMin = (max * (d - 1) + min * (d + 1) / 2 * d);
         for (int i = 0; i < g.getRange().size(); ++i) {
-            g.getRange().get(i).set(2, ((g.getRange().get(i).at(2) - min) / d) + newMin);
+            g.getRange().get(i).set(2,
+                    ((g.getRange().get(i).at(2) - min) / d) + newMin);
         }
     }
 }

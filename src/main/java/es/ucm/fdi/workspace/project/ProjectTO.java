@@ -1,11 +1,23 @@
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package es.ucm.fdi.workspace.project;
 
 import es.ucm.fdi.workspace.FunctionBO;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
-
-import es.ucm.fdi.workspace.VisualizationBO;
 import es.ucm.fdi.workspace.VisualizationBO;
 
 /**
@@ -19,26 +31,26 @@ public class ProjectTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<VisualizationBO> views;
 	private ArrayList<FunctionBO> functions;
-	private String ID;
+	private final String ID;
 	
-	public ProjectTO(String iD) {
-		ID = iD;
+	public ProjectTO(String ID) {
+		this.ID = ID;
 		views = new ArrayList<>();
 		functions = new ArrayList<>();
 	}
 
-	public ProjectTO(String iD, List<VisualizationBO> vis, List<FunctionBO>  funcs) {
-		ID = iD;
+	public ProjectTO(String ID, List<VisualizationBO> vis, List<FunctionBO>  funcs) {
+		this.ID = ID;
 		views = new ArrayList<>(vis);
 		functions = new ArrayList<>(funcs);
 	}
 
 	public ProjectTO(ProjectTO other) {
 		if(other.views != null) {
-		views = new ArrayList<VisualizationBO>(other.views);
+		views = new ArrayList<>(other.views);
 		}
 		if(other.functions != null) {
-		functions = new ArrayList<FunctionBO>(other.functions);
+		functions = new ArrayList<>(other.functions);
 		}
 		ID = other.ID;
 	}

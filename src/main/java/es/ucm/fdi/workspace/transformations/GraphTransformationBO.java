@@ -11,12 +11,21 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package es.ucm.fdi.workspace.transformations;
 
 import es.ucm.fdi.workspace.GraphBO;
 
+/**
+ * Public interface representing a modification in a graph. Every modification
+ * that could be applied to a graph implements this interface.
+ */
 public interface GraphTransformationBO {
 
-	public void apply(GraphBO graph);
+    /**
+     * Applies the transformation to the given graph. Each class which
+     * implements this interface must define its own apply method.
+     *
+     * @param graph
+     */
+    public void apply(GraphBO graph);
 }

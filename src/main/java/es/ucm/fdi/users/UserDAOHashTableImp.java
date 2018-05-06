@@ -3,7 +3,7 @@ package es.ucm.fdi.users;
 import java.util.List;
 import java.util.ArrayList;
 
-import es.ucm.fdi.datos.MemoryDB;
+import es.ucm.fdi.data.MemoryDB;
 
 /**
  * UserDAO implementation using a HashTable-based database.

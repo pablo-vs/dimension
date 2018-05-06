@@ -1,10 +1,8 @@
 package es.ucm.fdi.workspace;
 
+import es.ucm.fdi.exceptions.NoMatchDimensionException;
 import org.junit.Test;
 
-import es.ucm.fdi.workspace.GraphBO;
-import es.ucm.fdi.workspace.VertexBO;
-import es.ucm.fdi.workspace.VisualizationBO;
 
 import static org.junit.Assert.*;
 import java.util.List;
@@ -29,7 +27,7 @@ public class VisualizationTest {
 	}
 	
 	@Test
-	public void proyeccionTest() {
+	public void proyeccionTest() throws NoMatchDimensionException {
 		inicio();
 		VisualizationBO vis = new VisualizationBO();
 		vis.addGraph(graf, 1, 3, 4, hp);

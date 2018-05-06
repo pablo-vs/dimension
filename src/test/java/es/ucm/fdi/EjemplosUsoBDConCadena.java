@@ -21,7 +21,7 @@ package es.ucm.fdi;
 
 
 import es.ucm.fdi.workspace.project.ProjectTO;
-import es.ucm.fdi.datos.MemoryDB;
+import es.ucm.fdi.data.MemoryDB;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

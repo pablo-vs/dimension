@@ -21,7 +21,7 @@ package es.ucm.fdi;
 
 import java.io.Serializable;
 
-import es.ucm.fdi.datos.MemoryDB;
+import es.ucm.fdi.data.MemoryDB;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

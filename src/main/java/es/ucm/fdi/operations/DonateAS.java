@@ -1,3 +1,16 @@
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package es.ucm.fdi.operations;
 
 import java.awt.Desktop;
@@ -5,20 +18,35 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+/**
+ * This utility class opens an url in the default browser used by the user.
+ */
 public class DonateAS {
-	
-	public static void donate() {
-		enlace("http://dimensionapp.emiweb.es/");
-	}
-	
-	/**
-     * Abre el enlace pasado por parametro
-     * @param enlaceAAceder Enlace a abrir
+
+    /**
+     * Private constructor to avoid instantiation of this class
+     *
      */
-    private static void enlace (String enlaceAAceder){
-        Desktop enlace=Desktop.getDesktop();
+    private DonateAS() {
+    }
+
+    /**
+     * Opens the url of the project webpage.
+     */
+    public static void donate() {
+        openURL("http://dimensionapp.emiweb.es/");
+    }
+
+    /**
+     * Opens the default browser used by the user. It uses the given url as the
+     * default web page.
+     *
+     * @param url
+     */
+    private static void openURL(String url) {
+        Desktop desktop = Desktop.getDesktop();
         try {
-                enlace.browse(new URI(enlaceAAceder));
+            desktop.browse(new URI(url));
         } catch (IOException | URISyntaxException e) {
             e.getMessage();
         }

@@ -3,7 +3,7 @@ package es.ucm.fdi.connectivity;
 import java.util.List;
 import java.util.ArrayList;
 
-import es.ucm.fdi.datos.MemoryDB;
+import es.ucm.fdi.data.MemoryDB;
 
 /**
  * 

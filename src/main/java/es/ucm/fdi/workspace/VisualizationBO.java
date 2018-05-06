@@ -1,5 +1,6 @@
 package es.ucm.fdi.workspace;
 
+import es.ucm.fdi.exceptions.NoMatchDimensionException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -29,11 +30,11 @@ public class VisualizationBO {
 	 * Añade un nuevo gráfico
 	 * 
 	 */
-	public void addGraph(GraphBO g, int dim1, int dim2, int dim3, double[] hp){
+	public void addGraph(GraphBO g, int dim1, int dim2, int dim3, double[] hp) throws NoMatchDimensionException{
 		graphics.add(proyectar(g, dim1, dim2, dim3, hp));
 	}
 		
-	private GraphBO proyectar(GraphBO g, int dim1, int dim2, int dim3, double[] hp){
+	private GraphBO proyectar(GraphBO g, int dim1, int dim2, int dim3, double[] hp) throws NoMatchDimensionException{
 		GraphBO graf = new GraphBO(3);
 		
 		for (int i = 0; i < g.getRange().size(); ++i) {

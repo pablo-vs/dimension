@@ -1,5 +1,6 @@
 package es.ucm.fdi.workspace;
 
+import es.ucm.fdi.exceptions.NoMatchDimensionException;
 import es.ucm.fdi.util.FunctionParserUtils;
 import es.ucm.fdi.util.MultiTreeMap;
 import es.ucm.fdi.workspace.function.types.VariablesList;
@@ -76,8 +77,8 @@ public class GraphBO {
 			}
 		}
 		
-		public void generate(List<FunctionBO> functions, double[] dom_ini, double[] dom_fin, int res) {
-			res = res;
+		public void generate(List<FunctionBO> functions, double[] dom_ini, double[] dom_fin, int res) throws NoMatchDimensionException {
+			this.res = res;
 			getGrid(dom_ini, dom_fin);
 			for(int i = 0; i < domain.size(); ++i) {
 				VertexBO fv = new VertexBO(functions.size());

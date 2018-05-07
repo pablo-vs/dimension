@@ -37,5 +37,14 @@ public interface DimensionObserver {
      */
     void updateLogout(DimensionObservable o, String username);
 
+    /**
+     * This method is called whenever an exception is thrown and cannot be
+     * caught by the controller. 
+     *
+     * @param o the observable object.
+     * @param e
+     */
     void updateException(DimensionObservable o, Exception e);
+    
+    
 }

@@ -1,6 +1,8 @@
 package es.ucm.fdi.model.observer;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Observer;
 
 /**
@@ -14,13 +16,13 @@ import java.util.Observer;
 public class DimensionObservable {
 
     private boolean changed = false;
-    private final ArrayList<Observer> obs;
+    private final List<Observer> obs;
 
     /**
      * Construct an Observable with zero Observers.
      */
     public DimensionObservable() {
-        obs = new ArrayList<>();
+        obs = Collections.synchronizedList(new ArrayList<>());
     }
 
     /**

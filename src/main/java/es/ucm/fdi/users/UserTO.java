@@ -56,10 +56,6 @@ public class UserTO implements Serializable {
      * Banned period
      */
     private Period banTime;
-    /**
-     * Notifications
-     */
-    private List<String> notifications;
 
     /**
      * Representing authorized Access Twitter Token which is passed to the
@@ -93,25 +89,20 @@ public class UserTO implements Serializable {
      * @param banTime Ban time
      * @throws ParseException
      */
-    public UserTO(String ID, String password, String name, String date,
+    public UserTO(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
-            String type, String banTime) throws ParseException {
+		  UserType type, Period banTime, AccessToken twitterAccess) {
         this.ID = ID;
         this.password = password;
         this.name = name;
-        SimpleDateFormat formatter = new SimpleDateFormat(date);
-        this.date = formatter.parse(date);
+        this.date = date;
         this.email = email;
         this.telephone = telephone;
         this.picture = picture;
         this.description = description;
-        if ("USER".equals(type)) {
-            this.type = UserType.USER;
-        } else {
-            this.type = UserType.ADMIN;
-        }
-        this.banTime = Period.parse(banTime);
-
+	this.type = type;
+        this.banTime = banTime;
+	
     }
 
     /**
@@ -132,29 +123,14 @@ public class UserTO implements Serializable {
      * to twitter
      * @throws ParseException
      */
-    public UserTO(String ID, String password, String name, String date,
+    public UserTO(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
-            String type, String banTime, String twitterAccessToken, String twitterAccessTokenSecret)
+		  UserType type, Period banTime, String twitterAccessToken, String twitterAccessTokenSecret)
             throws ParseException {
-        this.ID = ID;
-        this.password = password;
-        this.name = name;
-        SimpleDateFormat formatter = new SimpleDateFormat(date);
-        this.date = formatter.parse(date);
-        this.email = email;
-        this.telephone = telephone;
-        this.picture = picture;
-        this.description = description;
-        this.twitterAccess = new AccessToken(twitterAccessToken, twitterAccessTokenSecret);
-        if ("USER".equals(type)) {
-            this.type = UserType.USER;
-        } else {
-            this.type = UserType.ADMIN;
-        }
-        this.banTime = Period.parse(banTime);
-
+	this(ID, name, password, date, email, telephone, picture,description, type,
+	     banTime, new AccessToken(twitterAccessToken, twitterAccessTokenSecret));
     }
-
+    
     /**
      *
      * @return the user's identifier
@@ -233,14 +209,6 @@ public class UserTO implements Serializable {
      */
     public Period getBanTime() {
         return banTime;
-    }
-
-    /**
-     *
-     * @return the list of notifications
-     */
-    public List<String> getNotifications() {
-        return notifications;
     }
 
     /**

@@ -1,4 +1,4 @@
-package es.ucm.fdi.util;
+package es.ucm.fdi.data;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,7 +18,7 @@ public class SQLDataSource {
     private static SQLDataSource instance;
     private BasicDataSource dataSource;
 
-    private SQLDataSource() throws IOException, SQLException, PropertyVetoException {
+    private SQLDataSource() throws SQLException {
         dataSource = new BasicDataSource();
         dataSource.setDriverClassName(DRIVER);
 	dataSource.setUrl("jdbc:mysql://" + HOST + "/" + DB);
@@ -30,6 +30,6 @@ public class SQLDataSource {
 	if(instance == null) {
 	    instance = new SQLDataSource();
 	}
-        return dataSource.getConnection().prepareStatement(stmt);
+        return instance.dataSource.getConnection().prepareStatement(stmt);
     }
 }

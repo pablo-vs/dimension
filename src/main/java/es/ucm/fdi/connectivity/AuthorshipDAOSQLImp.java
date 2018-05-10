@@ -1,23 +1,24 @@
 package es.ucm.fdi.connectivity;
 
 import java.sql.SQLException;
+import java.sql.JDBCType;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import es.ucm.fdi.exceptions.DAOError;
 import es.ucm.fdi.data.DAOSQLImp;
 
-public class AuthorshipDAOSQLImp extends DAOSQLImp implements AuthorshipDAO {
+public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements AuthorshipDAO {
 
     private static final String TABLE = "authors";
     
-    private String [] COLUMNS = {"id", "author", "project"};
+    private static final String [] COLUMNS = {"id", "author", "project"};
 
-    private JDBCType [] columnTypes = {JDBCTypes.VARCHAR, JDBCTypes.VARCHAR, JDBCTypes.VARCHAR};
+    private static final JDBCType [] COLUMN_TYPES = {JDBCType.VARCHAR, JDBCType.VARCHAR,
+						     JDBCType.VARCHAR};
 
     public AuthorshipDAOSQLImp() {
-        super(TABLE);
+        super(TABLE, COLUMNS, COLUMN_TYPES);
     }
 
     /**
@@ -43,7 +44,7 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp implements AuthorshipDAO {
     @Override
     public void removeAuthorship(AuthorshipBO auth) throws DAOError {
         try {
-	    removeRecord(auth);
+	    deleteRecord(auth.getId());
 	} catch (SQLException e) {
 	    throw new DAOError("Error while removing authorship " + auth.getId()
 			       + ".\n" + e.getMessage(), e);
@@ -78,7 +79,7 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp implements AuthorshipDAO {
     public List<AuthorshipBO> findByProject(String project) throws DAOError {
         List<AuthorshipBO> result;
 	try {
-	    result = findByVal(2, username);
+	    result = findByVal(2, project);
 	} catch (SQLException e) {
 	    throw new DAOError("Error while finding authorships of " + project
 			       + ".\n" + e.getMessage(), e);
@@ -103,4 +104,23 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp implements AuthorshipDAO {
         return result;
     }
 
+    @Override
+    public AuthorshipBO build(Object [] data) {
+	if(data.length != 3) {
+	    throw new IllegalArgumentException("Constructor requires 3 objects, "
+					       + data.length + " given");
+	}
+	if(!(data[0] instanceof String && data[1] instanceof String && data[2] instanceof String)) {
+	    throw new IllegalArgumentException("Invalid data type");
+	}
+	return new AuthorshipBO((String) data[1],
+				(String) data[2]);
+     }
+    
+    @Override
+    public Object [] getData(AuthorshipBO auth) {
+	Object [] data = {auth.getId(), auth.getAuthor(), auth.getProject()};
+	return data;
+    }
+    
 }

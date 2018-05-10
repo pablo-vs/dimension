@@ -34,9 +34,10 @@ public class CommentBO {
      * @param commentText Text
      */
     public CommentBO(String auth, String proj, String commentText) {
-        author = auth;
+	author = auth;
         project = proj;
         text = commentText;
+	id = auth + proj + text.hashCode();
     }
 
     /**
@@ -70,4 +71,5 @@ public class CommentBO {
     public String getId() {
         return id;
     }
+
 }

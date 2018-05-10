@@ -128,7 +128,7 @@ public class UserManagerAS {
                         banNotification += months % years + " months, ";
                     }
                     banNotification += days % months + " days\n";
-                    user.getNotifications().add(banNotification);
+                    //user.getNotifications().add(banNotification);
                     dao.modifyUser(user);
                 }
             } else {
@@ -149,7 +149,7 @@ public class UserManagerAS {
     public void notifyUser(UserTO user, SessionBO session, String notification) throws AccessControlException, IllegalArgumentException {
         if (authenticate(user.getID(), session)) {
             if (validateAccountDetails(user)) {
-                user.getNotifications().add(notification);
+                //user.getNotifications().add(notification);
                 dao.modifyUser(user);
             }
         } else {

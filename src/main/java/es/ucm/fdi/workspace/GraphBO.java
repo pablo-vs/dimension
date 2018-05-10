@@ -41,17 +41,17 @@ public class GraphBO {
 
     /**
      * Class constructor specifying the dimension of the graph.
-     * 
-     * @param dimension 
+     *
+     * @param dimension
      */
     public GraphBO(int dimension) {
         this.dimension = dimension;
     }
 
     /**
-     * 
+     *
      * @param dom_ini
-     * @param dom_fin 
+     * @param dom_fin
      */
     public void getGrid(double[] dom_ini, double[] dom_fin) {
         if (dom_ini.length != dom_fin.length) {
@@ -89,13 +89,13 @@ public class GraphBO {
     }
 
     /**
-     * Generates the graph. 
-     * 
+     * Generates the graph.
+     *
      * @param functions
      * @param dom_ini
      * @param dom_fin
      * @param resolution
-     * @throws NoMatchDimensionException 
+     * @throws NoMatchDimensionException
      */
     public void generate(List<FunctionBO> functions, double[] dom_ini, double[] dom_fin, int resolution) throws NoMatchDimensionException {
         this.resolution = resolution;
@@ -110,7 +110,7 @@ public class GraphBO {
     }
 
     /**
-     * 
+     *
      * @return the dimension of the graph
      */
     public int getDimension() {
@@ -118,7 +118,7 @@ public class GraphBO {
     }
 
     /**
-     * 
+     *
      * @return the list of vertex of the graph
      */
     public List<VertexBO> getRange() {

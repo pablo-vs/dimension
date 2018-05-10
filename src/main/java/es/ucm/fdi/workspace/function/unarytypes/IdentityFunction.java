@@ -17,6 +17,7 @@ public class IdentityFunction extends UnaryFunction {
 
     /**
      * Class constructor specifying variable and variables list.
+     *
      * @param variable
      * @param vars List of variables
      */

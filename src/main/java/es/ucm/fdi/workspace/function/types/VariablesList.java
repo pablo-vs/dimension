@@ -77,8 +77,8 @@ public class VariablesList {
 
     /**
      * Sets the value of the variables.
-     * 
-     * @param values 
+     *
+     * @param values
      */
     public void setVariables(double[] values) {
         if (values.length == variables.size()) {
@@ -116,7 +116,7 @@ public class VariablesList {
 
     /**
      *
-     * @param variable 
+     * @param variable
      * @return the value of the given number of variable
      */
     public double getVariable(int variable) {
@@ -133,9 +133,9 @@ public class VariablesList {
     }
 
     /**
-     * 
+     *
      * @param position
-     * @return the variable at a determined position 
+     * @return the variable at a determined position
      */
     private Variable getVariableAtPosition(int position) {
         Variable variable = null;

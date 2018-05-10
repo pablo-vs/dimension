@@ -16,6 +16,7 @@ public class SineFunction extends UnaryFunction {
 
     /**
      * Class constructor specifying functionBO and variables list.
+     *
      * @param f Function
      * @param vars Variables
      */

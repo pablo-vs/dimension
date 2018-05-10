@@ -18,6 +18,7 @@ public class ConstantFunction extends UnaryFunction {
 
     /**
      * Class constructor specifying number and variables list.
+     *
      * @param num Number
      * @param vars Variables
      */

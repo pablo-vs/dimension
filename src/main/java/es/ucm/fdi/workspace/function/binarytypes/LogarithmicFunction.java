@@ -24,10 +24,10 @@ public class LogarithmicFunction extends BinaryFunction {
 
     /**
      * Class constructor specifying the base and the argument of the function.
-     * 
+     *
      * @param function1
      * @param function2
-     * @param variables 
+     * @param variables
      */
     public LogarithmicFunction(FunctionBO function1, FunctionBO function2,
             VariablesList variables) {

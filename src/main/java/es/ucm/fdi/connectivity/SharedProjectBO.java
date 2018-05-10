@@ -54,7 +54,7 @@ public abstract class SharedProjectBO extends ProjectTO {
     public abstract boolean hasWriteAccess(String username);
 
     /**
-     * 
+     *
      * @return the shared ID
      */
     public String getSharedID() {

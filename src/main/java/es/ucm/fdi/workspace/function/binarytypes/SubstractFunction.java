@@ -23,10 +23,10 @@ public class SubstractFunction extends BinaryFunction {
     /**
      * Class constructor specifying both functions to substract and the list of
      * variables.
-     * 
+     *
      * @param function1
      * @param function2
-     * @param variables 
+     * @param variables
      */
     public SubstractFunction(FunctionBO function1, FunctionBO function2,
             VariablesList variables) {

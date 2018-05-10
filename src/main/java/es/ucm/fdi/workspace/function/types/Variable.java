@@ -12,9 +12,9 @@ public class Variable {
 
     /**
      * Class constructor specifying name and value of the variable.
-     * 
+     *
      * @param name
-     * @param value 
+     * @param value
      */
     public Variable(String name, double value) {
         this.name = name;
@@ -23,7 +23,7 @@ public class Variable {
 
     /**
      * Class constructor specifying name of the variable.
-     * 
+     *
      * @param name
      */
     public Variable(String name) {

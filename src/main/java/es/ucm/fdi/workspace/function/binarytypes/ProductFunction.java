@@ -19,14 +19,14 @@ public class ProductFunction extends BinaryFunction {
     public ProductFunction() {
         super();
     }
-    
+
     /**
      * Class constructor specifying both functions to multiply and the list of
      * variables.
-     * 
+     *
      * @param function1
      * @param function2
-     * @param variables 
+     * @param variables
      */
     public ProductFunction(FunctionBO function1, FunctionBO function2, VariablesList variables) {
         super(function1, function2, variables);

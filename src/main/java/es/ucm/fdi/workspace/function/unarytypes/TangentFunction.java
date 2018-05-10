@@ -9,13 +9,14 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 
 /**
  * Represents the tangent function.
- * 
+ *
  * @author Inmaculada Pérez
  */
 public class TangentFunction extends UnaryFunction {
 
     /**
      * Class constructor specifying functionBO and variables list.
+     *
      * @param f Function
      * @param vars Variables
      */

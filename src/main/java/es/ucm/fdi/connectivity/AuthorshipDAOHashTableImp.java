@@ -20,9 +20,10 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
 
     /**
      * Empty class constructor
-     * @throws DAOError 
+     *
+     * @throws DAOError
      */
-    public AuthorshipDAOHashTableImp(){
+    public AuthorshipDAOHashTableImp() {
     }
 
     @Override

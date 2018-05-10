@@ -79,9 +79,9 @@ public abstract class FunctionBO {
 
     /**
      * Evaluates the function from a given list of variables.
-     * 
+     *
      * @param variables
-     * @return 
+     * @return
      */
     public double evaluate(double[] variables) {
         this.variables.setVariables(variables);
@@ -90,7 +90,7 @@ public abstract class FunctionBO {
 
     /**
      * Evaluates an expression.
-     * 
+     *
      * @param variables
      * @return the result of the operation.
      */

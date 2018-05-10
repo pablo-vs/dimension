@@ -22,10 +22,10 @@ public class ModuloFunction extends BinaryFunction {
 
     /**
      * Class constructor specifying both functions and the list of variables.
-     * 
+     *
      * @param function1
      * @param function2
-     * @param variables 
+     * @param variables
      */
     public ModuloFunction(FunctionBO function1, FunctionBO function2, VariablesList variables) {
         super(function1, function2, variables);

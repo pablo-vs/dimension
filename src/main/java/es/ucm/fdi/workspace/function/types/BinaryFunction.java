@@ -9,7 +9,7 @@ import es.ucm.fdi.workspace.FunctionBO;
 /**
  * Represents a binary function.
  *
- * @author  Inmaculada Pérez, Javier Navalón
+ * @author Inmaculada Pérez, Javier Navalón
  */
 public abstract class BinaryFunction extends FunctionBO {
 
@@ -25,9 +25,10 @@ public abstract class BinaryFunction extends FunctionBO {
 
     /**
      * Class constructor specifying two functions and a list of variables.
+     *
      * @param function1
      * @param function2
-     * @param vars 
+     * @param vars
      */
     public BinaryFunction(FunctionBO function1, FunctionBO function2, VariablesList vars) {
         super(vars);

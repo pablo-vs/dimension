@@ -91,7 +91,7 @@ public final class FunctionParserUtils {
 
     /**
      * Eliminates unnecessary parenthesis at the ends of the string.
-     * 
+     *
      * @param str
      * @return the parsed string
      */
@@ -133,10 +133,10 @@ public final class FunctionParserUtils {
     /**
      * Given the position of an opening parenthesis, return the position next to
      * the corresponding closing one.
-     * 
+     *
      * @param str
      * @param ini
-     * @return 
+     * @return
      */
     public static int getEndOfParenthesis(String str, int ini) {
         if (str.charAt(ini) == '(') {

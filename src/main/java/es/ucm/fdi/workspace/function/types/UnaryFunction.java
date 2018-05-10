@@ -12,11 +12,12 @@ import es.ucm.fdi.util.FunctionParserUtils;
 public abstract class UnaryFunction extends FunctionBO {
 
     protected FunctionBO function;
+
     /**
      * Class constructor specifying the function and the list of variables.
-     * 
+     *
      * @param function
-     * @param variables 
+     * @param variables
      */
     public UnaryFunction(FunctionBO function, VariablesList variables) {
         super(variables);
@@ -25,8 +26,8 @@ public abstract class UnaryFunction extends FunctionBO {
 
     /**
      * Class constructor specifying the list of variables.
-     * 
-     * @param variables 
+     *
+     * @param variables
      */
     public UnaryFunction(VariablesList variables) {
         super(variables);

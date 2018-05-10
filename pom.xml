@@ -18,9 +18,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.twitter4j</groupId>
-            <artifactId>twitter4j-core</artifactId>
-            <version>4.0.6</version>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -35,9 +35,8 @@
         </dependency>
         <dependency>
             <groupId>org.twitter4j</groupId>
-            <artifactId>twitter4j</artifactId>
+            <artifactId>twitter4j-core</artifactId>
             <version>4.0.6</version>
-            <type>pom</type>
         </dependency>
     </dependencies>
 </project>

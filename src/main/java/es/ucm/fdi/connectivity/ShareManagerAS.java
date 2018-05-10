@@ -31,9 +31,9 @@ public class ShareManagerAS {
 
     /**
      * Class constructor specifying shared project and author.
-     * 
+     *
      * @param projectDB
-     * @param authorDB 
+     * @param authorDB
      */
     private ShareManagerAS(SharedProjectDAO projectDB, AuthorshipDAO authorDB) {
         this.projectDB = projectDB;
@@ -235,9 +235,9 @@ public class ShareManagerAS {
 
     /**
      * Does the actual storing of the project and the authorships.
-     * 
+     *
      * @param proj
-     * @param authors 
+     * @param authors
      */
     private void store(SharedProjectBO proj, List<String> authors) {
         projectDB.addSharedProject(proj);
@@ -251,10 +251,11 @@ public class ShareManagerAS {
 
     /**
      * Checks that all authors exist and the session corresponds to one of them.
+     *
      * @param authors
      * @param session
      * @return true if valid
-     * @throws NotFoundException 
+     * @throws NotFoundException
      */
     private boolean validateAuthorList(List<String> authors, SessionBO session)
             throws NotFoundException {

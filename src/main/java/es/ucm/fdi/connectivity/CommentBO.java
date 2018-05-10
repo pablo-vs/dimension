@@ -6,6 +6,7 @@ package es.ucm.fdi.connectivity;
  * @author Brian Leiva
  */
 public class CommentBO {
+
     private final String author;
     private final String project;
     private final String text;
@@ -15,14 +16,15 @@ public class CommentBO {
      * Class constructor specifying the project, the author and the comment
      * itself (text)
      *
-     * @param author Author
-     * @param project Project
+     * @param author
+     * @param proj
      * @param text Text
      */
-    public CommentBO(String author, String project, String text) {
+    public CommentBO(String author, String proj, String text) {
         this.author = author;
-        this.project = project;
+        this.project = proj;
         this.text = text;
+        id = author + proj + text.hashCode();
     }
 
     /**
@@ -56,4 +58,5 @@ public class CommentBO {
     public String getId() {
         return id;
     }
+
 }

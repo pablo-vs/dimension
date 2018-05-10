@@ -21,12 +21,12 @@ public class ExponentialFunction extends BinaryFunction {
     }
 
     /**
-     * Class constructor specifying the base function, the exponent and the
-     * list of variables.
-     * 
+     * Class constructor specifying the base function, the exponent and the list
+     * of variables.
+     *
      * @param function1
      * @param function2
-     * @param variables 
+     * @param variables
      */
     public ExponentialFunction(FunctionBO function1, FunctionBO function2,
             VariablesList variables) {
@@ -55,7 +55,7 @@ public class ExponentialFunction extends BinaryFunction {
             ExponentialFunction function = null;
             FunctionBO[] parsedFunction = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
             if (parsedFunction[0] != null && parsedFunction[1] != null) {
-                function = new ExponentialFunction(parsedFunction[0], 
+                function = new ExponentialFunction(parsedFunction[0],
                         parsedFunction[1], variables);
             }
             return function;

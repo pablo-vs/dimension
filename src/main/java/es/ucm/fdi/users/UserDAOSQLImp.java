@@ -1,60 +1,37 @@
 package es.ucm.fdi.users;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.sql.JDBCType;
+
+import java.util.Date;
+import java.time.Period;
 import java.util.List;
-import java.sql.*;
-import java.text.ParseException;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+
+import twitter4j.auth.AccessToken;
 
 import es.ucm.fdi.exceptions.DAOError;
-import es.ucm.fdi.util.SQLUtil;
+import es.ucm.fdi.data.DAOSQLImp;
 
-public class UserDAOSQLImp implements UserDAO {
+public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
 
-    private static final String DRIVER = "org.mariadb.jdbc.Driver";
     private static final String TABLE = "users";
-    private static final String DEFAULT_DATABASE = "dimension";
-    private static final String DEFAULT_HOST = "localhost";
-    private static final String DEFAULT_USER = "root";
-    private static final String DEFAULT_PASSWD = "";
 
-    private String host, db, user, passwd;
+    private static final String[] COLUMNS = {"id", "name", "passwd", "date", "email", "telephone",
+        "picture", "description", "type", "banTime", "twitter"};
 
-    /**
-     * Class constructor.
-     * 
-     * @param host
-     * @param db
-     * @param user
-     * @param password
-     * @throws SQLException
-     * @throws ClassNotFoundException 
-     */
-    public UserDAOSQLImp(String host, String db, String user, String password)
-            throws SQLException, ClassNotFoundException {
-        // Load the JDBC driver
-        Class.forName(DRIVER);
+    private static final JDBCType[] COLUMN_TYPES
+            = {JDBCType.VARCHAR, JDBCType.VARCHAR, JDBCType.VARCHAR,
+                JDBCType.DATE, JDBCType.VARCHAR, JDBCType.VARCHAR,
+                JDBCType.VARCHAR, JDBCType.VARCHAR, JDBCType.VARCHAR,
+                JDBCType.TIMESTAMP, JDBCType.VARCHAR};
 
-        this.host = host;
-        this.db = db;
-        this.user = user;
-        this.passwd = password;
-
-        // Try to connect
-        try (
-            Connection connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + db, user, password)) {
-        } catch (SQLException e) {
-            throw e;
-        }
-    }
-
-    /**
-     * Class constructor.
-     * 
-     * @throws SQLException
-     * @throws ClassNotFoundException 
-     */
-    public UserDAOSQLImp() throws SQLException, ClassNotFoundException {
-        this(DEFAULT_HOST, DEFAULT_DATABASE, DEFAULT_USER, DEFAULT_PASSWD);
+    public UserDAOSQLImp() {
+        super(TABLE, COLUMNS, COLUMN_TYPES);
     }
 
     /**
@@ -64,23 +41,11 @@ public class UserDAOSQLImp implements UserDAO {
      */
     @Override
     public void addUser(UserTO user) throws DAOError {
-        String[] values1 = {user.getID(), user.getName(), user.getPassword()};
-        String[] values2 = {user.getEmail(), user.getTelephone(), user.getPicture(),
-            user.getDescription(), String.valueOf(user.getType())};
-        Date date = (Date) user.getDate();
-        StringBuilder query = new StringBuilder();
-        query.append("INSERT INTO ");
-        query.append(TABLE);
-        query.append(" VALUES ");
-        query.append(commaList(values1));
-        query.append(date);
-        query.append(user.getBanTime());
-        query.append(commaList(values2));
-        query.append(";");
-        try (Statement stat = SQLUtil.getStatement()) {
-            stat.executeQuery(query.toString());
+        try {
+            addRecord(user);
         } catch (SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+            throw new DAOError("Error while adding user " + user.getID()
+                    + ".\n" + e.getMessage(), e);
         }
     }
 
@@ -91,37 +56,12 @@ public class UserDAOSQLImp implements UserDAO {
      */
     @Override
     public void removeUser(String id) {
-        StringBuilder query = new StringBuilder();
-        query.append("DELETE FROM ");
-        query.append(TABLE);
-        query.append(" WHERE id = ");
-        query.append(id);
-        query.append(";");
-        try (Statement stat = SQLUtil.getStatement()) {
-            stat.executeQuery(query.toString());
+        try {
+            deleteRecord(id);
         } catch (SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+            throw new DAOError("Error while removing user " + id
+                    + ".\n" + e.getMessage(), e);
         }
-    }
-
-    /**
-     * Modifies a column.
-     * 
-     * @param column
-     * @param update
-     * @param id
-     * @return 
-     */
-    private String modify(String column, String update, String id) {
-        StringBuilder query = new StringBuilder();
-        query.append("UPDATE users SET");
-        query.append(column);
-        query.append(" = ");
-        query.append(update);
-        query.append(" WHERE id = ");
-        query.append(id);
-        query.append(";");
-        return query.toString();
     }
 
     /**
@@ -131,20 +71,11 @@ public class UserDAOSQLImp implements UserDAO {
      */
     @Override
     public void modifyUser(UserTO user) {
-        StringBuilder query = new StringBuilder();
-        query.append(modify("name", user.getName(), user.getID())).append("\n");
-        query.append(modify("password", user.getPassword(), user.getID())).append("\n");
-        query.append(modify("date", String.valueOf(user.getDate()), user.getID())).append("\n");
-        query.append(modify("email", user.getEmail(), user.getID())).append("\n");
-        query.append(modify("telephone", user.getTelephone(), user.getID())).append("\n");
-        query.append(modify("picture", user.getPicture(), user.getID())).append("\n");
-        query.append(modify("description", user.getDescription(), user.getID())).append("\n");
-        query.append(modify("type", String.valueOf(user.getType()), user.getID())).append("\n");
-        query.append(modify("ban time", String.valueOf(user.getBanTime()), user.getID()));
-        try (Statement stat = SQLUtil.getStatement()) {
-            stat.executeQuery(query.toString());
+        try {
+            modifyRecord(user);
         } catch (SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+            throw new DAOError("Error while modifying user " + user.getID()
+                    + ".\n" + e.getMessage(), e);
         }
     }
 
@@ -156,17 +87,18 @@ public class UserDAOSQLImp implements UserDAO {
      */
     @Override
     public UserTO findUser(String id) {
-        UserTO user = null;
-        try (Statement stat = SQLUtil.getStatement()) {
-            ResultSet rs = SQLUtil.getStatement().executeQuery("SELECT * FROM users WHERE id = '" + id + "';");
-            user = new UserTO(rs.getString("id"), rs.getString("password"), rs.getString("name"),
-                    rs.getString("date"), rs.getString("email"), rs.getString("telephone"),
-                    rs.getString("picture"), rs.getString("description"),
-                    rs.getString("type"), rs.getString("ban time"));
-        } catch (ParseException | SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+        UserTO result = null;
+        List<UserTO> find;
+        try {
+            find = findByVal(0, id);
+        } catch (SQLException e) {
+            throw new DAOError("Error while finding user " + id
+                    + ".\n" + e.getMessage(), e);
         }
-        return user;
+        if (find.size() == 1) {
+            result = find.get(0);
+        }
+        return result;
     }
 
     /**
@@ -176,36 +108,71 @@ public class UserDAOSQLImp implements UserDAO {
      */
     @Override
     public List<UserTO> getUsers() {
-        ArrayList<UserTO> result = new ArrayList<>();
-        try (Statement stat = SQLUtil.getStatement()) {
-            ResultSet rs = SQLUtil.getStatement().executeQuery("SELECT * FROM users;");
-            rs.first();
-            while (!rs.isAfterLast()) {
-                UserTO user = new UserTO(rs.getString("id"), rs.getString("password"), rs.getString("name"),
-                        rs.getString("date"), rs.getString("email"), rs.getString("telephone"),
-                        rs.getString("picture"), rs.getString("description"),
-                        rs.getString("type"), rs.getString("ban time"));
-                result.add(user);
-                rs.next();
-            }
-        } catch (ParseException | SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+        List<UserTO> result;
+        try {
+            result = getAllRecords();
+        } catch (SQLException e) {
+            throw new DAOError("Error while reading all users.\n"
+                    + e.getMessage(), e);
         }
         return result;
     }
 
-    /**
-     * 
-     * @param values
-     * @return the values of the list splitted with commas
-     */
-    private String commaList(String[] values) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("(");
-        for (String s : values) {
-            sb.append("'").append(s).append("', ");
+    @Override
+    public Object[] getData(UserTO u) {
+        try {
+            ByteArrayOutputStream str = new ByteArrayOutputStream();
+            ObjectOutputStream ostr = new ObjectOutputStream(str);
+            ostr.writeObject(u.getTwitterAccess());
+            String twitterAccess = str.toString("UTF-8");
+            Object[] data = {u.getID(), u.getName(), u.getPassword(), u.getDate(),
+                u.getEmail(), u.getTelephone(), u.getPicture(),
+                u.getDescription(), u.getType(), u.getBanTime(), twitterAccess};
+            return data;
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Could not serialize AccessToken for user "
+                    + u.getID());
         }
-        sb.setCharAt(sb.length() - 2, ')');
-        return sb.substring(0, sb.length() - 1);
     }
+
+    @Override
+    public UserTO build(Object[] data) {
+        if (data.length != 11) {
+            throw new IllegalArgumentException("Constructor requires 11 objects, "
+                    + data.length + " given");
+        }
+        if (!(data[0] instanceof String && data[1] instanceof String && data[2] instanceof String
+                && data[3] instanceof Date && data[4] instanceof String && data[5] instanceof String
+                && data[6] instanceof String && data[7] instanceof String && data[8] instanceof Integer
+                && data[9] instanceof Period && data[10] instanceof String)) {
+            throw new IllegalArgumentException("Invalid data type");
+        }
+
+        Object token;
+        try {
+            ByteArrayInputStream str = new ByteArrayInputStream(((String) data[10]).getBytes("UTF-8"));
+            token = new ObjectInputStream(str).readObject();
+            if (!(token instanceof AccessToken)) {
+                throw new IllegalArgumentException("Could not read access token");
+            }
+        } catch (ClassNotFoundException | IOException e) {
+            throw new IllegalArgumentException("Could not read access token");
+        }
+
+        UserType type = UserType.fromInt((Integer) data[8]);
+
+        return new UserTO((String) data[0],
+                (String) data[1],
+                (String) data[2],
+                (Date) data[3],
+                (String) data[4],
+                (String) data[5],
+                (String) data[6],
+                (String) data[7],
+                type,
+                (Period) data[9],
+                (AccessToken) token);
+
+    }
+
 }

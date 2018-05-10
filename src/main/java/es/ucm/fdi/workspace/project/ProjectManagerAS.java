@@ -13,14 +13,15 @@ public class ProjectManagerAS {
 
     /**
      * Class constructor specifying DAO project.
-     * @param dao 
+     *
+     * @param dao
      */
     private ProjectManagerAS(ProjectDAO dao) {
         this.dao = dao;
     }
 
     /**
-     * 
+     *
      * @return the DAO project
      */
     public ProjectDAO getDao() {
@@ -88,7 +89,7 @@ public class ProjectManagerAS {
 
     /**
      * Saves the different modifications of the project.
-     * 
+     *
      * @param proj Project
      */
     public void saveChanges(ProjectTO proj) {
@@ -101,7 +102,7 @@ public class ProjectManagerAS {
 
     /**
      * Parses the project id.
-     * 
+     *
      * @param proj Project
      * @return if the format is valid
      */

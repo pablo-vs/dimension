@@ -1,5 +1,7 @@
 package es.ucm.fdi.connectivity;
 
+import java.util.Objects;
+
 /**
  * Represents a relationship of authorship between a user and a shared project.
  *
@@ -24,13 +26,13 @@ public class AuthorshipBO {
      * Class constructor specifying author and shared project. Id is made by the
      * joint of user and project
      *
-     * @param user Author
-     * @param proj Shared project
+     * @param author Author
+     * @param project Shared project
      */
-    public AuthorshipBO(String user, String proj) {
-        author = user;
-        project = proj;
-        id = user + project;
+    public AuthorshipBO(String author, String project) {
+        this.author = author;
+        this.project = project;
+        id = author + project;
     }
 
     /**
@@ -64,5 +66,14 @@ public class AuthorshipBO {
         } else {
             return id.equals(((AuthorshipBO) other).getId());
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode(this.author);
+        hash = 47 * hash + Objects.hashCode(this.project);
+        hash = 47 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 }

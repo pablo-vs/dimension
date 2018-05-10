@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * Represents the view of a function.
- * 
+ *
  * @author Eduardo Amaya, Javier Galiana, Brian Leiva
  */
 public class VisualizationBO {
@@ -24,14 +24,15 @@ public class VisualizationBO {
 
     /**
      * Class constructor specifying another list of graphs.
-     * @param graphics 
+     *
+     * @param graphics
      */
     public VisualizationBO(List<GraphBO> graphics) {
         this.graphics = new ArrayList<>(graphics);
     }
 
     /**
-     * 
+     *
      * @return the list of graphs
      */
     public List<GraphBO> getGraph() {
@@ -40,7 +41,7 @@ public class VisualizationBO {
 
     /**
      * Adds a new graph to list.
-     * 
+     *
      * @param graph
      * @param dimX
      * @param dimY
@@ -53,7 +54,7 @@ public class VisualizationBO {
     }
 
     /**
-     * 
+     *
      * @param graph
      * @param dimX
      * @param dimY

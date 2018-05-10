@@ -9,13 +9,14 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 
 /**
  * Represents the secant function.
- * 
+ *
  * @author Inmaculada Pérez
  */
 public class SecantFunction extends UnaryFunction {
 
     /**
      * Class constructor specifying functionBO and variables list.
+     *
      * @param f Function
      * @param vars Variables
      */

@@ -15,7 +15,7 @@ public class DivideFunction extends BinaryFunction {
 
     /**
      * Empty class constructor.
-     */ 
+     */
     public DivideFunction() {
         super();
     }
@@ -23,11 +23,11 @@ public class DivideFunction extends BinaryFunction {
     /**
      * Class constructor specifying two functions to divide and the list of
      * variables.
-     * 
+     *
      * @param function1
      * @param function2
      * @param variables
-     */ 
+     */
     public DivideFunction(FunctionBO function1, FunctionBO function2,
             VariablesList variables) {
         super(function1, function2, variables);

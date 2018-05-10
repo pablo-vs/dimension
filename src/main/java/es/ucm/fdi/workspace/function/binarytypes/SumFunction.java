@@ -23,10 +23,10 @@ public class SumFunction extends BinaryFunction {
     /**
      * Class constructor specifying both functions to sum and the list of
      * variables.
-     * 
+     *
      * @param function1
      * @param function2
-     * @param variables 
+     * @param variables
      */
     public SumFunction(FunctionBO function1, FunctionBO function2,
             VariablesList variables) {

@@ -1,103 +1,53 @@
 package es.ucm.fdi.connectivity;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.JDBCType;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import es.ucm.fdi.exceptions.DAOError;
-import es.ucm.fdi.util.SQLUtil;
+import es.ucm.fdi.data.DAOSQLImp;
 
-public class CommentDAOSQLImp implements CommentDAO {
+public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO {
 
-    private static final String DRIVER = "org.mariadb.jdbc.Driver";
     private static final String TABLE = "comments";
-    private static final String DEFAULT_DATABASE = "dimension";
-    private static final String DEFAULT_HOST = "localhost";
-    private static final String DEFAULT_USER = "root";
-    private static final String DEFAULT_PASSWD = "";
 
-    private String host, db, user, passwd;
+    private static final String[] COLUMNS = {"id", "author", "project", "text"};
 
-    /**
-     * Class constructor.
-     * 
-     * @param host
-     * @param db
-     * @param user
-     * @param password
-     * @throws SQLException
-     * @throws ClassNotFoundException 
-     */
-    public CommentDAOSQLImp(String host, String db, String user, String password)
-            throws SQLException, ClassNotFoundException {
-        // Load the JDBC driver
-        Class.forName(DRIVER);
+    private static final JDBCType[] COLUMN_TYPES = {JDBCType.VARCHAR, JDBCType.VARCHAR,
+        JDBCType.VARCHAR, JDBCType.VARCHAR};
 
-        this.host = host;
-        this.db = db;
-        this.user = user;
-        this.passwd = password;
-
-        // Try to connect
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + db, user, password)) {
-        } catch (SQLException e) {
-            throw e;
-        }
-    }
-
-    /**
-     * Class constructor.
-     * 
-     * @throws SQLException
-     * @throws ClassNotFoundException 
-     */
-    public CommentDAOSQLImp() throws SQLException, ClassNotFoundException {
-        this(DEFAULT_HOST, DEFAULT_DATABASE, DEFAULT_USER, DEFAULT_PASSWD);
+    public CommentDAOSQLImp() {
+        super(TABLE, COLUMNS, COLUMN_TYPES);
     }
 
     /**
      * Adds a new comment to the database.
      *
-     * @param comment The new comment as a CommentBO.
+     * @param auth The new comment as a CommentBO.
      */
     @Override
     public void addComment(CommentBO comment) throws DAOError {
-        String[] values = {comment.getId(), comment.getAuthor(), comment.getProj(), comment.getText()};
-        StringBuilder query = new StringBuilder();
-        query.append("INSERT INTO ");
-        query.append(TABLE);
-        query.append(" VALUES ");
-        query.append(commaList(values));
-        query.append(";");
-        try (Statement stat = SQLUtil.getStatement()) {
-            stat.executeQuery(query.toString());
+        try {
+            addRecord(comment);
         } catch (SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+            throw new DAOError("Error while adding comment " + comment.getId()
+                    + ".\n" + e.getMessage(), e);
         }
     }
 
     /**
      * Removes a comment from the database.
      *
-     * @param comment The comment to remove.
+     * @param auth The comment to remove.
      */
     @Override
     public void removeComment(CommentBO comment) throws DAOError {
-        StringBuilder query = new StringBuilder();
-        query.append("DELETE FROM ");
-        query.append(TABLE);
-        query.append(" WHERE id = '");
-        query.append(comment.getId());
-        query.append("';");
-        try (Statement stat = SQLUtil.getStatement()) {
-            stat.executeQuery(query.toString());
+        try {
+            deleteRecord(comment.getId());
         } catch (SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+            throw new DAOError("Error while removing comment " + comment.getId()
+                    + ".\n" + e.getMessage(), e);
         }
     }
 
@@ -109,20 +59,13 @@ public class CommentDAOSQLImp implements CommentDAO {
      */
     @Override
     public List<CommentBO> findByUser(String username) throws DAOError {
-        ArrayList<CommentBO> result = new ArrayList<>();
-        try (Statement stat = SQLUtil.getStatement()) {
-            ResultSet rs = SQLUtil.getStatement().executeQuery("SELECT * FROM authors WHERE author = '" + username + "';");
-            rs.first();
-            while (!rs.isAfterLast()) {
-                CommentBO comment = new CommentBO(rs.getString("author"), rs.getString("project"), rs.getString("text"));
-                result.add(comment);
-                rs.next();
-            }
-
+        List<CommentBO> result;
+        try {
+            result = findByVal(1, username);
         } catch (SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+            throw new DAOError("Error while finding comments from " + username
+                    + ".\n" + e.getMessage(), e);
         }
-
         return result;
     }
 
@@ -134,21 +77,13 @@ public class CommentDAOSQLImp implements CommentDAO {
      */
     @Override
     public List<CommentBO> findByProject(String project) throws DAOError {
-        ArrayList<CommentBO> result = new ArrayList<>();
-        try (Statement stat = SQLUtil.getStatement()) {
-            ResultSet rs = SQLUtil.getStatement().executeQuery("SELECT * FROM authors WHERE project = '" + project + "';");
-
-            rs.first();
-            while (!rs.isAfterLast()) {
-                CommentBO comment = new CommentBO(rs.getString("author"), rs.getString("project"), rs.getString("text"));
-                result.add(comment);
-                rs.next();
-            }
-
+        List<CommentBO> result;
+        try {
+            result = findByVal(2, project);
         } catch (SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+            throw new DAOError("Error while finding comments of " + project
+                    + ".\n" + e.getMessage(), e);
         }
-
         return result;
     }
 
@@ -159,36 +94,35 @@ public class CommentDAOSQLImp implements CommentDAO {
      */
     @Override
     public List<CommentBO> getComments() {
-        ArrayList<CommentBO> result = new ArrayList<>();
-        try (Statement stat = SQLUtil.getStatement()) {
-            ResultSet rs = SQLUtil.getStatement().executeQuery("SELECT * FROM comments;");
-            rs.first();
-            while (!rs.isAfterLast()) {
-                CommentBO comment = new CommentBO(rs.getString("author"), rs.getString("project"), rs.getString("text"));
-                result.add(comment);
-                rs.next();
-            }
+        List<CommentBO> result;
+        try {
+            result = getAllRecords();
         } catch (SQLException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
+            throw new DAOError("Error while reading all comments.\n"
+                    + e.getMessage(), e);
         }
         return result;
     }
 
-    /**
-     * 
-     * @param values
-     * @return the values of the list splitted with commas
-     */
-    private String commaList(String[] values) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("(");
-        for (String s : values) {
-            sb.append("'");
-            sb.append(s);
-            sb.append("', ");
+    @Override
+    public CommentBO build(Object[] data) {
+        if (data.length != 4) {
+            throw new IllegalArgumentException("Constructor requires 4 objects, "
+                    + data.length + " given");
         }
-        sb.setCharAt(sb.length() - 2, ')');
-        return sb.substring(0, sb.length() - 1);
+        if (!(data[0] instanceof String && data[1] instanceof String
+                && data[2] instanceof String && data[3] instanceof String)) {
+            throw new IllegalArgumentException("Invalid data type");
+        }
+        return new CommentBO((String) data[1],
+                (String) data[2],
+                (String) data[3]);
+    }
+
+    @Override
+    public Object[] getData(CommentBO c) {
+        Object[] data = {c.getId(), c.getAuthor(), c.getProj(), c.getText()};
+        return data;
     }
 
 }

@@ -30,10 +30,11 @@ public class ProjectTO implements Serializable {
     private ArrayList<VisualizationBO> views = new ArrayList<>();
     private ArrayList<FunctionBO> functions = new ArrayList<>();
     private final String ID;
+
     /**
      * Class constructor specifying ID.
-     * 
-     * @param ID 
+     *
+     * @param ID
      */
     public ProjectTO(String ID) {
         this.ID = ID;
@@ -41,10 +42,10 @@ public class ProjectTO implements Serializable {
 
     /**
      * Class constructor specifying ID, different views and functions.
-     * 
+     *
      * @param ID
      * @param views
-     * @param functions 
+     * @param functions
      */
     public ProjectTO(String ID, List<VisualizationBO> views, List<FunctionBO> functions) {
         this.ID = ID;
@@ -54,7 +55,8 @@ public class ProjectTO implements Serializable {
 
     /**
      * Class constructor specifying another ProjectTO object.
-     * @param other 
+     *
+     * @param other
      */
     public ProjectTO(ProjectTO other) {
         if (other.views != null) {
@@ -67,7 +69,7 @@ public class ProjectTO implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the ID of the project
      */
     public String getID() {
@@ -75,7 +77,7 @@ public class ProjectTO implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the list of visualization object of the project
      */
     public List<VisualizationBO> getViews() {
@@ -83,7 +85,7 @@ public class ProjectTO implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the different functions
      */
     public List<FunctionBO> getFunctions() {
@@ -92,8 +94,8 @@ public class ProjectTO implements Serializable {
 
     /**
      * Sets a new list of functions.
-     * 
-     * @param functions 
+     *
+     * @param functions
      */
     public void setFunctions(List<FunctionBO> functions) {
         this.functions = new ArrayList<>(functions);
@@ -101,8 +103,8 @@ public class ProjectTO implements Serializable {
 
     /**
      * Sets a new list of views.
-     * 
-     * @param views 
+     *
+     * @param views
      */
     public void setViews(List<VisualizationBO> views) {
         this.views = new ArrayList<>(views);

@@ -42,8 +42,7 @@ public class DimensionModel extends DimensionObservable {
     private ProjectTO currentProject = null;
 
     /**
-     * Class constructor.
-     * We don't have an external database, this model creates 
+     * Class constructor. We don't have an external database, this model creates
      * its own volatile database each time it is created
      */
     public DimensionModel() {
@@ -53,9 +52,9 @@ public class DimensionModel extends DimensionObservable {
 
     /**
      * Implements the login of a user.
-     * 
+     *
      * @param username
-     * @param password 
+     * @param password
      */
     public void login(String username, String password) {
         try {
@@ -80,9 +79,9 @@ public class DimensionModel extends DimensionObservable {
 
     /**
      * Adds a comment to the project.
-     * 
+     *
      * @param projID
-     * @param message 
+     * @param message
      */
     public void commentProject(String projID, String message) {
         try {

@@ -7,7 +7,7 @@ import es.ucm.fdi.data.MemoryDB;
 
 /**
  * Represents a hashtable that contains the shared projects.
- * 
+ *
  * @author Eduardo Amaya, Pablo Villalobos
  */
 public class SharedProjectDAOHashTableImp implements SharedProjectDAO {

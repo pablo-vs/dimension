@@ -38,8 +38,8 @@ public class UserDAOHashTableImp implements UserDAO {
         if (findUser(user.getID()) != null) {
             db.insert(user, user.getID());
         } else {
-            throw new IllegalArgumentException("The user " + user.getID() +
-                    " does not exist");
+            throw new IllegalArgumentException("The user " + user.getID()
+                    + " does not exist");
         }
     }
 

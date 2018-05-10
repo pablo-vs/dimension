@@ -1,12 +1,14 @@
 package es.ucm.fdi.connectivity;
 
+import es.ucm.fdi.data.SQLDescribable;
+
 /**
  * Represents a relationship of authorship between a user and a shared project.
  *
  * @author Pablo Villalobos
  * @version 04.04.2018
  */
-public class AuthorshipBO {
+public class AuthorshipBO extends SQLDescribable {
 
     /**
      * Author of the project
@@ -34,6 +36,20 @@ public class AuthorshipBO {
         id = user + project;
     }
 
+    @Override
+    public AuthorshipBO(Object [] data) {
+	if(data.length != 3) {
+	    throw new IllegalArgumentException("Constructor requires 3 objects, "
+					       + data.length + " given");
+	}
+	if(!(data[0] instanceof String && data[1] instanceof String && data[2] instanceof String)) {
+	    throw new IllegalArgumentException("Invalid data type");
+	}
+	id = (String) data[0];
+	author = (String) data[1];
+	project = (String) data[2];
+    }
+    
     /**
      *
      * @return the id of the authorship

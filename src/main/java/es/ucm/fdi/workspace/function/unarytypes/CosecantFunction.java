@@ -12,37 +12,42 @@ import es.ucm.fdi.util.FunctionParserUtils;
  *
  * @author Inmapg
  */
-public class CosecantFunction extends UnaryFunction{
-	
-	public CosecantFunction(FunctionBO f, VariablesList vars) {
-		super(f, vars);
-	}
+public class CosecantFunction extends UnaryFunction {
 
-	@Override
-	public String toString() {
-            return "cosec(" + arg.toString() + ")";
-	}
- 
-	
-	@Override
-	protected double evaluateExpr(VariablesList variables) {
-	        return 1/Math.sin(arg.evaluate(variables));
-	}
+    /**
+     * Class constructor specifying functionBO and variables list.
+     * @param f Function
+     * @param vars Variables
+     */
+    public CosecantFunction(FunctionBO f, VariablesList vars) {
+        super(f, vars);
+    }
 
-	public static class Parser extends UnaryFunction.Parser{
-		private static final Pattern REGEX = Pattern.compile("cosec\\((.*)\\)");
+    @Override
+    public String toString() {
+        return "cosec(" + arg.toString() + ")";
+    }
 
-		@Override
-		public CosecantFunction parse(String strParam, VariablesList variables) {
-			CosecantFunction result = null;
-			String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
-			if(strArg != null) {
-				FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
-				if(arg != null) {
-					result = new CosecantFunction(arg, variables);
-				}
-			}
-			return result;
-		}
-	}
+    @Override
+    protected double evaluateExpr(VariablesList variables) {
+        return 1 / Math.sin(arg.evaluate(variables));
+    }
+
+    public static class Parser extends UnaryFunction.Parser {
+
+        private static final Pattern REGEX = Pattern.compile("cosec\\((.*)\\)");
+
+        @Override
+        public CosecantFunction parse(String strParam, VariablesList variables) {
+            CosecantFunction result = null;
+            String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
+            if (strArg != null) {
+                FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
+                if (arg != null) {
+                    result = new CosecantFunction(arg, variables);
+                }
+            }
+            return result;
+        }
+    }
 }

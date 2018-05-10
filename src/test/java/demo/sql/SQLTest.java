@@ -6,18 +6,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class SQLTest {
-	@Test
-	public void SQLTest() throws SQLException, ClassNotFoundException {
-		// Load the JDBC driver
-		Class.forName("org.mariadb.jdbc.Driver");
-		System.out.println("Driver loaded");
 
-		// Try to connect
-		Connection connection = DriverManager.getConnection
-			("jdbc:mysql://localhost/dimension", "root", "");
+    @Test
+    public void SQLTest() throws SQLException, ClassNotFoundException {
+        // Load the JDBC driver
+        Class.forName("org.mariadb.jdbc.Driver");
+        System.out.println("Driver loaded");
 
-		System.out.println("It works!");
+        // Try to connect
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/dimension", "root", "");
 
-		connection.close();
-	}
+        System.out.println("It works!");
+
+        connection.close();
+    }
 }

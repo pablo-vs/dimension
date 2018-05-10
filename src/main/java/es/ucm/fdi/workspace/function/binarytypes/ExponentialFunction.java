@@ -13,39 +13,40 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
  * @author Inmapg
  * @version 01.04.2018
  */
-public class ExponentialFunction extends BinaryFunction{
+public class ExponentialFunction extends BinaryFunction {
 
-	public ExponentialFunction() {
-		super();
-	}
-	
-	public ExponentialFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
-		super(f1, f2, vars);
-	}
-	
-	@Override
-	public String toString() {
-            StringBuilder ret = new StringBuilder("");
-            ret.append("(").append(f1.toString()).append(") ^ (").append(f2.toString()).append(")");
-            return ret.toString();
-	}
+    public ExponentialFunction() {
+        super();
+    }
 
-	@Override
-	protected double evaluateExpr(VariablesList variables) {
-		return Math.pow(f1.evaluate(variables), f2.evaluate(variables));
-	}
+    public ExponentialFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
+        super(f1, f2, vars);
+    }
 
-	public static class Parser extends BinaryFunction.Parser {
-		private static final Pattern REGEX = Pattern.compile(" *\\^ *");
+    @Override
+    public String toString() {
+        StringBuilder ret = new StringBuilder("");
+        ret.append("(").append(function1.toString()).append(") ^ (").append(function2.toString()).append(")");
+        return ret.toString();
+    }
 
-		@Override
-		public ExponentialFunction parse(String str, VariablesList variables) {
-			ExponentialFunction func = null;
-		        FunctionBO[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
-			if(funcs[0] != null && funcs[1] != null) {
-				func = new ExponentialFunction(funcs[0], funcs[1], variables);
-			}
-			return func;
-		}
-	}
+    @Override
+    protected double evaluateExpr(VariablesList variables) {
+        return Math.pow(function1.evaluate(variables), function2.evaluate(variables));
+    }
+
+    public static class Parser extends BinaryFunction.Parser {
+
+        private static final Pattern REGEX = Pattern.compile(" *\\^ *");
+
+        @Override
+        public ExponentialFunction parse(String str, VariablesList variables) {
+            ExponentialFunction func = null;
+            FunctionBO[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
+            if (funcs[0] != null && funcs[1] != null) {
+                func = new ExponentialFunction(funcs[0], funcs[1], variables);
+            }
+            return func;
+        }
+    }
 }

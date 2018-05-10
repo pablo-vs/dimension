@@ -11,7 +11,6 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package es.ucm.fdi.workspace.project;
 
 import es.ucm.fdi.workspace.FunctionBO;
@@ -25,54 +24,54 @@ import es.ucm.fdi.workspace.VisualizationBO;
  *
  * @author Eduardo Amaya
  * @author Javier Galiana
- * @version 05.05.18
  */
-public class ProjectTO implements Serializable{
-	private static final long serialVersionUID = 1L;
-	private ArrayList<VisualizationBO> views;
-	private ArrayList<FunctionBO> functions;
-	private final String ID;
-	
-	public ProjectTO(String ID) {
-		this.ID = ID;
-		views = new ArrayList<>();
-		functions = new ArrayList<>();
-	}
+public class ProjectTO implements Serializable {
 
-	public ProjectTO(String ID, List<VisualizationBO> vis, List<FunctionBO>  funcs) {
-		this.ID = ID;
-		views = new ArrayList<>(vis);
-		functions = new ArrayList<>(funcs);
-	}
+    private static final long serialVersionUID = 1L;
+    private ArrayList<VisualizationBO> views;
+    private ArrayList<FunctionBO> functions;
+    private final String ID;
 
-	public ProjectTO(ProjectTO other) {
-		if(other.views != null) {
-		views = new ArrayList<>(other.views);
-		}
-		if(other.functions != null) {
-		functions = new ArrayList<>(other.functions);
-		}
-		ID = other.ID;
-	}
-	
-	public String getID() {
-		return ID;
-	}
+    public ProjectTO(String ID) {
+        this.ID = ID;
+        views = new ArrayList<>();
+        functions = new ArrayList<>();
+    }
 
-	public List<VisualizationBO> getViews() {
-		return views;
-	}
+    public ProjectTO(String ID, List<VisualizationBO> vis, List<FunctionBO> funcs) {
+        this.ID = ID;
+        views = new ArrayList<>(vis);
+        functions = new ArrayList<>(funcs);
+    }
 
-	public List<FunctionBO> getFunctions() {
-		return functions;
-	}
+    public ProjectTO(ProjectTO other) {
+        if (other.views != null) {
+            views = new ArrayList<>(other.views);
+        }
+        if (other.functions != null) {
+            functions = new ArrayList<>(other.functions);
+        }
+        ID = other.ID;
+    }
 
-	public void setFunctions(List<FunctionBO> funcs) {
-		functions = new ArrayList<>(funcs);
-	}
+    public String getID() {
+        return ID;
+    }
 
-	public void setViews(List<VisualizationBO> vis) {
-		views = new ArrayList<>(vis);
-	}
-	
+    public List<VisualizationBO> getViews() {
+        return views;
+    }
+
+    public List<FunctionBO> getFunctions() {
+        return functions;
+    }
+
+    public void setFunctions(List<FunctionBO> funcs) {
+        functions = new ArrayList<>(funcs);
+    }
+
+    public void setViews(List<VisualizationBO> vis) {
+        views = new ArrayList<>(vis);
+    }
+
 }

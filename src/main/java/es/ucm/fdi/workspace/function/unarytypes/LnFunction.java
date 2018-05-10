@@ -1,4 +1,3 @@
-
 package es.ucm.fdi.workspace.function.unarytypes;
 
 import es.ucm.fdi.util.FunctionParserUtils;
@@ -12,40 +11,44 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
  * Representa el logaritmo neperiano.
  *
  * @author Inmapg
- * @version 02.04.2018
  */
-public class LnFunction extends UnaryFunction{
-        
-    	public LnFunction(FunctionBO f, VariablesList vars) {
-		super(f, vars);
-	}
+public class LnFunction extends UnaryFunction {
 
-	@Override
-	public String toString() {
-            return "ln(" + arg.toString() + ")";
-	}
- 
-	
-	@Override
-	protected double evaluateExpr(VariablesList variables) {
-	        return Math.log(arg.evaluate(variables));
-	}
+    /**
+     * Class constructor specifying functionBO and variables list.
+     * @param f Function
+     * @param vars Variables
+     */
+    public LnFunction(FunctionBO f, VariablesList vars) {
+        super(f, vars);
+    }
 
-	public static class Parser extends UnaryFunction.Parser{
-		private static final Pattern REGEX = Pattern.compile("ln\\((.*)\\)");
+    @Override
+    public String toString() {
+        return "ln(" + arg.toString() + ")";
+    }
 
-		@Override
-		public LnFunction parse(String strParam, VariablesList variables) {
-			LnFunction result = null;
-			String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
-			if(strArg != null) {
-				FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
-				if(arg != null) {
-					result = new LnFunction(arg, variables);
-				}
-			}
-			return result;
-		}
-	}
+    @Override
+    protected double evaluateExpr(VariablesList variables) {
+        return Math.log(arg.evaluate(variables));
+    }
+
+    public static class Parser extends UnaryFunction.Parser {
+
+        private static final Pattern REGEX = Pattern.compile("ln\\((.*)\\)");
+
+        @Override
+        public LnFunction parse(String strParam, VariablesList variables) {
+            LnFunction result = null;
+            String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
+            if (strArg != null) {
+                FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
+                if (arg != null) {
+                    result = new LnFunction(arg, variables);
+                }
+            }
+            return result;
+        }
+    }
 
 }

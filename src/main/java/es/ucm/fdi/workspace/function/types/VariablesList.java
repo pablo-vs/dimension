@@ -13,130 +13,134 @@ import java.util.Iterator;
  * @version 01.04.2018
  */
 public class VariablesList {
-	private TreeMap<String, Variable> variables;
 
-	/**
-	 * Constructor por copia.
-	 *
-	 * @param VariablesList lista que se desea copiar.
-	 */
-	public VariablesList(VariablesList other) {
-		variables = (TreeMap<String, Variable>) other.variables.clone();
-	}
-	
-	/**
-	 * Construye e inicializa una lista de variables
-	 *
-	 * @param n El número de la lista.
-	 */
-	public VariablesList(int n) {
-		variables = new TreeMap<>();
-		for(int i = 0; i < n; ++i) {
-			String s = "x_" + i;
-			variables.put(s, new Variable(s));
-		}
-		
-	}
+    private TreeMap<String, Variable> variables;
 
-	/**
-	 * Construye e inicializa una lista de variables con los nombres dados.
-	 *
-	 * @param nameList La lista de nombres de variables. 
-	 */
-	public VariablesList(String[] nameList) {
-		variables = new TreeMap<>();
-		for (String s : nameList) {
-			variables.put(s, new Variable(s));
-		}
-	}
-	
-	/**
-	 * Establece el valor de la variable dada.
-	 *
-	 * @param var El número de la variable que se quiere cambiar.
-	 * @param val El valor que se quiere establecer.
-	 */
-	public void setVariable(int var, double val) {
-		if (0 <= var && var < variables.size()) {
-			getVarAtPos(var).setVal(val);
-		}
-	}
+    /**
+     * Constructor por copia.
+     *
+     * @param VariablesList lista que se desea copiar.
+     */
+    public VariablesList(VariablesList other) {
+        variables = (TreeMap<String, Variable>) other.variables.clone();
+    }
 
-	/**
-         * Establece el valor de la variable dada.
-	 *
-	 * @param var El nombre de la variable que se quiere cambiar.
-	 * @param val El valor que se quiere establecer.
-	 */
-	public void setVariable(String var, double val) {
-		if (variables.containsKey(var)) {
-			variables.get(var).setVal(val);
-		} else {
-			throw new IllegalArgumentException("La variable " + var + " no existe");
-		}
-	}
+    /**
+     * Construye e inicializa una lista de variables
+     *
+     * @param n El número de la lista.
+     */
+    public VariablesList(int n) {
+        variables = new TreeMap<>();
+        for (int i = 0; i < n; ++i) {
+            String s = "x_" + i;
+            variables.put(s, new Variable(s));
+        }
 
-	public void setVariables(double[] vals) {
-		if(vals.length == variables.size()) {
-			for(int i = 0; i < vals.length; ++i) {
-				setVariable(i, vals[i]);
-			}
-		} else {
-			throw new IllegalArgumentException("Number of values does not match number of variables");
-		}
-	}
+    }
 
-	/**
-	 * Devuelve el valor de la variable indicada.
-	 *
-	 * @param var El nombre de la variable a la que acceder.
-	 * @return El valor almacenado.
-	 */
-	public double getVariable(String var) {
-	        if (variables.containsKey(var)) {
-			return variables.get(var).getVal();
-		} else {
-			throw new IllegalArgumentException("La variable " + var + " no existe");
-		}
-	}
+    /**
+     * Construye e inicializa una lista de variables con los nombres dados.
+     *
+     * @param nameList La lista de nombres de variables.
+     */
+    public VariablesList(String[] nameList) {
+        variables = new TreeMap<>();
+        for (String s : nameList) {
+            variables.put(s, new Variable(s));
+        }
+    }
 
-	/**
-	 * Returns the ordered set of variables.
-	 *
-	 * @return The set.
-	 */
-	public Collection<Variable> getVariables() {
-		return variables.values();
-	}
-	
-	/**
-	 * Devuelve el valor de la variable indicada.
-	 *
-	 * @param var El número de la variable a la que acceder.
-	 * @return El valor almacenado.
-	 */
-	public double getVariable(int var) {
-		return getVarAtPos(var).getVal();
-	}
+    /**
+     * Establece el valor de la variable dada.
+     *
+     * @param var El número de la variable que se quiere cambiar.
+     * @param val El valor que se quiere establecer.
+     */
+    public void setVariable(int var, double val) {
+        if (0 <= var && var < variables.size()) {
+            getVarAtPos(var).setVal(val);
+        }
+    }
 
-	/**
-	 * Compara esta lista con otra y devuelve true si los nombres de las variables son iguales.
-	 *
-	 * @param other La lista con la que se desea comparar.
-         * @return 
-	 */
-	public boolean equals(VariablesList other) {
-		return (this == other) || (variables.keySet().equals(other.variables.keySet()));
-	}
-	
-	private Variable getVarAtPos(int pos) {
-		Variable var = null;
-		if(0 <= pos && pos < variables.size()) {
-			Iterator<Variable> it = variables.values().iterator();
-			for(int i = 0; i <= pos; ++i) var = it.next();
-		} else {
-			throw new IndexOutOfBoundsException("No variable at position " + pos);
-		}
-		return var;
-	}
+    /**
+     * Establece el valor de la variable dada.
+     *
+     * @param var El nombre de la variable que se quiere cambiar.
+     * @param val El valor que se quiere establecer.
+     */
+    public void setVariable(String var, double val) {
+        if (variables.containsKey(var)) {
+            variables.get(var).setVal(val);
+        } else {
+            throw new IllegalArgumentException("La variable " + var + " no existe");
+        }
+    }
+
+    public void setVariables(double[] vals) {
+        if (vals.length == variables.size()) {
+            for (int i = 0; i < vals.length; ++i) {
+                setVariable(i, vals[i]);
+            }
+        } else {
+            throw new IllegalArgumentException("Number of values does not match number of variables");
+        }
+    }
+
+    /**
+     * Devuelve el valor de la variable indicada.
+     *
+     * @param var El nombre de la variable a la que acceder.
+     * @return El valor almacenado.
+     */
+    public double getVariable(String var) {
+        if (variables.containsKey(var)) {
+            return variables.get(var).getVal();
+        } else {
+            throw new IllegalArgumentException("La variable " + var + " no existe");
+        }
+    }
+
+    /**
+     * Returns the ordered set of variables.
+     *
+     * @return The set.
+     */
+    public Collection<Variable> getVariables() {
+        return variables.values();
+    }
+
+    /**
+     * Devuelve el valor de la variable indicada.
+     *
+     * @param var El número de la variable a la que acceder.
+     * @return El valor almacenado.
+     */
+    public double getVariable(int var) {
+        return getVarAtPos(var).getVal();
+    }
+
+    /**
+     * Compara esta lista con otra y devuelve true si los nombres de las
+     * variables son iguales.
+     *
+     * @param other La lista con la que se desea comparar.
+     * @return
+     */
+    public boolean equals(VariablesList other) {
+        return (this == other) || (variables.keySet().equals(other.variables.keySet()));
+    }
+
+    private Variable getVarAtPos(int pos) {
+        Variable var = null;
+        if (0 <= pos && pos < variables.size()) {
+            Iterator<Variable> it = variables.values().iterator();
+            for (int i = 0; i <= pos; ++i) {
+                var = it.next();
+            }
+        } else {
+            throw new IndexOutOfBoundsException("No variable at position " + pos);
+        }
+        return var;
+    }
 }

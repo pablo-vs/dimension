@@ -8,40 +8,46 @@ import es.ucm.fdi.workspace.function.types.Variable;
 
 /**
  * Represents the identity function
- * 
+ *
  * @author Javier Navalón
- * @version 01.04.2018
  */
-public class IdentityFunction extends UnaryFunction{
-	String variable;
-	
-	public IdentityFunction(String var, VariablesList vars) {
-		super(vars);
-		variable = var;
-	}
-	
-	public String toString() {
-		return variable;
-	}
+public class IdentityFunction extends UnaryFunction {
 
-	@Override
-	protected double evaluateExpr(VariablesList list) {
-		return list.getVariable(variable);
-	}
+    private String variable;
 
-	public static class Parser extends UnaryFunction.Parser {
+    /**
+     * Class constructor specifying variable and variables list.
+     * @param variable
+     * @param vars List of variables
+     */
+    public IdentityFunction(String variable, VariablesList vars) {
+        super(vars);
+        this.variable = variable;
+    }
 
-		@Override
-		public IdentityFunction parse(String str, VariablesList variables) {
-			IdentityFunction f = null;
-			for(Variable v : variables.getVariables()) {
-				if(Pattern.matches(" *"+v.getNombre()+" *", str)) {
-					f = new IdentityFunction(v.getNombre(), variables);
-					break;
-				}
-			}
-			return f;
-		}
+    @Override
+    public String toString() {
+        return variable;
+    }
 
-	}
+    @Override
+    protected double evaluateExpr(VariablesList list) {
+        return list.getVariable(variable);
+    }
+
+    public static class Parser extends UnaryFunction.Parser {
+
+        @Override
+        public IdentityFunction parse(String str, VariablesList variables) {
+            IdentityFunction f = null;
+            for (Variable v : variables.getVariables()) {
+                if (Pattern.matches(" *" + v.getNombre() + " *", str)) {
+                    f = new IdentityFunction(v.getNombre(), variables);
+                    break;
+                }
+            }
+            return f;
+        }
+
+    }
 }

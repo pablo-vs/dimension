@@ -9,18 +9,18 @@ import twitter4j.auth.AccessToken;
  * Creates an object which manages a given twitter session instantiated from an
  * AccessToken. Specifying the consumerKey and consumerSecret values of the
  * application and a certain AccessToken this objects provides a way of dealing
- * effortless with twitter without considering how sessions are implemented. 
- * 
+ * effortless with twitter without considering how sessions are implemented.
+ *
  * @author Arturo Acuaviva, Inmaculada Pérez, Javier Galiana
  */
 public class TwitterService {
-    
+
     /**
-     * Twitter interface 
+     * Twitter interface
      */
     private Twitter twitter;
     /**
-     * Representing authorized Access Token which is passed to the service 
+     * Representing authorized Access Token which is passed to the service
      * provider in order to access protected resources
      */
     private AccessToken twitterAccess;
@@ -35,46 +35,48 @@ public class TwitterService {
      */
     private String consumerSecret;
 
-    
     /**
-     * Creates a TwitterService object from a given AccessToken and 
-     * the consumerKey and consumerSecret of the application.
+     * Creates a TwitterService object from a given AccessToken and the
+     * consumerKey and consumerSecret of the application.
+     *
      * @param twitterAccess
      * @param consumerKey
-     * @param consumerSecret 
+     * @param consumerSecret
      */
     public TwitterService(AccessToken twitterAccess, String consumerKey,
-            String consumerSecret){
+            String consumerSecret) {
         this.twitterAccess = twitterAccess;
         this.consumerKey = consumerKey;
         this.consumerSecret = consumerSecret;
-        try{
+        try {
             registerAccess();
-        }
-        catch (IllegalStateException ex){
+        } catch (IllegalStateException ex) {
             System.err.println("Something went wrong while trying to access "
                     + "twitter...");
         }
     }
-    
+
     /**
      * Tries to register the access in twitter using the twitterAccess provided
-     * @throws IllegalStateException when error while trying to access to twitter
+     *
+     * @throws IllegalStateException when error while trying to access to
+     * twitter
      */
-    private void registerAccess() throws IllegalStateException{
+    private void registerAccess() throws IllegalStateException {
         twitter = new TwitterFactory().getInstance();
         twitter.setOAuthConsumer(consumerKey, consumerSecret);
         twitter.setOAuthAccessToken(twitterAccess);
     }
-    
+
     /**
      * Updates the status in twitter of the user
+     *
      * @param message new status
-     * @throws TwitterException when session was not correctly registered or 
+     * @throws TwitterException when session was not correctly registered or
      * status cannot be updated
      */
-    public void updateStatus(String message) throws TwitterException{
+    public void updateStatus(String message) throws TwitterException {
         twitter.updateStatus(message);
     }
-   
+
 }

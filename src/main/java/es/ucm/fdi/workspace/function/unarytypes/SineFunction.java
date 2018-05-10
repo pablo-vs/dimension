@@ -8,43 +8,47 @@ import es.ucm.fdi.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 
 /**
- * Representa la función seno.
+ * Represents the sine function.
  *
  * @author Inmapg
- * @version 02.04.2018
  */
-public class SineFunction extends UnaryFunction{
-                        
-	public SineFunction(FunctionBO f, VariablesList vars) {
-		super(f, vars);
-	}
+public class SineFunction extends UnaryFunction {
 
-	@Override
-	public String toString() {
-            return "sin(" + arg.toString() + ")";
-	}
- 
-	
-	@Override
-	protected double evaluateExpr(VariablesList variables) {
-	        return Math.sin(arg.evaluate(variables));
-	}
+    /**
+     * Class constructor specifying functionBO and variables list.
+     * @param f Function
+     * @param vars Variables
+     */
+    public SineFunction(FunctionBO f, VariablesList vars) {
+        super(f, vars);
+    }
 
-	public static class Parser extends UnaryFunction.Parser{
-		private static final Pattern REGEX = Pattern.compile("sin\\((.*)\\)");
+    @Override
+    public String toString() {
+        return "sin(" + arg.toString() + ")";
+    }
 
-		@Override
-		public SineFunction parse(String strParam, VariablesList variables) {
-			SineFunction result = null;
-			String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
-			if(strArg != null) {
-				FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
-				if(arg != null) {
-					result = new SineFunction(arg, variables);
-				}
-			}
-			return result;
-		}
-	}
-	
+    @Override
+    protected double evaluateExpr(VariablesList variables) {
+        return Math.sin(arg.evaluate(variables));
+    }
+
+    public static class Parser extends UnaryFunction.Parser {
+
+        private static final Pattern REGEX = Pattern.compile("sin\\((.*)\\)");
+
+        @Override
+        public SineFunction parse(String strParam, VariablesList variables) {
+            SineFunction result = null;
+            String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
+            if (strArg != null) {
+                FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
+                if (arg != null) {
+                    result = new SineFunction(arg, variables);
+                }
+            }
+            return result;
+        }
+    }
+
 }

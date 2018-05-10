@@ -111,11 +111,10 @@ public class UserTO implements Serializable {
             this.type = UserType.ADMIN;
         }
         this.banTime = Period.parse(banTime);
-        
+
     }
 
-    
-       /**
+    /**
      * Class constructor specifying more fields including authentication tokens.
      *
      * @param ID Identifier
@@ -129,12 +128,13 @@ public class UserTO implements Serializable {
      * @param type Type
      * @param banTime Ban time
      * @param twitterAccessToken access token to authorizes access to twitter
-     * @param twitterAccessTokenSecret access secret token to authorizes access to twitter
+     * @param twitterAccessTokenSecret access secret token to authorizes access
+     * to twitter
      * @throws ParseException
      */
     public UserTO(String ID, String password, String name, String date,
             String email, String telephone, String picture, String description,
-            String type, String banTime, String twitterAccessToken, String twitterAccessTokenSecret) 
+            String type, String banTime, String twitterAccessToken, String twitterAccessTokenSecret)
             throws ParseException {
         this.ID = ID;
         this.password = password;
@@ -152,9 +152,9 @@ public class UserTO implements Serializable {
             this.type = UserType.ADMIN;
         }
         this.banTime = Period.parse(banTime);
-        
+
     }
-    
+
     /**
      *
      * @return the user's identifier
@@ -266,11 +266,11 @@ public class UserTO implements Serializable {
     public void setTwitterAccess(AccessToken twitterAccessToken) {
         this.twitterAccess = twitterAccessToken;
     }
-    
+
     /**
      * @return null when no twitter access provided
-    */
-    public boolean hasTwitterAccess(){
+     */
+    public boolean hasTwitterAccess() {
         return (null == twitterAccess);
     }
 

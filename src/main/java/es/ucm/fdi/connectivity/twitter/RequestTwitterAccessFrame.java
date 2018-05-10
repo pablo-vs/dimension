@@ -1,6 +1,5 @@
 package es.ucm.fdi.connectivity.twitter;
 
-
 import java.awt.Dimension;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -78,7 +77,7 @@ public class RequestTwitterAccessFrame extends JFrame {
             loadURL(requestToken.getAuthenticationURL());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error while twitter requesting",
-                     ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+                    ex.getMessage(), JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
     }

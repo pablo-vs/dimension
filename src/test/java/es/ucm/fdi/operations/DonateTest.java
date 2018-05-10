@@ -4,8 +4,8 @@ import org.junit.Test;
 
 public class DonateTest {
 
-	@Test
-	public void donateTest() {
-		DonateAS.donate();
-	}
+    @Test
+    public void donateTest() {
+        DonateAS.donate();
+    }
 }

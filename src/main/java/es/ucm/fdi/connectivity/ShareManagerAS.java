@@ -40,7 +40,7 @@ public class ShareManagerAS {
      *
      * @param projDao
      * @param authorDao
-     * @return 
+     * @return
      */
     public static ShareManagerAS getManager(SharedProjectDAO projDao,
             AuthorshipDAO authorDao) {

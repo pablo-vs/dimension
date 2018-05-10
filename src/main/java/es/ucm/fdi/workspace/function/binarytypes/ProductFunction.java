@@ -13,39 +13,40 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
  * @author Inmapg
  * @version 01.04.2018
  */
-public class ProductFunction extends BinaryFunction{
+public class ProductFunction extends BinaryFunction {
 
-	public ProductFunction() {
-		super();
-	}
-	
-	public ProductFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
-		super(f1, f2, vars);
-	}
-	
-	@Override
-	public String toString() {
-            StringBuilder ret = new StringBuilder("");
-            ret.append("(").append(f1.toString()).append(") * (").append(f2.toString()).append(")");
-            return ret.toString();
-	}
-        
-	@Override
-	protected double evaluateExpr(VariablesList variables) {
-		return (f1.evaluate(variables) * f2.evaluate(variables));
-	}
+    public ProductFunction() {
+        super();
+    }
 
-	public static class Parser extends BinaryFunction.Parser {
-		private static final Pattern REGEX = Pattern.compile(" *\\* *");
+    public ProductFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
+        super(f1, f2, vars);
+    }
 
-		@Override
-		public ProductFunction parse(String str, VariablesList variables) {
-			ProductFunction func = null;
-		        FunctionBO[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
-			if(funcs[0] != null && funcs[1] != null) {
-				func = new ProductFunction(funcs[0], funcs[1], variables);
-			}
-			return func;
-		}
-	}
+    @Override
+    public String toString() {
+        StringBuilder ret = new StringBuilder("");
+        ret.append("(").append(function1.toString()).append(") * (").append(function2.toString()).append(")");
+        return ret.toString();
+    }
+
+    @Override
+    protected double evaluateExpr(VariablesList variables) {
+        return (function1.evaluate(variables) * function2.evaluate(variables));
+    }
+
+    public static class Parser extends BinaryFunction.Parser {
+
+        private static final Pattern REGEX = Pattern.compile(" *\\* *");
+
+        @Override
+        public ProductFunction parse(String str, VariablesList variables) {
+            ProductFunction func = null;
+            FunctionBO[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
+            if (funcs[0] != null && funcs[1] != null) {
+                func = new ProductFunction(funcs[0], funcs[1], variables);
+            }
+            return func;
+        }
+    }
 }

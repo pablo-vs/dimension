@@ -11,7 +11,6 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package es.ucm.fdi.model;
 
 import es.ucm.fdi.model.observer.DimensionObservable;
@@ -31,57 +30,53 @@ import java.security.AccessControlException;
  * @author Arturacu
  */
 public class DimensionModel extends DimensionObservable {
-    
+
     // Databases
     private final UserDAOHashTableImp userDB;
-    private final SharedProjectDAOHashTableImp sharedprojectDB ;
+    private final SharedProjectDAOHashTableImp sharedprojectDB;
     private final AuthorshipDAOHashTableImp authorshipDB;
     private final CommentDAOHashTableImp commentsDB;
     private final UserManagerAS userManager;
     private final ShareManagerAS projectManager;
     private SessionBO currentSession = null;
     private ProjectTO currentProject = null;
-    
-    public DimensionModel(){
+
+    public DimensionModel() {
         // we don't have an external database, this model creates 
         // its own volatile database each time it is created
-        userDB = new UserDAOHashTableImp(); 
+        userDB = new UserDAOHashTableImp();
         sharedprojectDB = new SharedProjectDAOHashTableImp();
         authorshipDB = new AuthorshipDAOHashTableImp();
         commentsDB = new CommentDAOHashTableImp();
-        
-        
+
         projectManager = ShareManagerAS.getManager(sharedprojectDB, authorshipDB);
         userManager = UserManagerAS.getManager(userDB);
     }
-    
-    public void login(String username, String password){
-        try{
+
+    public void login(String username, String password) {
+        try {
             currentSession = userManager.login(username, password);
-        } catch(AccessControlException | NotFoundException e){
+        } catch (AccessControlException | NotFoundException e) {
             notifyException(e);
         }
         notifyLogin(username);
     }
-    
-    public void logout(){
-        if(currentSession != null){
+
+    public void logout() {
+        if (currentSession != null) {
             userManager.logout(currentSession);
             notifyLogout(currentSession.getUser());
-        } else{
+        } else {
             notifyException(new NotFoundException("No session was available!"));
-        } 
+        }
     }
-    
-    
-    public void commentProject(String projID, String message){
-        try{
+
+    public void commentProject(String projID, String message) {
+        try {
             // projectManager.comment(commentsDB, projID, currentSession, message);
-        } catch(AccessControlException | NotFoundException e){
+        } catch (AccessControlException | NotFoundException e) {
             this.notifyObservers(e);
         }
     }
-   
-    
-    
+
 }

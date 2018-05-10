@@ -8,40 +8,46 @@ import es.ucm.fdi.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 
 /**
- *
+ * Represents the tangent function.
+ * 
  * @author Inmapg
  */
-public class TangentFunction extends UnaryFunction{
-	
-	public TangentFunction(FunctionBO f, VariablesList vars) {
-		super(f, vars);
-	}
+public class TangentFunction extends UnaryFunction {
 
-	@Override
-	public String toString() {
-            return "tan(" + arg.toString() + ")";
-	}
- 
-	
-	@Override
-	protected double evaluateExpr(VariablesList variables) {
-	        return Math.tan(arg.evaluate(variables));
-	}
+    /**
+     * Class constructor specifying functionBO and variables list.
+     * @param f Function
+     * @param vars Variables
+     */
+    public TangentFunction(FunctionBO f, VariablesList vars) {
+        super(f, vars);
+    }
 
-	public static class Parser extends UnaryFunction.Parser{
-		private static final Pattern REGEX = Pattern.compile("tan\\((.*)\\)");
+    @Override
+    public String toString() {
+        return "tan(" + arg.toString() + ")";
+    }
 
-		@Override
-		public TangentFunction parse(String strParam, VariablesList variables) {
-			TangentFunction result = null;
-			String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
-			if(strArg != null) {
-				FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
-				if(arg != null) {
-					result = new TangentFunction(arg, variables);
-				}
-			}
-			return result;
-		}
-	}
+    @Override
+    protected double evaluateExpr(VariablesList variables) {
+        return Math.tan(arg.evaluate(variables));
+    }
+
+    public static class Parser extends UnaryFunction.Parser {
+
+        private static final Pattern REGEX = Pattern.compile("tan\\((.*)\\)");
+
+        @Override
+        public TangentFunction parse(String strParam, VariablesList variables) {
+            TangentFunction result = null;
+            String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
+            if (strArg != null) {
+                FunctionBO arg = FunctionParserUtils.parse(strArg, variables);
+                if (arg != null) {
+                    result = new TangentFunction(arg, variables);
+                }
+            }
+            return result;
+        }
+    }
 }

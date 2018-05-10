@@ -22,7 +22,6 @@ import es.ucm.fdi.workspace.GraphBO;
  *
  * @author Brian Leiva
  * @author Inmapg
- *
  */
 public class RotateTransformation implements GraphTransformationBO {
 
@@ -60,9 +59,9 @@ public class RotateTransformation implements GraphTransformationBO {
      */
     @Override
     public void apply(GraphBO g) {
-        girarX(g, x);
-        girarY(g, y);
-        girarZ(g, z);
+        rotateX(g, x);
+        rotateY(g, y);
+        rotatZ(g, z);
     }
 
     /**
@@ -71,7 +70,7 @@ public class RotateTransformation implements GraphTransformationBO {
      * @param g the graph which will be rotated
      * @param d
      */
-    private static void girarX(GraphBO g, double d) {
+    private static void rotateX(GraphBO g, double d) {
         double minY = g.getRange().get(0).at(1), maxY = minY,
                 minZ = g.getRange().get(0).at(2), maxZ = minZ;
         for (int i = 1; i < g.getRange().size(); ++i) {
@@ -104,7 +103,7 @@ public class RotateTransformation implements GraphTransformationBO {
      * @param g the graph which will be rotated
      * @param d
      */
-    private static void girarY(GraphBO g, double d) {
+    private static void rotateY(GraphBO g, double d) {
         double minX = g.getRange().get(0).at(0), maxX = minX,
                 minZ = g.getRange().get(0).at(2), maxZ = minZ;
         for (int i = 1; i < g.getRange().size(); ++i) {
@@ -137,7 +136,7 @@ public class RotateTransformation implements GraphTransformationBO {
      * @param g the graph which will be rotated
      * @param d
      */
-    private static void girarZ(GraphBO g, double d) {
+    private static void rotatZ(GraphBO g, double d) {
         double minX = g.getRange().get(0).at(0), maxX = minX,
                 minY = g.getRange().get(0).at(1), maxY = minY;
         for (int i = 1; i < g.getRange().size(); ++i) {

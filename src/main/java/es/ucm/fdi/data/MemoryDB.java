@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * given. The object is not stored in local memory. Each object type used in the
  * table must override toString method.
  *
- * @author Arturo Acuaviva Huertos 
+ * @author Arturo Acuaviva Huertos
  * @author escalope, @jjgomezs
  *
  * @param <T> The given type for the table

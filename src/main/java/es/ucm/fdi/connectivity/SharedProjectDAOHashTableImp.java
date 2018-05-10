@@ -6,17 +6,18 @@ import java.util.ArrayList;
 import es.ucm.fdi.data.MemoryDB;
 
 /**
- *
- * @author Eduardo Amaya
- * @author Pablo Villalobo
- * @version 06.04.18
+ * Represents a hashtable that contains the shared projects.
+ * 
+ * @author Eduardo Amaya, Pablo Villalobos
  */
 public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
 
-    private MemoryDB<SharedProjectBO> database;
+    private MemoryDB<SharedProjectBO> database = new MemoryDB<>();
 
+    /**
+     * Empty class constructor.
+     */
     public SharedProjectDAOHashTableImp() {
-        database = new MemoryDB<SharedProjectBO>();
     }
 
     /**

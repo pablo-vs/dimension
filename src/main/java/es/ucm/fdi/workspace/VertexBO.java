@@ -28,8 +28,6 @@ import java.util.NoSuchElementException;
  * <b>Changes in the new version still not commented</b>.
  *
  * @author Arturo Acuaviva Huertos
- * @version 0.0.3
- *
  */
 public class VertexBO implements Iterable<Double>, Cloneable {
 

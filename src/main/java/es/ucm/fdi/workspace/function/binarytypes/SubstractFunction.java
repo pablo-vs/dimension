@@ -7,20 +7,30 @@ import es.ucm.fdi.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 
 /**
- * Representa la función resta.
+ * Represents the substract function.
  *
- * @author Javier Navalon
- * @author Inmapg
- * @version 01.04.2018
+ * @author Inmaculada Pérez, Javier Navalon
  */
 public class SubstractFunction extends BinaryFunction {
 
+    /**
+     * Empty class constructor.
+     */
     public SubstractFunction() {
         super();
     }
 
-    public SubstractFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
-        super(f1, f2, vars);
+    /**
+     * Class constructor specifying both functions to substract and the list of
+     * variables.
+     * 
+     * @param function1
+     * @param function2
+     * @param variables 
+     */
+    public SubstractFunction(FunctionBO function1, FunctionBO function2,
+            VariablesList variables) {
+        super(function1, function2, variables);
     }
 
     @Override
@@ -31,7 +41,7 @@ public class SubstractFunction extends BinaryFunction {
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
+    protected double evaluateExpression(VariablesList variables) {
         return (function1.evaluate(variables) - function2.evaluate(variables));
     }
 

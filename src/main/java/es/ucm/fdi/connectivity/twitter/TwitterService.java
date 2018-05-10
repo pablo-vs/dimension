@@ -50,7 +50,7 @@ public class TwitterService {
         this.consumerSecret = consumerSecret;
         try {
             registerAccess();
-        } catch (IllegalStateException ex) {
+        } catch (IllegalStateException e) {
             System.err.println("Something went wrong while trying to access "
                     + "twitter...");
         }

@@ -75,7 +75,7 @@ public class RequestTwitterAccessFrame extends JFrame {
         try {
             twitterAccessRequest();
             loadURL(requestToken.getAuthenticationURL());
-        } catch (Exception ex) {
+        } catch (TwitterException ex) {
             JOptionPane.showMessageDialog(this, "Error while twitter requesting",
                     ex.getMessage(), JOptionPane.ERROR_MESSAGE);
             System.exit(1);

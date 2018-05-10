@@ -23,6 +23,16 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO {
 
     private String host, db, user, passwd;
 
+    /**
+     * Class constructor.
+     * 
+     * @param host
+     * @param db
+     * @param user
+     * @param password
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public AuthorshipDAOSQLImp(String host, String db, String user, String password)
             throws SQLException, ClassNotFoundException {
         // Load the JDBC driver
@@ -40,15 +50,16 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO {
         }
     }
 
+    /**
+     * Class constructor with no params.
+     * 
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public AuthorshipDAOSQLImp() throws SQLException, ClassNotFoundException {
         this(DEFAULT_HOST, DEFAULT_DATABASE, DEFAULT_USER, DEFAULT_PASSWD);
     }
 
-    /**
-     * Adds a new authorship to the database.
-     *
-     * @param auth The new authorship as a AuthorshipBO.
-     */
     @Override
     public void addAuthorship(AuthorshipBO auth) throws DAOError {
         String[] values = {auth.getId(), auth.getAuthor(), auth.getProject()};
@@ -65,11 +76,6 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO {
         }
     }
 
-    /**
-     * Removes a authorship from the database.
-     *
-     * @param auth The authorship to remove.
-     */
     @Override
     public void removeAuthorship(AuthorshipBO auth) throws DAOError {
         StringBuilder query = new StringBuilder();
@@ -85,12 +91,6 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO {
         }
     }
 
-    /**
-     * Find an autorship in the database matching the given username.
-     *
-     * @param username The identifier of the user.
-     * @return A List of authorships where the author is the given user.
-     */
     @Override
     public List<AuthorshipBO> findByUser(String username) throws DAOError {
         ArrayList<AuthorshipBO> result = new ArrayList<>();
@@ -111,12 +111,6 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO {
         return result;
     }
 
-    /**
-     * Find autorships in the database matching the given project.
-     *
-     * @param project The identifier of the project.
-     * @return A List of authorships where the project is the given one.
-     */
     @Override
     public List<AuthorshipBO> findByProject(String project) throws DAOError {
         ArrayList<AuthorshipBO> result = new ArrayList<>();
@@ -137,16 +131,16 @@ public class AuthorshipDAOSQLImp implements AuthorshipDAO {
         return result;
     }
 
-    /**
-     * Returns all the stored authorships.
-     *
-     * @return A List of AuthorshipBOs.
-     */
     @Override
     public List<AuthorshipBO> getAuthorships() throws DAOError {
         return null;
     }
 
+    /**
+     * 
+     * @param values
+     * @return the list of values splitted with a comma
+     */
     private String commaList(String[] values) {
         StringBuilder sb = new StringBuilder();
         sb.append("(");

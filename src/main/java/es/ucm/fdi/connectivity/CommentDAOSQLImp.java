@@ -3,16 +3,13 @@ package es.ucm.fdi.connectivity;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import java.text.ParseException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.*;
 
 import java.util.List;
 import java.util.ArrayList;
 
 import es.ucm.fdi.exceptions.DAOError;
-import es.ucm.fdi.users.UserTO;
 import es.ucm.fdi.util.SQLUtil;
 
 public class CommentDAOSQLImp implements CommentDAO {
@@ -26,6 +23,16 @@ public class CommentDAOSQLImp implements CommentDAO {
 
     private String host, db, user, passwd;
 
+    /**
+     * Class constructor.
+     * 
+     * @param host
+     * @param db
+     * @param user
+     * @param password
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public CommentDAOSQLImp(String host, String db, String user, String password)
             throws SQLException, ClassNotFoundException {
         // Load the JDBC driver
@@ -43,6 +50,12 @@ public class CommentDAOSQLImp implements CommentDAO {
         }
     }
 
+    /**
+     * Class constructor.
+     * 
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public CommentDAOSQLImp() throws SQLException, ClassNotFoundException {
         this(DEFAULT_HOST, DEFAULT_DATABASE, DEFAULT_USER, DEFAULT_PASSWD);
     }
@@ -50,7 +63,7 @@ public class CommentDAOSQLImp implements CommentDAO {
     /**
      * Adds a new comment to the database.
      *
-     * @param auth The new comment as a CommentBO.
+     * @param comment The new comment as a CommentBO.
      */
     @Override
     public void addComment(CommentBO comment) throws DAOError {
@@ -71,7 +84,7 @@ public class CommentDAOSQLImp implements CommentDAO {
     /**
      * Removes a comment from the database.
      *
-     * @param auth The comment to remove.
+     * @param comment The comment to remove.
      */
     @Override
     public void removeComment(CommentBO comment) throws DAOError {
@@ -161,6 +174,11 @@ public class CommentDAOSQLImp implements CommentDAO {
         return result;
     }
 
+    /**
+     * 
+     * @param values
+     * @return the values of the list splitted with commas
+     */
     private String commaList(String[] values) {
         StringBuilder sb = new StringBuilder();
         sb.append("(");

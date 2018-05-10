@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.lang.IllegalArgumentException;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -22,12 +21,12 @@ import javax.crypto.spec.PBEKeySpec;
 public class HashGenerator {
 
     /**
-     * Cada hash producido por esta clase utiliza este prefijo
+     * Prefix used by every hash created on this class
      */
     public static final String ID = "$31$";
 
     /**
-     * El coste mínimo por defecto
+     * Minimum cost
      */
     public static final int DEFAULT_COST = 16;
 
@@ -35,27 +34,25 @@ public class HashGenerator {
 
     private static final int SIZE = 128;
 
-    private static final Pattern layout = Pattern.compile("(\\$31\\$)(.{43})");
+    private static final Pattern LAYOUT = Pattern.compile("(\\$31\\$)(.{43})");
 
-    private final SecureRandom random;
+    private final SecureRandom random = new SecureRandom();
 
     private final int cost;
 
     public HashGenerator() {
         cost = DEFAULT_COST;
-        random = new SecureRandom();
-
     }
 
     public HashGenerator(int cost) {
         this.cost = cost;
-        random = new SecureRandom();
     }
 
     /**
-     * Crea un hash de una contraseña con un salt aleatorio.
+     * Creates a hash from a password with a random salt.
      *
-     * @return Un hash seguro para almacenar la contraseña
+     * @param password
+     * @return the safety hash
      */
     public String hash(char[] password) {
         byte[] salt = new byte[SIZE / 8];
@@ -69,12 +66,14 @@ public class HashGenerator {
     }
 
     /**
-     * Autenticar una contraseña contra un hash guardado previamente
+     * Autentifies a password with the token previously saved.
      *
-     * @return True si la contraseña coincide con el hash
+     * @param password
+     * @param token
+     * @return if the password matches the hash
      */
     public boolean authenticate(char[] password, String token) {
-        Matcher m = layout.matcher(token);
+        Matcher m = LAYOUT.matcher(token);
         if (!m.matches()) {
             throw new IllegalArgumentException("Invalid token format");
         }
@@ -104,8 +103,9 @@ public class HashGenerator {
      * Checks if a string matches the hash layout.
      *
      * @param s The string to check.
+     * @return if format is correct
      */
     public static boolean checkFormat(String s) {
-        return layout.matcher(s).matches();
+        return LAYOUT.matcher(s).matches();
     }
 }

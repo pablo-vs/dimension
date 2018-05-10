@@ -10,7 +10,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 /**
  * Representa el logaritmo neperiano.
  *
- * @author Inmapg
+ * @author Inmaculada Pérez
  */
 public class LnFunction extends UnaryFunction {
 
@@ -25,12 +25,12 @@ public class LnFunction extends UnaryFunction {
 
     @Override
     public String toString() {
-        return "ln(" + arg.toString() + ")";
+        return "ln(" + function.toString() + ")";
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
-        return Math.log(arg.evaluate(variables));
+    protected double evaluateExpression(VariablesList variables) {
+        return Math.log(function.evaluate(variables));
     }
 
     public static class Parser extends UnaryFunction.Parser {

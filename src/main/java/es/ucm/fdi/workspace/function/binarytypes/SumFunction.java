@@ -7,31 +7,42 @@ import es.ucm.fdi.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 
 /**
- * Representa la función suma.
+ * Represents the sum function.
  *
- * @author Javier Navalon
- * @author Inmapg
- * @version 01.04.2018
+ * @author Inmaculada Pérez, Javier Navalón
  */
 public class SumFunction extends BinaryFunction {
 
+    /**
+     * Empty class constructor.
+     */
     public SumFunction() {
         super();
     }
 
-    public SumFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
-        super(f1, f2, vars);
+    /**
+     * Class constructor specifying both functions to sum and the list of
+     * variables.
+     * 
+     * @param function1
+     * @param function2
+     * @param variables 
+     */
+    public SumFunction(FunctionBO function1, FunctionBO function2,
+            VariablesList variables) {
+        super(function1, function2, variables);
     }
 
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder("");
-        ret.append("(").append(function1.toString()).append(") + (").append(function2.toString()).append(")");
+        ret.append("(").append(function1.toString()).append(") + (")
+                .append(function2.toString()).append(")");
         return ret.toString();
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
+    protected double evaluateExpression(VariablesList variables) {
         return (function1.evaluate(variables) + function2.evaluate(variables));
     }
 

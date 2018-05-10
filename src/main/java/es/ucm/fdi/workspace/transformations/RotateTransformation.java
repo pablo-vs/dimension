@@ -20,8 +20,7 @@ import es.ucm.fdi.workspace.GraphBO;
  * quantities representing the rotations in each axis it modifies the graph
  * accordingly.
  *
- * @author Brian Leiva
- * @author Inmapg
+ * @author Brian Leiva, Inmaculada Pérez
  */
 public class RotateTransformation implements GraphTransformationBO {
 

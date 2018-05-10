@@ -9,30 +9,41 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 import es.ucm.fdi.util.FunctionParserUtils;
 
 /**
- * Representa la funcion logarítmica.
+ * Represents the logarithmic function.
  *
  * @author Brian Leiva
- * @version 01.04.2018
  */
 public class LogarithmicFunction extends BinaryFunction {
 
+    /**
+     * Empty class constructor.
+     */
     public LogarithmicFunction() {
         super();
     }
 
-    public LogarithmicFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
-        super(f1, f2, vars);
+    /**
+     * Class constructor specifying the base and the argument of the function.
+     * 
+     * @param function1
+     * @param function2
+     * @param variables 
+     */
+    public LogarithmicFunction(FunctionBO function1, FunctionBO function2,
+            VariablesList variables) {
+        super(function1, function2, variables);
     }
 
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder("");
-        ret.append("log_(").append(function1.toString()).append(")(").append(function2.toString()).append(")");
+        ret.append("log_(").append(function1.toString()).append(")(")
+                .append(function2.toString()).append(")");
         return ret.toString();
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
+    protected double evaluateExpression(VariablesList variables) {
         return Math.log(function2.evaluate(variables)) / Math.log(function1.evaluate(variables));
     }
 

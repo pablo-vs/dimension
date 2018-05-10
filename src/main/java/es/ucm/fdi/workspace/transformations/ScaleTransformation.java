@@ -19,8 +19,7 @@ import es.ucm.fdi.workspace.GraphBO;
  * This class provides a way of dealing with scale transformations in 3D. Given
  * a certain number it will shrink the graph proportionally.
  *
- * @author Brian Leiva
- * @author Inmaculada Pérez Garbín
+ * @author Brian Leiva, Inmaculada Pérez
  */
 public class ScaleTransformation implements GraphTransformationBO {
 

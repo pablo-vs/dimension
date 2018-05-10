@@ -16,7 +16,6 @@ import es.ucm.fdi.exceptions.NotFoundException;
  * Application service to manage sharing and importing projects.
  *
  * @author Pablo Villalobos
- * @version 05.04.2018
  */
 public class ShareManagerAS {
     // Singleton pattern
@@ -30,9 +29,15 @@ public class ShareManagerAS {
     private final AuthorshipDAO authorDB;
     private CommentDAO commentDB;
 
-    private ShareManagerAS(SharedProjectDAO projDao, AuthorshipDAO authorDao) {
-        projectDB = projDao;
-        authorDB = authorDao;
+    /**
+     * Class constructor specifying shared project and author.
+     * 
+     * @param projectDB
+     * @param authorDB 
+     */
+    private ShareManagerAS(SharedProjectDAO projectDB, AuthorshipDAO authorDB) {
+        this.projectDB = projectDB;
+        this.authorDB = authorDB;
     }
 
     /**
@@ -228,8 +233,13 @@ public class ShareManagerAS {
         return Integer.toString(sb.toString().hashCode());
     }
 
+    /**
+     * Does the actual storing of the project and the authorships.
+     * 
+     * @param proj
+     * @param authors 
+     */
     private void store(SharedProjectBO proj, List<String> authors) {
-        // Do the actual storing of the project and the authorships
         projectDB.addSharedProject(proj);
         for (String author : authors) {
             AuthorshipBO authorship = new AuthorshipBO(author,
@@ -239,10 +249,15 @@ public class ShareManagerAS {
 
     }
 
+    /**
+     * Checks that all authors exist and the session corresponds to one of them.
+     * @param authors
+     * @param session
+     * @return true if valid
+     * @throws NotFoundException 
+     */
     private boolean validateAuthorList(List<String> authors, SessionBO session)
             throws NotFoundException {
-        // Check that all authors exist and the session corresponds to one of
-        // them
         boolean valid = false;
         for (String author : authors) {
             if (!userMan.existsUser(author)) {

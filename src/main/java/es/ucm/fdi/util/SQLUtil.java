@@ -2,8 +2,6 @@ package es.ucm.fdi.util;
 
 import java.sql.*;
 
-import es.ucm.fdi.exceptions.DAOError;
-
 public class SQLUtil {
 
     private static final String DRIVER = "org.mariadb.jdbc.Driver";

@@ -9,21 +9,18 @@ import es.ucm.fdi.data.MemoryDB;
  * UserDAO implementation using a HashTable-based database.
  *
  * @author Pablo Villalobos
- * @version 01.04.2018
  */
 public class UserDAOHashTableImp implements UserDAO {
 
     /**
      * Database
      */
-    private MemoryDB<UserTO> db;
+    private MemoryDB<UserTO> db = new MemoryDB<>();
 
     /**
-     * Class constructor that initializes the db.
+     * Empty class constructor.
      */
     public UserDAOHashTableImp() {
-        db = new MemoryDB<UserTO>();
-
     }
 
     @Override
@@ -41,7 +38,8 @@ public class UserDAOHashTableImp implements UserDAO {
         if (findUser(user.getID()) != null) {
             db.insert(user, user.getID());
         } else {
-            throw new IllegalArgumentException("The user " + user.getID() + " does not exist");
+            throw new IllegalArgumentException("The user " + user.getID() +
+                    " does not exist");
         }
     }
 

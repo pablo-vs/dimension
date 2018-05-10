@@ -37,14 +37,14 @@ public final class FunctionParserUtils {
      * This private constructor is used to avoid utility class instantiation.
      */
     private FunctionParserUtils() {
-        /*Exists only to avoid instantiation.*/ }
+    }
 
     /**
      * The list which contains all the types of
      * {@link es.ucm.fdi.workspace.FunctionBO.Parser Parse} for each type of
      * {@link es.ucm.fdi.workspace.FunctionBO FunctionBO}.
      */
-    private static final FunctionBO.Parser[] parserList = {
+    private static final FunctionBO.Parser[] PARSER_LIST = {
         new IdentityFunction.Parser(),
         new ConstantFunction.Parser(),
         new Log10Function.Parser(),
@@ -80,7 +80,7 @@ public final class FunctionParserUtils {
      */
     public static FunctionBO parse(String str, VariablesList var) {
         FunctionBO f = null;
-        for (FunctionBO.Parser p : parserList) {
+        for (FunctionBO.Parser p : PARSER_LIST) {
             f = p.parse(str, var);
             if (f != null) {
                 break;
@@ -91,17 +91,20 @@ public final class FunctionParserUtils {
 
     /**
      * Eliminates unnecessary parenthesis at the ends of the string.
+     * 
+     * @param str
+     * @return the parsed string
      */
-    public static String stripExtraParenthesis(String str1) {
-        String str = str1.trim();
-        int ini = 0, end = 0, min = str.length(), current;
+    public static String stripExtraParenthesis(String str) {
+        String strAux = str.trim();
+        int ini = 0, end = 0, min = strAux.length(), current;
         int i = 0;
-        while (str.charAt(i) == '(') {
+        while (strAux.charAt(i) == '(') {
             ini++;
             i++;
         }
         i = 0;
-        while (str.charAt(str.length() - i - 1) == ')') {
+        while (strAux.charAt(strAux.length() - i - 1) == ')') {
             end++;
             i++;
         }
@@ -112,8 +115,8 @@ public final class FunctionParserUtils {
         }
         current = ini;
         i = ini;
-        while (i < str.length() - end) {
-            char c = str.charAt(i);
+        while (i < strAux.length() - end) {
+            char c = strAux.charAt(i);
             if (c == '(') {
                 current++;
             } else if (c == ')' && current > 0) {
@@ -124,12 +127,16 @@ public final class FunctionParserUtils {
             }
             ++i;
         }
-        return str.substring(min, str.length() - min);
+        return strAux.substring(min, strAux.length() - min);
     }
 
     /**
      * Given the position of an opening parenthesis, return the position next to
      * the corresponding closing one.
+     * 
+     * @param str
+     * @param ini
+     * @return 
      */
     public static int getEndOfParenthesis(String str, int ini) {
         if (str.charAt(ini) == '(') {

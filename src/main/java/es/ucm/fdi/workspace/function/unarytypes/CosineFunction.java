@@ -10,7 +10,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 /**
  * Represents a cosine function.
  *
- * @author Inmapg
+ * @author Inmaculada Pérez
  */
 public class CosineFunction extends UnaryFunction {
 
@@ -25,12 +25,12 @@ public class CosineFunction extends UnaryFunction {
 
     @Override
     public String toString() {
-        return "cos(" + arg.toString() + ")";
+        return "cos(" + function.toString() + ")";
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
-        return Math.cos(arg.evaluate(variables));
+    protected double evaluateExpression(VariablesList variables) {
+        return Math.cos(function.evaluate(variables));
     }
 
     public static class Parser extends UnaryFunction.Parser {

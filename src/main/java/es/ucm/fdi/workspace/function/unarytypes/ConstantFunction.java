@@ -32,7 +32,7 @@ public class ConstantFunction extends UnaryFunction {
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
+    protected double evaluateExpression(VariablesList variables) {
         return num;
     }
 

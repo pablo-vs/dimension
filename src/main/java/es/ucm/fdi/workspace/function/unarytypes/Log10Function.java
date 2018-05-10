@@ -10,7 +10,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 /**
  * Represents the decimal logarithm.
  *
- * @author Inmapg
+ * @author Inmaculada Pérez
  */
 public class Log10Function extends UnaryFunction {
 
@@ -25,12 +25,12 @@ public class Log10Function extends UnaryFunction {
 
     @Override
     public String toString() {
-        return "log(" + arg.toString() + ")";
+        return "log(" + function.toString() + ")";
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
-        return Math.log10(arg.evaluate(variables));
+    protected double evaluateExpression(VariablesList variables) {
+        return Math.log10(function.evaluate(variables));
     }
 
     public static class Parser extends UnaryFunction.Parser {

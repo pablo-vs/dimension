@@ -4,46 +4,55 @@ package es.ucm.fdi.workspace.function.types;
  * Representa una variable de una función
  *
  * @author Javier Navalón
- * @version 01.04.2018
  */
 public class Variable {
 
-    private String nombre;
-    private double val;
-
-    public Variable(String n, double _val) {
-        nombre = n;
-        val = _val;
-    }
-
-    public Variable(String n) {
-        this(n, 0);
-    }
+    private String name;
+    private double value;
 
     /**
-     * Modifica el valor de la variable.
-     *
-     * @param x el nuevo valor.
+     * Class constructor specifying name and value of the variable.
+     * 
+     * @param name
+     * @param value 
      */
-    public void setVal(double x) {
-        val = x;
+    public Variable(String name, double value) {
+        this.name = name;
+        this.value = value;
     }
 
     /**
-     * Devuelve el valor de la variable.
-     *
-     * @return El valor almacenado.
+     * Class constructor specifying name of the variable.
+     * 
+     * @param name
      */
-    public double getVal() {
-        return val;
+    public Variable(String name) {
+        this.name = name;
+        value = 0;
     }
 
     /**
-     * Devuelve el nombre de la variable.
+     * Modifies the value of the variable.
      *
-     * @return El nombre de la variable.
+     * @param value the new value
+     */
+    public void setVal(double value) {
+        this.value = value;
+    }
+
+    /**
+     *
+     * @return the value of the variable
+     */
+    public double getValue() {
+        return value;
+    }
+
+    /**
+     *
+     * @return the value's name.
      */
     public String getNombre() {
-        return nombre;
+        return name;
     }
 }

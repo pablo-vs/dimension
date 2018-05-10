@@ -9,27 +9,31 @@ import es.ucm.fdi.data.MemoryDB;
  * CommentDAO implementation using a HashTable-based database.
  *
  * @author Brian Leiva
- * @version 20.04.2018
  */
 public class CommentDAOHashTableImp implements CommentDAO {
 
     /**
      * Database
      */
-    private MemoryDB<CommentBO> db;
+    private MemoryDB<CommentBO> db = new MemoryDB<>();
 
+    /**
+     * Empty class constructor.
+     */
     public CommentDAOHashTableImp() {
-        db = new MemoryDB<CommentBO>();
     }
 
+    @Override
     public void addComment(CommentBO comment) {
         db.insert(comment, comment.getId());
     }
 
+    @Override
     public void removeComment(CommentBO comment) {
         db.removeId(comment.getId());
     }
 
+    @Override
     public List<CommentBO> findByUser(String username) {
         ArrayList<CommentBO> lista = new ArrayList<>();
         for (String id : db.getIds()) {
@@ -41,6 +45,7 @@ public class CommentDAOHashTableImp implements CommentDAO {
         return lista;
     }
 
+    @Override
     public List<CommentBO> findByProject(String project) {
         ArrayList<CommentBO> lista = new ArrayList<>();
         for (String id : db.getIds()) {
@@ -52,6 +57,7 @@ public class CommentDAOHashTableImp implements CommentDAO {
         return lista;
     }
 
+    @Override
     public List<CommentBO> getComments() {
         ArrayList<CommentBO> lista = new ArrayList<>();
         for (String id : db.getIds()) {

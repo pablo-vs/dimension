@@ -10,7 +10,6 @@ import es.ucm.fdi.workspace.project.ProjectTO;
  * modified by its authors.
  *
  * @author Javier Galiana
- * @version 05.04.2018
  */
 public class SharedProjectBOPrivateProjectImp extends SharedProjectBO {
 

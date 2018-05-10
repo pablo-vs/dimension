@@ -9,25 +9,24 @@ import es.ucm.fdi.workspace.project.ProjectTO;
  * A shared project that can be read by everyone and modified by its authors.
  *
  * @author Pablo Villalobos
- * @version 04.04.2018
  */
 public class SharedProjectBOOpenProjectImp extends SharedProjectBO {
 
     /**
      * List of authors
      */
-    private List<String> authors;
+    private List<String> authors = new ArrayList<>();
 
     /**
      * Class constructor specifying id, existing project and list of authors.
      *
      * @param ID Identifier
      * @param proj Project
-     * @param auth List of authors
+     * @param authors List of authors
      */
-    public SharedProjectBOOpenProjectImp(String ID, ProjectTO proj, List<String> auth) {
+    public SharedProjectBOOpenProjectImp(String ID, ProjectTO proj, List<String> authors) {
         super(ID, proj);
-        authors = new ArrayList<>(auth);
+        this.authors = new ArrayList<>(authors);
     }
 
     /**
@@ -39,7 +38,6 @@ public class SharedProjectBOOpenProjectImp extends SharedProjectBO {
      */
     public SharedProjectBOOpenProjectImp(String ID, ProjectTO proj, String author) {
         super(ID, proj);
-        authors = new ArrayList<>();
         authors.add(author);
     }
 

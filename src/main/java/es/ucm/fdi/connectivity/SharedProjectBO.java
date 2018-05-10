@@ -6,7 +6,6 @@ import es.ucm.fdi.workspace.project.ProjectTO;
  * Represents a shared project by an author.
  *
  * @author Pablo Villalobos
- * @version 04.04.2018
  * @see ProjectTO
  */
 public abstract class SharedProjectBO extends ProjectTO {
@@ -19,23 +18,23 @@ public abstract class SharedProjectBO extends ProjectTO {
     /**
      * Class constructor specifying id and author name.
      *
-     * @param ID Identifier
+     * @param sharedID Identifier
      * @param name Author
      */
-    public SharedProjectBO(String ID, String name) {
+    public SharedProjectBO(String sharedID, String name) {
         super(name);
-        sharedID = ID;
+        this.sharedID = sharedID;
     }
 
     /**
      * Class constructor specifying id and existing project
      *
-     * @param ID Identifier
+     * @param sharedID Identifier
      * @param proj Existing project
      */
-    public SharedProjectBO(String ID, ProjectTO proj) {
+    public SharedProjectBO(String sharedID, ProjectTO proj) {
         super(proj);
-        sharedID = ID;
+        this.sharedID = sharedID;
     }
 
     /**
@@ -54,6 +53,10 @@ public abstract class SharedProjectBO extends ProjectTO {
      */
     public abstract boolean hasWriteAccess(String username);
 
+    /**
+     * 
+     * @return the shared ID
+     */
     public String getSharedID() {
         return sharedID;
     }

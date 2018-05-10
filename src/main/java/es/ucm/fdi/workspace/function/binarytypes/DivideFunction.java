@@ -9,29 +9,40 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 /**
  * Represents the division function.
  *
- * @author Javier Navalon
- * @author Inmapg
- * @version 01.04.2018
+ * @author Inmaculada Pérez, Javier Navalon
  */
 public class DivideFunction extends BinaryFunction {
 
+    /**
+     * Empty class constructor.
+     */ 
     public DivideFunction() {
         super();
     }
 
-    public DivideFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
-        super(f1, f2, vars);
+    /**
+     * Class constructor specifying two functions to divide and the list of
+     * variables.
+     * 
+     * @param function1
+     * @param function2
+     * @param variables
+     */ 
+    public DivideFunction(FunctionBO function1, FunctionBO function2,
+            VariablesList variables) {
+        super(function1, function2, variables);
     }
 
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder("");
-        ret.append("(").append(function1.toString()).append(") / (").append(function2.toString()).append(")");
+        ret.append("(").append(function1.toString()).append(") / (")
+                .append(function2.toString()).append(")");
         return ret.toString();
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
+    protected double evaluateExpression(VariablesList variables) {
         return (function1.evaluate(variables) / function2.evaluate(variables));
     }
 
@@ -40,13 +51,13 @@ public class DivideFunction extends BinaryFunction {
         private static final Pattern REGEX = Pattern.compile(" */ *");
 
         @Override
-        public DivideFunction parse(String str, VariablesList variables) {
-            DivideFunction func = null;
-            FunctionBO[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
-            if (funcs[0] != null && funcs[1] != null) {
-                func = new DivideFunction(funcs[0], funcs[1], variables);
+        public DivideFunction parse(String name, VariablesList variables) {
+            DivideFunction function = null;
+            FunctionBO[] parsedFunction = BinaryFunction.Parser.parseFunctions(name, variables, REGEX);
+            if (parsedFunction[0] != null && parsedFunction[1] != null) {
+                function = new DivideFunction(parsedFunction[0], parsedFunction[1], variables);
             }
-            return func;
+            return function;
         }
     }
 }

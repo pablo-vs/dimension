@@ -26,7 +26,7 @@ public class DAOError extends RuntimeException {
     static final long serialVersionUID = 1003L;
 
     /**
-     * *
+     * 
      * Class constructor specifying error message and exception.
      *
      * @param message Error message

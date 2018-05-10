@@ -19,6 +19,16 @@ public class UserDAOSQLImp implements UserDAO {
 
     private String host, db, user, passwd;
 
+    /**
+     * Class constructor.
+     * 
+     * @param host
+     * @param db
+     * @param user
+     * @param password
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public UserDAOSQLImp(String host, String db, String user, String password)
             throws SQLException, ClassNotFoundException {
         // Load the JDBC driver
@@ -30,12 +40,19 @@ public class UserDAOSQLImp implements UserDAO {
         this.passwd = password;
 
         // Try to connect
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + db, user, password)) {
+        try (
+            Connection connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + db, user, password)) {
         } catch (SQLException e) {
             throw e;
         }
     }
 
+    /**
+     * Class constructor.
+     * 
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public UserDAOSQLImp() throws SQLException, ClassNotFoundException {
         this(DEFAULT_HOST, DEFAULT_DATABASE, DEFAULT_USER, DEFAULT_PASSWD);
     }
@@ -43,7 +60,7 @@ public class UserDAOSQLImp implements UserDAO {
     /**
      * Adds a new user to the database.
      *
-     * @param auth The new user as a UserTO.
+     * @param user The new user as a UserTO.
      */
     @Override
     public void addUser(UserTO user) throws DAOError {
@@ -70,7 +87,7 @@ public class UserDAOSQLImp implements UserDAO {
     /**
      * Removes a user from the database.
      *
-     * @param auth The user to remove.
+     * @param id The user to remove.
      */
     @Override
     public void removeUser(String id) {
@@ -87,6 +104,14 @@ public class UserDAOSQLImp implements UserDAO {
         }
     }
 
+    /**
+     * Modifies a column.
+     * 
+     * @param column
+     * @param update
+     * @param id
+     * @return 
+     */
     private String modify(String column, String update, String id) {
         StringBuilder query = new StringBuilder();
         query.append("UPDATE users SET");
@@ -102,19 +127,19 @@ public class UserDAOSQLImp implements UserDAO {
     /**
      * Modifies a user.
      *
-     * @param auth The user to modify.
+     * @param user The user to modify.
      */
     @Override
     public void modifyUser(UserTO user) {
         StringBuilder query = new StringBuilder();
-        query.append(modify("name", user.getName(), user.getID()) + "\n");
-        query.append(modify("password", user.getPassword(), user.getID()) + "\n");
-        query.append(modify("date", String.valueOf(user.getDate()), user.getID()) + "\n");
-        query.append(modify("email", user.getEmail(), user.getID()) + "\n");
-        query.append(modify("telephone", user.getTelephone(), user.getID()) + "\n");
-        query.append(modify("picture", user.getPicture(), user.getID()) + "\n");
-        query.append(modify("description", user.getDescription(), user.getID()) + "\n");
-        query.append(modify("type", String.valueOf(user.getType()), user.getID()) + "\n");
+        query.append(modify("name", user.getName(), user.getID())).append("\n");
+        query.append(modify("password", user.getPassword(), user.getID())).append("\n");
+        query.append(modify("date", String.valueOf(user.getDate()), user.getID())).append("\n");
+        query.append(modify("email", user.getEmail(), user.getID())).append("\n");
+        query.append(modify("telephone", user.getTelephone(), user.getID())).append("\n");
+        query.append(modify("picture", user.getPicture(), user.getID())).append("\n");
+        query.append(modify("description", user.getDescription(), user.getID())).append("\n");
+        query.append(modify("type", String.valueOf(user.getType()), user.getID())).append("\n");
         query.append(modify("ban time", String.valueOf(user.getBanTime()), user.getID()));
         try (Statement stat = SQLUtil.getStatement()) {
             stat.executeQuery(query.toString());
@@ -131,16 +156,14 @@ public class UserDAOSQLImp implements UserDAO {
      */
     @Override
     public UserTO findUser(String id) {
-        UserTO user;
+        UserTO user = null;
         try (Statement stat = SQLUtil.getStatement()) {
             ResultSet rs = SQLUtil.getStatement().executeQuery("SELECT * FROM users WHERE id = '" + id + "';");
             user = new UserTO(rs.getString("id"), rs.getString("password"), rs.getString("name"),
                     rs.getString("date"), rs.getString("email"), rs.getString("telephone"),
                     rs.getString("picture"), rs.getString("description"),
                     rs.getString("type"), rs.getString("ban time"));
-        } catch (ParseException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
-        } catch (SQLException e) {
+        } catch (ParseException | SQLException e) {
             throw new DAOError("DAO Error:\n" + e.getMessage(), e);
         }
         return user;
@@ -165,21 +188,22 @@ public class UserDAOSQLImp implements UserDAO {
                 result.add(user);
                 rs.next();
             }
-        } catch (ParseException e) {
-            throw new DAOError("DAO Error:\n" + e.getMessage(), e);
-        } catch (SQLException e) {
+        } catch (ParseException | SQLException e) {
             throw new DAOError("DAO Error:\n" + e.getMessage(), e);
         }
         return result;
     }
 
+    /**
+     * 
+     * @param values
+     * @return the values of the list splitted with commas
+     */
     private String commaList(String[] values) {
         StringBuilder sb = new StringBuilder();
         sb.append("(");
         for (String s : values) {
-            sb.append("'");
-            sb.append(s);
-            sb.append("', ");
+            sb.append("'").append(s).append("', ");
         }
         sb.setCharAt(sb.length() - 2, ')');
         return sb.substring(0, sb.length() - 1);

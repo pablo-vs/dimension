@@ -17,7 +17,7 @@ package es.ucm.fdi.exceptions;
  * Tbe exception will be thrown whenever an object was not found where it was
  * supposed to be.
  *
- * @author Inmaculada Pérez Garbín
+ * @author Inmaculada Pérez
  */
 public class NotFoundException extends RuntimeException {
 

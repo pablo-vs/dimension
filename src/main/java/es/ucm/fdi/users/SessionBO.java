@@ -7,13 +7,9 @@ import java.io.Serializable;
  * Represents a user session.
  *
  * @author Pablo Villalobos
- * @version 01.04.2018
  */
 public class SessionBO implements Serializable {
 
-    /**
-     * Username
-     */
     private final String username;
     /**
      * Date of login
@@ -23,12 +19,12 @@ public class SessionBO implements Serializable {
     /**
      * Class constructor specifying username and date.
      *
-     * @param user Username
-     * @param time Date
+     * @param username Username
+     * @param date Date of login
      */
-    public SessionBO(String user, ZonedDateTime time) {
-        username = user;
-        date = time;
+    public SessionBO(String username, ZonedDateTime date) {
+        this.username = username;
+        this.date = date;
     }
 
     /**
@@ -41,16 +37,13 @@ public class SessionBO implements Serializable {
     }
 
     /**
-     * Returns the user who started the session.
-     *
-     * @return username
+     * @return the username of whom started the session
      */
     public String getUser() {
         return username;
     }
 
     /**
-     * Returns the date of login.
      *
      * @return A ZonedDateTime representing the date.
      */

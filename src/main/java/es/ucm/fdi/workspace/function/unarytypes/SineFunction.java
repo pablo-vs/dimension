@@ -10,7 +10,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 /**
  * Represents the sine function.
  *
- * @author Inmapg
+ * @author Inmaculada Pérez
  */
 public class SineFunction extends UnaryFunction {
 
@@ -25,12 +25,12 @@ public class SineFunction extends UnaryFunction {
 
     @Override
     public String toString() {
-        return "sin(" + arg.toString() + ")";
+        return "sin(" + function.toString() + ")";
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
-        return Math.sin(arg.evaluate(variables));
+    protected double evaluateExpression(VariablesList variables) {
+        return Math.sin(function.evaluate(variables));
     }
 
     public static class Parser extends UnaryFunction.Parser {

@@ -10,7 +10,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 /**
  * Represents the tangent function.
  * 
- * @author Inmapg
+ * @author Inmaculada Pérez
  */
 public class TangentFunction extends UnaryFunction {
 
@@ -25,12 +25,12 @@ public class TangentFunction extends UnaryFunction {
 
     @Override
     public String toString() {
-        return "tan(" + arg.toString() + ")";
+        return "tan(" + function.toString() + ")";
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
-        return Math.tan(arg.evaluate(variables));
+    protected double evaluateExpression(VariablesList variables) {
+        return Math.tan(function.evaluate(variables));
     }
 
     public static class Parser extends UnaryFunction.Parser {

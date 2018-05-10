@@ -9,7 +9,7 @@ import es.ucm.fdi.workspace.FunctionBO;
 /**
  * Represents a binary function.
  *
- * @author Javier Navalón, Inmapg
+ * @author  Inmaculada Pérez, Javier Navalón
  */
 public abstract class BinaryFunction extends FunctionBO {
 

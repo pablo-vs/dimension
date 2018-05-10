@@ -32,27 +32,31 @@ import java.security.AccessControlException;
 public class DimensionModel extends DimensionObservable {
 
     // Databases
-    private final UserDAOHashTableImp userDB;
-    private final SharedProjectDAOHashTableImp sharedprojectDB;
-    private final AuthorshipDAOHashTableImp authorshipDB;
-    private final CommentDAOHashTableImp commentsDB;
+    private final UserDAOHashTableImp userDB = new UserDAOHashTableImp();
+    private final SharedProjectDAOHashTableImp sharedprojectDB = new SharedProjectDAOHashTableImp();
+    private final AuthorshipDAOHashTableImp authorshipDB = new AuthorshipDAOHashTableImp();
+    private final CommentDAOHashTableImp commentsDB = new CommentDAOHashTableImp();
     private final UserManagerAS userManager;
     private final ShareManagerAS projectManager;
     private SessionBO currentSession = null;
     private ProjectTO currentProject = null;
 
+    /**
+     * Class constructor.
+     * We don't have an external database, this model creates 
+     * its own volatile database each time it is created
+     */
     public DimensionModel() {
-        // we don't have an external database, this model creates 
-        // its own volatile database each time it is created
-        userDB = new UserDAOHashTableImp();
-        sharedprojectDB = new SharedProjectDAOHashTableImp();
-        authorshipDB = new AuthorshipDAOHashTableImp();
-        commentsDB = new CommentDAOHashTableImp();
-
         projectManager = ShareManagerAS.getManager(sharedprojectDB, authorshipDB);
         userManager = UserManagerAS.getManager(userDB);
     }
 
+    /**
+     * Implements the login of a user.
+     * 
+     * @param username
+     * @param password 
+     */
     public void login(String username, String password) {
         try {
             currentSession = userManager.login(username, password);
@@ -62,6 +66,9 @@ public class DimensionModel extends DimensionObservable {
         notifyLogin(username);
     }
 
+    /**
+     * Implements the logout of the session.
+     */
     public void logout() {
         if (currentSession != null) {
             userManager.logout(currentSession);
@@ -71,6 +78,12 @@ public class DimensionModel extends DimensionObservable {
         }
     }
 
+    /**
+     * Adds a comment to the project.
+     * 
+     * @param projID
+     * @param message 
+     */
     public void commentProject(String projID, String message) {
         try {
             // projectManager.comment(commentsDB, projID, currentSession, message);

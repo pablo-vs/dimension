@@ -10,7 +10,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 /**
  * Represents a contangent function
  *
- * @author Inmapg
+ * @author Inmaculada Pérez
  */
 public class CotangentFunction extends UnaryFunction {
 
@@ -25,12 +25,12 @@ public class CotangentFunction extends UnaryFunction {
 
     @Override
     public String toString() {
-        return "cotan(" + arg.toString() + ")";
+        return "cotan(" + function.toString() + ")";
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
-        return 1 / Math.tan(arg.evaluate(variables));
+    protected double evaluateExpression(VariablesList variables) {
+        return 1 / Math.tan(function.evaluate(variables));
     }
 
     public static class Parser extends UnaryFunction.Parser {

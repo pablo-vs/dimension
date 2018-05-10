@@ -10,17 +10,19 @@ import es.ucm.fdi.exceptions.DAOError;
  * AuthorshipDAO implementation using a HashTable-based database.
  *
  * @author Javier Galiana
- * @version 05.04.2018
  */
 public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
 
     /**
      * Database
      */
-    private MemoryDB<AuthorshipBO> db;
+    private MemoryDB<AuthorshipBO> db = new MemoryDB<>();
 
-    public AuthorshipDAOHashTableImp() throws DAOError {
-        db = new MemoryDB<>();
+    /**
+     * Empty class constructor
+     * @throws DAOError 
+     */
+    public AuthorshipDAOHashTableImp(){
     }
 
     @Override

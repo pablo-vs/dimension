@@ -327,7 +327,7 @@ public class UserManagerAS {
      * @return wether the word is valid
      */
     private static boolean validInt(String num) {
-        return !num.equals(null) && num.matches("[0-9]+");
+        return num != null && num.matches("[0-9]+");
     }
 
     /**

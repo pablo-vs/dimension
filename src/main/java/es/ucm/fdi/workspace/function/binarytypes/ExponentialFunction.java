@@ -7,31 +7,42 @@ import es.ucm.fdi.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.workspace.function.types.VariablesList;
 
 /**
- * Represents the division function.
+ * Represents the exponential function.
  *
- * @author Javier Navalon
- * @author Inmapg
- * @version 01.04.2018
+ * @author Inmaculada Pérez, Javier Navalón
  */
 public class ExponentialFunction extends BinaryFunction {
 
+    /**
+     * Empty class constructor.
+     */
     public ExponentialFunction() {
         super();
     }
 
-    public ExponentialFunction(FunctionBO f1, FunctionBO f2, VariablesList vars) {
-        super(f1, f2, vars);
+    /**
+     * Class constructor specifying the base function, the exponent and the
+     * list of variables.
+     * 
+     * @param function1
+     * @param function2
+     * @param variables 
+     */
+    public ExponentialFunction(FunctionBO function1, FunctionBO function2,
+            VariablesList variables) {
+        super(function1, function2, variables);
     }
 
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder("");
-        ret.append("(").append(function1.toString()).append(") ^ (").append(function2.toString()).append(")");
+        ret.append("(").append(function1.toString()).append(") ^ (")
+                .append(function2.toString()).append(")");
         return ret.toString();
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
+    protected double evaluateExpression(VariablesList variables) {
         return Math.pow(function1.evaluate(variables), function2.evaluate(variables));
     }
 
@@ -41,12 +52,13 @@ public class ExponentialFunction extends BinaryFunction {
 
         @Override
         public ExponentialFunction parse(String str, VariablesList variables) {
-            ExponentialFunction func = null;
-            FunctionBO[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
-            if (funcs[0] != null && funcs[1] != null) {
-                func = new ExponentialFunction(funcs[0], funcs[1], variables);
+            ExponentialFunction function = null;
+            FunctionBO[] parsedFunction = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
+            if (parsedFunction[0] != null && parsedFunction[1] != null) {
+                function = new ExponentialFunction(parsedFunction[0], 
+                        parsedFunction[1], variables);
             }
-            return func;
+            return function;
         }
     }
 }

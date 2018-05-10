@@ -6,7 +6,6 @@ import java.util.List;
  * Interface to manage user data persistence.
  *
  * @author Pablo Villalobos
- * @version 01.04.2018
  */
 public interface UserDAO {
 

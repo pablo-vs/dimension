@@ -10,7 +10,7 @@ import es.ucm.fdi.util.FunctionParserUtils;
 /**
  * Represents a cosecant function
  *
- * @author Inmapg
+ * @author Inmaculada Pérez
  */
 public class CosecantFunction extends UnaryFunction {
 
@@ -25,12 +25,12 @@ public class CosecantFunction extends UnaryFunction {
 
     @Override
     public String toString() {
-        return "cosec(" + arg.toString() + ")";
+        return "cosec(" + function.toString() + ")";
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
-        return 1 / Math.sin(arg.evaluate(variables));
+    protected double evaluateExpression(VariablesList variables) {
+        return 1 / Math.sin(function.evaluate(variables));
     }
 
     public static class Parser extends UnaryFunction.Parser {

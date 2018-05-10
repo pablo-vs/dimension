@@ -12,8 +12,14 @@ import es.ucm.fdi.data.MemoryDB;
  */
 public class ProjectDAOHashTableImp implements ProjectDAO {
 
+    /**
+     * Database
+     */
     private MemoryDB<ProjectTO> db = new MemoryDB<>();
 
+    /**
+     * Class constructor.
+     */
     public ProjectDAOHashTableImp() {
     }
 

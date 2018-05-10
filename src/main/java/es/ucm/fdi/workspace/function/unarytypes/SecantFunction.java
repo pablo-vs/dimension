@@ -10,7 +10,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 /**
  * Represents the secant function.
  * 
- * @author Inmapg
+ * @author Inmaculada Pérez
  */
 public class SecantFunction extends UnaryFunction {
 
@@ -25,12 +25,12 @@ public class SecantFunction extends UnaryFunction {
 
     @Override
     public String toString() {
-        return "secan(" + arg.toString() + ")";
+        return "secan(" + function.toString() + ")";
     }
 
     @Override
-    protected double evaluateExpr(VariablesList variables) {
-        return 1 / Math.cos(arg.evaluate(variables));
+    protected double evaluateExpression(VariablesList variables) {
+        return 1 / Math.cos(function.evaluate(variables));
     }
 
     public static class Parser extends UnaryFunction.Parser {

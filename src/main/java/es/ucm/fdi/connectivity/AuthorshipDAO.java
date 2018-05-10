@@ -8,7 +8,6 @@ import es.ucm.fdi.exceptions.DAOError;
  * The DAO for Authorships.
  *
  * @author Pablo Villalobos.
- * @version 03.04.2018
  */
 public interface AuthorshipDAO {
 

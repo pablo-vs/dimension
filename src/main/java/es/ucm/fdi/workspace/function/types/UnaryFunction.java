@@ -7,20 +7,29 @@ import es.ucm.fdi.workspace.FunctionBO;
 import es.ucm.fdi.util.FunctionParserUtils;
 
 /**
- * @author Javier Navalon
- * @author Inmapg
+ * @author Inmaculada Pérez, Javier Navalon
  */
 public abstract class UnaryFunction extends FunctionBO {
 
-    protected FunctionBO arg;
-
-    public UnaryFunction(FunctionBO f, VariablesList vars) {
-        super(vars);
-        arg = f;
+    protected FunctionBO function;
+    /**
+     * Class constructor specifying the function and the list of variables.
+     * 
+     * @param function
+     * @param variables 
+     */
+    public UnaryFunction(FunctionBO function, VariablesList variables) {
+        super(variables);
+        this.function = function;
     }
 
-    public UnaryFunction(VariablesList vars) {
-        super(vars);
+    /**
+     * Class constructor specifying the list of variables.
+     * 
+     * @param variables 
+     */
+    public UnaryFunction(VariablesList variables) {
+        super(variables);
     }
 
     public static abstract class Parser extends FunctionBO.Parser {

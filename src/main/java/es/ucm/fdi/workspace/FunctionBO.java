@@ -22,7 +22,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
  * an accessor method {@link #getVars getVars} which return the
  * {@link es.ucm.fdi.workspace.function.types.VariablesList VariablesList}. The
  * classes inherited from this one are supposed to define a method
- * {@link #evaluateExpr(es.ucm.fdi.workspace.function.types.VariablesList) evaluateExpr}
+ * {@link #evaluateExpression(es.ucm.fdi.workspace.function.types.VariablesList) evaluateExpression}
  * which calculates the value of the function given a
  * {@link es.ucm.fdi.workspace.function.types.VariablesList VariablesList}.
  *
@@ -45,16 +45,16 @@ public abstract class FunctionBO {
     /**
      * Constructor specifying the list of variables of the function.
      *
-     * @param vars The variable list.
+     * @param variables The variables list.
      */
-    public FunctionBO(VariablesList vars) {
-        variables = vars;
+    public FunctionBO(VariablesList variables) {
+        this.variables = variables;
     }
 
     /**
      * Returns the variables of the function.
      *
-     * @return The variable list.
+     * @return The variables list.
      */
     public VariablesList getVars() {
         return variables;
@@ -65,24 +65,38 @@ public abstract class FunctionBO {
      * <b>Note:</b> the given variable names must be equal to those of the
      * function.
      *
-     * @param vars The variable list.
+     * @param vars The variables list.
      * @return The result of applying the function to the values.
      */
     public double evaluate(VariablesList vars) {
         if (variables.equals(vars)) {
-            return evaluateExpr(vars);
+            return evaluateExpression(vars);
         } else {
-            throw new IllegalArgumentException("Mismatching when evaluating variables!");
+            throw new IllegalArgumentException("Mismatching while evaluating the"
+                    + " variables!");
         }
     }
 
-    public double evaluate(double[] vars) {
-        variables.setVariables(vars);
-        return evaluate(variables);
+    /**
+     * Evaluates the function from a given list of variables.
+     * 
+     * @param variables
+     * @return 
+     */
+    public double evaluate(double[] variables) {
+        this.variables.setVariables(variables);
+        return evaluate(this.variables);
     }
 
-    protected abstract double evaluateExpr(VariablesList vars);
+    /**
+     * Evaluates an expression.
+     * 
+     * @param variables
+     * @return the result of the operation.
+     */
+    protected abstract double evaluateExpression(VariablesList variables);
 
+    @Override
     public abstract String toString();
 
     /**

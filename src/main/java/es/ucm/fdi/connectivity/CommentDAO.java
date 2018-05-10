@@ -6,7 +6,6 @@ import java.util.List;
  * The DAO for Authorships.
  *
  * @author Brian Leiva.
- * @version 20.04.2018
  */
 public interface CommentDAO {
 

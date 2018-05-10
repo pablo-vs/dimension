@@ -22,28 +22,40 @@ import es.ucm.fdi.workspace.VisualizationBO;
 /**
  * Contains the data of a project.
  *
- * @author Eduardo Amaya
- * @author Javier Galiana
+ * @author Eduardo Amaya, Javier Galiana, Inmaculada Pérez
  */
 public class ProjectTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private ArrayList<VisualizationBO> views;
-    private ArrayList<FunctionBO> functions;
+    private ArrayList<VisualizationBO> views = new ArrayList<>();
+    private ArrayList<FunctionBO> functions = new ArrayList<>();
     private final String ID;
-
+    /**
+     * Class constructor specifying ID.
+     * 
+     * @param ID 
+     */
     public ProjectTO(String ID) {
         this.ID = ID;
-        views = new ArrayList<>();
-        functions = new ArrayList<>();
     }
 
-    public ProjectTO(String ID, List<VisualizationBO> vis, List<FunctionBO> funcs) {
+    /**
+     * Class constructor specifying ID, different views and functions.
+     * 
+     * @param ID
+     * @param views
+     * @param functions 
+     */
+    public ProjectTO(String ID, List<VisualizationBO> views, List<FunctionBO> functions) {
         this.ID = ID;
-        views = new ArrayList<>(vis);
-        functions = new ArrayList<>(funcs);
+        this.views = new ArrayList<>(views);
+        this.functions = new ArrayList<>(functions);
     }
 
+    /**
+     * Class constructor specifying another ProjectTO object.
+     * @param other 
+     */
     public ProjectTO(ProjectTO other) {
         if (other.views != null) {
             views = new ArrayList<>(other.views);
@@ -54,24 +66,46 @@ public class ProjectTO implements Serializable {
         ID = other.ID;
     }
 
+    /**
+     * 
+     * @return the ID of the project
+     */
     public String getID() {
         return ID;
     }
 
+    /**
+     * 
+     * @return the list of visualization object of the project
+     */
     public List<VisualizationBO> getViews() {
         return views;
     }
 
+    /**
+     * 
+     * @return the different functions
+     */
     public List<FunctionBO> getFunctions() {
         return functions;
     }
 
-    public void setFunctions(List<FunctionBO> funcs) {
-        functions = new ArrayList<>(funcs);
+    /**
+     * Sets a new list of functions.
+     * 
+     * @param functions 
+     */
+    public void setFunctions(List<FunctionBO> functions) {
+        this.functions = new ArrayList<>(functions);
     }
 
-    public void setViews(List<VisualizationBO> vis) {
-        views = new ArrayList<>(vis);
+    /**
+     * Sets a new list of views.
+     * 
+     * @param views 
+     */
+    public void setViews(List<VisualizationBO> views) {
+        this.views = new ArrayList<>(views);
     }
 
 }

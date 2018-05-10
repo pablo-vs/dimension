@@ -4,39 +4,25 @@ package es.ucm.fdi.connectivity;
  * Represents a comment in a project.
  *
  * @author Brian Leiva
- * @version 20.04.2018
  */
 public class CommentBO {
-
-    /**
-     * Author
-     */
     private final String author;
-    /**
-     * Project
-     */
     private final String project;
-    /**
-     * Text
-     */
     private final String text;
-    /**
-     * Comment id
-     */
     private String id;
 
     /**
      * Class constructor specifying the project, the author and the comment
      * itself (text)
      *
-     * @param auth Author
-     * @param proj Project
-     * @param commentText Text
+     * @param author Author
+     * @param project Project
+     * @param text Text
      */
-    public CommentBO(String auth, String proj, String commentText) {
-        author = auth;
-        project = proj;
-        text = commentText;
+    public CommentBO(String author, String project, String text) {
+        this.author = author;
+        this.project = project;
+        this.text = text;
     }
 
     /**

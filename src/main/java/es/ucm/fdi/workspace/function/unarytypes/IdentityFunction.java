@@ -31,7 +31,7 @@ public class IdentityFunction extends UnaryFunction {
     }
 
     @Override
-    protected double evaluateExpr(VariablesList list) {
+    protected double evaluateExpression(VariablesList list) {
         return list.getVariable(variable);
     }
 

@@ -6,7 +6,6 @@ import java.util.List;
  * The DAO for SharedProjects.
  *
  * @author Pablo Villalobos.
- * @version 03.04.2018
  */
 public interface SharedProjectDAO {
 

@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 import es.ucm.fdi.business_tier.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
  * Represents the modulo function.
@@ -40,7 +40,7 @@ public class ModuloFunction extends BinaryFunction {
      * @param function2
      * @param variables
      */
-    public ModuloFunction(FunctionComposite function1, FunctionComposite function2, VariablesList variables) {
+    public ModuloFunction(AbstractFunction function1, AbstractFunction function2, VariablesList variables) {
         super(function1, function2, variables);
     }
 
@@ -57,7 +57,7 @@ public class ModuloFunction extends BinaryFunction {
      * <b>Note:</b> the given variable names must be equal to those of the
      * function.
      *
-     * @see FunctionComposite
+     * @see AbstractFunction
      * @param vars The vars list.
      * @return The result of applying the function to the values.
      */
@@ -73,7 +73,7 @@ public class ModuloFunction extends BinaryFunction {
         @Override
         public ModuloFunction parse(String str, VariablesList variables) {
             ModuloFunction func = null;
-            FunctionComposite[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
+            AbstractFunction[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
             if (funcs[0] != null && funcs[1] != null) {
                 func = new ModuloFunction(funcs[0], funcs[1], variables);
             }

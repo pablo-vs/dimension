@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import es.ucm.fdi.business_tier.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
 import es.ucm.fdi.business_tier.util.FunctionParserUtils;
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
  * Represents the logarithmic function.
@@ -42,7 +42,7 @@ public class LogarithmicFunction extends BinaryFunction {
      * @param function2
      * @param variables
      */
-    public LogarithmicFunction(FunctionComposite function1, FunctionComposite function2,
+    public LogarithmicFunction(AbstractFunction function1, AbstractFunction function2,
             VariablesList variables) {
         super(function1, function2, variables);
     }
@@ -60,7 +60,7 @@ public class LogarithmicFunction extends BinaryFunction {
      * <b>Note:</b> the given variable names must be equal to those of the
      * function.
      *
-     * @see FunctionComposite
+     * @see AbstractFunction
      * @param vars The vars list.
      * @return The result of applying the function to the values.
      */
@@ -79,8 +79,8 @@ public class LogarithmicFunction extends BinaryFunction {
             LogarithmicFunction result = null;
             Matcher m = REGEX.matcher(str);
             if (m.matches()) {
-                FunctionComposite f1 = FunctionParserUtils.parse(m.group(1), variables);
-                FunctionComposite f2 = FunctionParserUtils.parse(m.group(2), variables);
+                AbstractFunction f1 = FunctionParserUtils.parse(m.group(1), variables);
+                AbstractFunction f2 = FunctionParserUtils.parse(m.group(2), variables);
                 if (f1 != null && f2 != null) {
                     result = new LogarithmicFunction(f1, f2, variables);
                 }

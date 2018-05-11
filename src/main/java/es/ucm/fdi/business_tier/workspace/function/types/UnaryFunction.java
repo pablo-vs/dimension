@@ -17,14 +17,14 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 import es.ucm.fdi.business_tier.util.FunctionParserUtils;
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
  * @author Inmaculada Pérez, Javier Navalon
  */
-public abstract class UnaryFunction implements FunctionComposite {
+public abstract class UnaryFunction implements AbstractFunction {
 
-    protected FunctionComposite function;
+    protected AbstractFunction function;
 
     protected VariablesList vars;
 
@@ -34,7 +34,7 @@ public abstract class UnaryFunction implements FunctionComposite {
      * @param function
      * @param vars
      */
-    public UnaryFunction(FunctionComposite function, VariablesList vars) {
+    public UnaryFunction(AbstractFunction function, VariablesList vars) {
         this.vars = vars;
         this.function = function;
     }
@@ -68,7 +68,7 @@ public abstract class UnaryFunction implements FunctionComposite {
         return evaluate(vars);
     }
 
-    public static abstract class Parser extends FunctionComposite.Parser {
+    public static abstract class Parser extends AbstractFunction.Parser {
 
         @Override
         public abstract UnaryFunction parse(String str, VariablesList variables);

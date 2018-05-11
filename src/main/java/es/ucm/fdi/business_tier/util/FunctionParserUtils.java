@@ -18,16 +18,16 @@ import es.ucm.fdi.business_tier.workspace.function.types.unary.Log10Function;
 import es.ucm.fdi.business_tier.workspace.function.types.unary.SecantFunction;
 import es.ucm.fdi.business_tier.workspace.function.types.unary.SineFunction;
 import es.ucm.fdi.business_tier.workspace.function.types.unary.TangentFunction;
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
- * FunctionComposite-parser utility class. This class contains only static
+ * AbstractFunction-parser utility class. This class contains only static
  * methods and a private constructor to avoid instantiation. Given a list of
  * parsers
  * <i>parserList</i>
  * containing different types of functions, the method {@link #parse parse}
  * returns a
- * {@link es.ucm.fdi.workspace.workspace.FunctionBO FunctionComposite}.
+ * {@link es.ucm.fdi.workspace.workspace.FunctionBO AbstractFunction}.
  *
  * @author Pablo Villalobos
  * @author Arturo Acuaviva
@@ -44,9 +44,9 @@ public final class FunctionParserUtils {
     /**
      * The list which contains all the types of
      * {@link es.ucm.fdi.workspace.FunctionBO.Parser Parse} for each type of
-     * {@link es.ucm.fdi.workspace.workspace.FunctionBO FunctionComposite}.
+     * {@link es.ucm.fdi.workspace.workspace.FunctionBO AbstractFunction}.
      */
-    private static final FunctionComposite.Parser[] PARSER_LIST = {
+    private static final AbstractFunction.Parser[] PARSER_LIST = {
         new IdentityFunction.Parser(),
         new ConstantFunction.Parser(),
         new Log10Function.Parser(),
@@ -70,7 +70,7 @@ public final class FunctionParserUtils {
      * It turns a given String and a
      * {@link es.ucm.fdi.business_tier.workspace.function.types.VariablesList VariablesList}
      * into a
-     * {@link es.ucm.fdi.workspace.workspace.FunctionBO FunctionComposite}. It
+     * {@link es.ucm.fdi.workspace.workspace.FunctionBO AbstractFunction}. It
      * returns null when the string does not match any of the functions in
      * {@link es.ucm.fdi.workspace.function.types function.types}.
      * <b>Warning:</b> Not all values from
@@ -81,9 +81,9 @@ public final class FunctionParserUtils {
      * @param var List of variables the function is supposed to contain.
      * @return the function which matches the type.
      */
-    public static FunctionComposite parse(String str, VariablesList var) {
-        FunctionComposite f = null;
-        for (FunctionComposite.Parser p : PARSER_LIST) {
+    public static AbstractFunction parse(String str, VariablesList var) {
+        AbstractFunction f = null;
+        for (AbstractFunction.Parser p : PARSER_LIST) {
             f = p.parse(str, var);
             if (f != null) {
                 break;

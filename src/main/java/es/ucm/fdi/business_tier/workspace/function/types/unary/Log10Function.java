@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 import es.ucm.fdi.business_tier.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
  * Represents the decimal logarithm.
@@ -33,7 +33,7 @@ public class Log10Function extends UnaryFunction {
      * @param f Function
      * @param vars Variables
      */
-    public Log10Function(FunctionComposite f, VariablesList vars) {
+    public Log10Function(AbstractFunction f, VariablesList vars) {
         super(f, vars);
     }
 
@@ -47,7 +47,7 @@ public class Log10Function extends UnaryFunction {
      * <b>Note:</b> the given variable names must be equal to those of the
      * function.
      *
-     * @see FunctionComposite
+     * @see AbstractFunction
      * @param vars The vars list.
      * @return The result of applying the function to the values.
      */
@@ -65,7 +65,7 @@ public class Log10Function extends UnaryFunction {
             Log10Function result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {
-                FunctionComposite arg = FunctionParserUtils.parse(strArg, variables);
+                AbstractFunction arg = FunctionParserUtils.parse(strArg, variables);
                 if (arg != null) {
                     result = new Log10Function(arg, variables);
                 }

@@ -25,12 +25,11 @@ import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
  * {@link #evaluate(es.ucm.fdi.workspace.function.types.VariablesList) evaluate}
  * which calculates the value of the function given a
  * {@link es.ucm.fdi.business_tier.workspace.function.types.VariablesList VariablesList}.
- * The interface will be used to implement the composite design pattern.
  *
  * @author Javier Navalón
  * @author Arturo Acuaviva
  */
-public interface FunctionComposite {
+public interface AbstractFunction {
 
     /**
      * Returns the variables list of the function.
@@ -80,6 +79,6 @@ public interface FunctionComposite {
          * @param variables The list of vars.
          * @return the function which matches the type or null
          */
-        public abstract FunctionComposite parse(String str, VariablesList variables);
+        public abstract AbstractFunction parse(String str, VariablesList variables);
     }
 }

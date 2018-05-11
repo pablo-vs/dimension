@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 import es.ucm.fdi.business_tier.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
  * Represents the division function.
@@ -41,7 +41,7 @@ public class DivideFunction extends BinaryFunction {
      * @param function2
      * @param variables
      */
-    public DivideFunction(FunctionComposite function1, FunctionComposite function2,
+    public DivideFunction(AbstractFunction function1, AbstractFunction function2,
             VariablesList variables) {
         super(function1, function2, variables);
     }
@@ -59,7 +59,7 @@ public class DivideFunction extends BinaryFunction {
      * <b>Note:</b> the given variable names must be equal to those of the
      * function.
      *
-     * @see FunctionComposite
+     * @see AbstractFunction
      * @param vars The vars list.
      * @return The result of applying the function to the values.
      */
@@ -75,7 +75,7 @@ public class DivideFunction extends BinaryFunction {
         @Override
         public DivideFunction parse(String name, VariablesList variables) {
             DivideFunction function = null;
-            FunctionComposite[] parsedFunction = BinaryFunction.Parser.parseFunctions(name, variables, REGEX);
+            AbstractFunction[] parsedFunction = BinaryFunction.Parser.parseFunctions(name, variables, REGEX);
             if (parsedFunction[0] != null && parsedFunction[1] != null) {
                 function = new DivideFunction(parsedFunction[0], parsedFunction[1], variables);
             }

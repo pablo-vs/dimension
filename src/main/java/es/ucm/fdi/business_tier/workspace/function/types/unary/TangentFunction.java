@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 import es.ucm.fdi.business_tier.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
  * Represents the tangent function.
@@ -33,7 +33,7 @@ public class TangentFunction extends UnaryFunction {
      * @param f Function
      * @param vars Variables
      */
-    public TangentFunction(FunctionComposite f, VariablesList vars) {
+    public TangentFunction(AbstractFunction f, VariablesList vars) {
         super(f, vars);
     }
 
@@ -47,7 +47,7 @@ public class TangentFunction extends UnaryFunction {
      * <b>Note:</b> the given variable names must be equal to those of the
      * function.
      *
-     * @see FunctionComposite
+     * @see AbstractFunction
      * @param vars The vars list.
      * @return The result of applying the function to the values.
      */
@@ -65,7 +65,7 @@ public class TangentFunction extends UnaryFunction {
             TangentFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {
-                FunctionComposite arg = FunctionParserUtils.parse(strArg, variables);
+                AbstractFunction arg = FunctionParserUtils.parse(strArg, variables);
                 if (arg != null) {
                     result = new TangentFunction(arg, variables);
                 }

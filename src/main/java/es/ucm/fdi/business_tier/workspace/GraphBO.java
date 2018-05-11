@@ -4,7 +4,7 @@ import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
 import es.ucm.fdi.workspace.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
  * A graph object is used to represent an abstract interpretration of a
@@ -98,7 +98,7 @@ public class GraphBO {
      * @param resolution
      * @throws NoMatchDimensionException
      */
-    public void generate(List<FunctionComposite> functions, double[] dom_ini, double[] dom_fin, int resolution) throws NoMatchDimensionException {
+    public void generate(List<AbstractFunction> functions, double[] dom_ini, double[] dom_fin, int resolution) throws NoMatchDimensionException {
         this.resolution = resolution;
         getGrid(dom_ini, dom_fin);
         for (int i = 0; i < domain.size(); ++i) {

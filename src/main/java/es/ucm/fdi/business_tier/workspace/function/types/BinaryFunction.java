@@ -17,17 +17,17 @@ import es.ucm.fdi.business_tier.util.FunctionParserUtils;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
  * Represents a binary function.
  *
  * @author Inmaculada Pérez, Javier Navalón
  */
-public abstract class BinaryFunction implements FunctionComposite {
+public abstract class BinaryFunction implements AbstractFunction {
 
-    protected FunctionComposite function1;
-    protected FunctionComposite function2;
+    protected AbstractFunction function1;
+    protected AbstractFunction function2;
     protected VariablesList vars;
 
     /**
@@ -44,7 +44,7 @@ public abstract class BinaryFunction implements FunctionComposite {
      * @param function2
      * @param vars
      */
-    public BinaryFunction(FunctionComposite function1, FunctionComposite function2, VariablesList vars) {
+    public BinaryFunction(AbstractFunction function1, AbstractFunction function2, VariablesList vars) {
         this.vars = vars;
         this.function1 = function1;
         this.function2 = function2;
@@ -70,7 +70,7 @@ public abstract class BinaryFunction implements FunctionComposite {
         return evaluate(vars);
     }
 
-    public static abstract class Parser extends FunctionComposite.Parser {
+    public static abstract class Parser extends AbstractFunction.Parser {
 
         @Override
         public abstract BinaryFunction parse(String strParam, VariablesList variables);
@@ -85,8 +85,8 @@ public abstract class BinaryFunction implements FunctionComposite {
          * @param operator The infix operator.
          * @return the parsed functions
          */
-        public static FunctionComposite[] parseFunctions(String strParam, VariablesList variables, Pattern operator) {
-            FunctionComposite[] funcs = {null, null};
+        public static AbstractFunction[] parseFunctions(String strParam, VariablesList variables, Pattern operator) {
+            AbstractFunction[] funcs = {null, null};
             boolean success = true;
             String str = FunctionParserUtils.stripExtraParenthesis(strParam);
             int endFirst = 0, startSecond;

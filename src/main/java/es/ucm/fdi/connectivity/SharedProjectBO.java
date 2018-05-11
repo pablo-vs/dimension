@@ -11,6 +11,10 @@ import es.ucm.fdi.workspace.project.ProjectTO;
 public abstract class SharedProjectBO extends ProjectTO {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2809118441039530565L;
+	/**
      * Project id
      */
     private String sharedID;

@@ -1,5 +1,6 @@
 package es.ucm.fdi.integration_tier.project;
 
+import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
 import java.util.List;
 
 /**
@@ -12,9 +13,9 @@ public interface ProjectDAO {
     /**
      * Adds a new project to the database.
      *
-     * @param proj The new project as a ProjectTransfer.
+     * @param proj The new project as a ProjectDTO.
      */
-    public void addProject(ProjectTransfer proj);
+    public void addProject(ProjectDTO proj);
 
     /**
      * Removes a project from the database.
@@ -27,18 +28,18 @@ public interface ProjectDAO {
      * If there is a project with the same identifier as the given one, replaces
      * it.
      *
-     * @param proj A ProjectTransfer containing the new data of the project.
+     * @param proj A ProjectDTO containing the new data of the project.
      */
-    public void modifyProject(ProjectTransfer proj);
+    public void modifyProject(ProjectDTO proj);
 
     /**
      * Find a project in the database.
      *
      * @param id The identifier of the project.
-     * @return A ProjectTransfer containing the data of the project, or null if no
+     * @return A ProjectDTO containing the data of the project, or null if no
  project was found.
      */
-    public ProjectTransfer findProject(String id);
+    public ProjectDTO findProject(String id);
 
     /**
      * Checks if a project exists in the database.
@@ -53,5 +54,5 @@ public interface ProjectDAO {
      *
      * @return A List of ProjectTOs.
      */
-    public List<ProjectTransfer> getProjects();
+    public List<ProjectDTO> getProjects();
 }

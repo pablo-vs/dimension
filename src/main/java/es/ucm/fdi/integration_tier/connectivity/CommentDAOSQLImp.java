@@ -1,11 +1,12 @@
 package es.ucm.fdi.integration_tier.connectivity;
 
+import es.ucm.fdi.business_tier.connectivity.CommentDTO;
 import java.sql.SQLException;
 import java.sql.JDBCType;
 
 import java.util.List;
 
-import es.ucm.fdi.business_tier.exceptions.DAOError;
+import es.ucm.fdi.integration_tier.exceptions.DAOErrorException;
 import es.ucm.fdi.integration_tier.data.DAOSQLImp;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * 
  * @author Inmaculada Pérez, Pablo Villalobos
  */
-public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO {
+public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDAO {
 
     private static final int REQUIERED_LENGTH = 4;
 
@@ -31,14 +32,14 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO
     /**
      * Adds a new comment to the database.
      *
-     * @param comment The new comment as a CommentBO.
+     * @param comment The new comment as a CommentDTO.
      */
     @Override
-    public void addComment(CommentBO comment) throws DAOError {
+    public void addComment(CommentDTO comment) throws DAOErrorException {
         try {
             addRecord(comment);
         } catch (SQLException e) {
-            throw new DAOError("Error while adding comment " + comment.getId()
+            throw new DAOErrorException("Error while adding comment " + comment.getId()
                     + ".\n" + e.getMessage(), e);
         }
     }
@@ -49,11 +50,11 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO
      * @param comment The comment to remove.
      */
     @Override
-    public void removeComment(CommentBO comment) throws DAOError {
+    public void removeComment(CommentDTO comment) throws DAOErrorException {
         try {
             deleteRecord(comment.getId());
         } catch (SQLException e) {
-            throw new DAOError("Error while removing comment " + comment.getId()
+            throw new DAOErrorException("Error while removing comment " + comment.getId()
                     + ".\n" + e.getMessage(), e);
         }
     }
@@ -65,12 +66,12 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO
      * @return A List of comments where the author is the given user.
      */
     @Override
-    public List<CommentBO> findByUser(String username) throws DAOError {
-        List<CommentBO> result;
+    public List<CommentDTO> findByUser(String username) throws DAOErrorException {
+        List<CommentDTO> result;
         try {
             result = findByVal(1, username);
         } catch (SQLException e) {
-            throw new DAOError("Error while finding comments from " + username
+            throw new DAOErrorException("Error while finding comments from " + username
                     + ".\n" + e.getMessage(), e);
         }
         return result;
@@ -83,12 +84,12 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO
      * @return A List of comments where the project is the given one.
      */
     @Override
-    public List<CommentBO> findByProject(String project) throws DAOError {
-        List<CommentBO> result;
+    public List<CommentDTO> findByProject(String project) throws DAOErrorException {
+        List<CommentDTO> result;
         try {
             result = findByVal(2, project);
         } catch (SQLException e) {
-            throw new DAOError("Error while finding comments of " + project
+            throw new DAOErrorException("Error while finding comments of " + project
                     + ".\n" + e.getMessage(), e);
         }
         return result;
@@ -100,19 +101,19 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO
      * @return A List of CommentBOs.
      */
     @Override
-    public List<CommentBO> getComments() {
-        List<CommentBO> result;
+    public List<CommentDTO> getComments() {
+        List<CommentDTO> result;
         try {
             result = getAllRecords();
         } catch (SQLException e) {
-            throw new DAOError("Error while reading all comments.\n"
+            throw new DAOErrorException("Error while reading all comments.\n"
                     + e.getMessage(), e);
         }
         return result;
     }
 
     @Override
-    public CommentBO build(List<Object> data) {
+    public CommentDTO build(List<Object> data) {
         if (data.size() != REQUIERED_LENGTH) {
             throw new IllegalArgumentException("Constructor requires 4 objects, "
                     + data.size() + " given");
@@ -121,13 +122,13 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO
                 && data.get(2) instanceof String && data.get(3) instanceof String)) {
             throw new IllegalArgumentException("Invalid data type");
         }
-        return new CommentBO((String) data.get(1),
+        return new CommentDTO((String) data.get(1),
                 (String) data.get(2),
                 (String) data.get(3));
     }
 
     @Override
-    public List<Object> getData(CommentBO c) {
+    public List<Object> getData(CommentDTO c) {
         List<Object> data = new ArrayList<>();
         data.add(c.getId());
         data.add(c.getAuthor());

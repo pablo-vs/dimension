@@ -16,13 +16,13 @@ package es.ucm.fdi.business_tier.model;
 import es.ucm.fdi.business_tier.model.observer.DimensionObservable;
 import es.ucm.fdi.integration_tier.connectivity.AuthorshipDAOHashTableImp;
 import es.ucm.fdi.integration_tier.connectivity.CommentDAOHashTableImp;
-import es.ucm.fdi.integration_tier.connectivity.ShareManagerAS;
+import es.ucm.fdi.business_tier.connectivity.ShareManagerAS;
 import es.ucm.fdi.integration_tier.connectivity.SharedProjectDAOHashTableImp;
 import es.ucm.fdi.business_tier.exceptions.NotFoundException;
 import es.ucm.fdi.integration_tier.users.UserDAOHashTableImp;
-import es.ucm.fdi.integration_tier.users.UserManagerAS;
-import es.ucm.fdi.integration_tier.users.SessionBO;
-import es.ucm.fdi.integration_tier.project.ProjectTransfer;
+import es.ucm.fdi.business_tier.users.UserManagerAS;
+import es.ucm.fdi.business_tier.users.SessionDTO;
+import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
 import java.security.AccessControlException;
 
 /**
@@ -38,8 +38,8 @@ public class DimensionModel extends DimensionObservable {
     private final CommentDAOHashTableImp commentsDB = new CommentDAOHashTableImp();
     private final UserManagerAS userManager;
     private final ShareManagerAS projectManager;
-    private SessionBO currentSession = null;
-    private ProjectTransfer currentProject = null;
+    private SessionDTO currentSession = null;
+    private ProjectDTO currentProject = null;
 
     /**
      * Class constructor. We don't have an external database, this model creates

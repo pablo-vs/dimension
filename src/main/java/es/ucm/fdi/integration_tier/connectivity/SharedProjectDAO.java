@@ -1,5 +1,6 @@
 package es.ucm.fdi.integration_tier.connectivity;
 
+import es.ucm.fdi.business_tier.connectivity.SharedProjectDTO;
 import java.util.List;
 
 /**
@@ -12,9 +13,9 @@ public interface SharedProjectDAO {
     /**
      * Adds a new project to the database.
      *
-     * @param proj The new project as a SharedProjectBO.
+     * @param proj The new project as a SharedProjectDTO.
      */
-    public void addSharedProject(SharedProjectBO proj);
+    public void addSharedProject(SharedProjectDTO proj);
 
     /**
      * Removes a project from the database.
@@ -27,18 +28,18 @@ public interface SharedProjectDAO {
      * If there is a project with the same identifier as the given one, replaces
      * it.
      *
-     * @param proj A SharedProjectBO containing the new data of the project.
+     * @param proj A SharedProjectDTO containing the new data of the project.
      */
-    public void modifySharedProject(SharedProjectBO proj);
+    public void modifySharedProject(SharedProjectDTO proj);
 
     /**
      * Finds a project in the database.
      *
      * @param id The identifier of the project.
-     * @return A SharedProjectBO containing the data of the project, or null if
-     * no project was found.
+     * @return A SharedProjectDTO containing the data of the project, or null if
+ no project was found.
      */
-    public SharedProjectBO findSharedProject(String id);
+    public SharedProjectDTO findSharedProject(String id);
 
     /**
      * Find a project by name.
@@ -46,12 +47,12 @@ public interface SharedProjectDAO {
      * @param name The name of the project.
      * @return the A List of projects with that name.
      */
-    public List<SharedProjectBO> findByName(String name);
+    public List<SharedProjectDTO> findByName(String name);
 
     /**
      * Returns all the stored projects.
      *
      * @return A List of SharedProjectBOs.
      */
-    public List<SharedProjectBO> getSharedProjects();
+    public List<SharedProjectDTO> getSharedProjects();
 }

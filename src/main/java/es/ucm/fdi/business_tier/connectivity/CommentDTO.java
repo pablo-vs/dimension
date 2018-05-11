@@ -1,16 +1,16 @@
-package es.ucm.fdi.integration_tier.connectivity;
+package es.ucm.fdi.business_tier.connectivity;
 
 /**
  * Represents a comment in a project.
  *
  * @author Brian Leiva
  */
-public class CommentBO {
+public class CommentDTO {
 
     private final String author;
     private final String project;
     private final String text;
-    private String id;
+    private final String id;
 
     /**
      * Class constructor specifying the project, the author and the comment
@@ -20,7 +20,7 @@ public class CommentBO {
      * @param proj
      * @param text Text
      */
-    public CommentBO(String author, String proj, String text) {
+    public CommentDTO(String author, String proj, String text) {
         this.author = author;
         this.project = proj;
         this.text = text;

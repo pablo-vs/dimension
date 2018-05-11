@@ -1,5 +1,6 @@
 package es.ucm.fdi.integration_tier.users;
 
+import es.ucm.fdi.business_tier.users.UserDTO;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public interface UserDAO {
      *
      * @param user The new user.
      */
-    public void addUser(UserTransfer user);
+    public void addUser(UserDTO user);
 
     /**
      * If there is a user with the given identifier, removes it.
@@ -29,7 +30,7 @@ public interface UserDAO {
      *
      * @param user A TO containing the new account details.
      */
-    public void modifyUser(UserTransfer user);
+    public void modifyUser(UserDTO user);
 
     /**
      * Returns the account details of the user for the given id.
@@ -37,12 +38,18 @@ public interface UserDAO {
      * @param id Identifier of the user.
      * @return A TO containing the relevant data.
      */
-    public UserTransfer findUser(String id);
+    public UserDTO findUser(String id);
 
     /**
      * Returns a list of all the registered users.
      *
      * @return A list of users.
      */
-    public List<UserTransfer> getUsers();
+    public List<UserDTO> getUsers();
+    
+    /**
+     * Bans a user from the system given its ID
+     * @param id
+     */
+    public void banUser(String id);
 }

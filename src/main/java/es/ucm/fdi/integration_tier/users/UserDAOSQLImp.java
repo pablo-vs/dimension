@@ -1,5 +1,7 @@
 package es.ucm.fdi.integration_tier.users;
 
+import es.ucm.fdi.business_tier.users.UserType;
+import es.ucm.fdi.business_tier.users.UserDTO;
 import java.sql.SQLException;
 import java.sql.JDBCType;
 
@@ -14,7 +16,7 @@ import java.io.IOException;
 
 import twitter4j.auth.AccessToken;
 
-import es.ucm.fdi.business_tier.exceptions.DAOError;
+import es.ucm.fdi.integration_tier.exceptions.DAOErrorException;
 import es.ucm.fdi.integration_tier.data.DAOSQLImp;
 import java.util.ArrayList;
 
@@ -22,7 +24,7 @@ import java.util.ArrayList;
  * 
  * @author Inmaculada Pérez, Pablo Villalobos
  */
-public class UserDAOSQLImp extends DAOSQLImp<UserTransfer> implements UserDAO {
+public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
 
     private static final int REQUIERED_LENGTH = 11;
     
@@ -44,14 +46,14 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTransfer> implements UserDAO {
     /**
      * Adds a new user to the database.
      *
-     * @param user The new user as a UserTransfer.
+     * @param user The new user as a UserDTO.
      */
     @Override
-    public void addUser(UserTransfer user) throws DAOError {
+    public void addUser(UserDTO user) throws DAOErrorException {
         try {
             addRecord(user);
         } catch (SQLException e) {
-            throw new DAOError("Error while adding user " + user.getID()
+            throw new DAOErrorException("Error while adding user " + user.getID()
                     + ".\n" + e.getMessage(), e);
         }
     }
@@ -66,7 +68,7 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTransfer> implements UserDAO {
         try {
             deleteRecord(id);
         } catch (SQLException e) {
-            throw new DAOError("Error while removing user " + id
+            throw new DAOErrorException("Error while removing user " + id
                     + ".\n" + e.getMessage(), e);
         }
     }
@@ -77,11 +79,11 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTransfer> implements UserDAO {
      * @param user The user to modify.
      */
     @Override
-    public void modifyUser(UserTransfer user) {
+    public void modifyUser(UserDTO user) {
         try {
             modifyRecord(user);
         } catch (SQLException e) {
-            throw new DAOError("Error while modifying user " + user.getID()
+            throw new DAOErrorException("Error while modifying user " + user.getID()
                     + ".\n" + e.getMessage(), e);
         }
     }
@@ -93,13 +95,13 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTransfer> implements UserDAO {
      * @return The user where the id is the given one.
      */
     @Override
-    public UserTransfer findUser(String id) {
-        UserTransfer result = null;
-        List<UserTransfer> find;
+    public UserDTO findUser(String id) {
+        UserDTO result = null;
+        List<UserDTO> find;
         try {
             find = findByVal(0, id);
         } catch (SQLException e) {
-            throw new DAOError("Error while finding user " + id
+            throw new DAOErrorException("Error while finding user " + id
                     + ".\n" + e.getMessage(), e);
         }
         if (find.size() == 1) {
@@ -114,19 +116,19 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTransfer> implements UserDAO {
      * @return A List of UserTOs.
      */
     @Override
-    public List<UserTransfer> getUsers() {
-        List<UserTransfer> result;
+    public List<UserDTO> getUsers() {
+        List<UserDTO> result;
         try {
             result = getAllRecords();
         } catch (SQLException e) {
-            throw new DAOError("Error while reading all users.\n"
+            throw new DAOErrorException("Error while reading all users.\n"
                     + e.getMessage(), e);
         }
         return result;
     }
 
     @Override
-    public List<Object> getData(UserTransfer u) {
+    public List<Object> getData(UserDTO u) {
         try {
             ByteArrayOutputStream str = new ByteArrayOutputStream();
             ObjectOutputStream ostr = new ObjectOutputStream(str);
@@ -154,7 +156,7 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTransfer> implements UserDAO {
     }
 
     @Override
-    public UserTransfer build(List<Object> data) {
+    public UserDTO build(List<Object> data) {
         if (data.size() != REQUIERED_LENGTH) {
             throw new IllegalArgumentException("Constructor requires 11 objects, "
                     + data.size() + " given");
@@ -181,10 +183,15 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTransfer> implements UserDAO {
 
         UserType type = UserType.fromInt((Integer) data.get(8));
 
-        return new UserTransfer((String) data.get(0), (String) data.get(1),
+        return new UserDTO((String) data.get(0), (String) data.get(1),
                 (String) data.get(2), (Date) data.get(3), (String) data.get(4),
                 (String) data.get(5), (String) data.get(6), (String) data.get(7),
                 type, (Period) data.get(9), (AccessToken) token);
+    }
+
+    @Override
+    public void banUser(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

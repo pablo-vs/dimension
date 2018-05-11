@@ -1,9 +1,9 @@
-package es.ucm.fdi.integration_tier.connectivity;
+package es.ucm.fdi.business_tier.connectivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.integration_tier.project.ProjectTransfer;
+import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
 
 /**
  * A shared project that can be read only by a list of people allowed and
@@ -11,7 +11,7 @@ import es.ucm.fdi.integration_tier.project.ProjectTransfer;
  *
  * @author Javier Galiana
  */
-public class SharedProjectBOPrivateProjectImp extends SharedProjectBO {
+public class SharedProjectDTOPrivateProjectImp extends SharedProjectDTO {
 
     /**
      * List of authors
@@ -30,7 +30,7 @@ public class SharedProjectBOPrivateProjectImp extends SharedProjectBO {
      * @param auth List of authors
      * @param view List of viewers
      */
-    public SharedProjectBOPrivateProjectImp(String ID, ProjectTransfer proj, List<String> auth, List<String> view) {
+    public SharedProjectDTOPrivateProjectImp(String ID, ProjectDTO proj, List<String> auth, List<String> view) {
         super(ID, proj);
         authors = new ArrayList<>(auth);
         viewers = new ArrayList<>(view);
@@ -43,7 +43,7 @@ public class SharedProjectBOPrivateProjectImp extends SharedProjectBO {
      * @param proj Shared projects
      * @param author List of authors
      */
-    public SharedProjectBOPrivateProjectImp(String ID, ProjectTransfer proj, String author) {
+    public SharedProjectDTOPrivateProjectImp(String ID, ProjectDTO proj, String author) {
         super(ID, proj);
         authors = new ArrayList<>();
         authors.add(author);

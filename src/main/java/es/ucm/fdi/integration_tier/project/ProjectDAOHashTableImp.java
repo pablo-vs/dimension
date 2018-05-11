@@ -1,5 +1,6 @@
 package es.ucm.fdi.integration_tier.project;
 
+import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class ProjectDAOHashTableImp implements ProjectDAO {
     /**
      * Database
      */
-    private MemoryDB<ProjectTransfer> db = new MemoryDB<>();
+    private MemoryDB<ProjectDTO> db = new MemoryDB<>();
 
     /**
      * Class constructor.
@@ -24,7 +25,7 @@ public class ProjectDAOHashTableImp implements ProjectDAO {
     }
 
     @Override
-    public void addProject(ProjectTransfer proj) {
+    public void addProject(ProjectDTO proj) {
         db.insert(proj, proj.getID());
     }
 
@@ -34,7 +35,7 @@ public class ProjectDAOHashTableImp implements ProjectDAO {
     }
 
     @Override
-    public void modifyProject(ProjectTransfer proj) {
+    public void modifyProject(ProjectDTO proj) {
         if (findProject(proj.getID()) != null) {
             db.insert(proj, proj.getID());
         } else {
@@ -43,7 +44,7 @@ public class ProjectDAOHashTableImp implements ProjectDAO {
     }
 
     @Override
-    public ProjectTransfer findProject(String id) {
+    public ProjectDTO findProject(String id) {
         return db.find(id);
     }
 
@@ -53,8 +54,8 @@ public class ProjectDAOHashTableImp implements ProjectDAO {
     }
 
     @Override
-    public List<ProjectTransfer> getProjects() {
-        ArrayList<ProjectTransfer> lista = new ArrayList<>();
+    public List<ProjectDTO> getProjects() {
+        ArrayList<ProjectDTO> lista = new ArrayList<>();
         db.getIds().forEach((id) -> {
             lista.add(db.find(id));
         });

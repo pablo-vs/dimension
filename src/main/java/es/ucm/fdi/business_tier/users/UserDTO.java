@@ -1,4 +1,4 @@
-package es.ucm.fdi.integration_tier.users;
+package es.ucm.fdi.business_tier.users;
 
 import java.util.Date;
 import java.time.Period;
@@ -12,7 +12,7 @@ import twitter4j.auth.AccessToken;
  * @author Eduardo Amaya, Javier Galiana, Inmaculada Pérez
  *
  */
-public class UserTransfer implements Serializable {
+public class UserDTO implements Serializable {
 
     /**
      * Identifier
@@ -67,7 +67,7 @@ public class UserTransfer implements Serializable {
      * @param ID Identifier
      * @param password Password
      */
-    public UserTransfer(String ID, String password) {
+    public UserDTO(String ID, String password) {
         this.ID = ID;
         this.password = password;
     }
@@ -87,7 +87,7 @@ public class UserTransfer implements Serializable {
      * @param banTime
      * @param twitterAccess
      */
-    public UserTransfer(String ID, String name, String password, Date date,
+    public UserDTO(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
             UserType type, Period banTime, AccessToken twitterAccess) {
         this.ID = ID;
@@ -121,7 +121,7 @@ public class UserTransfer implements Serializable {
      * to twitter
      * @throws ParseException
      */
-    public UserTransfer(String ID, String name, String password, Date date,
+    public UserDTO(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
             UserType type, Period banTime, String twitterAccessToken, String twitterAccessTokenSecret)
             throws ParseException {

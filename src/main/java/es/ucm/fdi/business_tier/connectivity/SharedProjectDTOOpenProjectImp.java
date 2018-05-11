@@ -1,16 +1,16 @@
-package es.ucm.fdi.integration_tier.connectivity;
+package es.ucm.fdi.business_tier.connectivity;
 
 import java.util.List;
 import java.util.ArrayList;
 
-import es.ucm.fdi.integration_tier.project.ProjectTransfer;
+import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
 
 /**
  * A shared project that can be read by everyone and modified by its authors.
  *
  * @author Pablo Villalobos
  */
-public class SharedProjectBOOpenProjectImp extends SharedProjectBO {
+public class SharedProjectDTOOpenProjectImp extends SharedProjectDTO {
 
     /**
      * List of authors
@@ -24,7 +24,7 @@ public class SharedProjectBOOpenProjectImp extends SharedProjectBO {
      * @param proj Project
      * @param authors List of authors
      */
-    public SharedProjectBOOpenProjectImp(String ID, ProjectTransfer proj, List<String> authors) {
+    public SharedProjectDTOOpenProjectImp(String ID, ProjectDTO proj, List<String> authors) {
         super(ID, proj);
         this.authors = new ArrayList<>(authors);
     }
@@ -36,7 +36,7 @@ public class SharedProjectBOOpenProjectImp extends SharedProjectBO {
      * @param proj Project
      * @param author Owner
      */
-    public SharedProjectBOOpenProjectImp(String ID, ProjectTransfer proj, String author) {
+    public SharedProjectDTOOpenProjectImp(String ID, ProjectDTO proj, String author) {
         super(ID, proj);
         authors.add(author);
     }

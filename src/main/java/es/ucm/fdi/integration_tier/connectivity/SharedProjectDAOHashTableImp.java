@@ -1,5 +1,6 @@
 package es.ucm.fdi.integration_tier.connectivity;
 
+import es.ucm.fdi.business_tier.connectivity.SharedProjectDTO;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import es.ucm.fdi.integration_tier.data.MemoryDB;
  */
 public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
 
-    private MemoryDB<SharedProjectBO> database = new MemoryDB<>();
+    private MemoryDB<SharedProjectDTO> database = new MemoryDB<>();
 
     /**
      * Empty class constructor.
@@ -23,10 +24,10 @@ public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
     /**
      * Adds a new project to the database.
      *
-     * @param proj The new project as a SharedProjectBO.
+     * @param proj The new project as a SharedProjectDTO.
      */
     @Override
-    public void addSharedProject(SharedProjectBO proj) {
+    public void addSharedProject(SharedProjectDTO proj) {
         database.insert(proj, proj.getSharedID());
     }
 
@@ -44,10 +45,10 @@ public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
      * If there is a project with the same identifier as the given one, replaces
      * it.
      *
-     * @param proj A SharedProjectBO containing the new data of the project.
+     * @param proj A SharedProjectDTO containing the new data of the project.
      */
     @Override
-    public void modifySharedProject(SharedProjectBO proj) {
+    public void modifySharedProject(SharedProjectDTO proj) {
         database.insert(proj, proj.getSharedID());
     }
 
@@ -55,11 +56,11 @@ public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
      * Finds a project in the database.
      *
      * @param id The identifier of the project.
-     * @return A SharedProjectBO containing the data of the project, or null if
-     * no project was found.
+     * @return A SharedProjectDTO containing the data of the project, or null if
+ no project was found.
      */
     @Override
-    public SharedProjectBO findSharedProject(String id) {
+    public SharedProjectDTO findSharedProject(String id) {
         return database.find(id);
     }
 
@@ -70,10 +71,10 @@ public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
      * @return the A List of projects with that name.
      */
     @Override
-    public List<SharedProjectBO> findByName(String name) {
-        ArrayList<SharedProjectBO> results = new ArrayList<>();
+    public List<SharedProjectDTO> findByName(String name) {
+        ArrayList<SharedProjectDTO> results = new ArrayList<>();
         for (String s : database.getIds()) {
-            SharedProjectBO proj = database.find(s);
+            SharedProjectDTO proj = database.find(s);
             if (proj.getID().equals(name)) {
                 results.add(proj);
             }
@@ -87,8 +88,8 @@ public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
      * @return A List of SharedProjectBOs.
      */
     @Override
-    public List<SharedProjectBO> getSharedProjects() {
-        ArrayList<SharedProjectBO> results = new ArrayList<>();
+    public List<SharedProjectDTO> getSharedProjects() {
+        ArrayList<SharedProjectDTO> results = new ArrayList<>();
         database.getIds().forEach((s) -> {
             results.add(database.find(s));
         });

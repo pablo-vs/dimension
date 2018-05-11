@@ -1,4 +1,4 @@
-package es.ucm.fdi.integration_tier.connectivity;
+package es.ucm.fdi.business_tier.connectivity;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @author Pablo Villalobos
  */
-public class AuthorshipTransfer {
+public class AuthorshipDTO {
 
     /**
      * Author of the project
@@ -29,7 +29,7 @@ public class AuthorshipTransfer {
      * @param author Author
      * @param project Shared project
      */
-    public AuthorshipTransfer(String author, String project) {
+    public AuthorshipDTO(String author, String project) {
         this.author = author;
         this.project = project;
         id = author + project;
@@ -61,10 +61,10 @@ public class AuthorshipTransfer {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof AuthorshipTransfer)) {
+        if (!(other instanceof AuthorshipDTO)) {
             return false;
         } else {
-            return id.equals(((AuthorshipTransfer) other).getId());
+            return id.equals(((AuthorshipDTO) other).getId());
         }
     }
 

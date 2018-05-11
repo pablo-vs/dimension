@@ -11,14 +11,14 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.business_tier.exceptions;
+package es.ucm.fdi.integration_tier.exceptions;
 
 /**
  * Controls the exceptions thrown associated with a DAO Error.
  *
  * @author Inmaculada Pérez
  */
-public class DAOError extends RuntimeException {
+public class DAOErrorException extends RuntimeException {
 
     /**
      * Serial version
@@ -32,7 +32,7 @@ public class DAOError extends RuntimeException {
      * @param message Error message
      * @param e Exception
      */
-    public DAOError(String message, Throwable e) {
+    public DAOErrorException(String message, Throwable e) {
         super(message, e);
     }
 
@@ -41,7 +41,7 @@ public class DAOError extends RuntimeException {
      *
      * @param message Error message
      */
-    public DAOError(String message) {
+    public DAOErrorException(String message) {
         super(message);
     }
 }

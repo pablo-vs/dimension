@@ -13,7 +13,6 @@
  */
 package es.ucm.fdi.business_tier.workspace.project;
 
-import es.ucm.fdi.integration_tier.project.ProjectTransfer;
 import es.ucm.fdi.business_tier.workspace.FunctionBO;
 import es.ucm.fdi.business_tier.workspace.VisualizationBO;
 import es.ucm.fdi.business_tier.workspace.GraphBO;
@@ -26,21 +25,21 @@ import es.ucm.fdi.business_tier.workspace.transformations.GraphTransformationBO;
  */
 public class WorkAS {
 
-    private final ProjectTransfer project;
+    private final ProjectDTO project;
 
     /**
      * Create a Work Application Service using the given project.
      *
      * @param proj The project to work on.
      */
-    public WorkAS(ProjectTransfer proj) {
+    public WorkAS(ProjectDTO proj) {
         project = proj;
     }
 
     /**
      * @return The current project.
      */
-    public ProjectTransfer getProject() {
+    public ProjectDTO getProject() {
         return project;
     }
 

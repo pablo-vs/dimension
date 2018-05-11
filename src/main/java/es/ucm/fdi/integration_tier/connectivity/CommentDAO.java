@@ -1,5 +1,6 @@
 package es.ucm.fdi.integration_tier.connectivity;
 
+import es.ucm.fdi.business_tier.connectivity.CommentDTO;
 import java.util.List;
 
 /**
@@ -12,16 +13,16 @@ public interface CommentDAO {
     /**
      * Adds a new comment to the database.
      *
-     * @param comment The new comment as a CommentBO.
+     * @param comment The new comment as a CommentDTO.
      */
-    public void addComment(CommentBO comment);
+    public void addComment(CommentDTO comment);
 
     /**
      * Removes a comment from the database.
      *
      * @param comment The comment to remove.
      */
-    public void removeComment(CommentBO comment);
+    public void removeComment(CommentDTO comment);
 
     /**
      * Find comments in the database matching the given username.
@@ -29,7 +30,7 @@ public interface CommentDAO {
      * @param username The identifier of the user.
      * @return A List of comments where the author is the given user.
      */
-    public List<CommentBO> findByUser(String username);
+    public List<CommentDTO> findByUser(String username);
 
     /**
      * Find comments in the database matching the given project.
@@ -37,12 +38,12 @@ public interface CommentDAO {
      * @param project The identifier of the project.
      * @return A List of comments made on the project.
      */
-    public List<CommentBO> findByProject(String project);
+    public List<CommentDTO> findByProject(String project);
 
     /**
      * Returns all the stored comments.
      *
      * @return A List of CommentBOs.
      */
-    public List<CommentBO> getComments();
+    public List<CommentDTO> getComments();
 }

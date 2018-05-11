@@ -1,4 +1,4 @@
-package es.ucm.fdi.integration_tier.users;
+package es.ucm.fdi.business_tier.users;
 
 /**
  * Represents the distinct types of users: User and admin.

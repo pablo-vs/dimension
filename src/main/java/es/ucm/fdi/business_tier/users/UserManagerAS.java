@@ -1,5 +1,6 @@
-package es.ucm.fdi.integration_tier.users;
+package es.ucm.fdi.business_tier.users;
 
+import es.ucm.fdi.business_tier.users.SessionDTO;
 import java.time.Period;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
@@ -7,10 +8,11 @@ import java.util.List;
 import java.security.AccessControlException;
 
 import es.ucm.fdi.workspace.util.HashGenerator;
-import es.ucm.fdi.integration_tier.connectivity.CommentBO;
+import es.ucm.fdi.business_tier.connectivity.CommentDTO;
 import es.ucm.fdi.integration_tier.connectivity.CommentDAO;
 import es.ucm.fdi.business_tier.exceptions.DuplicatedIDException;
 import es.ucm.fdi.business_tier.exceptions.NotFoundException;
+import es.ucm.fdi.integration_tier.users.UserDAO;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -41,7 +43,7 @@ public class UserManagerAS {
     /**
      * Current active sessions
      */
-    private HashMap<String, SessionBO> activeSessions = new HashMap<>();
+    private HashMap<String, SessionDTO> activeSessions = new HashMap<>();
 
     /**
      * Class constructor specifying user DAO
@@ -71,7 +73,7 @@ public class UserManagerAS {
      *
      * @param user The user to add.
      */
-    public void newUser(UserTransfer user) throws DuplicatedIDException, IllegalArgumentException {
+    public void newUser(UserDTO user) throws DuplicatedIDException, IllegalArgumentException {
         if (!existsUser(user.getID())) {
             if (validateAccountDetails(user)) {
                 dao.addUser(user);
@@ -90,7 +92,7 @@ public class UserManagerAS {
      * @param id The identifier of the user to be deleted.
      * @param session The session from which to perform the action.
      */
-    public void removeUser(String id, SessionBO session) throws NotFoundException, AccessControlException {
+    public void removeUser(String id, SessionDTO session) throws NotFoundException, AccessControlException {
         if (authenticate(id, session)) {
             if (existsUser(id)) {
                 dao.removeUser(id);
@@ -110,10 +112,12 @@ public class UserManagerAS {
      * @param banTime The ban period.
      * @param banNotification The notification which is sent to the user.
      */
-    public void banUser(UserTransfer user, SessionBO session, Period banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
+    public void banUser(UserDTO user, SessionDTO session, Period banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
         if (!banTime.isNegative()) {
             if (authenticate(user.getID(), session)) {
-                if (validateAccountDetails(user)) 
+                if (validateAccountDetails(user)){
+                    dao.banUser(user.getID());
+                }
             } else {
                 throw new AccessControlException("Invalid session");
             }
@@ -129,7 +133,7 @@ public class UserManagerAS {
      * @param session The session from which to perform the action.
      * @param notification The notification which is sent to the user.
      */
-    public void notifyUser(UserTO user, SessionBO session, String notification) throws AccessControlException, IllegalArgumentException {
+    public void notifyUser(UserDTO user, SessionDTO session, String notification) throws AccessControlException, IllegalArgumentException {
         if (authenticate(user.getID(), session)) {
             if (validateAccountDetails(user)) {
                 //user.getNotifications().add(notification);
@@ -147,7 +151,7 @@ public class UserManagerAS {
      * @param user The new account details.
      * @param session The session from which to perform the action.
      */
-    public void modifyUser(UserTO user, SessionBO session) throws AccessControlException, IllegalArgumentException {
+    public void modifyUser(UserDTO user, SessionDTO session) throws AccessControlException, IllegalArgumentException {
         if (authenticate(user.getID(), session)) {
             try {
                 if (validateAccountDetails(user)) {
@@ -168,10 +172,10 @@ public class UserManagerAS {
      * @param passwd The password provided
      * @return The new session.
      */
-    public SessionBO login(String username, String passwd) throws AccessControlException, NotFoundException {
+    public SessionDTO login(String username, String passwd) throws AccessControlException, NotFoundException {
         //Looks for this username in the database.
         if (existsUser(username)) {
-            UserTO user = dao.findUser(username);
+            UserDTO user = dao.findUser(username);
             //If the introduced password matches the given one
             //create and return a new session
             if (hashgen.authenticate(passwd.toCharArray(), user.getPassword())) {
@@ -190,7 +194,7 @@ public class UserManagerAS {
      * @param session The session to check.
      * @return if the session is valid.
      */
-    public boolean validateSession(SessionBO session) {
+    public boolean validateSession(SessionDTO session) {
         return activeSessions.containsKey(session.getID());
     }
 
@@ -202,7 +206,7 @@ public class UserManagerAS {
      * @param session The session to check.
      * @return if the session has been validated
      */
-    public boolean authenticate(String username, SessionBO session) {
+    public boolean authenticate(String username, SessionDTO session) {
         if (validateSession(session)) {
             String sessionUser = session.getUser();
             return sessionUser.equals(username)
@@ -217,7 +221,7 @@ public class UserManagerAS {
      *
      * @param session The session to close.
      */
-    public void logout(SessionBO session) {
+    public void logout(SessionDTO session) {
         activeSessions.remove(session.getID());
     }
 
@@ -237,12 +241,12 @@ public class UserManagerAS {
      * @return the new session
      * @throws IllegalArgumentException if the user is already logged in.
      */
-    private SessionBO createNewSession(String user) throws IllegalArgumentException {
-        SessionBO sesion = null;
+    private SessionDTO createNewSession(String user) throws IllegalArgumentException {
+        SessionDTO sesion = null;
         if (activeSessions.get(user) != null) {
             throw new IllegalArgumentException("This user is already logged in");
         } else {
-            sesion = new SessionBO(user, ZonedDateTime.now());
+            sesion = new SessionDTO(user, ZonedDateTime.now());
             activeSessions.put(sesion.getID(), sesion);
         }
         return sesion;
@@ -286,7 +290,7 @@ public class UserManagerAS {
      * @param username User ID
      * @return The list of comments made by the user
      */
-    public List<CommentBO> seeComments(CommentDAO comments, String username) {
+    public List<CommentDTO> seeComments(CommentDAO comments, String username) {
         return comments.findByUser(username);
     }
 
@@ -338,7 +342,7 @@ public class UserManagerAS {
      * @param user User
      * @return if the account has been validated
      */
-    private boolean validateAccountDetails(UserTO user) {
+    private boolean validateAccountDetails(UserDTO user) {
         if (validString(user.getID())
                 && HashGenerator.checkFormat(user.getPassword())
                 && (user.getName() == null || validString(user.getName()))

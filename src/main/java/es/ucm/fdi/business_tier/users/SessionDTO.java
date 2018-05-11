@@ -1,4 +1,4 @@
-package es.ucm.fdi.integration_tier.users;
+package es.ucm.fdi.business_tier.users;
 
 import java.time.ZonedDateTime;
 import java.io.Serializable;
@@ -8,7 +8,7 @@ import java.io.Serializable;
  *
  * @author Pablo Villalobos
  */
-public class SessionBO implements Serializable {
+public class SessionDTO implements Serializable {
 
     private final String username;
     /**
@@ -22,7 +22,7 @@ public class SessionBO implements Serializable {
      * @param username Username
      * @param date Date of login
      */
-    public SessionBO(String username, ZonedDateTime date) {
+    public SessionDTO(String username, ZonedDateTime date) {
         this.username = username;
         this.date = date;
     }

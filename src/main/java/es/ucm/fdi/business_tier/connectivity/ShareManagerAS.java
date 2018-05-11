@@ -1,4 +1,4 @@
-package es.ucm.fdi.integration_tier.connectivity;
+package es.ucm.fdi.business_tier.connectivity;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -6,11 +6,14 @@ import java.security.AccessControlException;
 
 import es.ucm.fdi.integration_tier.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.integration_tier.project.ProjectTransfer;
-import es.ucm.fdi.integration_tier.users.SessionBO;
-import es.ucm.fdi.integration_tier.users.UserManagerAS;
+import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
+import es.ucm.fdi.business_tier.users.SessionDTO;
+import es.ucm.fdi.business_tier.users.UserManagerAS;
 import es.ucm.fdi.integration_tier.users.UserDAOHashTableImp;
 import es.ucm.fdi.business_tier.exceptions.NotFoundException;
+import es.ucm.fdi.integration_tier.connectivity.AuthorshipDAO;
+import es.ucm.fdi.integration_tier.connectivity.CommentDAO;
+import es.ucm.fdi.integration_tier.connectivity.SharedProjectDAO;
 
 /**
  * Application service to manage sharing and importing projects.
@@ -62,11 +65,11 @@ public class ShareManagerAS {
      * @param authors The list of authors.
      * @param session The session to validate this operation.
      */
-    public void shareOpenProject(ProjectTransfer proj, List<String> authors,
-            SessionBO session) throws AccessControlException {
+    public void shareOpenProject(ProjectDTO proj, List<String> authors,
+            SessionDTO session) throws AccessControlException {
 
         if (validateAuthorList(authors, session)) {
-            SharedProjectBOOpenProjectImp shared = new SharedProjectBOOpenProjectImp(
+            SharedProjectDTOOpenProjectImp shared = new SharedProjectDTOOpenProjectImp(
                     createSharedProjectID(proj.getID(), authors), proj, authors);
             store(shared, authors);
         } else {
@@ -82,12 +85,12 @@ public class ShareManagerAS {
      * @param users The list of users which can view the project.
      * @param session The session to validate this operation.
      */
-    public void sharePrivateProject(ProjectTransfer proj, List<String> authors,
-            List<String> users, SessionBO session)
+    public void sharePrivateProject(ProjectDTO proj, List<String> authors,
+            List<String> users, SessionDTO session)
             throws AccessControlException {
 
         if (validateAuthorList(authors, session)) {
-            SharedProjectBOPrivateProjectImp shared = new SharedProjectBOPrivateProjectImp(
+            SharedProjectDTOPrivateProjectImp shared = new SharedProjectDTOPrivateProjectImp(
                     createSharedProjectID(proj.getID(), authors), proj,
                     authors, users);
             store(shared, authors);
@@ -102,10 +105,10 @@ public class ShareManagerAS {
      * @param proj The new project data.
      * @param session The session to validate this operation.
      */
-    public void modifySharedProject(SharedProjectBO proj, SessionBO session)
+    public void modifySharedProject(SharedProjectDTO proj, SessionDTO session)
             throws NotFoundException, AccessControlException {
 
-        SharedProjectBO old = projectDB.findSharedProject(proj.getSharedID());
+        SharedProjectDTO old = projectDB.findSharedProject(proj.getSharedID());
         if (old != null) {
             if (userMan.authenticate(session.getUser(), session)) {
                 if (proj.hasWriteAccess(session.getUser())) {
@@ -131,13 +134,13 @@ public class ShareManagerAS {
      * @param session The session to validate this operation.
      * @param comment
      */
-    public void comment(String projID, SessionBO session,
+    public void comment(String projID, SessionDTO session,
             String comment) {
-        SharedProjectBO project = projectDB.findSharedProject(projID);
+        SharedProjectDTO project = projectDB.findSharedProject(projID);
         if (project != null) {
             if (userMan.authenticate(session.getUser(), session)) {
                 if (project.hasReadAccess(session.getUser())) {
-                    commentDB.addComment(new CommentBO(session.getUser(),
+                    commentDB.addComment(new CommentDTO(session.getUser(),
                             projID, comment));
                 } else {
                     throw new AccessControlException("User "
@@ -158,12 +161,12 @@ public class ShareManagerAS {
      * @param proj The project to import.
      * @param session The session to validate this operation.
      */
-    public void importProject(SharedProjectBO proj, SessionBO session)
+    public void importProject(SharedProjectDTO proj, SessionDTO session)
             throws NotFoundException, AccessControlException {
 
         if (userMan.authenticate(session.getUser(), session)) {
             if (proj.hasReadAccess(session.getUser())) {
-                localProjMan.newProject(new ProjectTransfer(proj));
+                localProjMan.newProject(new ProjectDTO(proj));
             } else {
                 throw new AccessControlException("User " + session.getUser()
                         + " cannot modify " + proj.getID());
@@ -180,13 +183,13 @@ public class ShareManagerAS {
      * @param session The session to validate this operation.
      * @return
      */
-    public List<SharedProjectBO> findProjectByAuthor(String author,
-            SessionBO session) throws AccessControlException {
+    public List<SharedProjectDTO> findProjectByAuthor(String author,
+            SessionDTO session) throws AccessControlException {
 
-        ArrayList<SharedProjectBO> results = new ArrayList<>();
+        ArrayList<SharedProjectDTO> results = new ArrayList<>();
         if (userMan.authenticate(session.getUser(), session)) {
-            for (AuthorshipTransfer authorship : authorDB.findByUser(author)) {
-                SharedProjectBO proj = projectDB.findSharedProject(authorship
+            for (AuthorshipDTO authorship : authorDB.findByUser(author)) {
+                SharedProjectDTO proj = projectDB.findSharedProject(authorship
                         .getProject());
 
                 if (proj.hasReadAccess(session.getUser())) {
@@ -207,12 +210,12 @@ public class ShareManagerAS {
      * @param session The session to validate this operation.
      * @return
      */
-    public List<SharedProjectBO> findProjectByName(String name,
-            SessionBO session) throws AccessControlException {
+    public List<SharedProjectDTO> findProjectByName(String name,
+            SessionDTO session) throws AccessControlException {
 
-        ArrayList<SharedProjectBO> results = new ArrayList<>();
+        ArrayList<SharedProjectDTO> results = new ArrayList<>();
         if (userMan.authenticate(session.getUser(), session)) {
-            for (SharedProjectBO proj : projectDB.findByName(name)) {
+            for (SharedProjectDTO proj : projectDB.findByName(name)) {
                 if (proj.hasReadAccess(session.getUser())) {
                     results.add(proj);
                 }
@@ -239,10 +242,10 @@ public class ShareManagerAS {
      * @param proj
      * @param authors
      */
-    private void store(SharedProjectBO proj, List<String> authors) {
+    private void store(SharedProjectDTO proj, List<String> authors) {
         projectDB.addSharedProject(proj);
         for (String author : authors) {
-            AuthorshipTransfer authorship = new AuthorshipTransfer(author,
+            AuthorshipDTO authorship = new AuthorshipDTO(author,
                     proj.getSharedID());
             authorDB.addAuthorship(authorship);
         }
@@ -257,7 +260,7 @@ public class ShareManagerAS {
      * @return true if valid
      * @throws NotFoundException
      */
-    private boolean validateAuthorList(List<String> authors, SessionBO session)
+    private boolean validateAuthorList(List<String> authors, SessionDTO session)
             throws NotFoundException {
         boolean valid = false;
         for (String author : authors) {

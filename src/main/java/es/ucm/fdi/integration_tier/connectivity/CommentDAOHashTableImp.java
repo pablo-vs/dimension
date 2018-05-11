@@ -1,5 +1,6 @@
 package es.ucm.fdi.integration_tier.connectivity;
 
+import es.ucm.fdi.business_tier.connectivity.CommentDTO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class CommentDAOHashTableImp implements CommentDAO {
     /**
      * Database
      */
-    private MemoryDB<CommentBO> db = new MemoryDB<>();
+    private MemoryDB<CommentDTO> db = new MemoryDB<>();
 
     /**
      * Empty class constructor.
@@ -24,20 +25,20 @@ public class CommentDAOHashTableImp implements CommentDAO {
     }
 
     @Override
-    public void addComment(CommentBO comment) {
+    public void addComment(CommentDTO comment) {
         db.insert(comment, comment.getId());
     }
 
     @Override
-    public void removeComment(CommentBO comment) {
+    public void removeComment(CommentDTO comment) {
         db.removeId(comment.getId());
     }
 
     @Override
-    public List<CommentBO> findByUser(String username) {
-        ArrayList<CommentBO> lista = new ArrayList<>();
+    public List<CommentDTO> findByUser(String username) {
+        ArrayList<CommentDTO> lista = new ArrayList<>();
         for (String id : db.getIds()) {
-            CommentBO aux = db.find(id);
+            CommentDTO aux = db.find(id);
             if (aux.getAuthor().equals(username)) {
                 lista.add(aux);
             }
@@ -46,10 +47,10 @@ public class CommentDAOHashTableImp implements CommentDAO {
     }
 
     @Override
-    public List<CommentBO> findByProject(String project) {
-        ArrayList<CommentBO> lista = new ArrayList<>();
+    public List<CommentDTO> findByProject(String project) {
+        ArrayList<CommentDTO> lista = new ArrayList<>();
         for (String id : db.getIds()) {
-            CommentBO aux = db.find(id);
+            CommentDTO aux = db.find(id);
             if (aux.getProj().equals(project)) {
                 lista.add(aux);
             }
@@ -58,8 +59,8 @@ public class CommentDAOHashTableImp implements CommentDAO {
     }
 
     @Override
-    public List<CommentBO> getComments() {
-        ArrayList<CommentBO> lista = new ArrayList<>();
+    public List<CommentDTO> getComments() {
+        ArrayList<CommentDTO> lista = new ArrayList<>();
         for (String id : db.getIds()) {
             lista.add(db.find(id));
         }

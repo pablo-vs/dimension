@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
-import es.ucm.fdi.business_tier.exceptions.DAOError;
+import es.ucm.fdi.integration_tier.exceptions.DAOErrorException;
 
 public class SQLDataSource {
 

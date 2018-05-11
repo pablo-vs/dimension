@@ -18,7 +18,7 @@
  */
 package es.ucm.fdi;
 
-import es.ucm.fdi.workspace.project.ProjectTO;
+import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
 import es.ucm.fdi.data.MemoryDB;
 
 import junit.framework.Test;

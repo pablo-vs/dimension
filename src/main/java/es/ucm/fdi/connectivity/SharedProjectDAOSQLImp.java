@@ -6,7 +6,6 @@ import java.util.List;
 
 import es.ucm.fdi.data.DAOSQLImp;
 import es.ucm.fdi.exceptions.DAOError;
-import es.ucm.fdi.connectivity.SharedProjectBO;
 
 public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectBO> implements
 		SharedProjectDAO {

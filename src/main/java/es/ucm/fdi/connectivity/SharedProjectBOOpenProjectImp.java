@@ -3,7 +3,7 @@ package es.ucm.fdi.connectivity;
 import java.util.List;
 import java.util.ArrayList;
 
-import es.ucm.fdi.workspace.project.ProjectTO;
+import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
 
 /**
  * A shared project that can be read by everyone and modified by its authors.

@@ -1,6 +1,6 @@
 package es.ucm.fdi.connectivity;
 
-import es.ucm.fdi.workspace.project.ProjectTO;
+import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
 
 /**
  * Represents a shared project by an author.

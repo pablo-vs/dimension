@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.security.AccessControlException;
 
-import es.ucm.fdi.util.HashGenerator;
+import es.ucm.fdi.workspace.util.HashGenerator;
 import es.ucm.fdi.connectivity.CommentBO;
 import es.ucm.fdi.connectivity.CommentDAO;
 import es.ucm.fdi.exceptions.DuplicatedIDException;

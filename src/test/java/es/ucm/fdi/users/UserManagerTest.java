@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Assert;
 
-import es.ucm.fdi.util.HashGenerator;
+import es.ucm.fdi.workspace.util.HashGenerator;
 import es.ucm.fdi.exceptions.NotFoundException;
 
 public class UserManagerTest {

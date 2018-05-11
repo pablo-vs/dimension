@@ -22,7 +22,7 @@ import es.ucm.fdi.exceptions.NotFoundException;
 import es.ucm.fdi.users.UserDAOHashTableImp;
 import es.ucm.fdi.users.UserManagerAS;
 import es.ucm.fdi.users.SessionBO;
-import es.ucm.fdi.workspace.project.ProjectTO;
+import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
 import java.security.AccessControlException;
 
 /**

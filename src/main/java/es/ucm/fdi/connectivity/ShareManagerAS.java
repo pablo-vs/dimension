@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.security.AccessControlException;
 
-import es.ucm.fdi.workspace.project.ProjectDAOHashTableImp;
-import es.ucm.fdi.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.workspace.project.ProjectTO;
+import es.ucm.fdi.business_tier.workspace.project.ProjectDAOHashTableImp;
+import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
+import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
 import es.ucm.fdi.users.SessionBO;
 import es.ucm.fdi.users.UserManagerAS;
 import es.ucm.fdi.users.UserDAOHashTableImp;

@@ -1,19 +1,17 @@
 package es.ucm.fdi.workspace;
 
-import es.ucm.fdi.workspace.project.ProjectDAOHashTableImp;
-import es.ucm.fdi.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.workspace.project.ProjectTO;
-import es.ucm.fdi.workspace.project.WorkAS;
+import es.ucm.fdi.business_tier.workspace.VisualizationBO;
+import es.ucm.fdi.business_tier.workspace.GraphBO;
+import es.ucm.fdi.business_tier.workspace.project.ProjectDAOHashTableImp;
+import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
+import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
+import es.ucm.fdi.business_tier.workspace.project.WorkAS;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 
-import es.ucm.fdi.workspace.FunctionBO;
-import es.ucm.fdi.workspace.GraphBO;
-import es.ucm.fdi.workspace.VisualizationBO;
 
 public class WorkASTest {
 

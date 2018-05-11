@@ -8,13 +8,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import es.ucm.fdi.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.workspace.project.ProjectTO;
+import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
+import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
 import es.ucm.fdi.users.SessionBO;
 import es.ucm.fdi.users.UserDAOHashTableImp;
 import es.ucm.fdi.users.UserManagerAS;
 import es.ucm.fdi.users.UserTO;
-import es.ucm.fdi.util.HashGenerator;
+import es.ucm.fdi.workspace.util.HashGenerator;
 
 public class ShareManagerTest {
 

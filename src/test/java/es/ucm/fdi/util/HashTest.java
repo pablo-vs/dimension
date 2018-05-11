@@ -1,5 +1,6 @@
 package es.ucm.fdi.util;
 
+import es.ucm.fdi.workspace.util.HashGenerator;
 import org.junit.Test;
 import org.junit.Assert;
 import static org.junit.Assert.*;

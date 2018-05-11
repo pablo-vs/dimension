@@ -7,9 +7,16 @@ import java.util.List;
 
 import es.ucm.fdi.exceptions.DAOError;
 import es.ucm.fdi.data.DAOSQLImp;
+import java.util.ArrayList;
 
+/**
+ * 
+ * @author Inmaculada Pérez, Pablo Villalobos
+ */
 public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements AuthorshipDAO {
 
+    private static final int REQUIERED_LENGTH = 3;
+    
     private static final String TABLE = "authors";
 
     private static final String[] COLUMNS = {"id", "author", "project"};
@@ -105,21 +112,25 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements Auth
     }
 
     @Override
-    public AuthorshipBO build(Object[] data) {
-        if (data.length != 3) {
+    public AuthorshipBO build(List<Object> data) {
+        if (data.size() != REQUIERED_LENGTH) {
             throw new IllegalArgumentException("Constructor requires 3 objects, "
-                    + data.length + " given");
+                    + data.size() + " given");
         }
-        if (!(data[0] instanceof String && data[1] instanceof String && data[2] instanceof String)) {
+        if (!(data.get(0) instanceof String && data.get(1) instanceof String &&
+                data.get(2) instanceof String)) {
             throw new IllegalArgumentException("Invalid data type");
         }
-        return new AuthorshipBO((String) data[1],
-                (String) data[2]);
+        return new AuthorshipBO((String) data.get(1),
+                (String) data.get(2));
     }
 
     @Override
-    public Object[] getData(AuthorshipBO auth) {
-        Object[] data = {auth.getId(), auth.getAuthor(), auth.getProject()};
+    public List<Object> getData(AuthorshipBO auth) {
+        List<Object> data = new ArrayList<>();
+        data.add(auth.getId());
+        data.add(auth.getAuthor());
+        data.add(auth.getProject());
         return data;
     }
 

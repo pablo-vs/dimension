@@ -22,9 +22,7 @@ import java.util.regex.Pattern;
 /**
  * Application service to manage user accounts and sessions.
  *
- * @author Pablo Villalobos
- * @author Inmaculada Pérez
- * @version 02.04.2018
+ * @author Pablo Villalobos, Inmaculada Pérez
  */
 public class UserManagerAS {
 
@@ -39,11 +37,11 @@ public class UserManagerAS {
     /**
      * Hash generator
      */
-    private HashGenerator hashgen;
+    private HashGenerator hashgen = new HashGenerator();
     /**
      * Current active sessions
      */
-    private HashMap<String, SessionBO> activeSessions;
+    private HashMap<String, SessionBO> activeSessions = new HashMap<>();
 
     /**
      * Class constructor specifying user DAO
@@ -52,8 +50,6 @@ public class UserManagerAS {
      */
     private UserManagerAS(UserDAO dao) {
         this.dao = dao;
-        hashgen = new HashGenerator();
-        activeSessions = new HashMap<>();
     }
 
     /**
@@ -272,8 +268,7 @@ public class UserManagerAS {
      * @return true if e-mail is valid
      */
     public static boolean validEmail(String email) {
-        boolean isValidEmail = true;
-        if (email.equals(null)) {
+        if (email == null) {
             return false;
         }
         // Input the string for validation
@@ -293,10 +288,8 @@ public class UserManagerAS {
             lastToken = st.nextToken();
         }
 
-        isValidEmail = matchFound && lastToken.length() >= 2
+        return matchFound && lastToken.length() >= 2
                 && email.length() - 1 != lastToken.length(); // validate the country code
-
-        return isValidEmail;
     }
 
     /**
@@ -317,7 +310,7 @@ public class UserManagerAS {
      * @return wether the word is valid
      */
     private static boolean validString(String word) {
-        return !word.equals(null) && word.matches("[a-zA-Z1-9_]+");
+        return word != null && word.matches("[a-zA-Z1-9_]+");
     }
 
     /**
@@ -360,7 +353,7 @@ public class UserManagerAS {
      */
     private boolean validateAccountDetails(UserTO user) {
         if (validString(user.getID())
-                && hashgen.checkFormat(user.getPassword())
+                && HashGenerator.checkFormat(user.getPassword())
                 && (user.getName() == null || validString(user.getName()))
                 && (user.getDescription() == null || validString(user.getDescription()))
                 && (user.getEmail() == null || validEmail(user.getEmail()))

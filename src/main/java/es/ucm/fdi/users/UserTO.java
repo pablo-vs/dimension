@@ -1,11 +1,9 @@
 package es.ucm.fdi.users;
 
 import java.util.Date;
-import java.util.List;
 import java.time.Period;
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import twitter4j.auth.AccessToken;
 
 /**
@@ -75,19 +73,19 @@ public class UserTO implements Serializable {
     }
 
     /**
-     * Class constructor specifying more fields
+     * Class constructor specifying more fields.
      *
-     * @param ID Identifier
-     * @param password Password
-     * @param name Name
-     * @param date Date
-     * @param email email
-     * @param telephone Telephone
-     * @param picture Picture
-     * @param description Description
-     * @param type Type
-     * @param banTime Ban time
-     * @throws ParseException
+     * @param ID 
+     * @param password 
+     * @param name 
+     * @param date 
+     * @param email 
+     * @param telephone 
+     * @param picture 
+     * @param description 
+     * @param type 
+     * @param banTime
+     * @param twitterAccess
      */
     public UserTO(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
@@ -102,22 +100,22 @@ public class UserTO implements Serializable {
         this.description = description;
         this.type = type;
         this.banTime = banTime;
-
+        this.twitterAccess = twitterAccess;
     }
 
     /**
      * Class constructor specifying more fields including authentication tokens.
      *
-     * @param ID Identifier
-     * @param password Password
-     * @param name Name
-     * @param date Date
-     * @param email email
-     * @param telephone Telephone
-     * @param picture Picture
-     * @param description Description
-     * @param type Type
-     * @param banTime Ban time
+     * @param ID 
+     * @param password 
+     * @param name 
+     * @param date 
+     * @param email 
+     * @param telephone 
+     * @param picture 
+     * @param description 
+     * @param type 
+     * @param banTime 
      * @param twitterAccessToken access token to authorizes access to twitter
      * @param twitterAccessTokenSecret access secret token to authorizes access
      * to twitter

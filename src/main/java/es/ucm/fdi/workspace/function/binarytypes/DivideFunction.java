@@ -9,7 +9,7 @@ import es.ucm.fdi.workspace.function.types.VariablesList;
 /**
  * Represents the division function.
  *
- * @author Inmaculada Pérez, Javier Navalon
+ * @author Inmaculada Pérez, Javier Navalón
  */
 public class DivideFunction extends BinaryFunction {
 

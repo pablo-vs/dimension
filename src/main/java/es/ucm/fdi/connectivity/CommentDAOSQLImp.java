@@ -7,8 +7,15 @@ import java.util.List;
 
 import es.ucm.fdi.exceptions.DAOError;
 import es.ucm.fdi.data.DAOSQLImp;
+import java.util.ArrayList;
 
+/**
+ * 
+ * @author Inmaculada Pérez, Pablo Villalobos
+ */
 public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO {
+
+    private static final int REQUIERED_LENGTH = 4;
 
     private static final String TABLE = "comments";
 
@@ -24,7 +31,7 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO
     /**
      * Adds a new comment to the database.
      *
-     * @param auth The new comment as a CommentBO.
+     * @param comment The new comment as a CommentBO.
      */
     @Override
     public void addComment(CommentBO comment) throws DAOError {
@@ -39,7 +46,7 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO
     /**
      * Removes a comment from the database.
      *
-     * @param auth The comment to remove.
+     * @param comment The comment to remove.
      */
     @Override
     public void removeComment(CommentBO comment) throws DAOError {
@@ -105,24 +112,27 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentBO> implements CommentDAO
     }
 
     @Override
-    public CommentBO build(Object[] data) {
-        if (data.length != 4) {
+    public CommentBO build(List<Object> data) {
+        if (data.size() != REQUIERED_LENGTH) {
             throw new IllegalArgumentException("Constructor requires 4 objects, "
-                    + data.length + " given");
+                    + data.size() + " given");
         }
-        if (!(data[0] instanceof String && data[1] instanceof String
-                && data[2] instanceof String && data[3] instanceof String)) {
+        if (!(data.get(0) instanceof String && data.get(1) instanceof String
+                && data.get(2) instanceof String && data.get(3) instanceof String)) {
             throw new IllegalArgumentException("Invalid data type");
         }
-        return new CommentBO((String) data[1],
-                (String) data[2],
-                (String) data[3]);
+        return new CommentBO((String) data.get(1),
+                (String) data.get(2),
+                (String) data.get(3));
     }
 
     @Override
-    public Object[] getData(CommentBO c) {
-        Object[] data = {c.getId(), c.getAuthor(), c.getProj(), c.getText()};
+    public List<Object> getData(CommentBO c) {
+        List<Object> data = new ArrayList<>();
+        data.add(c.getId());
+        data.add(c.getAuthor());
+        data.add(c.getProj());
+        data.add(c.getText());
         return data;
     }
-
 }

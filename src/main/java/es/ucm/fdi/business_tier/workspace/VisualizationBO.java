@@ -1,6 +1,6 @@
 package es.ucm.fdi.business_tier.workspace;
 
-import es.ucm.fdi.exceptions.NoMatchDimensionException;
+import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
 import java.util.List;
 import java.util.ArrayList;
 

@@ -1,5 +1,9 @@
 package es.ucm.fdi.connectivity;
 
+import es.ucm.fdi.integration_tier.connectivity.AuthorshipDAOHashTableImp;
+import es.ucm.fdi.integration_tier.connectivity.ShareManagerAS;
+import es.ucm.fdi.integration_tier.connectivity.SharedProjectDAOHashTableImp;
+import es.ucm.fdi.integration_tier.connectivity.SharedProjectBO;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -10,10 +14,10 @@ import static org.junit.Assert.*;
 
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
 import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
-import es.ucm.fdi.users.SessionBO;
-import es.ucm.fdi.users.UserDAOHashTableImp;
-import es.ucm.fdi.users.UserManagerAS;
-import es.ucm.fdi.users.UserTO;
+import es.ucm.fdi.integration_tier.users.SessionBO;
+import es.ucm.fdi.integration_tier.users.UserDAOHashTableImp;
+import es.ucm.fdi.integration_tier.users.UserManagerAS;
+import es.ucm.fdi.integration_tier.users.UserTO;
 import es.ucm.fdi.workspace.util.HashGenerator;
 
 public class ShareManagerTest {

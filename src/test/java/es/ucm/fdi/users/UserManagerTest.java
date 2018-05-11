@@ -1,5 +1,10 @@
 package es.ucm.fdi.users;
 
+import es.ucm.fdi.integration_tier.users.SessionBO;
+import es.ucm.fdi.integration_tier.users.UserManagerAS;
+import es.ucm.fdi.integration_tier.users.UserDAO;
+import es.ucm.fdi.integration_tier.users.UserTO;
+import es.ucm.fdi.integration_tier.users.UserDAOHashTableImp;
 import java.time.ZonedDateTime;
 import java.security.AccessControlException;
 
@@ -8,7 +13,7 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 
 import es.ucm.fdi.workspace.util.HashGenerator;
-import es.ucm.fdi.exceptions.NotFoundException;
+import es.ucm.fdi.business_tier.exceptions.NotFoundException;
 
 public class UserManagerTest {
 

@@ -1,5 +1,7 @@
 package es.ucm.fdi.connectivity;
 
+import es.ucm.fdi.integration_tier.connectivity.AuthorshipDAOSQLImp;
+import es.ucm.fdi.integration_tier.connectivity.AuthorshipBO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

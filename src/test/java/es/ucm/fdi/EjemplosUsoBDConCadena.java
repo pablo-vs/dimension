@@ -19,7 +19,7 @@
 package es.ucm.fdi;
 
 import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
-import es.ucm.fdi.data.MemoryDB;
+import es.ucm.fdi.integration_tier.data.MemoryDB;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,6 +1,6 @@
 package es.ucm.fdi.business_tier.workspace;
 
-import es.ucm.fdi.exceptions.NoMatchDimensionException;
+import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
 import es.ucm.fdi.workspace.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;

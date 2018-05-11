@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business_tier.workspace;
 
-import es.ucm.fdi.exceptions.NoMatchDimensionException;
+import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

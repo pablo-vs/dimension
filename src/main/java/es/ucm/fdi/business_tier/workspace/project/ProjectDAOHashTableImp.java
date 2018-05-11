@@ -3,7 +3,7 @@ package es.ucm.fdi.business_tier.workspace.project;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.data.MemoryDB;
+import es.ucm.fdi.integration_tier.data.MemoryDB;
 
 /**
  * ProjectDAO implementation using a HashTable-based database.

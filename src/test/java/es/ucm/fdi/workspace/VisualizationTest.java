@@ -3,7 +3,7 @@ package es.ucm.fdi.workspace;
 import es.ucm.fdi.business_tier.workspace.VisualizationBO;
 import es.ucm.fdi.business_tier.workspace.VertexBO;
 import es.ucm.fdi.business_tier.workspace.GraphBO;
-import es.ucm.fdi.exceptions.NoMatchDimensionException;
+import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

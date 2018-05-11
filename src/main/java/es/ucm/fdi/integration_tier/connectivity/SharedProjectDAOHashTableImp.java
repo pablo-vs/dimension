@@ -57,7 +57,7 @@ public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
      *
      * @param id The identifier of the project.
      * @return A SharedProjectDTO containing the data of the project, or null if
- no project was found.
+     * no project was found.
      */
     @Override
     public SharedProjectDTO findSharedProject(String id) {

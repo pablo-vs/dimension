@@ -1,11 +1,11 @@
 package es.ucm.fdi.workspace.function;
 
 import es.ucm.fdi.business_tier.util.FunctionParserUtils;
-import es.ucm.fdi.business_tier.workspace.FunctionBO;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
+import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
 
 public class ParserTest {
 
@@ -24,7 +24,7 @@ public class ParserTest {
         System.out.println("First test, evaluating functions at x = " + value);
         for (int i = 0; i < fs.length; ++i) {
             String aux = fs[i];
-            FunctionBO f = FunctionParserUtils.parse(aux, vars);
+            FunctionComposite f = FunctionParserUtils.parse(aux, vars);
             vars.setVariable("x", value);
             System.out.println("Input: " + fs[i] + " | Parsed function: " + f + " | Result = " + f.evaluate(vars));
             assertEquals(res[i], f.evaluate(vars), 0.01);
@@ -32,7 +32,7 @@ public class ParserTest {
         System.out.println("Second test, evaluating functions at x = " + value + " , y = " + value2 + ", z = " + value3);
         for (int i = 0; i < fs_vv.length; ++i) {
             String aux = fs_vv[i];
-            FunctionBO f = FunctionParserUtils.parse(aux, vars2);
+            FunctionComposite f = FunctionParserUtils.parse(aux, vars2);
             vars2.setVariable("x", value);
             vars2.setVariable("y", value2);
             vars2.setVariable("z", value3);

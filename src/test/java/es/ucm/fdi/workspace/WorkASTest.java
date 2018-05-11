@@ -4,7 +4,7 @@ import es.ucm.fdi.business_tier.workspace.VisualizationBO;
 import es.ucm.fdi.business_tier.workspace.GraphBO;
 import es.ucm.fdi.integration_tier.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.integration_tier.project.ProjectTransfer;
+import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
 import es.ucm.fdi.business_tier.workspace.project.WorkAS;
 import static org.junit.Assert.fail;
 
@@ -12,13 +12,12 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-
 public class WorkASTest {
 
     @Test
     public void workASTest() {
 
-        ProjectTransfer exponencial = new ProjectTransfer("exponentialex");
+        ProjectDTO exponencial = new ProjectDTO("exponentialex");
         ProjectManagerAS projMan = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
         WorkAS proj = new WorkAS(exponencial);
 

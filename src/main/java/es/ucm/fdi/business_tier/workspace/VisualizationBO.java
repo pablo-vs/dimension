@@ -1,3 +1,16 @@
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package es.ucm.fdi.business_tier.workspace;
 
 import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
@@ -67,7 +80,7 @@ public class VisualizationBO {
         GraphBO graphAux = new GraphBO(3);
 
         for (int i = 0; i < graph.getRange().size(); ++i) {
-            VertexBO v = graph.getRange().get(i);
+            Vertex v = graph.getRange().get(i);
             int j = 0, cont = 0;
             boolean b = true;
             while (b && j < hp.length) {
@@ -83,7 +96,7 @@ public class VisualizationBO {
                 ++cont;
             }
             if (b) {
-                VertexBO newV = new VertexBO(3);
+                Vertex newV = new Vertex(3);
                 newV.set(0, v.at(dimX));
                 newV.set(1, v.at(dimY));
                 newV.set(2, v.at(dimZ));

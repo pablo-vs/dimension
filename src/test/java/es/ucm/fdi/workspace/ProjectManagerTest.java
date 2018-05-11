@@ -1,16 +1,15 @@
 package es.ucm.fdi.workspace;
 
-import es.ucm.fdi.business_tier.workspace.FunctionBO;
 import es.ucm.fdi.integration_tier.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.integration_tier.project.ProjectTransfer;
+import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-
+import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
 
 public class ProjectManagerTest {
 
@@ -18,8 +17,8 @@ public class ProjectManagerTest {
     public void projectManagementTest() {
         ProjectManagerAS projectMgr = ProjectManagerAS
                 .getManager(new ProjectDAOHashTableImp());
-        ProjectTransfer polinomios = new ProjectTransfer("polinomios43");
-        ProjectTO raices = new ProjectTransfer("ra|||");
+        ProjectDTO polinomios = new ProjectDTO("polinomios43");
+        ProjectDTO raices = new ProjectDTO("ra|||");
         projectMgr.newProject(polinomios);
         try {
             projectMgr.newProject(raices);
@@ -34,7 +33,7 @@ public class ProjectManagerTest {
             // todo correcto
         }
 
-        List<FunctionBO> funcs = new ArrayList<FunctionBO>();
+        List<FunctionComposite> funcs = new ArrayList<>();
         polinomios.setFunctions(funcs);
 
         projectMgr.saveChanges(polinomios);
@@ -60,7 +59,7 @@ public class ProjectManagerTest {
             // todo correcto
         }
 
-        ProjectTransfer trigonometricas = new ProjectTransfer("trig");
+        ProjectDTO trigonometricas = new ProjectDTO("trig");
         try {
             projectMgr.saveChanges(trigonometricas);
         } catch (IllegalArgumentException e) {

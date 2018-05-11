@@ -115,7 +115,7 @@ public class UserManagerAS {
     public void banUser(UserDTO user, SessionDTO session, Period banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
         if (!banTime.isNegative()) {
             if (authenticate(user.getID(), session)) {
-                if (validateAccountDetails(user)){
+                if (validateAccountDetails(user)) {
                     dao.banUser(user.getID());
                 }
             } else {

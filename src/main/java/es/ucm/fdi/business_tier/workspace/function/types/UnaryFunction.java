@@ -1,39 +1,74 @@
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package es.ucm.fdi.business_tier.workspace.function.types;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import es.ucm.fdi.business_tier.workspace.FunctionBO;
 import es.ucm.fdi.business_tier.util.FunctionParserUtils;
+import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
 
 /**
  * @author Inmaculada Pérez, Javier Navalon
  */
-public abstract class UnaryFunction extends FunctionBO {
+public abstract class UnaryFunction implements FunctionComposite {
 
-    protected FunctionBO function;
+    protected FunctionComposite function;
+
+    protected VariablesList vars;
 
     /**
      * Class constructor specifying the function and the list of variables.
      *
      * @param function
-     * @param variables
+     * @param vars
      */
-    public UnaryFunction(FunctionBO function, VariablesList variables) {
-        super(variables);
+    public UnaryFunction(FunctionComposite function, VariablesList vars) {
+        this.vars = vars;
         this.function = function;
     }
 
     /**
      * Class constructor specifying the list of variables.
      *
-     * @param variables
+     * @param vars
      */
-    public UnaryFunction(VariablesList variables) {
-        super(variables);
+    public UnaryFunction(VariablesList vars) {
+        this.vars = vars;
     }
 
-    public static abstract class Parser extends FunctionBO.Parser {
+    /**
+     * Returns the variables list of the function.
+     *
+     * @return The vars list.
+     */
+    public VariablesList getVars() {
+        return this.vars;
+    }
+
+    /**
+     * Evaluates the function from a given array of vars.
+     *
+     * @param varsArray
+     * @return
+     */
+    public double evaluate(double[] varsArray) {
+        this.vars.setVariables(varsArray);
+        return evaluate(vars);
+    }
+
+    public static abstract class Parser extends FunctionComposite.Parser {
 
         @Override
         public abstract UnaryFunction parse(String str, VariablesList variables);

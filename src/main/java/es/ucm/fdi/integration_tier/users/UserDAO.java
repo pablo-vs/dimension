@@ -46,9 +46,10 @@ public interface UserDAO {
      * @return A list of users.
      */
     public List<UserDTO> getUsers();
-    
+
     /**
      * Bans a user from the system given its ID
+     *
      * @param id
      */
     public void banUser(String id);

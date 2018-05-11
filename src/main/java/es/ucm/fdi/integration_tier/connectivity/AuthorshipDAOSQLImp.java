@@ -11,13 +11,13 @@ import es.ucm.fdi.integration_tier.data.DAOSQLImp;
 import java.util.ArrayList;
 
 /**
- * 
+ *
  * @author Inmaculada Pérez, Pablo Villalobos
  */
 public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements AuthorshipDAO {
 
     private static final int REQUIERED_LENGTH = 3;
-    
+
     private static final String TABLE = "authors";
 
     private static final String[] COLUMNS = {"id", "author", "project"};
@@ -118,8 +118,8 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements Aut
             throw new IllegalArgumentException("Constructor requires 3 objects, "
                     + data.size() + " given");
         }
-        if (!(data.get(0) instanceof String && data.get(1) instanceof String &&
-                data.get(2) instanceof String)) {
+        if (!(data.get(0) instanceof String && data.get(1) instanceof String
+                && data.get(2) instanceof String)) {
             throw new IllegalArgumentException("Invalid data type");
         }
         return new AuthorshipDTO((String) data.get(1),

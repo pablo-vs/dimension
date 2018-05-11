@@ -75,15 +75,15 @@ public class UserDTO implements Serializable {
     /**
      * Class constructor specifying more fields.
      *
-     * @param ID 
-     * @param password 
-     * @param name 
-     * @param date 
-     * @param email 
-     * @param telephone 
-     * @param picture 
-     * @param description 
-     * @param type 
+     * @param ID
+     * @param password
+     * @param name
+     * @param date
+     * @param email
+     * @param telephone
+     * @param picture
+     * @param description
+     * @param type
      * @param banTime
      * @param twitterAccess
      */
@@ -106,16 +106,16 @@ public class UserDTO implements Serializable {
     /**
      * Class constructor specifying more fields including authentication tokens.
      *
-     * @param ID 
-     * @param password 
-     * @param name 
-     * @param date 
-     * @param email 
-     * @param telephone 
-     * @param picture 
-     * @param description 
-     * @param type 
-     * @param banTime 
+     * @param ID
+     * @param password
+     * @param name
+     * @param date
+     * @param email
+     * @param telephone
+     * @param picture
+     * @param description
+     * @param type
+     * @param banTime
      * @param twitterAccessToken access token to authorizes access to twitter
      * @param twitterAccessTokenSecret access secret token to authorizes access
      * to twitter

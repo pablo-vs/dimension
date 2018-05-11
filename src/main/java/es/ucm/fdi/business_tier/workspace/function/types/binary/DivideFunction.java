@@ -1,10 +1,23 @@
-package es.ucm.fdi.business_tier.workspace.function.binarytypes;
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package es.ucm.fdi.business_tier.workspace.function.types.binary;
 
 import java.util.regex.Pattern;
 
-import es.ucm.fdi.business_tier.workspace.FunctionBO;
 import es.ucm.fdi.business_tier.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
+import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
 
 /**
  * Represents the division function.
@@ -28,7 +41,7 @@ public class DivideFunction extends BinaryFunction {
      * @param function2
      * @param variables
      */
-    public DivideFunction(FunctionBO function1, FunctionBO function2,
+    public DivideFunction(FunctionComposite function1, FunctionComposite function2,
             VariablesList variables) {
         super(function1, function2, variables);
     }
@@ -41,9 +54,18 @@ public class DivideFunction extends BinaryFunction {
         return ret.toString();
     }
 
+    /**
+     * Evaluates the function at the point given by the variable list.
+     * <b>Note:</b> the given variable names must be equal to those of the
+     * function.
+     *
+     * @see FunctionComposite
+     * @param vars The vars list.
+     * @return The result of applying the function to the values.
+     */
     @Override
-    protected double evaluateExpression(VariablesList variables) {
-        return (function1.evaluate(variables) / function2.evaluate(variables));
+    public double evaluate(VariablesList vars) {
+        return (function1.evaluate(vars) / function2.evaluate(vars));
     }
 
     public static class Parser extends BinaryFunction.Parser {
@@ -53,7 +75,7 @@ public class DivideFunction extends BinaryFunction {
         @Override
         public DivideFunction parse(String name, VariablesList variables) {
             DivideFunction function = null;
-            FunctionBO[] parsedFunction = BinaryFunction.Parser.parseFunctions(name, variables, REGEX);
+            FunctionComposite[] parsedFunction = BinaryFunction.Parser.parseFunctions(name, variables, REGEX);
             if (parsedFunction[0] != null && parsedFunction[1] != null) {
                 function = new DivideFunction(parsedFunction[0], parsedFunction[1], variables);
             }

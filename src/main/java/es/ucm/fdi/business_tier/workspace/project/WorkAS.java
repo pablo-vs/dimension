@@ -13,10 +13,10 @@
  */
 package es.ucm.fdi.business_tier.workspace.project;
 
-import es.ucm.fdi.business_tier.workspace.FunctionBO;
 import es.ucm.fdi.business_tier.workspace.VisualizationBO;
 import es.ucm.fdi.business_tier.workspace.GraphBO;
 import es.ucm.fdi.business_tier.workspace.transformations.GraphTransformationBO;
+import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
 
 /**
  * Application service which provides functions for working in projects.
@@ -48,7 +48,7 @@ public class WorkAS {
      *
      * @param f The new Function to add.
      */
-    public void addFunction(FunctionBO f) {
+    public void addFunction(FunctionComposite f) {
         project.getFunctions().add(f);
     }
 

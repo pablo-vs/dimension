@@ -13,11 +13,11 @@
  */
 package es.ucm.fdi.business_tier.workspace.project;
 
-import es.ucm.fdi.business_tier.workspace.FunctionBO;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
 import es.ucm.fdi.business_tier.workspace.VisualizationBO;
+import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
 
 /**
  * Contains the data of a project.
@@ -28,7 +28,7 @@ public class ProjectDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private ArrayList<VisualizationBO> views = new ArrayList<>();
-    private ArrayList<FunctionBO> functions = new ArrayList<>();
+    private ArrayList<FunctionComposite> functions = new ArrayList<>();
     private final String ID;
 
     /**
@@ -47,7 +47,7 @@ public class ProjectDTO implements Serializable {
      * @param views
      * @param functions
      */
-    public ProjectDTO(String ID, List<VisualizationBO> views, List<FunctionBO> functions) {
+    public ProjectDTO(String ID, List<VisualizationBO> views, List<FunctionComposite> functions) {
         this.ID = ID;
         this.views = new ArrayList<>(views);
         this.functions = new ArrayList<>(functions);
@@ -88,7 +88,7 @@ public class ProjectDTO implements Serializable {
      *
      * @return the different functions
      */
-    public List<FunctionBO> getFunctions() {
+    public List<FunctionComposite> getFunctions() {
         return functions;
     }
 
@@ -97,7 +97,7 @@ public class ProjectDTO implements Serializable {
      *
      * @param functions
      */
-    public void setFunctions(List<FunctionBO> functions) {
+    public void setFunctions(List<FunctionComposite> functions) {
         this.functions = new ArrayList<>(functions);
     }
 

@@ -1,4 +1,17 @@
-package es.ucm.fdi.business_tier.workspace.function.unarytypes;
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package es.ucm.fdi.business_tier.workspace.function.types.unary;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -14,7 +27,7 @@ import es.ucm.fdi.business_tier.util.FunctionParserUtils;
  */
 public class ConstantFunction extends UnaryFunction {
 
-    private double num;
+    private final double num;
 
     /**
      * Class constructor specifying number and variables list.
@@ -32,8 +45,17 @@ public class ConstantFunction extends UnaryFunction {
         return Double.toString(num);
     }
 
+    /**
+     * Evaluates the function at the point given by the variable list.
+     * <b>Note:</b> the given variable names must be equal to those of the
+     * function.
+     *
+     * @see FunctionComposite
+     * @param vars The vars list.
+     * @return The result of applying the function to the values.
+     */
     @Override
-    protected double evaluateExpression(VariablesList variables) {
+    public double evaluate(VariablesList vars) {
         return num;
     }
 

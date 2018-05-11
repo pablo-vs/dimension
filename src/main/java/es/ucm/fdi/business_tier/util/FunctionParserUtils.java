@@ -1,31 +1,33 @@
 package es.ucm.fdi.business_tier.util;
 
-import es.ucm.fdi.business_tier.workspace.FunctionBO;
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
-import es.ucm.fdi.business_tier.workspace.function.binarytypes.DivideFunction;
-import es.ucm.fdi.business_tier.workspace.function.binarytypes.ExponentialFunction;
-import es.ucm.fdi.business_tier.workspace.function.binarytypes.LogarithmicFunction;
-import es.ucm.fdi.business_tier.workspace.function.binarytypes.ModuloFunction;
-import es.ucm.fdi.business_tier.workspace.function.binarytypes.ProductFunction;
-import es.ucm.fdi.business_tier.workspace.function.binarytypes.SubstractFunction;
-import es.ucm.fdi.business_tier.workspace.function.binarytypes.SumFunction;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.ConstantFunction;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.CosecantFunction;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.CosineFunction;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.CotangentFunction;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.IdentityFunction;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.LnFunction;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.Log10Function;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.SecantFunction;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.SineFunction;
-import es.ucm.fdi.business_tier.workspace.function.unarytypes.TangentFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.binary.DivideFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.binary.ExponentialFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.binary.LogarithmicFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.binary.ModuloFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.binary.ProductFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.binary.SubstractFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.binary.SumFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.ConstantFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.CosecantFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.CosineFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.CotangentFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.IdentityFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.LnFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.Log10Function;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.SecantFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.SineFunction;
+import es.ucm.fdi.business_tier.workspace.function.types.unary.TangentFunction;
+import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
 
 /**
- * FunctionBO-parser utility class. This class contains only static methods and
- * a private constructor to avoid instantiation. Given a list of parsers
+ * FunctionComposite-parser utility class. This class contains only static
+ * methods and a private constructor to avoid instantiation. Given a list of
+ * parsers
  * <i>parserList</i>
  * containing different types of functions, the method {@link #parse parse}
- * returns a {@link es.ucm.fdi.workspace.workspace.FunctionBO FunctionBO}.
+ * returns a
+ * {@link es.ucm.fdi.workspace.workspace.FunctionBO FunctionComposite}.
  *
  * @author Pablo Villalobos
  * @author Arturo Acuaviva
@@ -42,9 +44,9 @@ public final class FunctionParserUtils {
     /**
      * The list which contains all the types of
      * {@link es.ucm.fdi.workspace.FunctionBO.Parser Parse} for each type of
-     * {@link es.ucm.fdi.workspace.workspace.FunctionBO FunctionBO}.
+     * {@link es.ucm.fdi.workspace.workspace.FunctionBO FunctionComposite}.
      */
-    private static final FunctionBO.Parser[] PARSER_LIST = {
+    private static final FunctionComposite.Parser[] PARSER_LIST = {
         new IdentityFunction.Parser(),
         new ConstantFunction.Parser(),
         new Log10Function.Parser(),
@@ -67,8 +69,9 @@ public final class FunctionParserUtils {
     /**
      * It turns a given String and a
      * {@link es.ucm.fdi.business_tier.workspace.function.types.VariablesList VariablesList}
-     * into a {@link es.ucm.fdi.workspace.workspace.FunctionBO FunctionBO}. It returns
-     * null when the string does not match any of the functions in
+     * into a
+     * {@link es.ucm.fdi.workspace.workspace.FunctionBO FunctionComposite}. It
+     * returns null when the string does not match any of the functions in
      * {@link es.ucm.fdi.workspace.function.types function.types}.
      * <b>Warning:</b> Not all values from
      * {@link es.ucm.fdi.business_tier.workspace.function.types.VariablesList VariablesList}
@@ -78,9 +81,9 @@ public final class FunctionParserUtils {
      * @param var List of variables the function is supposed to contain.
      * @return the function which matches the type.
      */
-    public static FunctionBO parse(String str, VariablesList var) {
-        FunctionBO f = null;
-        for (FunctionBO.Parser p : PARSER_LIST) {
+    public static FunctionComposite parse(String str, VariablesList var) {
+        FunctionComposite f = null;
+        for (FunctionComposite.Parser p : PARSER_LIST) {
             f = p.parse(str, var);
             if (f != null) {
                 break;

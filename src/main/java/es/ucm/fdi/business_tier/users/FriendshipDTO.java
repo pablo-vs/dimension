@@ -26,12 +26,12 @@ public class FriendshipDTO {
         this.user1 = user1;
         this.user2 = user2;
     }
-    
-    public String getFirst(){
+
+    public String getFirst() {
         return user1;
     }
-    
-    public String getSecond(){
+
+    public String getSecond() {
         return user2;
     }
 }

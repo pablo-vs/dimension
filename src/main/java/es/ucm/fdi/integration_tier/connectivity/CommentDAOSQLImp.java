@@ -11,7 +11,7 @@ import es.ucm.fdi.integration_tier.data.DAOSQLImp;
 import java.util.ArrayList;
 
 /**
- * 
+ *
  * @author Inmaculada Pérez, Pablo Villalobos
  */
 public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDAO {

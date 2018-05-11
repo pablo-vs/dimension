@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * 
+ *
  * @author Inmaculada Pérez, Pablo Villalobos
- * @param <T> 
+ * @param <T>
  */
 public abstract class DAOSQLImp<T> {
 
@@ -97,8 +97,8 @@ public abstract class DAOSQLImp<T> {
                 rs.next();
             }
         } catch (IllegalArgumentException | SQLException e) {
-            throw new SQLException("Could not retrieve results from table:\n" +
-                    e.getMessage(), e);
+            throw new SQLException("Could not retrieve results from table:\n"
+                    + e.getMessage(), e);
         }
         return results;
     }

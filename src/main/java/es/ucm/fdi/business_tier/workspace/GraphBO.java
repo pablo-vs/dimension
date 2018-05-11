@@ -4,10 +4,11 @@ import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
 import es.ucm.fdi.workspace.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;
+import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
 
 /**
  * A graph object is used to represent an abstract interpretration of a
- * function. It contains two lists of {@link es.ucm.fdi.workspace VertexBO} with
+ * function. It contains two lists of {@link es.ucm.fdi.workspace Vertex} with
  * values from the range and the domain of the function. It also provides
  *
  * @author Brian Leiva, Eloy Mósig
@@ -21,16 +22,16 @@ public class GraphBO {
     private int dimension;
 
     /**
-     * List of {@link es.ucm.fdi.workspace VertexBO} containing the vertex in
-     * the domain.
+     * List of {@link es.ucm.fdi.workspace Vertex} containing the vertex in the
+     * domain.
      */
-    private List<VertexBO> domain = new ArrayList<>();
+    private List<Vertex> domain = new ArrayList<>();
 
     /**
-     * List of {@link es.ucm.fdi.workspace VertexBO} containing the vertex in
-     * the range.
+     * List of {@link es.ucm.fdi.workspace Vertex} containing the vertex in the
+     * range.
      */
-    private List<VertexBO> range = new ArrayList<>();
+    private List<Vertex> range = new ArrayList<>();
 
     private MultiTreeMap<Integer, Integer> object = new MultiTreeMap<>((a, b) -> a - b);
     /**
@@ -65,7 +66,7 @@ public class GraphBO {
             dim *= tam[i];
         }
         for (int j = 0; j < dim; ++j) {
-            domain.add(new VertexBO());
+            domain.add(new Vertex());
         }
         int n = 1;
         for (int i = 0; i < dim; ++i) {
@@ -97,11 +98,11 @@ public class GraphBO {
      * @param resolution
      * @throws NoMatchDimensionException
      */
-    public void generate(List<FunctionBO> functions, double[] dom_ini, double[] dom_fin, int resolution) throws NoMatchDimensionException {
+    public void generate(List<FunctionComposite> functions, double[] dom_ini, double[] dom_fin, int resolution) throws NoMatchDimensionException {
         this.resolution = resolution;
         getGrid(dom_ini, dom_fin);
         for (int i = 0; i < domain.size(); ++i) {
-            VertexBO fv = new VertexBO(functions.size());
+            Vertex fv = new Vertex(functions.size());
             for (int j = 0; j < functions.size(); ++j) {
                 fv.set(j, functions.get(i).evaluate(domain.get(i).getComps()));
             }
@@ -121,7 +122,7 @@ public class GraphBO {
      *
      * @return the list of vertex of the graph
      */
-    public List<VertexBO> getRange() {
+    public List<Vertex> getRange() {
         return range;
     }
 }

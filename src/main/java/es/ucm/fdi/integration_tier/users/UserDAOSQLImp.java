@@ -21,13 +21,13 @@ import es.ucm.fdi.integration_tier.data.DAOSQLImp;
 import java.util.ArrayList;
 
 /**
- * 
+ *
  * @author Inmaculada Pérez, Pablo Villalobos
  */
 public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
 
     private static final int REQUIERED_LENGTH = 11;
-    
+
     private static final String TABLE = "users";
 
     private static final String[] COLUMNS = {"id", "name", "passwd", "date", "email", "telephone",
@@ -134,7 +134,7 @@ public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
             ObjectOutputStream ostr = new ObjectOutputStream(str);
             ostr.writeObject(u.getTwitterAccess());
             String twitterAccess = str.toString("UTF-8");
-            
+
             List<Object> data = new ArrayList<>();
             data.add(u.getID());
             data.add(u.getName());
@@ -147,7 +147,7 @@ public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
             data.add(u.getType());
             data.add(u.getBanTime());
             data.add(twitterAccess);
-            
+
             return data;
         } catch (IOException e) {
             throw new IllegalArgumentException("Could not serialize AccessToken for user "

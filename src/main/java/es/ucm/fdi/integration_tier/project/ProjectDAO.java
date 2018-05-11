@@ -37,7 +37,7 @@ public interface ProjectDAO {
      *
      * @param id The identifier of the project.
      * @return A ProjectDTO containing the data of the project, or null if no
- project was found.
+     * project was found.
      */
     public ProjectDTO findProject(String id);
 

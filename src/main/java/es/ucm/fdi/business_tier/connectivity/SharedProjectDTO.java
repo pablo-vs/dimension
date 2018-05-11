@@ -11,10 +11,10 @@ import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
 public abstract class SharedProjectDTO extends ProjectDTO {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -2809118441039530565L;
-	/**
+     *
+     */
+    private static final long serialVersionUID = -2809118441039530565L;
+    /**
      * Project id
      */
     private final String sharedID;

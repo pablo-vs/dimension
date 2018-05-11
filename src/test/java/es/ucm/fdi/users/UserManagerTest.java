@@ -1,9 +1,9 @@
 package es.ucm.fdi.users;
 
-import es.ucm.fdi.integration_tier.users.SessionBO;
-import es.ucm.fdi.integration_tier.users.UserManagerAS;
+import es.ucm.fdi.business_tier.users.SessionDTO;
+import es.ucm.fdi.business_tier.users.UserManagerAS;
 import es.ucm.fdi.integration_tier.users.UserDAO;
-import es.ucm.fdi.integration_tier.users.UserTransfer;
+import es.ucm.fdi.business_tier.users.UserDTO;
 import es.ucm.fdi.integration_tier.users.UserDAOHashTableImp;
 import java.time.ZonedDateTime;
 import java.security.AccessControlException;
@@ -21,12 +21,12 @@ public class UserManagerTest {
     public void userManagementTest() {
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
         HashGenerator hashgen = new HashGenerator();
-        UserTransfer pepe = new UserTransfer("pepito", hashgen.hash("1234".toCharArray()));
-        UserTO paco = new UserTransfer("paquito", hashgen.hash("4321".toCharArray()));
+        UserDTO pepe = new UserDTO("pepito", hashgen.hash("1234".toCharArray()));
+        UserDTO paco = new UserDTO("paquito", hashgen.hash("4321".toCharArray()));
         userMgr.newUser(pepe);
         userMgr.newUser(paco);
-        SessionBO sesionPepe = userMgr.login("pepito", "1234"),
-                sesionPaco = userMgr.login("paquito", "4321");
+        SessionDTO sesionPepe = userMgr.login("pepito", "1234");
+        SessionDTO sesionPaco = userMgr.login("paquito", "4321");
         try {
             userMgr.removeUser("pepito", sesionPaco);
             fail("Illegal account access!!");
@@ -49,17 +49,17 @@ public class UserManagerTest {
         HashGenerator hashgen = new HashGenerator();
         UserDAO dao = new UserDAOHashTableImp();
         String passwd = hashgen.hash("1234".toCharArray());
-        UserTransfer user = new UserTransfer("pedro", passwd);
+        UserDTO user = new UserDTO("pedro", passwd);
         UserManagerAS userMgr = UserManagerAS.getManager(dao);
         userMgr.newUser(user);
         try {
-            SessionBO sesion = userMgr.login("pedro", "12345");
+            SessionDTO sesion = userMgr.login("pedro", "12345");
             fail("La sesión no debería haberse iniciado");
         } catch (AccessControlException e) {
             //Todo correcto
         }
 
-        SessionBO sesion = new SessionBO("pedro", ZonedDateTime.now());
+        SessionDTO sesion = new SessionDTO("pedro", ZonedDateTime.now());
         assertFalse(userMgr.validateSession(sesion));
     }
 }

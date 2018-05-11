@@ -18,7 +18,7 @@
  */
 package es.ucm.fdi;
 
-import es.ucm.fdi.integration_tier.project.ProjectTransfer;
+import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
 import es.ucm.fdi.integration_tier.data.MemoryDB;
 
 import junit.framework.Test;
@@ -51,9 +51,9 @@ public class EjemplosUsoBDConCadena
      * Ejemplo de prueba con la BD
      */
     public void testCreacion() {
-        MemoryDB<ProjectTransfer> bdProjectTOs = new MemoryDB<ProjectTransfer>();
-        ProjectTransfer p1 = new ProjectTransfer("p1");
-        ProjectTransfer p2 = new ProjectTransfer("p2");
+        MemoryDB<ProjectDTO> bdProjectTOs = new MemoryDB<ProjectDTO>();
+        ProjectDTO p1 = new ProjectDTO("p1");
+        ProjectDTO p2 = new ProjectDTO("p2");
         assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n" + bdProjectTOs, bdProjectTOs.getIds().isEmpty());
         //bdCadenas.insert("hola", "1");	
         bdProjectTOs.insert(p1, "p1");

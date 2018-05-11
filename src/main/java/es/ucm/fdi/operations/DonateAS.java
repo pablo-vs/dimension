@@ -48,7 +48,7 @@ public class DonateAS {
         try {
             desktop.browse(new URI(url));
         } catch (IOException | URISyntaxException e) {
-            e.getMessage();
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 

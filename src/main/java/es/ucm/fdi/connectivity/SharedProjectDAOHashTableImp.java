@@ -89,9 +89,9 @@ public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
     @Override
     public List<SharedProjectBO> getSharedProjects() {
         ArrayList<SharedProjectBO> results = new ArrayList<>();
-        for (String s : database.getIds()) {
+        database.getIds().forEach((s) -> {
             results.add(database.find(s));
-        }
+        });
         return results;
     }
 

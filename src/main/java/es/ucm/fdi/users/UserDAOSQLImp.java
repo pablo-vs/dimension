@@ -16,9 +16,16 @@ import twitter4j.auth.AccessToken;
 
 import es.ucm.fdi.exceptions.DAOError;
 import es.ucm.fdi.data.DAOSQLImp;
+import java.util.ArrayList;
 
+/**
+ * 
+ * @author Inmaculada Pérez, Pablo Villalobos
+ */
 public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
 
+    private static final int REQUIERED_LENGTH = 11;
+    
     private static final String TABLE = "users";
 
     private static final String[] COLUMNS = {"id", "name", "passwd", "date", "email", "telephone",
@@ -119,15 +126,26 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
     }
 
     @Override
-    public Object[] getData(UserTO u) {
+    public List<Object> getData(UserTO u) {
         try {
             ByteArrayOutputStream str = new ByteArrayOutputStream();
             ObjectOutputStream ostr = new ObjectOutputStream(str);
             ostr.writeObject(u.getTwitterAccess());
             String twitterAccess = str.toString("UTF-8");
-            Object[] data = {u.getID(), u.getName(), u.getPassword(), u.getDate(),
-                u.getEmail(), u.getTelephone(), u.getPicture(),
-                u.getDescription(), u.getType(), u.getBanTime(), twitterAccess};
+            
+            List<Object> data = new ArrayList<>();
+            data.add(u.getID());
+            data.add(u.getName());
+            data.add(u.getPassword());
+            data.add(u.getDate());
+            data.add(u.getEmail());
+            data.add(u.getTelephone());
+            data.add(u.getPicture());
+            data.add(u.getDescription());
+            data.add(u.getType());
+            data.add(u.getBanTime());
+            data.add(twitterAccess);
+            
             return data;
         } catch (IOException e) {
             throw new IllegalArgumentException("Could not serialize AccessToken for user "
@@ -136,21 +154,23 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
     }
 
     @Override
-    public UserTO build(Object[] data) {
-        if (data.length != 11) {
+    public UserTO build(List<Object> data) {
+        if (data.size() != REQUIERED_LENGTH) {
             throw new IllegalArgumentException("Constructor requires 11 objects, "
-                    + data.length + " given");
+                    + data.size() + " given");
         }
-        if (!(data[0] instanceof String && data[1] instanceof String && data[2] instanceof String
-                && data[3] instanceof Date && data[4] instanceof String && data[5] instanceof String
-                && data[6] instanceof String && data[7] instanceof String && data[8] instanceof Integer
-                && data[9] instanceof Period && data[10] instanceof String)) {
+        if (!(data.get(0) instanceof String && data.get(1) instanceof String
+                && data.get(2) instanceof String
+                && data.get(3) instanceof Date && data.get(4) instanceof String
+                && data.get(5) instanceof String && data.get(6) instanceof String
+                && data.get(7) instanceof String && data.get(8) instanceof Integer
+                && data.get(9) instanceof Period && data.get(10) instanceof String)) {
             throw new IllegalArgumentException("Invalid data type");
         }
 
         Object token;
         try {
-            ByteArrayInputStream str = new ByteArrayInputStream(((String) data[10]).getBytes("UTF-8"));
+            ByteArrayInputStream str = new ByteArrayInputStream(((String) data.get(10)).getBytes("UTF-8"));
             token = new ObjectInputStream(str).readObject();
             if (!(token instanceof AccessToken)) {
                 throw new IllegalArgumentException("Could not read access token");
@@ -159,20 +179,12 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
             throw new IllegalArgumentException("Could not read access token");
         }
 
-        UserType type = UserType.fromInt((Integer) data[8]);
+        UserType type = UserType.fromInt((Integer) data.get(8));
 
-        return new UserTO((String) data[0],
-                (String) data[1],
-                (String) data[2],
-                (Date) data[3],
-                (String) data[4],
-                (String) data[5],
-                (String) data[6],
-                (String) data[7],
-                type,
-                (Period) data[9],
-                (AccessToken) token);
-
+        return new UserTO((String) data.get(0), (String) data.get(1),
+                (String) data.get(2), (Date) data.get(3), (String) data.get(4),
+                (String) data.get(5), (String) data.get(6), (String) data.get(7),
+                type, (Period) data.get(9), (AccessToken) token);
     }
 
 }

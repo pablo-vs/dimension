@@ -22,7 +22,7 @@ import es.ucm.fdi.business_tier.exceptions.NotFoundException;
 import es.ucm.fdi.integration_tier.users.UserDAOHashTableImp;
 import es.ucm.fdi.integration_tier.users.UserManagerAS;
 import es.ucm.fdi.integration_tier.users.SessionBO;
-import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
+import es.ucm.fdi.integration_tier.project.ProjectTransfer;
 import java.security.AccessControlException;
 
 /**
@@ -39,7 +39,7 @@ public class DimensionModel extends DimensionObservable {
     private final UserManagerAS userManager;
     private final ShareManagerAS projectManager;
     private SessionBO currentSession = null;
-    private ProjectTO currentProject = null;
+    private ProjectTransfer currentProject = null;
 
     /**
      * Class constructor. We don't have an external database, this model creates

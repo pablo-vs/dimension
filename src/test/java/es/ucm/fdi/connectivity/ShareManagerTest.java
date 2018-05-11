@@ -13,11 +13,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
+import es.ucm.fdi.integration_tier.project.ProjectTransfer;
 import es.ucm.fdi.integration_tier.users.SessionBO;
 import es.ucm.fdi.integration_tier.users.UserDAOHashTableImp;
 import es.ucm.fdi.integration_tier.users.UserManagerAS;
-import es.ucm.fdi.integration_tier.users.UserTO;
+import es.ucm.fdi.integration_tier.users.UserTransfer;
 import es.ucm.fdi.workspace.util.HashGenerator;
 
 public class ShareManagerTest {
@@ -30,10 +30,10 @@ public class ShareManagerTest {
                 new AuthorshipDAOHashTableImp());
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
         char[] password = {'1', '2', '3', '4'};
-        UserTO user = new UserTO("pepe", hg.hash(password));
+        UserTransfer user = new UserTransfer("pepe", hg.hash(password));
         userMgr.newUser(user);
-        UserTO luis = new UserTO("luis", hg.hash(password));
-        UserTO paco = new UserTO("paco", hg.hash(password));
+        UserTransfer luis = new UserTransfer("luis", hg.hash(password));
+        UserTransfer paco = new UserTransfer("paco", hg.hash(password));
         userMgr.newUser(luis);
         userMgr.newUser(paco);
         List<String> authors = new ArrayList<String>();
@@ -41,8 +41,8 @@ public class ShareManagerTest {
         authors.add("luis");
         authors.add("paco");
         SessionBO session = userMgr.login("pepe", "1234");
-        ProjectTO project = new ProjectTO("lineales");
-        ProjectTO project2 = new ProjectTO("cuadraticas");
+        ProjectTransfer project = new ProjectTransfer("lineales");
+        ProjectTransfer project2 = new ProjectTransfer("cuadraticas");
         // test the sharing of open projects
         try {
             shareMgr.shareOpenProject(project2, authors, session);
@@ -64,7 +64,7 @@ public class ShareManagerTest {
         char[] password = {'1', '2', '3', '4'};
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
         ShareManagerAS shareMgr = ShareManagerAS.getManager(new SharedProjectDAOHashTableImp(), new AuthorshipDAOHashTableImp());
-        UserTO juan = new UserTO("juan", hg.hash(password));
+        UserTransfer juan = new UserTransfer("juan", hg.hash(password));
         userMgr.newUser(juan);
         SessionBO juanSession = userMgr.login("juan", "1234");
 

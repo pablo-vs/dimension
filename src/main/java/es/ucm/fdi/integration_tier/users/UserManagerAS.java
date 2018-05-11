@@ -71,7 +71,7 @@ public class UserManagerAS {
      *
      * @param user The user to add.
      */
-    public void newUser(UserTO user) throws DuplicatedIDException, IllegalArgumentException {
+    public void newUser(UserTransfer user) throws DuplicatedIDException, IllegalArgumentException {
         if (!existsUser(user.getID())) {
             if (validateAccountDetails(user)) {
                 dao.addUser(user);
@@ -110,23 +110,10 @@ public class UserManagerAS {
      * @param banTime The ban period.
      * @param banNotification The notification which is sent to the user.
      */
-    public void banUser(UserTO user, SessionBO session, Period banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
+    public void banUser(UserTransfer user, SessionBO session, Period banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
         if (!banTime.isNegative()) {
             if (authenticate(user.getID(), session)) {
-                if (validateAccountDetails(user)) {
-                    user.setBanTime(banTime);
-                    banNotification += "Banned time: ";
-                    int days = banTime.getDays(), months = banTime.getMonths(), years = banTime.getYears();
-                    if (years > 0) {
-                        banNotification += years + " years, ";
-                    }
-                    if (months % years > 0) {
-                        banNotification += months % years + " months, ";
-                    }
-                    banNotification += days % months + " days\n";
-                    //user.getNotifications().add(banNotification);
-                    dao.modifyUser(user);
-                }
+                if (validateAccountDetails(user)) 
             } else {
                 throw new AccessControlException("Invalid session");
             }

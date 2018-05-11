@@ -1,14 +1,14 @@
 package es.ucm.fdi.integration_tier.connectivity;
 
-import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
+import es.ucm.fdi.integration_tier.project.ProjectTransfer;
 
 /**
  * Represents a shared project by an author.
  *
  * @author Pablo Villalobos
- * @see ProjectTO
+ * @see ProjectTransfer
  */
-public abstract class SharedProjectBO extends ProjectTO {
+public abstract class SharedProjectBO extends ProjectTransfer {
 
     /**
 	 * 
@@ -36,7 +36,7 @@ public abstract class SharedProjectBO extends ProjectTO {
      * @param sharedID Identifier
      * @param proj Existing project
      */
-    public SharedProjectBO(String sharedID, ProjectTO proj) {
+    public SharedProjectBO(String sharedID, ProjectTransfer proj) {
         super(proj);
         this.sharedID = sharedID;
     }

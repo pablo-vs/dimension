@@ -14,7 +14,7 @@ public interface UserDAO {
      *
      * @param user The new user.
      */
-    public void addUser(UserTO user);
+    public void addUser(UserTransfer user);
 
     /**
      * If there is a user with the given identifier, removes it.
@@ -29,7 +29,7 @@ public interface UserDAO {
      *
      * @param user A TO containing the new account details.
      */
-    public void modifyUser(UserTO user);
+    public void modifyUser(UserTransfer user);
 
     /**
      * Returns the account details of the user for the given id.
@@ -37,12 +37,12 @@ public interface UserDAO {
      * @param id Identifier of the user.
      * @return A TO containing the relevant data.
      */
-    public UserTO findUser(String id);
+    public UserTransfer findUser(String id);
 
     /**
      * Returns a list of all the registered users.
      *
      * @return A list of users.
      */
-    public List<UserTO> getUsers();
+    public List<UserTransfer> getUsers();
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * 
  * @author Inmaculada Pérez, Pablo Villalobos
  */
-public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements AuthorshipDAO {
+public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipTransfer> implements AuthorshipDAO {
 
     private static final int REQUIERED_LENGTH = 3;
     
@@ -31,10 +31,10 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements Auth
     /**
      * Adds a new authorship to the database.
      *
-     * @param auth The new authorship as a AuthorshipBO.
+     * @param auth The new authorship as a AuthorshipTransfer.
      */
     @Override
-    public void addAuthorship(AuthorshipBO auth) throws DAOError {
+    public void addAuthorship(AuthorshipTransfer auth) throws DAOError {
         try {
             addRecord(auth);
         } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements Auth
      * @param auth The authorship to remove.
      */
     @Override
-    public void removeAuthorship(AuthorshipBO auth) throws DAOError {
+    public void removeAuthorship(AuthorshipTransfer auth) throws DAOError {
         try {
             deleteRecord(auth.getId());
         } catch (SQLException e) {
@@ -65,8 +65,8 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements Auth
      * @return A List of authorships where the author is the given user.
      */
     @Override
-    public List<AuthorshipBO> findByUser(String username) throws DAOError {
-        List<AuthorshipBO> result;
+    public List<AuthorshipTransfer> findByUser(String username) throws DAOError {
+        List<AuthorshipTransfer> result;
         try {
             result = findByVal(1, username);
         } catch (SQLException e) {
@@ -83,8 +83,8 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements Auth
      * @return A List of authorships where the project is the given one.
      */
     @Override
-    public List<AuthorshipBO> findByProject(String project) throws DAOError {
-        List<AuthorshipBO> result;
+    public List<AuthorshipTransfer> findByProject(String project) throws DAOError {
+        List<AuthorshipTransfer> result;
         try {
             result = findByVal(2, project);
         } catch (SQLException e) {
@@ -100,8 +100,8 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements Auth
      * @return A List of AuthorshipBOs.
      */
     @Override
-    public List<AuthorshipBO> getAuthorships() throws DAOError {
-        List<AuthorshipBO> result;
+    public List<AuthorshipTransfer> getAuthorships() throws DAOError {
+        List<AuthorshipTransfer> result;
         try {
             result = getAllRecords();
         } catch (SQLException e) {
@@ -112,7 +112,7 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements Auth
     }
 
     @Override
-    public AuthorshipBO build(List<Object> data) {
+    public AuthorshipTransfer build(List<Object> data) {
         if (data.size() != REQUIERED_LENGTH) {
             throw new IllegalArgumentException("Constructor requires 3 objects, "
                     + data.size() + " given");
@@ -121,12 +121,12 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipBO> implements Auth
                 data.get(2) instanceof String)) {
             throw new IllegalArgumentException("Invalid data type");
         }
-        return new AuthorshipBO((String) data.get(1),
+        return new AuthorshipTransfer((String) data.get(1),
                 (String) data.get(2));
     }
 
     @Override
-    public List<Object> getData(AuthorshipBO auth) {
+    public List<Object> getData(AuthorshipTransfer auth) {
         List<Object> data = new ArrayList<>();
         data.add(auth.getId());
         data.add(auth.getAuthor());

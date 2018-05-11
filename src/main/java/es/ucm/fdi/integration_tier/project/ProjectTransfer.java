@@ -11,7 +11,7 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.business_tier.workspace.project;
+package es.ucm.fdi.integration_tier.project;
 
 import es.ucm.fdi.business_tier.workspace.FunctionBO;
 import java.util.List;
@@ -24,7 +24,7 @@ import es.ucm.fdi.business_tier.workspace.VisualizationBO;
  *
  * @author Eduardo Amaya, Javier Galiana, Inmaculada Pérez
  */
-public class ProjectTO implements Serializable {
+public class ProjectTransfer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private ArrayList<VisualizationBO> views = new ArrayList<>();
@@ -36,7 +36,7 @@ public class ProjectTO implements Serializable {
      *
      * @param ID
      */
-    public ProjectTO(String ID) {
+    public ProjectTransfer(String ID) {
         this.ID = ID;
     }
 
@@ -47,7 +47,7 @@ public class ProjectTO implements Serializable {
      * @param views
      * @param functions
      */
-    public ProjectTO(String ID, List<VisualizationBO> views, List<FunctionBO> functions) {
+    public ProjectTransfer(String ID, List<VisualizationBO> views, List<FunctionBO> functions) {
         this.ID = ID;
         this.views = new ArrayList<>(views);
         this.functions = new ArrayList<>(functions);
@@ -58,7 +58,7 @@ public class ProjectTO implements Serializable {
      *
      * @param other
      */
-    public ProjectTO(ProjectTO other) {
+    public ProjectTransfer(ProjectTransfer other) {
         if (other.views != null) {
             views = new ArrayList<>(other.views);
         }

@@ -1,5 +1,8 @@
 package es.ucm.fdi.business_tier.workspace.project;
 
+import es.ucm.fdi.integration_tier.project.ProjectDAO;
+import es.ucm.fdi.integration_tier.project.ProjectTransfer;
+
 /**
  * Application service to manage the traffic of projects.
  *
@@ -47,7 +50,7 @@ public class ProjectManagerAS {
      *
      * @param proj The project to add.
      */
-    public void newProject(ProjectTO proj) {
+    public void newProject(ProjectTransfer proj) {
         if (validateProjectDetails(proj)) {
             if (dao.findProject(proj.getID()) == null) {
                 dao.addProject(proj);
@@ -79,8 +82,8 @@ public class ProjectManagerAS {
      * @param id The id of the project to be opened.
      * @return the project.
      */
-    public ProjectTO openProject(String id) {
-        ProjectTO proj = dao.findProject(id);
+    public ProjectTransfer openProject(String id) {
+        ProjectTransfer proj = dao.findProject(id);
         if (proj == null) {
             throw new IllegalArgumentException("Project " + id + " does not exist");
         }
@@ -92,7 +95,7 @@ public class ProjectManagerAS {
      *
      * @param proj Project
      */
-    public void saveChanges(ProjectTO proj) {
+    public void saveChanges(ProjectTransfer proj) {
         if (dao.containsProject(proj.getID())) {
             dao.modifyProject(proj);
         } else {
@@ -106,7 +109,7 @@ public class ProjectManagerAS {
      * @param proj Project
      * @return if the format is valid
      */
-    private boolean validateProjectDetails(ProjectTO proj) {
+    private boolean validateProjectDetails(ProjectTransfer proj) {
         return proj.getID().matches("[\\w]++");
     }
 

@@ -12,7 +12,7 @@ import twitter4j.auth.AccessToken;
  * @author Eduardo Amaya, Javier Galiana, Inmaculada Pérez
  *
  */
-public class UserTO implements Serializable {
+public class UserTransfer implements Serializable {
 
     /**
      * Identifier
@@ -67,7 +67,7 @@ public class UserTO implements Serializable {
      * @param ID Identifier
      * @param password Password
      */
-    public UserTO(String ID, String password) {
+    public UserTransfer(String ID, String password) {
         this.ID = ID;
         this.password = password;
     }
@@ -87,7 +87,7 @@ public class UserTO implements Serializable {
      * @param banTime
      * @param twitterAccess
      */
-    public UserTO(String ID, String name, String password, Date date,
+    public UserTransfer(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
             UserType type, Period banTime, AccessToken twitterAccess) {
         this.ID = ID;
@@ -121,7 +121,7 @@ public class UserTO implements Serializable {
      * to twitter
      * @throws ParseException
      */
-    public UserTO(String ID, String name, String password, Date date,
+    public UserTransfer(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
             UserType type, Period banTime, String twitterAccessToken, String twitterAccessTokenSecret)
             throws ParseException {

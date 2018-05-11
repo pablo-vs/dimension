@@ -3,7 +3,7 @@ package es.ucm.fdi.integration_tier.connectivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
+import es.ucm.fdi.integration_tier.project.ProjectTransfer;
 
 /**
  * A shared project that can be read only by a list of people allowed and
@@ -30,7 +30,7 @@ public class SharedProjectBOPrivateProjectImp extends SharedProjectBO {
      * @param auth List of authors
      * @param view List of viewers
      */
-    public SharedProjectBOPrivateProjectImp(String ID, ProjectTO proj, List<String> auth, List<String> view) {
+    public SharedProjectBOPrivateProjectImp(String ID, ProjectTransfer proj, List<String> auth, List<String> view) {
         super(ID, proj);
         authors = new ArrayList<>(auth);
         viewers = new ArrayList<>(view);
@@ -43,7 +43,7 @@ public class SharedProjectBOPrivateProjectImp extends SharedProjectBO {
      * @param proj Shared projects
      * @param author List of authors
      */
-    public SharedProjectBOPrivateProjectImp(String ID, ProjectTO proj, String author) {
+    public SharedProjectBOPrivateProjectImp(String ID, ProjectTransfer proj, String author) {
         super(ID, proj);
         authors = new ArrayList<>();
         authors.add(author);

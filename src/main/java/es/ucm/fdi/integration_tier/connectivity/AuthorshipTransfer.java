@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @author Pablo Villalobos
  */
-public class AuthorshipBO {
+public class AuthorshipTransfer {
 
     /**
      * Author of the project
@@ -29,7 +29,7 @@ public class AuthorshipBO {
      * @param author Author
      * @param project Shared project
      */
-    public AuthorshipBO(String author, String project) {
+    public AuthorshipTransfer(String author, String project) {
         this.author = author;
         this.project = project;
         id = author + project;
@@ -61,10 +61,10 @@ public class AuthorshipBO {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof AuthorshipBO)) {
+        if (!(other instanceof AuthorshipTransfer)) {
             return false;
         } else {
-            return id.equals(((AuthorshipBO) other).getId());
+            return id.equals(((AuthorshipTransfer) other).getId());
         }
     }
 

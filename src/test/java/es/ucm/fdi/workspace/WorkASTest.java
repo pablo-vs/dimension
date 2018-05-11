@@ -2,9 +2,9 @@ package es.ucm.fdi.workspace;
 
 import es.ucm.fdi.business_tier.workspace.VisualizationBO;
 import es.ucm.fdi.business_tier.workspace.GraphBO;
-import es.ucm.fdi.business_tier.workspace.project.ProjectDAOHashTableImp;
+import es.ucm.fdi.integration_tier.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
+import es.ucm.fdi.integration_tier.project.ProjectTransfer;
 import es.ucm.fdi.business_tier.workspace.project.WorkAS;
 import static org.junit.Assert.fail;
 
@@ -18,7 +18,7 @@ public class WorkASTest {
     @Test
     public void workASTest() {
 
-        ProjectTO exponencial = new ProjectTO("exponentialex");
+        ProjectTransfer exponencial = new ProjectTransfer("exponentialex");
         ProjectManagerAS projMan = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
         WorkAS proj = new WorkAS(exponencial);
 

@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.security.AccessControlException;
 
-import es.ucm.fdi.business_tier.workspace.project.ProjectDAOHashTableImp;
+import es.ucm.fdi.integration_tier.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
+import es.ucm.fdi.integration_tier.project.ProjectTransfer;
 import es.ucm.fdi.integration_tier.users.SessionBO;
 import es.ucm.fdi.integration_tier.users.UserManagerAS;
 import es.ucm.fdi.integration_tier.users.UserDAOHashTableImp;
@@ -62,7 +62,7 @@ public class ShareManagerAS {
      * @param authors The list of authors.
      * @param session The session to validate this operation.
      */
-    public void shareOpenProject(ProjectTO proj, List<String> authors,
+    public void shareOpenProject(ProjectTransfer proj, List<String> authors,
             SessionBO session) throws AccessControlException {
 
         if (validateAuthorList(authors, session)) {
@@ -82,7 +82,7 @@ public class ShareManagerAS {
      * @param users The list of users which can view the project.
      * @param session The session to validate this operation.
      */
-    public void sharePrivateProject(ProjectTO proj, List<String> authors,
+    public void sharePrivateProject(ProjectTransfer proj, List<String> authors,
             List<String> users, SessionBO session)
             throws AccessControlException {
 
@@ -163,7 +163,7 @@ public class ShareManagerAS {
 
         if (userMan.authenticate(session.getUser(), session)) {
             if (proj.hasReadAccess(session.getUser())) {
-                localProjMan.newProject(new ProjectTO(proj));
+                localProjMan.newProject(new ProjectTransfer(proj));
             } else {
                 throw new AccessControlException("User " + session.getUser()
                         + " cannot modify " + proj.getID());
@@ -185,7 +185,7 @@ public class ShareManagerAS {
 
         ArrayList<SharedProjectBO> results = new ArrayList<>();
         if (userMan.authenticate(session.getUser(), session)) {
-            for (AuthorshipBO authorship : authorDB.findByUser(author)) {
+            for (AuthorshipTransfer authorship : authorDB.findByUser(author)) {
                 SharedProjectBO proj = projectDB.findSharedProject(authorship
                         .getProject());
 
@@ -242,7 +242,7 @@ public class ShareManagerAS {
     private void store(SharedProjectBO proj, List<String> authors) {
         projectDB.addSharedProject(proj);
         for (String author : authors) {
-            AuthorshipBO authorship = new AuthorshipBO(author,
+            AuthorshipTransfer authorship = new AuthorshipTransfer(author,
                     proj.getSharedID());
             authorDB.addAuthorship(authorship);
         }

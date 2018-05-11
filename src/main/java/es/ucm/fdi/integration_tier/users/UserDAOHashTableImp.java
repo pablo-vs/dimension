@@ -15,7 +15,7 @@ public class UserDAOHashTableImp implements UserDAO {
     /**
      * Database
      */
-    private MemoryDB<UserTO> db = new MemoryDB<>();
+    private MemoryDB<UserTransfer> db = new MemoryDB<>();
 
     /**
      * Empty class constructor.
@@ -24,7 +24,7 @@ public class UserDAOHashTableImp implements UserDAO {
     }
 
     @Override
-    public void addUser(UserTO user) {
+    public void addUser(UserTransfer user) {
         db.insert(user, user.getID());
     }
 
@@ -34,7 +34,7 @@ public class UserDAOHashTableImp implements UserDAO {
     }
 
     @Override
-    public void modifyUser(UserTO user) {
+    public void modifyUser(UserTransfer user) {
         if (findUser(user.getID()) != null) {
             db.insert(user, user.getID());
         } else {
@@ -44,13 +44,13 @@ public class UserDAOHashTableImp implements UserDAO {
     }
 
     @Override
-    public UserTO findUser(String id) {
+    public UserTransfer findUser(String id) {
         return db.find(id);
     }
 
     @Override
-    public List<UserTO> getUsers() {
-        ArrayList<UserTO> lista = new ArrayList<>();
+    public List<UserTransfer> getUsers() {
+        ArrayList<UserTransfer> lista = new ArrayList<>();
         db.getIds().forEach((id) -> {
             lista.add(db.find(id));
         });

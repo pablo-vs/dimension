@@ -1,7 +1,7 @@
 package es.ucm.fdi.connectivity;
 
 import es.ucm.fdi.integration_tier.connectivity.AuthorshipDAOSQLImp;
-import es.ucm.fdi.integration_tier.connectivity.AuthorshipBO;
+import es.ucm.fdi.integration_tier.connectivity.AuthorshipTransfer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,10 +13,11 @@ public class DAOTest {
     @Test
     public void AuthDAOSQLTest() throws SQLException, ClassNotFoundException {
         AuthorshipDAOSQLImp dao = new AuthorshipDAOSQLImp();
-        AuthorshipBO auth1 = new AuthorshipBO("paco", "superProyecto"),
-                auth2 = new AuthorshipBO("pepe", "superProyecto"),
+        AuthorshipTransfer auth1 = new AuthorshipTransfer("paco", "superProyecto");
+        AuthorshipBO AuthorshipBO auth2 = new AuthorshipTransfer("pepe", "superProyecto"),
+                auth3 = new AuthorshipTransfer("paco", "proyectoMediocre"),
                 auth3 = new AuthorshipBO("paco", "proyectoMediocre");
-        ArrayList<AuthorshipBO> results1 = new ArrayList<>(),
+        ArrayList<AuthorshipTransfer> results1 = new ArrayList<>(),
                 results2 = new ArrayList<>();
         results1.add(auth3);
         results1.add(auth1);

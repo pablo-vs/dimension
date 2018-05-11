@@ -3,7 +3,7 @@ package es.ucm.fdi.users;
 import es.ucm.fdi.integration_tier.users.SessionBO;
 import es.ucm.fdi.integration_tier.users.UserManagerAS;
 import es.ucm.fdi.integration_tier.users.UserDAO;
-import es.ucm.fdi.integration_tier.users.UserTO;
+import es.ucm.fdi.integration_tier.users.UserTransfer;
 import es.ucm.fdi.integration_tier.users.UserDAOHashTableImp;
 import java.time.ZonedDateTime;
 import java.security.AccessControlException;
@@ -21,8 +21,8 @@ public class UserManagerTest {
     public void userManagementTest() {
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
         HashGenerator hashgen = new HashGenerator();
-        UserTO pepe = new UserTO("pepito", hashgen.hash("1234".toCharArray())),
-                paco = new UserTO("paquito", hashgen.hash("4321".toCharArray()));
+        UserTransfer pepe = new UserTransfer("pepito", hashgen.hash("1234".toCharArray()));
+        UserTO paco = new UserTransfer("paquito", hashgen.hash("4321".toCharArray()));
         userMgr.newUser(pepe);
         userMgr.newUser(paco);
         SessionBO sesionPepe = userMgr.login("pepito", "1234"),
@@ -49,7 +49,7 @@ public class UserManagerTest {
         HashGenerator hashgen = new HashGenerator();
         UserDAO dao = new UserDAOHashTableImp();
         String passwd = hashgen.hash("1234".toCharArray());
-        UserTO user = new UserTO("pedro", passwd);
+        UserTransfer user = new UserTransfer("pedro", passwd);
         UserManagerAS userMgr = UserManagerAS.getManager(dao);
         userMgr.newUser(user);
         try {

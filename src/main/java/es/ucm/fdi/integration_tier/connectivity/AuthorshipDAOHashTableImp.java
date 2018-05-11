@@ -16,7 +16,7 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
     /**
      * Database
      */
-    private MemoryDB<AuthorshipBO> db = new MemoryDB<>();
+    private MemoryDB<AuthorshipTransfer> db = new MemoryDB<>();
 
     /**
      * Empty class constructor
@@ -27,20 +27,20 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
     }
 
     @Override
-    public void addAuthorship(AuthorshipBO auth) throws DAOError {
+    public void addAuthorship(AuthorshipTransfer auth) throws DAOError {
         db.insert(auth, auth.getId());
     }
 
     @Override
-    public void removeAuthorship(AuthorshipBO auth) throws DAOError {
+    public void removeAuthorship(AuthorshipTransfer auth) throws DAOError {
         db.removeId(auth.getId());
     }
 
     @Override
-    public List<AuthorshipBO> findByUser(String username) throws DAOError {
-        ArrayList<AuthorshipBO> lista = new ArrayList<>();
+    public List<AuthorshipTransfer> findByUser(String username) throws DAOError {
+        ArrayList<AuthorshipTransfer> lista = new ArrayList<>();
         for (String id : db.getIds()) {
-            AuthorshipBO aux = db.find(id);
+            AuthorshipTransfer aux = db.find(id);
             if (aux.getAuthor().equals(username)) {
                 lista.add(aux);
             }
@@ -49,10 +49,10 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
     }
 
     @Override
-    public List<AuthorshipBO> findByProject(String project) throws DAOError {
-        ArrayList<AuthorshipBO> lista = new ArrayList<>();
+    public List<AuthorshipTransfer> findByProject(String project) throws DAOError {
+        ArrayList<AuthorshipTransfer> lista = new ArrayList<>();
         for (String id : db.getIds()) {
-            AuthorshipBO aux = db.find(id);
+            AuthorshipTransfer aux = db.find(id);
             if (aux.getProject().equals(project)) {
                 lista.add(aux);
             }
@@ -61,8 +61,8 @@ public class AuthorshipDAOHashTableImp implements AuthorshipDAO {
     }
 
     @Override
-    public List<AuthorshipBO> getAuthorships() throws DAOError {
-        ArrayList<AuthorshipBO> lista = new ArrayList<>();
+    public List<AuthorshipTransfer> getAuthorships() throws DAOError {
+        ArrayList<AuthorshipTransfer> lista = new ArrayList<>();
         for (String id : db.getIds()) {
             lista.add(db.find(id));
         }

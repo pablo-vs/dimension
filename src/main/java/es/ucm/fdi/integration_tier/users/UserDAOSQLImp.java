@@ -22,7 +22,7 @@ import java.util.ArrayList;
  * 
  * @author Inmaculada Pérez, Pablo Villalobos
  */
-public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
+public class UserDAOSQLImp extends DAOSQLImp<UserTransfer> implements UserDAO {
 
     private static final int REQUIERED_LENGTH = 11;
     
@@ -44,10 +44,10 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
     /**
      * Adds a new user to the database.
      *
-     * @param user The new user as a UserTO.
+     * @param user The new user as a UserTransfer.
      */
     @Override
-    public void addUser(UserTO user) throws DAOError {
+    public void addUser(UserTransfer user) throws DAOError {
         try {
             addRecord(user);
         } catch (SQLException e) {
@@ -77,7 +77,7 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
      * @param user The user to modify.
      */
     @Override
-    public void modifyUser(UserTO user) {
+    public void modifyUser(UserTransfer user) {
         try {
             modifyRecord(user);
         } catch (SQLException e) {
@@ -93,9 +93,9 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
      * @return The user where the id is the given one.
      */
     @Override
-    public UserTO findUser(String id) {
-        UserTO result = null;
-        List<UserTO> find;
+    public UserTransfer findUser(String id) {
+        UserTransfer result = null;
+        List<UserTransfer> find;
         try {
             find = findByVal(0, id);
         } catch (SQLException e) {
@@ -114,8 +114,8 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
      * @return A List of UserTOs.
      */
     @Override
-    public List<UserTO> getUsers() {
-        List<UserTO> result;
+    public List<UserTransfer> getUsers() {
+        List<UserTransfer> result;
         try {
             result = getAllRecords();
         } catch (SQLException e) {
@@ -126,7 +126,7 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
     }
 
     @Override
-    public List<Object> getData(UserTO u) {
+    public List<Object> getData(UserTransfer u) {
         try {
             ByteArrayOutputStream str = new ByteArrayOutputStream();
             ObjectOutputStream ostr = new ObjectOutputStream(str);
@@ -154,7 +154,7 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
     }
 
     @Override
-    public UserTO build(List<Object> data) {
+    public UserTransfer build(List<Object> data) {
         if (data.size() != REQUIERED_LENGTH) {
             throw new IllegalArgumentException("Constructor requires 11 objects, "
                     + data.size() + " given");
@@ -181,7 +181,7 @@ public class UserDAOSQLImp extends DAOSQLImp<UserTO> implements UserDAO {
 
         UserType type = UserType.fromInt((Integer) data.get(8));
 
-        return new UserTO((String) data.get(0), (String) data.get(1),
+        return new UserTransfer((String) data.get(0), (String) data.get(1),
                 (String) data.get(2), (Date) data.get(3), (String) data.get(4),
                 (String) data.get(5), (String) data.get(6), (String) data.get(7),
                 type, (Period) data.get(9), (AccessToken) token);

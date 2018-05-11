@@ -1,9 +1,9 @@
 package es.ucm.fdi.workspace;
 
 import es.ucm.fdi.business_tier.workspace.FunctionBO;
-import es.ucm.fdi.business_tier.workspace.project.ProjectDAOHashTableImp;
+import es.ucm.fdi.integration_tier.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.business_tier.workspace.project.ProjectTO;
+import es.ucm.fdi.integration_tier.project.ProjectTransfer;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -18,8 +18,8 @@ public class ProjectManagerTest {
     public void projectManagementTest() {
         ProjectManagerAS projectMgr = ProjectManagerAS
                 .getManager(new ProjectDAOHashTableImp());
-        ProjectTO polinomios = new ProjectTO("polinomios43"), raices = new ProjectTO(
-                "ra|||");
+        ProjectTransfer polinomios = new ProjectTransfer("polinomios43");
+        ProjectTO raices = new ProjectTransfer("ra|||");
         projectMgr.newProject(polinomios);
         try {
             projectMgr.newProject(raices);
@@ -60,7 +60,7 @@ public class ProjectManagerTest {
             // todo correcto
         }
 
-        ProjectTO trigonometricas = new ProjectTO("trig");
+        ProjectTransfer trigonometricas = new ProjectTransfer("trig");
         try {
             projectMgr.saveChanges(trigonometricas);
         } catch (IllegalArgumentException e) {

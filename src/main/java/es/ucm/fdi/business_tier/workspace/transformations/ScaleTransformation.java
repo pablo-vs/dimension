@@ -13,7 +13,9 @@
  */
 package es.ucm.fdi.business_tier.workspace.transformations;
 
-import es.ucm.fdi.business_tier.workspace.GraphBO;
+import es.ucm.fdi.business_tier.workspace.Graph;
+import es.ucm.fdi.business_tier.workspace.Vertex;
+import java.util.ListIterator;
 
 /**
  * This class provides a way of dealing with scale transformations in 3D. Given
@@ -21,7 +23,7 @@ import es.ucm.fdi.business_tier.workspace.GraphBO;
  *
  * @author Brian Leiva, Inmaculada Pérez
  */
-public class ScaleTransformation implements GraphTransformationBO {
+public class ScaleTransformation implements GraphTransformation {
 
     /**
      * Amount to shrink the X axis
@@ -55,7 +57,7 @@ public class ScaleTransformation implements GraphTransformationBO {
      * @param g the graph which is going to modified
      */
     @Override
-    public void apply(GraphBO g) {
+    public void apply(Graph g) {
         shrinkX(g, x);
         shrinkY(g, y);
         shrinkZ(g, z);
@@ -67,10 +69,14 @@ public class ScaleTransformation implements GraphTransformationBO {
      * @param g the graph which is going to modified
      * @param d quantify indicating the amount which will be shrunk
      */
-    private static void shrinkX(GraphBO g, double d) {
-        double min = g.getRange().get(0).at(0), max = min;
-        for (int i = 1; i < g.getRange().size(); ++i) {
-            double n = g.getRange().get(i).at(0);
+    private static void shrinkX(Graph g, double d) {
+        double min = ((Vertex) g.getCompositeIterator().next()).at(0), max = min;
+
+        ListIterator iterator = g.getCompositeIterator();
+
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            double n = v.at(0);
             if (n > max) {
                 max = n;
             }
@@ -79,9 +85,10 @@ public class ScaleTransformation implements GraphTransformationBO {
             }
         }
         double newMin = (max * (d - 1) + min * (d + 1) / 2 * d);
-        for (int i = 0; i < g.getRange().size(); ++i) {
-            g.getRange().get(i).set(0,
-                    ((g.getRange().get(i).at(0) - min) / d) + newMin);
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            v.set(0,
+                    ((v.at(0) - min) / d) + newMin);
         }
     }
 
@@ -91,10 +98,13 @@ public class ScaleTransformation implements GraphTransformationBO {
      * @param g the graph which is going to modified
      * @param d quantify indicating the amount which will be shrunk
      */
-    private static void shrinkY(GraphBO g, double d) {
-        double min = g.getRange().get(0).at(1), max = min;
-        for (int i = 1; i < g.getRange().size(); ++i) {
-            double n = g.getRange().get(i).at(1);
+    private static void shrinkY(Graph g, double d) {
+        double min = ((Vertex) g.getCompositeIterator().next()).at(1), max = min;
+
+        ListIterator iterator = g.getCompositeIterator();
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            double n = v.at(1);
             if (n > max) {
                 max = n;
             }
@@ -103,9 +113,10 @@ public class ScaleTransformation implements GraphTransformationBO {
             }
         }
         double newMin = (max * (d - 1) + min * (d + 1) / 2 * d);
-        for (int i = 0; i < g.getRange().size(); ++i) {
-            g.getRange().get(i).set(1,
-                    ((g.getRange().get(i).at(1) - min) / d) + newMin);
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            v.set(1,
+                    ((v.at(1) - min) / d) + newMin);
         }
     }
 
@@ -115,10 +126,15 @@ public class ScaleTransformation implements GraphTransformationBO {
      * @param g the graph which is going to modified
      * @param d quantify indicating the amount which will be shrunk
      */
-    private static void shrinkZ(GraphBO g, double d) {
-        double min = g.getRange().get(0).at(2), max = min;
-        for (int i = 1; i < g.getRange().size(); ++i) {
-            double n = g.getRange().get(i).at(2);
+    private static void shrinkZ(Graph g, double d) {
+
+        double min = ((Vertex) g.getCompositeIterator().next()).at(2), max = min;
+
+        ListIterator iterator = g.getCompositeIterator();
+
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            double n = v.at(2);
             if (n > max) {
                 max = n;
             }
@@ -127,9 +143,10 @@ public class ScaleTransformation implements GraphTransformationBO {
             }
         }
         double newMin = (max * (d - 1) + min * (d + 1) / 2 * d);
-        for (int i = 0; i < g.getRange().size(); ++i) {
-            g.getRange().get(i).set(2,
-                    ((g.getRange().get(i).at(2) - min) / d) + newMin);
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            v.set(2,
+                    ((v.at(2) - min) / d) + newMin);
         }
     }
 }

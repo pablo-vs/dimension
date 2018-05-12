@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import es.ucm.fdi.business_tier.workspace.function.FunctionComposite;
+import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 public class ProjectManagerTest {
 
@@ -33,7 +33,7 @@ public class ProjectManagerTest {
             // todo correcto
         }
 
-        List<FunctionComposite> funcs = new ArrayList<>();
+        List<AbstractFunction> funcs = new ArrayList<>();
         polinomios.setFunctions(funcs);
 
         projectMgr.saveChanges(polinomios);

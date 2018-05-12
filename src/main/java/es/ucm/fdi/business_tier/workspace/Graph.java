@@ -1,3 +1,16 @@
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package es.ucm.fdi.business_tier.workspace;
 
 import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
@@ -5,35 +18,37 @@ import es.ucm.fdi.workspace.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;
 import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
+import java.util.ListIterator;
 
 /**
  * A graph object is used to represent an abstract interpretration of a
  * function. It contains two lists of {@link es.ucm.fdi.workspace Vertex} with
  * values from the range and the domain of the function. It also provides
  *
- * @author Brian Leiva, Eloy Mósig
+ * @author Brian Leiva
+ * @author Eloy Mósig
  */
-public class GraphBO {
+public class Graph implements ComponentComposite{
 
     /**
      * Integer value representing the dimension of the object depicted by the
      * graph.
      */
-    private int dimension;
+    private final int dimension;
 
     /**
      * List of {@link es.ucm.fdi.workspace Vertex} containing the vertex in the
      * domain.
      */
-    private List<Vertex> domain = new ArrayList<>();
+    private final List<Vertex> domain = new ArrayList<>();
 
     /**
      * List of {@link es.ucm.fdi.workspace Vertex} containing the vertex in the
      * range.
      */
-    private List<Vertex> range = new ArrayList<>();
+    private final List<ComponentComposite> range = new ArrayList<>();
 
-    private MultiTreeMap<Integer, Integer> object = new MultiTreeMap<>((a, b) -> a - b);
+    private final MultiTreeMap<Integer, Integer> object = new MultiTreeMap<>((a, b) -> a - b);
     /**
      * Resolution of the graph, it indicates the factor used to calculate the
      * length of the
@@ -45,7 +60,7 @@ public class GraphBO {
      *
      * @param dimension
      */
-    public GraphBO(int dimension) {
+    public Graph(int dimension) {
         this.dimension = dimension;
     }
 
@@ -90,12 +105,14 @@ public class GraphBO {
     }
 
     /**
-     * Generates the graph.
-     *
-     * @param functions
-     * @param dom_ini
+     * Generates the graph. Given a List of functions and a numeric resolution, 
+     * it generates a grid for the given points and then generates the vertex 
+     * representing the n-dimensional points in the range. 
+     * 
+     * @param functions list of functions to be evaluated
+     * @param dom_ini 
      * @param dom_fin
-     * @param resolution
+     * @param resolution of the graph generated
      * @throws NoMatchDimensionException
      */
     public void generate(List<AbstractFunction> functions, double[] dom_ini, double[] dom_fin, int resolution) throws NoMatchDimensionException {
@@ -118,11 +135,40 @@ public class GraphBO {
         return dimension;
     }
 
+    
     /**
+     * Adds a new ComponentComposite to the Graph object.
+     * Typically in Graph this elements will be vertex.
      *
-     * @return the list of vertex of the graph
+     * @param component which will be added
      */
-    public List<Vertex> getRange() {
-        return range;
+    @Override
+    public void add(ComponentComposite component) {
+        range.add(component);
+    }
+
+    /**
+     * Deletes a ComponentComposite that a Graph object contains.
+     * Typically in Graph this elements will be vertex.
+     *
+     * @param component which will be removed
+     */
+    @Override
+    public void delete(ComponentComposite component) {
+        if(!range.remove(component))
+            throw new IllegalArgumentException("The component to be removed in "
+                    + "the graph was not in the range");
+    }
+
+     /**
+     * Returns an operator over the list of ComponentComposite that a
+ Graph object contains. Typically in Graph this elements
+ will be vertex.
+     *
+     * @return listIterator over the elements of the graph
+     */
+    @Override
+    public ListIterator<ComponentComposite> getCompositeIterator() {
+        return range.listIterator();
     }
 }

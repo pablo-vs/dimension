@@ -21,8 +21,7 @@ import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
 import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
- * Representa el logaritmo neperiano.
- *
+ * Napierian logarithm function..
  * @author Inmaculada Pérez
  */
 public class LnFunction extends UnaryFunction {

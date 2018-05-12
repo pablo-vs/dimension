@@ -13,13 +13,16 @@
  */
 package es.ucm.fdi.business_tier.workspace.transformations;
 
-import es.ucm.fdi.business_tier.workspace.GraphBO;
+import es.ucm.fdi.business_tier.workspace.Graph;
 
 /**
  * Public interface representing a modification in a graph. Every modification
- * that could be applied to a graph implements this interface.
+ * that could be applied to a graph implements this interface. The interface
+ * allows the usage of the strategy pattern, each different transformation is 
+ * taken as a different approach (strategy) to the problem of transforming a
+ * function. 
  */
-public interface GraphTransformationBO {
+public interface GraphTransformation {
 
     /**
      * Applies the transformation to the given graph. Each class which
@@ -27,5 +30,5 @@ public interface GraphTransformationBO {
      *
      * @param graph
      */
-    public void apply(GraphBO graph);
+    public void apply(Graph graph);
 }

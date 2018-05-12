@@ -1,13 +1,12 @@
 package es.ucm.fdi.workspace;
 
-import es.ucm.fdi.business_tier.workspace.VisualizationBO;
+import es.ucm.fdi.business_tier.workspace.Visualization;
 import es.ucm.fdi.business_tier.workspace.Vertex;
-import es.ucm.fdi.business_tier.workspace.GraphBO;
+import es.ucm.fdi.business_tier.workspace.Graph;
 import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
+import java.util.Iterator;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
-import java.util.List;
 
 public class VisualizationTest {
 
@@ -21,32 +20,49 @@ public class VisualizationTest {
             v5 = new Vertex(n5), v6 = new Vertex(n6), v7 = new Vertex(n7),
             v8 = new Vertex(n8), v9 = new Vertex(n9), v10 = new Vertex(n10),
             v11 = new Vertex(n11), v12 = new Vertex(n12);
-    GraphBO graf = new GraphBO(5);
+    Graph graf = new Graph(5);
 
-    public void inicio() {
+    public void initialize() {
 
-        graf.getRange().add(v1);
-        graf.getRange().add(v2);
-        graf.getRange().add(v3);
-        graf.getRange().add(v4);
-        graf.getRange().add(v5);
-        graf.getRange().add(v6);
-        graf.getRange().add(v7);
-        graf.getRange().add(v8);
-        graf.getRange().add(v9);
-        graf.getRange().add(v10);
-        graf.getRange().add(v11);
-        graf.getRange().add(v12);
+        graf.add(v1);
+        graf.add(v2);
+        graf.add(v3);
+        graf.add(v4);
+        graf.add(v5);
+        graf.add(v6);
+        graf.add(v7);
+        graf.add(v8);
+        graf.add(v9);
+        graf.add(v10);
+        graf.add(v11);
+        graf.add(v12);
     }
 
     @Test
-    public void proyeccionTest() throws NoMatchDimensionException {
-        inicio();
-        VisualizationBO vis = new VisualizationBO();
-        vis.addGraph(graf, 1, 3, 4, hp);
-        List<Vertex> v = vis.getGraph().get(0).getRange();
-        assertTrue("La proyección debe tener 5 puntos", v.size() == 5);
-        assertTrue("Las coordenadas de los vectores proyección son correctas (se comprueba en un punto)", v.get(0).at(0) == 7 && v.get(0).at(1) == 1 && v.get(0).at(2) == 4);
-
+    public void projectGraphTest() throws NoMatchDimensionException {
+        
+        initialize();
+        
+        double results[] =
+        {
+            7, 1, 4,
+            3, 5, 6,
+            8, 3, 0,
+            0, 0, 0,
+            2, 9, 6
+        };
+        int counter = 0;
+        
+        Graph newGraph = Visualization.projectGraph(graf, 1, 3, 4, hp);
+        Iterator newIt = newGraph.getCompositeIterator();
+        
+        while(newIt.hasNext()){
+            Vertex v =  (Vertex) newIt.next();
+            assertTrue("The new graph has correct list of new vertexes",
+                    v.at(0) == results[counter] && 
+                    v.at(1) == results[1 +counter] &&
+                    v.at(2) == results[2 + counter]);
+            counter += 3; 
+        }
     }
 }

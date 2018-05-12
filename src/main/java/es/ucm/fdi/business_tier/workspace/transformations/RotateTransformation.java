@@ -13,7 +13,9 @@
  */
 package es.ucm.fdi.business_tier.workspace.transformations;
 
-import es.ucm.fdi.business_tier.workspace.GraphBO;
+import es.ucm.fdi.business_tier.workspace.Graph;
+import es.ucm.fdi.business_tier.workspace.Vertex;
+import java.util.ListIterator;
 
 /**
  * This class provides a way of dealing with rotation in 3D. Given the
@@ -22,7 +24,7 @@ import es.ucm.fdi.business_tier.workspace.GraphBO;
  *
  * @author Brian Leiva, Inmaculada Pérez
  */
-public class RotateTransformation implements GraphTransformationBO {
+public class RotateTransformation implements GraphTransformation {
 
     /**
      * Amount to rotate in the X axis
@@ -57,7 +59,7 @@ public class RotateTransformation implements GraphTransformationBO {
      * @param g the graph which is going to be modified
      */
     @Override
-    public void apply(GraphBO g) {
+    public void apply(Graph g) {
         rotateX(g, x);
         rotateY(g, y);
         rotatZ(g, z);
@@ -69,11 +71,16 @@ public class RotateTransformation implements GraphTransformationBO {
      * @param g the graph which will be rotated
      * @param d
      */
-    private static void rotateX(GraphBO g, double d) {
-        double minY = g.getRange().get(0).at(1), maxY = minY,
-                minZ = g.getRange().get(0).at(2), maxZ = minZ;
-        for (int i = 1; i < g.getRange().size(); ++i) {
-            double n1 = g.getRange().get(i).at(1), n2 = g.getRange().get(i).at(2);
+    private static void rotateX(Graph g, double d) {
+
+        double minY = ((Vertex) g.getCompositeIterator().next()).at(1), maxY = minY,
+                minZ = ((Vertex) g.getCompositeIterator().next()).at(2), maxZ = minZ;
+
+        ListIterator iterator = g.getCompositeIterator();
+
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            double n1 = v.at(1), n2 = v.at(2);
             if (n1 > maxY) {
                 maxY = n1;
             }
@@ -87,12 +94,15 @@ public class RotateTransformation implements GraphTransformationBO {
                 minZ = n2;
             }
         }
+
         double centerY = (maxY + minY) / 2, centerZ = (maxZ + minZ) / 2;
-        for (int i = 0; i < g.getRange().size(); ++i) {
-            double y = g.getRange().get(i).at(1), z = g.getRange().get(i).at(2), dist;
+        iterator = g.getCompositeIterator();
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            double y = v.at(1), z = v.at(2), dist;
             dist = Math.sqrt(Math.pow(y - centerY, 2) + Math.pow(z - centerZ, 2));
-            g.getRange().get(i).set(1, y + dist * Math.cos(d));
-            g.getRange().get(i).set(2, z + dist * Math.sin(d));
+            v.set(1, y + dist * Math.cos(d));
+            v.set(2, z + dist * Math.sin(d));
         }
     }
 
@@ -102,11 +112,15 @@ public class RotateTransformation implements GraphTransformationBO {
      * @param g the graph which will be rotated
      * @param d
      */
-    private static void rotateY(GraphBO g, double d) {
-        double minX = g.getRange().get(0).at(0), maxX = minX,
-                minZ = g.getRange().get(0).at(2), maxZ = minZ;
-        for (int i = 1; i < g.getRange().size(); ++i) {
-            double n1 = g.getRange().get(i).at(0), n2 = g.getRange().get(i).at(2);
+    private static void rotateY(Graph g, double d) {
+
+        double minX = ((Vertex) g.getCompositeIterator().next()).at(0), maxX = minX,
+                minZ = ((Vertex) g.getCompositeIterator().next()).at(2), maxZ = minZ;
+        ListIterator iterator = g.getCompositeIterator();
+
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            double n1 = v.at(0), n2 = v.at(2);
             if (n1 > maxX) {
                 maxX = n1;
             }
@@ -121,11 +135,15 @@ public class RotateTransformation implements GraphTransformationBO {
             }
         }
         double centerX = (maxX + minX) / 2, centerZ = (maxZ + minZ) / 2;
-        for (int i = 0; i < g.getRange().size(); ++i) {
-            double x = g.getRange().get(i).at(0), z = g.getRange().get(i).at(2), dist;
+        iterator = g.getCompositeIterator();
+
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+
+            double x = v.at(0), z = v.at(2), dist;
             dist = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(z - centerZ, 2));
-            g.getRange().get(i).set(0, x + dist * Math.sin(d));
-            g.getRange().get(i).set(2, z + dist * Math.cos(d));
+            v.set(0, x + dist * Math.sin(d));
+            v.set(2, z + dist * Math.cos(d));
         }
     }
 
@@ -135,11 +153,15 @@ public class RotateTransformation implements GraphTransformationBO {
      * @param g the graph which will be rotated
      * @param d
      */
-    private static void rotatZ(GraphBO g, double d) {
-        double minX = g.getRange().get(0).at(0), maxX = minX,
-                minY = g.getRange().get(0).at(1), maxY = minY;
-        for (int i = 1; i < g.getRange().size(); ++i) {
-            double n1 = g.getRange().get(i).at(0), n2 = g.getRange().get(i).at(1);
+    private static void rotatZ(Graph g, double d) {
+        double minX = ((Vertex) g.getCompositeIterator().next()).at(0), maxX = minX,
+                minY = ((Vertex) g.getCompositeIterator().next()).at(1), maxY = minY;
+        ListIterator iterator = g.getCompositeIterator();
+
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+
+            double n1 = v.at(0), n2 = v.at(1);
             if (n1 > maxX) {
                 maxX = n1;
             }
@@ -154,11 +176,12 @@ public class RotateTransformation implements GraphTransformationBO {
             }
         }
         double centerX = (maxX + minX) / 2, centerY = (maxY + minY) / 2;
-        for (int i = 0; i < g.getRange().size(); ++i) {
-            double x = g.getRange().get(i).at(0), y = g.getRange().get(i).at(1), dist;
+        while (iterator.hasNext()) {
+            Vertex v = (Vertex) iterator.next();
+            double x = v.at(0), y = v.at(1), dist;
             dist = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
-            g.getRange().get(i).set(0, x + dist * Math.cos(d));
-            g.getRange().get(i).set(1, y + dist * Math.sin(d));
+            v.set(0, x + dist * Math.cos(d));
+            v.set(1, y + dist * Math.sin(d));
         }
     }
 }

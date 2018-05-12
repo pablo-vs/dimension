@@ -16,7 +16,7 @@ package es.ucm.fdi.business_tier.workspace.project;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
-import es.ucm.fdi.business_tier.workspace.VisualizationBO;
+import es.ucm.fdi.business_tier.workspace.Visualization;
 import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
@@ -27,7 +27,7 @@ import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 public class ProjectDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private ArrayList<VisualizationBO> views = new ArrayList<>();
+    private ArrayList<Visualization> views = new ArrayList<>();
     private ArrayList<AbstractFunction> functions = new ArrayList<>();
     private final String ID;
 
@@ -47,7 +47,7 @@ public class ProjectDTO implements Serializable {
      * @param views
      * @param functions
      */
-    public ProjectDTO(String ID, List<VisualizationBO> views, List<AbstractFunction> functions) {
+    public ProjectDTO(String ID, List<Visualization> views, List<AbstractFunction> functions) {
         this.ID = ID;
         this.views = new ArrayList<>(views);
         this.functions = new ArrayList<>(functions);
@@ -80,7 +80,7 @@ public class ProjectDTO implements Serializable {
      *
      * @return the list of visualization object of the project
      */
-    public List<VisualizationBO> getViews() {
+    public List<Visualization> getViews() {
         return views;
     }
 
@@ -106,7 +106,7 @@ public class ProjectDTO implements Serializable {
      *
      * @param views
      */
-    public void setViews(List<VisualizationBO> views) {
+    public void setViews(List<Visualization> views) {
         this.views = new ArrayList<>(views);
     }
 

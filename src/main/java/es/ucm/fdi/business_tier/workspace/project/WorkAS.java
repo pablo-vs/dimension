@@ -13,10 +13,10 @@
  */
 package es.ucm.fdi.business_tier.workspace.project;
 
-import es.ucm.fdi.business_tier.workspace.VisualizationBO;
-import es.ucm.fdi.business_tier.workspace.GraphBO;
-import es.ucm.fdi.business_tier.workspace.transformations.GraphTransformationBO;
+import es.ucm.fdi.business_tier.workspace.Visualization;
+import es.ucm.fdi.business_tier.workspace.Graph;
 import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
+import es.ucm.fdi.business_tier.workspace.transformations.GraphTransformation;
 
 /**
  * Application service which provides functions for working in projects.
@@ -57,7 +57,7 @@ public class WorkAS {
      *
      * @param view The new Visualization to add.
      */
-    public void addVisualizationBO(VisualizationBO view) {
+    public void addVisualizationBO(Visualization view) {
         project.getViews().add(view);
     }
 
@@ -68,9 +68,9 @@ public class WorkAS {
      * @param func The function to transform.
      * @param transformation The GraphTransformation to apply.
      */
-    public void transformFunction(int view, int func, GraphTransformationBO transformation) {
-        VisualizationBO visual = project.getViews().get(view);
-        GraphBO graph = visual.getGraph().get(func);
+    public void transformFunction(int view, int func, GraphTransformation transformation) {
+        Visualization visual = project.getViews().get(view);
+        Graph graph = visual.getGraph().get(func);
         transformation.apply(graph);
         visual.getGraph().set(func, graph);
         project.getViews().set(view, visual);

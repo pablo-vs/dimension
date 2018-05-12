@@ -1,7 +1,7 @@
 package es.ucm.fdi.workspace;
 
-import es.ucm.fdi.business_tier.workspace.VisualizationBO;
-import es.ucm.fdi.business_tier.workspace.GraphBO;
+import es.ucm.fdi.business_tier.workspace.Visualization;
+import es.ucm.fdi.business_tier.workspace.Graph;
 import es.ucm.fdi.integration_tier.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;
 import es.ucm.fdi.business_tier.workspace.project.ProjectDTO;
@@ -21,11 +21,11 @@ public class WorkASTest {
         ProjectManagerAS projMan = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
         WorkAS proj = new WorkAS(exponencial);
 
-        ArrayList<GraphBO> g = new ArrayList<>();
-        g.add(new GraphBO(3));
-        g.add(new GraphBO(5));
+        ArrayList<Graph> g = new ArrayList<>();
+        g.add(new Graph(3));
+        g.add(new Graph(5));
 
-        VisualizationBO views = new VisualizationBO(g);
+        Visualization views = new Visualization(g);
 
         proj.addVisualizationBO(views);
 

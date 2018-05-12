@@ -29,7 +29,7 @@ import java.util.NoSuchElementException;
  *
  * @author Arturo Acuaviva Huertos
  */
-public class Vertex implements Iterable<Double>, Cloneable {
+public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
 
     /**
      * The value of the dimension of the space in which the vertex is
@@ -151,11 +151,11 @@ public class Vertex implements Iterable<Double>, Cloneable {
      * @return s coordinates concatenated in a string
      */
     public String toString() {
-        String s = "";
+        StringBuilder s = new StringBuilder("");
         for (double d : this.cmps) {
-            s += d + ' ';
+            s.append(d).append(' ');
         }
-        return s;
+        return s.substring(0, s.length()-1);
     }
 
     /**
@@ -203,16 +203,31 @@ public class Vertex implements Iterable<Double>, Cloneable {
      * Returns a Vertex with the same values of this Vertex
      *
      * @return clone a copy of Vertex
+     * @throws java.lang.CloneNotSupportedException
      */
-    protected Vertex clone() {
+    protected Vertex clone() throws CloneNotSupportedException {
         Vertex clone = null;
         try {
             clone = (Vertex) super.clone();
             clone.cmps = new double[clone.dim]; //deep copying 
         } catch (CloneNotSupportedException cns) {
-            cns.printStackTrace();
+            throw new CloneNotSupportedException("Error while cloning "
+                    + this.getClass().getSimpleName());
         }
         return clone;
+    }
+
+    /**
+     * Returns a hash code value for the vertex. This method is supported for
+     * the benefit of hash tables containers.
+     *
+     * @return int code generated
+     */
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + this.dim;
+        return hash;
     }
 
     /**
@@ -277,5 +292,41 @@ public class Vertex implements Iterable<Double>, Cloneable {
      */
     public double disto() throws NoMatchDimensionException {
         return dist(new Vertex(dim));
+    }
+    
+     /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @param component
+     */
+    @Override
+    public void add(ComponentComposite component) {
+        throw new UnsupportedOperationException("Not supported by leaf component"
+                + " composite objects.");
+    }
+
+    /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @param component
+     */
+    @Override
+    public void delete(ComponentComposite component) {
+        throw new UnsupportedOperationException("Not supported by leaf component"
+                + " composite objects.");
+    }
+
+    /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @return
+     */
+    @Override
+    public Iterator getCompositeIterator() {
+        throw new UnsupportedOperationException("Not supported by leaf component"
+                + " composite objects.");
     }
 }

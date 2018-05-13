@@ -14,7 +14,7 @@
 package es.ucm.fdi.business_tier.workspace;
 
 import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
-import es.ucm.fdi.workspace.util.MultiTreeMap;
+import es.ucm.fdi.business_tier.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;
 import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
@@ -87,10 +87,14 @@ public class Graph implements ComponentComposite {
             dim *= tam[i];
         }
         for (int j = 0; j < dim; ++j) {
-            domain.add(new Vertex());
+            try {
+				domain.add(new Vertex(tam.length));
+			} catch (NoMatchDimensionException e) {
+				e.printStackTrace();
+			}
         }
         int n = 1;
-        for (int i = 0; i < dim; ++i) {
+        for (int i = 0; i < tam.length; ++i) {
             double suma = dom_ini[i];
             int aux = n;
             n *= tam[i];
@@ -127,7 +131,7 @@ public class Graph implements ComponentComposite {
         for (int i = 0; i < domain.size(); ++i) {
             Vertex fv = new Vertex(functions.size());
             for (int j = 0; j < functions.size(); ++j) {
-                fv.set(j, functions.get(i).evaluate(domain.get(i).getComps()));
+                fv.set(j, functions.get(j).evaluate(domain.get(i).getComps()));
             }
             range.add(fv);
         }

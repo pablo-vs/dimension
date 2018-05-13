@@ -44,7 +44,7 @@ public class GraphTest {
 
     @Before
     public void setUp() {
-        functionsList.add(new IdentityFunction("x", new VariablesList(1)));
+        functionsList.add(new IdentityFunction("x_1", new VariablesList(3)));
     }
 
     /**
@@ -60,9 +60,9 @@ public class GraphTest {
         double[] dom_fin = {
             3.0, 2.0, 3.0
         };
-
+        
         System.out.println("Graph generation: generate | getGrid");
-        testGraph.generate(functionsList, dom_ini, dom_fin, 250);
+        testGraph.generate(functionsList, dom_ini, dom_fin, 2);
 
         Iterator it = testGraph.getCompositeIterator();
         while (it.hasNext()) {

@@ -111,20 +111,24 @@ public abstract class DAOSQLImp<T> {
         List<Object> data = new ArrayList<>();
         for (int i = 0; i < columns.length; ++i) {
             switch (columnTypes[i]) {
-                case VARCHAR: {
-                    data.add(rs.getString(i));
-                    break;
-                }
-                case INTEGER: {
-                    data.add(rs.getInt(i));
-                    break;
-                }
-                case DATE: {
-                    data.add(rs.getDate(i));
-                    break;
-                }
-                default:
-                    data.add(null);
+	    case VARCHAR: {
+		data.add(rs.getString(i));
+		break;
+	    }
+	    case INTEGER: {
+		data.add(rs.getInt(i));
+		break;
+	    }
+	    case DATE: {
+		data.add(rs.getDate(i));
+		break;
+	    }
+	    case BLOB: {
+		data.add(rs.getBinaryStream(i));
+		break;
+	    }
+	    default:
+		data.add(null);
             }
         }
 

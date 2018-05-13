@@ -4,12 +4,20 @@ import es.ucm.fdi.business_tier.connectivity.SharedProjectDTO;
 import java.sql.JDBCType;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import es.ucm.fdi.integration_tier.data.DAOSQLImp;
 import es.ucm.fdi.integration_tier.exceptions.DAOErrorException;
 
 public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implements
         SharedProjectDAO {
+
+    private static final int REQUIRED_LENGTH = 3;
 
     private static final String TABLE = "projects";
 
@@ -94,12 +102,34 @@ public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implemen
 
     @Override
     public SharedProjectDTO build(List<Object> data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (data.size() != REQUIRED_LENGTH) {
+            throw new IllegalArgumentException("Constructor requires 3 objects, "
+                    + data.size() + " given");
+        }
+        if (!(data.get(0) instanceof String && data.get(1) instanceof String
+                && data.get(2) instanceof String && data.get(3) instanceof InputStream)) {
+            throw new IllegalArgumentException("Invalid data type");
+        }
+	try (ObjectInputStream str = new ObjectInputStream((InputStream)data.get(3))) {
+	    return (SharedProjectDTO) str.readObject();
+	} catch (ClassNotFoundException | IOException e) {
+	    throw new IllegalArgumentException("Could not read project from binary data");
+	}
     }
 
     @Override
     public List<Object> getData(SharedProjectDTO obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Object> data = new ArrayList<Object>();
+	data.add(obj.getSharedID());
+	data.add(obj.getID());
+	try (ByteArrayOutputStream str = new ByteArrayOutputStream();
+	     ObjectOutputStream oStr = new ObjectOutputStream(str);) {
+	    oStr.writeObject(obj);
+	    data.add(str.toByteArray());
+	} catch (IOException e) {
+	    throw new IllegalArgumentException("Could not write project to binary stream");
+	}
+     	return data;
     }
 
 }

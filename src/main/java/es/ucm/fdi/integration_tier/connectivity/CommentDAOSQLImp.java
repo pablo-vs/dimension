@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDAO {
 
-    private static final int REQUIERED_LENGTH = 4;
+    private static final int REQUIRED_LENGTH = 4;
 
     private static final String TABLE = "comments";
 
@@ -114,7 +114,7 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
 
     @Override
     public CommentDTO build(List<Object> data) {
-        if (data.size() != REQUIERED_LENGTH) {
+        if (data.size() != REQUIRED_LENGTH) {
             throw new IllegalArgumentException("Constructor requires 4 objects, "
                     + data.size() + " given");
         }

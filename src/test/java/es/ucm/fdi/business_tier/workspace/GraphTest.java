@@ -62,7 +62,7 @@ public class GraphTest {
         };
 
         System.out.println("Graph generation: generate | getGrid");
-        testGraph.generate(functionsList, dom_ini, dom_fin, 250);
+        testGraph.generate(functionsList, dom_ini, dom_fin, 25);
 
         Iterator it = testGraph.getCompositeIterator();
         while (it.hasNext()) {

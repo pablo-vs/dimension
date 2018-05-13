@@ -18,9 +18,7 @@ import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
 import es.ucm.fdi.business_tier.workspace.function.types.unary.IdentityFunction;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -40,6 +38,7 @@ public class GraphTest {
      */
     Graph testGraph = new Graph(3);
     ArrayList<AbstractFunction> functionsList = new ArrayList<>();
+
     public GraphTest() {
     }
 
@@ -50,22 +49,23 @@ public class GraphTest {
 
     /**
      * Test of generate and getGrid methods, of class Graph.
+     *
      * @throws es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException
      */
     @Test
     public void testGenerateAndGrid() throws NoMatchDimensionException {
-        double [] dom_ini = {
-          0.0, -1.0, 0.0  
+        double[] dom_ini = {
+            0.0, -1.0, 0.0
         };
-         double [] dom_fin = {
-          3.0, 2.0, 3.0  
+        double[] dom_fin = {
+            3.0, 2.0, 3.0
         };
-         
+
         System.out.println("Graph generation: generate | getGrid");
-        testGraph.generate( functionsList, dom_ini, dom_fin, 250);
-        
+        testGraph.generate(functionsList, dom_ini, dom_fin, 250);
+
         Iterator it = testGraph.getCompositeIterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             System.out.println(it.next());
         }
     }

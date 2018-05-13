@@ -18,9 +18,9 @@ import es.ucm.fdi.business_tier.workspace.Graph;
 /**
  * Public interface representing a modification in a graph. Every modification
  * that could be applied to a graph implements this interface. The interface
- * allows the usage of the strategy pattern, each different transformation is 
+ * allows the usage of the strategy pattern, each different transformation is
  * taken as a different approach (strategy) to the problem of transforming a
- * function. 
+ * function.
  */
 public interface GraphTransformation {
 

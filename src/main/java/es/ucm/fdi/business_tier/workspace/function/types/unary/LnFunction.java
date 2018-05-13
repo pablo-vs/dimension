@@ -22,6 +22,7 @@ import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 /**
  * Napierian logarithm function..
+ *
  * @author Inmaculada Pérez
  */
 public class LnFunction extends UnaryFunction {

@@ -5,7 +5,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import es.ucm.fdi.business_tier.workspace.function.types.VariablesList;
-import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 
 public class ParserTest {
 

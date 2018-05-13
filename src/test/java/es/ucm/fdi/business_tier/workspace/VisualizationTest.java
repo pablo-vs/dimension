@@ -102,36 +102,38 @@ public class VisualizationTest {
     }
 
     /**
-     * Test of add, delete and getCompositeIterator method, of class Visualization.
+     * Test of add, delete and getCompositeIterator method, of class
+     * Visualization.
      */
     @Test
     public void testCompositeInterface() {
         System.out.println("CompositeInterface: add | delete | getCompositeIterator"
                 + " | deleteAll");
-        
+
         // We previosly added these vertexes in the setUp method
-        Vertex [] listOfVertex = {
+        Vertex[] listOfVertex = {
             new Vertex(n1), new Vertex(n2), new Vertex(n3),
-             new Vertex(n4), new Vertex(n5),  new Vertex(n6),
-             new Vertex(n7),  new Vertex(n8), new Vertex(n9),
-             new Vertex(n10),  new Vertex(n11),  new Vertex(n12) };
-        
+            new Vertex(n4), new Vertex(n5), new Vertex(n6),
+            new Vertex(n7), new Vertex(n8), new Vertex(n9),
+            new Vertex(n10), new Vertex(n11), new Vertex(n12)};
+
         // Iterator testing
         Iterator it = graph.getCompositeIterator();
         int counter = 0;
-        while(it.hasNext()){
-            if(counter >=12){
+        while (it.hasNext()) {
+            if (counter >= 12) {
                 fail("We only added 12 elements");
             }
             assertEquals(listOfVertex[counter], it.next());
             counter++;
         }
-           // deleting the last and the first element
-        graph.delete(v1); graph.delete(v12);
+        // deleting the last and the first element
+        graph.delete(v1);
+        graph.delete(v12);
         it = graph.getCompositeIterator();
         counter = 1;
-        while(it.hasNext()){
-            if(counter >=11){
+        while (it.hasNext()) {
+            if (counter >= 11) {
                 fail("We had 12 elements and deleted 2 elements");
             }
             assertEquals(listOfVertex[counter], it.next());
@@ -139,7 +141,7 @@ public class VisualizationTest {
         }
         graph.deleteAll();
         assertFalse("No elements in the graph", graph.getCompositeIterator().hasNext());
-        
+
     }
 
 }

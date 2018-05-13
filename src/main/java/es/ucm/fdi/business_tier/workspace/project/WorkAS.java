@@ -68,7 +68,7 @@ public class WorkAS {
      * @param transformation The GraphTransformation to apply.
      */
     public void transformFunction(int view, int func, GraphTransformation transformation) {
-    /*    Visualization visual = project.getViews().get(view);
+        /*    Visualization visual = project.getViews().get(view);
         Graph graph = visual.getGraph().get(func);
         transformation.apply(graph);
         visual.getGraph().set(func, graph);

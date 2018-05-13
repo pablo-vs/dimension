@@ -156,7 +156,9 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
      * @return s coordinates concatenated in a string
      */
     public String toString() {
-        if(0 == this.dim) return new String();
+        if (0 == this.dim) {
+            return new String();
+        }
         StringBuilder s = new StringBuilder("");
         for (double d : this.cmps) {
             s.append(d).append(' ');
@@ -215,7 +217,7 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         Vertex clone = new Vertex();
         //deep copying
         clone.dim = this.dim;
-        clone.cmps = new double[clone.dim]; 
+        clone.cmps = new double[clone.dim];
         System.arraycopy(this.cmps, 0, clone.cmps, 0, clone.dim);
         return clone;
     }
@@ -255,13 +257,15 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         }
         int i = 0;
         while (i < otherVertex.getDimension()
-                && otherVertex.at(i) == this.at(i)) { i++; }
+                && otherVertex.at(i) == this.at(i)) {
+            i++;
+        }
         return i == otherVertex.getDimension();
     }
 
     /**
-     * @param other destination vertex used to calculate euclidean distance from the
-     * current vertex (source).
+     * @param other destination vertex used to calculate euclidean distance from
+     * the current vertex (source).
      * @return The distance from the vertex to the given destination vertex <i>
      * other </i>.
      * @throws NoMatchDimensionException the distance cannot be calculated if
@@ -319,15 +323,16 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
-    
-        /**
+
+    /**
      * A leaf ComponentComposite cannot contain more objects. This method should
      * not be implemented by a leaf in composite pattern.
-          */
-        @Override
+     */
+    @Override
     public void deleteAll() {
-       throw new UnsupportedOperationException("Not supported by leaf component"
-                + " composite objects.");    }
+        throw new UnsupportedOperationException("Not supported by leaf component"
+                + " composite objects.");
+    }
 
     /**
      * A leaf ComponentComposite cannot contain more objects. This method should

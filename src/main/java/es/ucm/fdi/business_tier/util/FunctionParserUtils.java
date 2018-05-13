@@ -26,8 +26,7 @@ import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
  * parsers
  * <i>parserList</i>
  * containing different types of functions, the method {@link #parse parse}
- * returns a
- * {@link es.ucm.fdi.workspace.workspace.FunctionBO AbstractFunction}.
+ * returns a {@link es.ucm.fdi.workspace.workspace.FunctionBO AbstractFunction}.
  *
  * @author Pablo Villalobos
  * @author Arturo Acuaviva

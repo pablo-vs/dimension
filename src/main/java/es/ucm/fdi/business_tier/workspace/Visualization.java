@@ -80,14 +80,15 @@ public class Visualization implements ComponentComposite {
         }
     }
 
-      /**
-     * Removes all the elements in the range.
-     * All ComponentComposites are deleted.
+    /**
+     * Removes all the elements in the range. All ComponentComposites are
+     * deleted.
      */
     @Override
     public void deleteAll() {
         graphsAvailable.removeAll(graphsAvailable);
     }
+
     /**
      * Returns an operator over the list of ComponentComposite that a
      * Visualization object contains. Typically in Visualization this elements

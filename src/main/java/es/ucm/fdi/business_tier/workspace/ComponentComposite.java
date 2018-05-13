@@ -25,26 +25,30 @@ import java.util.Iterator;
 public interface ComponentComposite {
 
     /**
-     * Adds a new ComponentComposite to the inner list of the object. 
+     * Adds a new ComponentComposite to the inner list of the object.
+     *
      * @param component to be added
      */
     public void add(ComponentComposite component);
 
     /**
-     * Removes a ComponentComposite of the inner list of the object. 
+     * Removes a ComponentComposite of the inner list of the object.
+     *
      * @param component to be removed
      */
     public void delete(ComponentComposite component);
-    
+
     /**
-     * Removes all ComponentComposites of the inner list. 
+     * Removes all ComponentComposites of the inner list.
      */
     public void deleteAll();
-    
-  /**
-   * Returns an iterator over the inner list of ComponentComposite of the object. 
-   * @return iterator over the inner component composite list
-   */
+
+    /**
+     * Returns an iterator over the inner list of ComponentComposite of the
+     * object.
+     *
+     * @return iterator over the inner component composite list
+     */
     public Iterator getCompositeIterator();
 
 }

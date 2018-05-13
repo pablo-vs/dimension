@@ -28,6 +28,7 @@ import static org.junit.Assert.*;
  * @author Arturo Acuaviva
  */
 public class VertexTest {
+
     /**
      * Null vertex with dimension 0 and no cmps
      */
@@ -44,22 +45,24 @@ public class VertexTest {
      * Non-empty 3D Vertex equals to the first 3D vertex created
      */
     Vertex vertex3Dequal;
-    
+
     /**
      * Empty 4D vertex
      */
     Vertex vertex4Dempty;
-    
+
     /**
      * List of points for a 3D vertex
      */
-    double [] cmps = { 2.0, 3.0, 5.0};
-    
-    public VertexTest() { }
-   
+    double[] cmps = {2.0, 3.0, 5.0};
+
+    public VertexTest() {
+    }
+
     /**
      * Creates all the object that will be used for the tests.
-     * @throws NoMatchDimensionException 
+     *
+     * @throws NoMatchDimensionException
      */
     @Before
     public void setUp() throws NoMatchDimensionException {
@@ -75,22 +78,23 @@ public class VertexTest {
     @Test
     public void testAt() {
         System.out.println("at");
-       // At for a non-empty 3D vertex
-       assertEquals(2.0, vertex3D.at(0), 0);
+        // At for a non-empty 3D vertex
+        assertEquals(2.0, vertex3D.at(0), 0);
         assertEquals(3.0, vertex3D.at(1), 0);
-         assertEquals(5.0, vertex3D.at(2), 0);
-         // At out of range test
-       try{
-           vertex3D.at(3);
-           fail("You should not be able to access a non-existing dimension");
-       } catch (ArrayIndexOutOfBoundsException e){  }
-       // At used over a null vertex
-       try{
-           vertexNull.at(0);
-           fail("You should no be able to access to a null vertex");
-       }catch(NullPointerException e){
-       }
-       
+        assertEquals(5.0, vertex3D.at(2), 0);
+        // At out of range test
+        try {
+            vertex3D.at(3);
+            fail("You should not be able to access a non-existing dimension");
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+        // At used over a null vertex
+        try {
+            vertexNull.at(0);
+            fail("You should no be able to access to a null vertex");
+        } catch (NullPointerException e) {
+        }
+
     }
 
     /**
@@ -119,10 +123,10 @@ public class VertexTest {
         vertex3Dempty.set(0, 0.0);
         assertEquals(0.0, vertex3Dempty.at(0), 0);
         // set test out of range
-        try{
+        try {
             vertex3Dempty.set(4, 2.3);
             fail("Setting a value out of range");
-        } catch(ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
         }
     }
 
@@ -133,33 +137,34 @@ public class VertexTest {
     public void testIterator() {
         System.out.println("iterator");
         // Iteration over a 3D vertex
-       Iterator it = vertex3D.iterator();
-       int counter = 0;
-       double [] matriz;
-       matriz = new double[3];
-       while(it.hasNext()){
-           try{
-               if(counter >= 3){
-                   fail("A 3D vertex has 3 elements");
-               }
+        Iterator it = vertex3D.iterator();
+        int counter = 0;
+        double[] matriz;
+        matriz = new double[3];
+        while (it.hasNext()) {
+            try {
+                if (counter >= 3) {
+                    fail("A 3D vertex has 3 elements");
+                }
                 matriz[counter] = (double) it.next();
                 counter++;
-           } catch (NoSuchElementException e){
-               fail("All elements are available");
-           }
-       }
-       assertEquals(matriz[0], vertex3D.at(0), 0);
-       assertEquals(matriz[1], vertex3D.at(1), 0);
-       assertEquals(matriz[2], vertex3D.at(2), 0);
-       // Null vertex iteration test
-       it = vertexNull.iterator();
-       while(it.hasNext()){
-           fail("A null vertex should have no elements");
-       }
-       try{
-           it.next();
-           fail("There are no elements in the vertex");
-       }catch(NoSuchElementException e){}
+            } catch (NoSuchElementException e) {
+                fail("All elements are available");
+            }
+        }
+        assertEquals(matriz[0], vertex3D.at(0), 0);
+        assertEquals(matriz[1], vertex3D.at(1), 0);
+        assertEquals(matriz[2], vertex3D.at(2), 0);
+        // Null vertex iteration test
+        it = vertexNull.iterator();
+        while (it.hasNext()) {
+            fail("A null vertex should have no elements");
+        }
+        try {
+            it.next();
+            fail("There are no elements in the vertex");
+        } catch (NoSuchElementException e) {
+        }
     }
 
     /**
@@ -183,18 +188,19 @@ public class VertexTest {
         System.out.println("clone");
         Vertex newCopiedVertex = vertex3D.clone();
         // check if it was correctly cloned
-       assertEquals(vertex3D, newCopiedVertex);
-       newCopiedVertex.set(0, 1.0);
-       // we check that the value was deep copied
-       assertEquals(1.0, newCopiedVertex.at(0), 0);
-       assertEquals(2.0, vertex3D.at(0), 0);
-       // we check if dimensions match
-       assertEquals(3, newCopiedVertex.getDimension());
-       assertEquals(3, vertex3D.getDimension());
+        assertEquals(vertex3D, newCopiedVertex);
+        newCopiedVertex.set(0, 1.0);
+        // we check that the value was deep copied
+        assertEquals(1.0, newCopiedVertex.at(0), 0);
+        assertEquals(2.0, vertex3D.at(0), 0);
+        // we check if dimensions match
+        assertEquals(3, newCopiedVertex.getDimension());
+        assertEquals(3, vertex3D.getDimension());
     }
 
     /**
      * Test of equals method, of class Vertex.
+     *
      * @throws es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException
      */
     @Test
@@ -229,7 +235,7 @@ public class VertexTest {
         assertEquals(0.0, vertex3D.distanceTo(vertex3D), 0);
         assertEquals(0.0, vertex3Dempty.distanceTo(vertex3Dempty), 0);
         // Different dimension and null vertex distance calculation
-        try{
+        try {
             vertex3D.distanceTo(vertex4Dempty);
             vertex4Dempty.distanceTo(vertex3D);
             vertex4Dempty.distanceTo(vertex3Dempty);
@@ -238,7 +244,8 @@ public class VertexTest {
             vertex3D.distanceTo(vertexNull);
             fail("Distance between different dimension vertexes cannot be"
                     + " calculated");
-        } catch(NoMatchDimensionException e){   }
+        } catch (NoMatchDimensionException e) {
+        }
     }
 
     /**
@@ -247,22 +254,23 @@ public class VertexTest {
     @Test
     public void testGetComps() {
         System.out.println("getComps");
-       // Obtaining non-empty vertex components and modifying them
-       double [] components = vertex3D.getComps();
-       assertEquals(vertex3D.at(0), components[0], 0);
-       assertEquals(vertex3D.at(1), components[1], 0);
-       assertEquals(vertex3D.at(2), components[2], 0);
-       double previousVertex3D = vertex3D.at(1);
-       components[1] = previousVertex3D+1;
-       assertEquals(vertex3D.at(1), previousVertex3D, 0);
-       assertEquals(components[1], previousVertex3D+1, 0);
-       
-       //Obtaining components from a null vertex
-       assertTrue(Arrays.equals(null, vertexNull.getComps()));
+        // Obtaining non-empty vertex components and modifying them
+        double[] components = vertex3D.getComps();
+        assertEquals(vertex3D.at(0), components[0], 0);
+        assertEquals(vertex3D.at(1), components[1], 0);
+        assertEquals(vertex3D.at(2), components[2], 0);
+        double previousVertex3D = vertex3D.at(1);
+        components[1] = previousVertex3D + 1;
+        assertEquals(vertex3D.at(1), previousVertex3D, 0);
+        assertEquals(components[1], previousVertex3D + 1, 0);
+
+        //Obtaining components from a null vertex
+        assertTrue(Arrays.equals(null, vertexNull.getComps()));
     }
 
     /**
      * Test of distanceFromOrigin method, of class Vertex.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -270,11 +278,11 @@ public class VertexTest {
         System.out.println("distanceFromOrigin");
         // vertexes at the origin 
         assertEquals(0.0, vertex4Dempty.distanceFromOrigin(), 0);
-       assertEquals(0.0, vertex3Dempty.distanceFromOrigin(), 0);
-       // null vertex distance
-       assertEquals(0.0, vertexNull.distanceFromOrigin(), 0);
-       // vertex not at the origin
-       assertEquals(6.1644, vertex3D.distanceFromOrigin(), 0.0001);
+        assertEquals(0.0, vertex3Dempty.distanceFromOrigin(), 0);
+        // null vertex distance
+        assertEquals(0.0, vertexNull.distanceFromOrigin(), 0);
+        // vertex not at the origin
+        assertEquals(6.1644, vertex3D.distanceFromOrigin(), 0.0001);
     }
 
 }

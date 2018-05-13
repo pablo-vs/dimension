@@ -28,12 +28,11 @@ import java.util.ListIterator;
  * @author Brian Leiva
  * @author Eloy Mósig
  */
-public class Graph implements ComponentComposite{
+public class Graph implements ComponentComposite {
 
     /**
-     * 
-     * Int value representing the dimension of the object depicted by the
-     * graph.
+     *
+     * Int value representing the dimension of the object depicted by the graph.
      */
     private final int dimension;
 
@@ -50,7 +49,7 @@ public class Graph implements ComponentComposite{
     private final List<ComponentComposite> range = new ArrayList<>();
 
     /**
-     * Tree map with domain values. 
+     * Tree map with domain values.
      */
     private final MultiTreeMap<Integer, Integer> object = new MultiTreeMap<>((a, b) -> a - b);
     /**
@@ -70,8 +69,10 @@ public class Graph implements ComponentComposite{
 
     /**
      * Calculates the domain (the points where the function will be evaluated).
-     * The parameters are the list of bounds where the function can be evaluated. 
-     * @param dom_ini 
+     * The parameters are the list of bounds where the function can be
+     * evaluated.
+     *
+     * @param dom_ini
      * @param dom_fin
      */
     private void getGrid(double[] dom_ini, double[] dom_fin) {
@@ -110,12 +111,12 @@ public class Graph implements ComponentComposite{
     }
 
     /**
-     * Generates the graph. Given a List of functions and a numeric resolution, 
-     * it generates a grid for the given points and then generates the vertex 
-     * representing the n-dimensional points in the range. 
-     * 
+     * Generates the graph. Given a List of functions and a numeric resolution,
+     * it generates a grid for the given points and then generates the vertex
+     * representing the n-dimensional points in the range.
+     *
      * @param functions list of functions to be evaluated
-     * @param dom_ini 
+     * @param dom_ini
      * @param dom_fin
      * @param resolution of the graph generated
      * @throws NoMatchDimensionException
@@ -140,10 +141,9 @@ public class Graph implements ComponentComposite{
         return dimension;
     }
 
-    
     /**
-     * Adds a new ComponentComposite to the Graph object.
-     * Typically in Graph this elements will be vertex.
+     * Adds a new ComponentComposite to the Graph object. Typically in Graph
+     * this elements will be vertex.
      *
      * @param component which will be added
      */
@@ -153,22 +153,22 @@ public class Graph implements ComponentComposite{
     }
 
     /**
-     * Deletes a ComponentComposite that a Graph object contains.
-     * Typically in Graph this elements will be vertex.
+     * Deletes a ComponentComposite that a Graph object contains. Typically in
+     * Graph this elements will be vertex.
      *
      * @param component which will be removed
      */
     @Override
     public void delete(ComponentComposite component) {
-        if(!range.remove(component))
+        if (!range.remove(component)) {
             throw new IllegalArgumentException("The component to be removed in "
                     + "the graph was not in the range");
+        }
     }
 
-     /**
-     * Returns an operator over the list of ComponentComposite that a
- Graph object contains. Typically in Graph this elements
- will be vertex.
+    /**
+     * Returns an operator over the list of ComponentComposite that a Graph
+     * object contains. Typically in Graph this elements will be vertex.
      *
      * @return listIterator over the elements of the graph
      */
@@ -178,8 +178,8 @@ public class Graph implements ComponentComposite{
     }
 
     /**
-     * Removes all the elements in the range.
-     * All ComponentComposites are deleted.
+     * Removes all the elements in the range. All ComponentComposites are
+     * deleted.
      */
     @Override
     public void deleteAll() {

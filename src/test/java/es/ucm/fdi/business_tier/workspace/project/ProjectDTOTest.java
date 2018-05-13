@@ -43,15 +43,15 @@ public class ProjectDTOTest {
      * Project object test filled up with two lists
      */
     ProjectDTO project3;
-    
-    /** 
-     * Non-empty AbstractFunction list used for testing 
+
+    /**
+     * Non-empty AbstractFunction list used for testing
      */
     List<AbstractFunction> functionList = new ArrayList<>();
-        /** 
+    /**
      * Non-empty Visualization list used for testing
      */
-        List<Visualization> visualizationList = new ArrayList<>();
+    List<Visualization> visualizationList = new ArrayList<>();
 
     public ProjectDTOTest() {
     }
@@ -65,7 +65,7 @@ public class ProjectDTOTest {
         visualizationList.add(new Visualization(new ArrayList<>()));
         functionList.add(new ConstantFunction(2, new VariablesList(1)));
         functionList.add(new ConstantFunction(3, new VariablesList(1)));
-        
+
         project = new ProjectDTO("prj1", new ArrayList<>(), new ArrayList<>());
         project2 = new ProjectDTO("prj2", visualizationList, new ArrayList<>());
         project3 = new ProjectDTO("prj3", visualizationList, functionList);
@@ -85,7 +85,7 @@ public class ProjectDTOTest {
                 expResult.equals(result));
         // Different ID test
         assertFalse("Projects ID are different", project.getID().equals(project2.getID()));
-        
+
     }
 
     /**
@@ -108,7 +108,7 @@ public class ProjectDTOTest {
     @Test
     public void testGetFunctions() {
         System.out.println("getFunctions");
-                // We test emptiness
+        // We test emptiness
         assertTrue("Project get functions must be empty",
                 new ArrayList<>().equals(project.getFunctions()));
         // We test compare the list given by a non-empty project and an empty project
@@ -130,7 +130,7 @@ public class ProjectDTOTest {
                 project3.getFunctions().equals(project.getFunctions()));
         // We change a project that has previously a non-empty list
         project3.setFunctions(new ArrayList<>());
-        assertFalse("Projects have different function lists", 
+        assertFalse("Projects have different function lists",
                 project3.getFunctions().equals(project.getFunctions()));
     }
 
@@ -140,7 +140,7 @@ public class ProjectDTOTest {
     @Test
     public void testSetViews() {
         System.out.println("setViews");
-         assertFalse("Projects have a different visualization list",
+        assertFalse("Projects have a different visualization list",
                 project3.getViews().equals(project.getViews()));
         // We add to an empty project
         project.setViews(visualizationList);
@@ -148,7 +148,7 @@ public class ProjectDTOTest {
                 project3.getViews().equals(project.getViews()));
         // We change a project that has previously a non-empty list
         project3.setViews(new ArrayList<>());
-        assertFalse("Projects have different visualization lists", 
+        assertFalse("Projects have different visualization lists",
                 project3.getViews().equals(project.getViews()));
     }
 

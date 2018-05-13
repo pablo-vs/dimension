@@ -31,7 +31,8 @@ import java.util.ListIterator;
 public class Graph implements ComponentComposite{
 
     /**
-     * Integer value representing the dimension of the object depicted by the
+     * 
+     * Int value representing the dimension of the object depicted by the
      * graph.
      */
     private final int dimension;
@@ -48,6 +49,9 @@ public class Graph implements ComponentComposite{
      */
     private final List<ComponentComposite> range = new ArrayList<>();
 
+    /**
+     * Tree map with domain values. 
+     */
     private final MultiTreeMap<Integer, Integer> object = new MultiTreeMap<>((a, b) -> a - b);
     /**
      * Resolution of the graph, it indicates the factor used to calculate the
@@ -70,7 +74,7 @@ public class Graph implements ComponentComposite{
      * @param dom_ini 
      * @param dom_fin
      */
-    public void getGrid(double[] dom_ini, double[] dom_fin) {
+    private void getGrid(double[] dom_ini, double[] dom_fin) {
         if (dom_ini.length != dom_fin.length) {
             throw new IllegalArgumentException();
         }
@@ -171,5 +175,14 @@ public class Graph implements ComponentComposite{
     @Override
     public ListIterator<ComponentComposite> getCompositeIterator() {
         return range.listIterator();
+    }
+
+    /**
+     * Removes all the elements in the range.
+     * All ComponentComposites are deleted.
+     */
+    @Override
+    public void deleteAll() {
+        range.removeAll(range);
     }
 }

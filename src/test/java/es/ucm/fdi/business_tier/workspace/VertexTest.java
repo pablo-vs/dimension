@@ -17,7 +17,6 @@ import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -264,6 +263,7 @@ public class VertexTest {
 
     /**
      * Test of distanceFromOrigin method, of class Vertex.
+     * @throws java.lang.Exception
      */
     @Test
     public void testDistanceFromOrigin() throws Exception {

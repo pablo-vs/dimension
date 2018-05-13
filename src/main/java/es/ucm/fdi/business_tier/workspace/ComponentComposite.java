@@ -35,6 +35,12 @@ public interface ComponentComposite {
      * @param component to be removed
      */
     public void delete(ComponentComposite component);
+    
+    /**
+     * Removes all ComponentComposites of the inner list. 
+     */
+    public void deleteAll();
+    
   /**
    * Returns an iterator over the inner list of ComponentComposite of the object. 
    * @return iterator over the inner component composite list

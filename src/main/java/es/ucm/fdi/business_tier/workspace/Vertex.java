@@ -14,6 +14,7 @@
 package es.ucm.fdi.business_tier.workspace;
 
 import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -80,9 +81,7 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         }
         this.dim = dim;
         this.cmps = new double[dim];
-        for (double d : this.cmps) {
-            d = 0;
-        }
+        Arrays.fill(cmps, 0);
     }
 
     /**
@@ -99,11 +98,16 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
      * @param n n-position in the vertex N dimensional
      * @throws ArrayIndexOutOfBoundsException the value n does not belong to the
      * interval (0, dim)
+     * @throws NullPointerException when calling at on a null vertex (zero
+     * dimension vertex)
      * @return this.cmps[n]
      */
-    public double at(int n) throws ArrayIndexOutOfBoundsException {
+    public double at(int n) throws ArrayIndexOutOfBoundsException, NullPointerException {
         if (n < this.dim && n >= 0) {
             return this.cmps[n];
+        } else if (this.dim == 0) {
+            throw new NullPointerException("You cannot access to any component"
+                    + " of a null vertex (a zero dimension vertex)");
         } else {
             throw new ArrayIndexOutOfBoundsException("n value must belong to"
                     + " the interval (0, " + this.dim + ")");
@@ -146,16 +150,18 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
     }
 
     /**
-     * Returns a string with all the values of the Vertex concatenated
+     * Returns a string with all the values of the Vertex concatenated. It
+     * returns an empty string when the vertex is null
      *
      * @return s coordinates concatenated in a string
      */
     public String toString() {
+        if(0 == this.dim) return new String();
         StringBuilder s = new StringBuilder("");
         for (double d : this.cmps) {
             s.append(d).append(' ');
         }
-        return s.substring(0, s.length()-1);
+        return s.substring(0, s.length() - 1);
     }
 
     /**
@@ -200,20 +206,17 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
     }
 
     /**
-     * Returns a Vertex with the same values of this Vertex
+     * Returns a Vertex cloned with the same values of this Vertex
      *
      * @return clone a copy of Vertex
-     * @throws java.lang.CloneNotSupportedException
      */
-    protected Vertex clone() throws CloneNotSupportedException {
-        Vertex clone = null;
-        try {
-            clone = (Vertex) super.clone();
-            clone.cmps = new double[clone.dim]; //deep copying 
-        } catch (CloneNotSupportedException cns) {
-            throw new CloneNotSupportedException("Error while cloning "
-                    + this.getClass().getSimpleName());
-        }
+    protected Vertex clone() {
+        // null vertex creation
+        Vertex clone = new Vertex();
+        //deep copying
+        clone.dim = this.dim;
+        clone.cmps = new double[clone.dim]; 
+        System.arraycopy(this.cmps, 0, clone.cmps, 0, clone.dim);
         return clone;
     }
 
@@ -246,30 +249,29 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         if (!(other instanceof Vertex)) {
             return false;
         }
-        Vertex otherVertexBO = (Vertex) other;
-        if (otherVertexBO.getDimension() != this.getDimension()) {
+        Vertex otherVertex = (Vertex) other;
+        if (otherVertex.getDimension() != this.getDimension()) {
             return false;
         }
         int i = 0;
-        while (i < otherVertexBO.getDimension()
-                && otherVertexBO.at(i) == this.at(i)) {
-        }
-        return i == otherVertexBO.getDimension();
+        while (i < otherVertex.getDimension()
+                && otherVertex.at(i) == this.at(i)) { i++; }
+        return i == otherVertex.getDimension();
     }
 
     /**
-     * @param other destination vertex used to calculate distance from the
+     * @param other destination vertex used to calculate euclidean distance from the
      * current vertex (source).
      * @return The distance from the vertex to the given destination vertex <i>
      * other </i>.
      * @throws NoMatchDimensionException the distance cannot be calculated if
      * dimension do not match
      */
-    public double dist(Vertex other) throws NoMatchDimensionException {
+    public double distanceTo(Vertex other) throws NoMatchDimensionException {
         if (other.getDimension() == dim) {
             double d2 = 0;
             for (int i = 0; i < dim; ++i) {
-                d2 += cmps[i] * other.at(i);
+                d2 += Math.pow((cmps[i] - other.at(i)), 2);
             }
             return Math.sqrt(d2);
         } else {
@@ -282,7 +284,7 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
      * @return The components of the Vertex.
      */
     public double[] getComps() {
-        return cmps;
+        return cmps == null ? null : cmps.clone();
     }
 
     /**
@@ -290,11 +292,11 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
      * @throws NoMatchDimensionException if the distance is calculated to an
      * object of different dimension
      */
-    public double disto() throws NoMatchDimensionException {
-        return dist(new Vertex(dim));
+    public double distanceFromOrigin() throws NoMatchDimensionException {
+        return distanceTo(new Vertex(dim));
     }
-    
-     /**
+
+    /**
      * A leaf ComponentComposite cannot contain more objects. This method should
      * not be implemented by a leaf in composite pattern.
      *

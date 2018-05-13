@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class DonateTest {
 
-    @Test
+    //@Test
     public void donateTest() {
         try {
             DonateAS.donate();

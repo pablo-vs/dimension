@@ -11,9 +11,9 @@ public class SQLDataSource {
 
     private static final String DRIVER = "org.mariadb.jdbc.Driver";
     private static final String DB = "dimension";
-    private static final String HOST = "localhost";
-    private static final String USER = "root";
-    private static final String PASSWD = "";
+    private static final String HOST = "83.41.170.105";
+    private static final String USER = "dimension";
+    private static final String PASSWD = "dimension";
 
     private static SQLDataSource instance;
     private BasicDataSource dataSource;

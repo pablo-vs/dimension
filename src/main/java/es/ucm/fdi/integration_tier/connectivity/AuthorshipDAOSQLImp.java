@@ -18,7 +18,7 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements Aut
 
     private static final int REQUIERED_LENGTH = 3;
 
-    private static final String TABLE = "authors";
+    private static final String TABLE = "authorships";
 
     private static final String[] COLUMNS = {"id", "author", "project"};
 

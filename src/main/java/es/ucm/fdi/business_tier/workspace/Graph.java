@@ -14,7 +14,7 @@
 package es.ucm.fdi.business_tier.workspace;
 
 import es.ucm.fdi.business_tier.exceptions.NoMatchDimensionException;
-import es.ucm.fdi.workspace.util.MultiTreeMap;
+import es.ucm.fdi.business_tier.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;
 import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
@@ -83,29 +83,33 @@ public class Graph implements ComponentComposite {
         int[] tam = new int[dom_ini.length];
         int dim = 1;
         for (int i = 0; i < tam.length; ++i) {
-            tam[i] = (int) ((dom_fin[i] - dom_ini[i]) / lado);
+            tam[i] = (int) ((dom_fin[i] - dom_ini[i]) / lado + 1);
             dim *= tam[i];
         }
         for (int j = 0; j < dim; ++j) {
-            domain.add(new Vertex());
+            try {
+				domain.add(new Vertex(tam.length));
+			} catch (NoMatchDimensionException e) {
+				e.printStackTrace();
+			}
         }
         int n = 1;
-        for (int i = 0; i < dim; ++i) {
+        for (int i = 0; i < tam.length; ++i) {
             double suma = dom_ini[i];
             int aux = n;
             n *= tam[i];
             for (int j = 0; j < tam[i]; ++j) {
-                suma += lado;
                 for (int k = j * aux; k < domain.size(); k += n) {
                     int cont = 0;
                     while (cont < aux) {
-                        domain.get(k).set(i, suma);
+                        domain.get(k + cont).set(i, suma);
                         if (j > 0) {
                             object.putValue(k, k - (j * aux));
                         }
                         ++cont;
                     }
                 }
+                suma += lado;
             }
         }
     }
@@ -127,7 +131,7 @@ public class Graph implements ComponentComposite {
         for (int i = 0; i < domain.size(); ++i) {
             Vertex fv = new Vertex(functions.size());
             for (int j = 0; j < functions.size(); ++j) {
-                fv.set(j, functions.get(i).evaluate(domain.get(i).getComps()));
+                fv.set(j, functions.get(j).evaluate(domain.get(i).getComps()));
             }
             range.add(fv);
         }

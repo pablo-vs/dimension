@@ -18,16 +18,16 @@ public abstract class DAOSQLImp<T> {
 
     private String[] columns;
 
-    private JDBCType[] columnTypes;
+    private JDBCType[] columnJDBCType;
 
-    public DAOSQLImp(String table, String[] columns, JDBCType[] columnTypes) {
+    public DAOSQLImp(String table, String[] columns, JDBCType[] columnJDBCType) {
         this.table = table;
         this.columns = columns;
-        this.columnTypes = columnTypes;
+        this.columnJDBCType = columnJDBCType;
     }
 
     public void addRecord(T obj) throws SQLException {
-        List data = getData(obj);
+        List<Object> data = getData(obj);
         StringBuilder sb = new StringBuilder("(?");
         for (int i = 1; i < data.size(); ++i) {
             sb.append(",?");
@@ -36,7 +36,7 @@ public abstract class DAOSQLImp<T> {
         try (PreparedStatement stmt = SQLDataSource.getStatement("INSERT INTO "
                 + table + " VALUES " + sb.toString())) {
             for (int i = 0; i < data.size(); ++i) {
-                stmt.setObject(i + 1, data.get(i), columnTypes[i]);
+                stmt.setObject(i + 1, data.get(i)/*, columnJDBCType[i]*/);
             }
             stmt.execute();
         } catch (IllegalArgumentException | SQLException e) {
@@ -55,7 +55,7 @@ public abstract class DAOSQLImp<T> {
     }
 
     public void modifyRecord(T obj) throws SQLException {
-        List data = getData(obj);
+        List<Object> data = getData(obj);
         StringBuilder sb = new StringBuilder();
         sb.append(columns[0]).append(" = ?");
         for (int i = 1; i < data.size(); ++i) {
@@ -64,9 +64,9 @@ public abstract class DAOSQLImp<T> {
         try (PreparedStatement stmt = SQLDataSource.getStatement("UPDATE TABLE "
                 + table + " SET " + sb.toString() + " WHERE " + columns[0] + " = ?")) {
             for (int i = 0; i < data.size(); ++i) {
-                stmt.setObject(i + 1, data.get(i), columnTypes[i]);
+                stmt.setObject(i + 1, data.get(i), columnJDBCType[i]);
             }
-            stmt.setObject(data.size() + 1, data.get(0), columnTypes[0]);
+            stmt.setObject(data.size() + 1, data.get(0), columnJDBCType[0]);
             stmt.execute();
         } catch (IllegalArgumentException | SQLException e) {
             throw new SQLException("Could not modify record in table:\n" + e.getMessage(), e);
@@ -87,7 +87,7 @@ public abstract class DAOSQLImp<T> {
         ArrayList<T> results = new ArrayList<>();
         try (PreparedStatement stmt = SQLDataSource.getStatement(query.toString())) {
             if (val != null) {
-                stmt.setObject(1, val, columnTypes[col]);
+                stmt.setObject(1, val/*, columnJDBCType[col]*/);
             }
             ResultSet rs = stmt.executeQuery();
             rs.first();
@@ -109,8 +109,8 @@ public abstract class DAOSQLImp<T> {
 
     private List<Object> readData(ResultSet rs) throws SQLException {
         List<Object> data = new ArrayList<>();
-        for (int i = 0; i < columns.length; ++i) {
-            switch (columnTypes[i]) {
+        for (int i = 1; i <= columns.length; ++i) {
+            switch (columnJDBCType[i-1]) {
 	    case VARCHAR: {
 		data.add(rs.getString(i));
 		break;

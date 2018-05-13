@@ -1,4 +1,4 @@
-package es.ucm.fdi.users;
+package es.ucm.fdi.business_tier.users;
 
 import es.ucm.fdi.business_tier.users.SessionDTO;
 import es.ucm.fdi.business_tier.users.UserManagerAS;

@@ -1,4 +1,4 @@
-package es.ucm.fdi.workspace.function;
+package es.ucm.fdi.business_tier.workspace.function;
 
 import es.ucm.fdi.business_tier.util.FunctionParserUtils;
 import org.junit.Test;

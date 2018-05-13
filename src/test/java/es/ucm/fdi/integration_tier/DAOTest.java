@@ -1,4 +1,4 @@
-package es.ucm.fdi.connectivity;
+package es.ucm.fdi.integration_tier;
 
 import es.ucm.fdi.integration_tier.connectivity.AuthorshipDAOSQLImp;
 import es.ucm.fdi.business_tier.connectivity.AuthorshipDTO;

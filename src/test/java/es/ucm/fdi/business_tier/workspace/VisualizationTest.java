@@ -1,4 +1,4 @@
-package es.ucm.fdi.workspace;
+package es.ucm.fdi.business_tier.workspace;
 
 import es.ucm.fdi.business_tier.workspace.Visualization;
 import es.ucm.fdi.business_tier.workspace.Vertex;

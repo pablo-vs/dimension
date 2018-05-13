@@ -1,4 +1,4 @@
-package es.ucm.fdi.util;
+package es.ucm.fdi.business_tier.util;
 
 import es.ucm.fdi.workspace.util.HashGenerator;
 import org.junit.Test;

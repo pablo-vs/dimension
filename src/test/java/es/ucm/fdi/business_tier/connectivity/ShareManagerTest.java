@@ -1,4 +1,4 @@
-package es.ucm.fdi.connectivity;
+package es.ucm.fdi.business_tier.connectivity;
 
 import es.ucm.fdi.integration_tier.connectivity.AuthorshipDAOHashTableImp;
 import es.ucm.fdi.business_tier.connectivity.ShareManagerAS;

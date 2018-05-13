@@ -1,4 +1,4 @@
-package es.ucm.fdi.operations;
+package es.ucm.fdi.business_tier.network_operations;
 
 import es.ucm.fdi.business_tier.network_operations.DonateAS;
 import static org.junit.Assert.*;

@@ -1,4 +1,4 @@
-package es.ucm.fdi.workspace;
+package es.ucm.fdi.business_tier.workspace;
 
 import es.ucm.fdi.business_tier.workspace.Visualization;
 import es.ucm.fdi.business_tier.workspace.Graph;
@@ -25,7 +25,7 @@ public class WorkASTest {
         g.add(new Graph(3));
         g.add(new Graph(5));
 
-        Visualization views = new Visualization(g);
+        Visualization views = new Visualization();
 
         proj.addVisualizationBO(views);
 

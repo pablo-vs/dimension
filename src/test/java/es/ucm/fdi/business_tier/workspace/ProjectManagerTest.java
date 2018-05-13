@@ -1,4 +1,4 @@
-package es.ucm.fdi.workspace;
+package es.ucm.fdi.business_tier.workspace;
 
 import es.ucm.fdi.integration_tier.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business_tier.workspace.project.ProjectManagerAS;

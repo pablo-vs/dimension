@@ -1,4 +1,4 @@
-package es.ucm.fdi.workspace;
+package es.ucm.fdi.business_tier.workspace;
 
 import org.junit.Test;
 import java.util.ArrayList;

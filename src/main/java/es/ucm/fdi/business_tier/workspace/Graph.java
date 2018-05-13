@@ -65,8 +65,9 @@ public class Graph implements ComponentComposite{
     }
 
     /**
-     *
-     * @param dom_ini
+     * Calculates the domain (the points where the function will be evaluated).
+     * The parameters are the list of bounds where the function can be evaluated. 
+     * @param dom_ini 
      * @param dom_fin
      */
     public void getGrid(double[] dom_ini, double[] dom_fin) {

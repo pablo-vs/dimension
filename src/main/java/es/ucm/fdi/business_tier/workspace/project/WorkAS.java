@@ -14,7 +14,6 @@
 package es.ucm.fdi.business_tier.workspace.project;
 
 import es.ucm.fdi.business_tier.workspace.Visualization;
-import es.ucm.fdi.business_tier.workspace.Graph;
 import es.ucm.fdi.business_tier.workspace.function.AbstractFunction;
 import es.ucm.fdi.business_tier.workspace.transformations.GraphTransformation;
 
@@ -69,10 +68,10 @@ public class WorkAS {
      * @param transformation The GraphTransformation to apply.
      */
     public void transformFunction(int view, int func, GraphTransformation transformation) {
-        Visualization visual = project.getViews().get(view);
+    /*    Visualization visual = project.getViews().get(view);
         Graph graph = visual.getGraph().get(func);
         transformation.apply(graph);
         visual.getGraph().set(func, graph);
-        project.getViews().set(view, visual);
+        project.getViews().set(view, visual); */
     }
 }

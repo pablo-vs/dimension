@@ -1,3 +1,16 @@
+/**
+ * This file is part of Dimension.
+ * Dimension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * Dimension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package es.ucm.fdi.integration.data;
 
 import java.sql.JDBCType;
@@ -110,25 +123,25 @@ public abstract class DAOSQLImp<T> {
     private List<Object> readData(ResultSet rs) throws SQLException {
         List<Object> data = new ArrayList<>();
         for (int i = 1; i <= columns.length; ++i) {
-            switch (columnJDBCType[i-1]) {
-	    case VARCHAR: {
-		data.add(rs.getString(i));
-		break;
-	    }
-	    case INTEGER: {
-		data.add(rs.getInt(i));
-		break;
-	    }
-	    case DATE: {
-		data.add(rs.getDate(i));
-		break;
-	    }
-	    case BLOB: {
-		data.add(rs.getBinaryStream(i));
-		break;
-	    }
-	    default:
-		data.add(null);
+            switch (columnJDBCType[i - 1]) {
+                case VARCHAR: {
+                    data.add(rs.getString(i));
+                    break;
+                }
+                case INTEGER: {
+                    data.add(rs.getInt(i));
+                    break;
+                }
+                case DATE: {
+                    data.add(rs.getDate(i));
+                    break;
+                }
+                case BLOB: {
+                    data.add(rs.getBinaryStream(i));
+                    break;
+                }
+                default:
+                    data.add(null);
             }
         }
 

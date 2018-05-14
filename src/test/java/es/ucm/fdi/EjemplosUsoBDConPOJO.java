@@ -92,7 +92,7 @@ public class EjemplosUsoBDConPOJO
      * Ejemplo de prueba con la BD
      */
     public void testCreacion() {
-        MemoryDB<EjemploTO> bdCadenas = new MemoryDB<EjemploTO>();
+        MemoryDB<EjemploTO> bdCadenas = new MemoryDB<>();
         assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n" + bdCadenas, bdCadenas.getIds().isEmpty());
         bdCadenas.insert(new EjemploTO("1", "2"), "1");
         assertTrue("La BD debe tener sólo un elemento.Contenido actual \n" + bdCadenas, bdCadenas.getIds().size() == 1);
@@ -105,7 +105,7 @@ public class EjemplosUsoBDConPOJO
      * Otro ejemplo de prueba con la BD
      */
     public void testDestruccion() {
-        MemoryDB<EjemploTO> bdCadenas = new MemoryDB<EjemploTO>();
+        MemoryDB<EjemploTO> bdCadenas = new MemoryDB<>();
         assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n" + bdCadenas, bdCadenas.getIds().isEmpty());
         bdCadenas.insert(new EjemploTO("1", "2"), "1");
         assertTrue("La BD debe tener sólo un elemento.Contenido actual \n" + bdCadenas, bdCadenas.getIds().size() == 1);
@@ -117,7 +117,7 @@ public class EjemplosUsoBDConPOJO
      * Ejemplo de búsqueda
      */
     public void testBuscar() {
-        MemoryDB<EjemploTO> bdCadenas = new MemoryDB<EjemploTO>();
+        MemoryDB<EjemploTO> bdCadenas = new MemoryDB<>();
         assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n" + bdCadenas, bdCadenas.getIds().isEmpty());
         bdCadenas.insert(new EjemploTO("1", "2"), "1");
         assertTrue("La BD debe tener sólo un elemento. Contenido actual \n" + bdCadenas, bdCadenas.getIds().size() == 1);

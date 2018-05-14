@@ -1,23 +1,21 @@
+/**
+ * This file is part of Dimension.
+ * Dimension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * Dimension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package es.ucm.fdi.business.util;
 
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
-import es.ucm.fdi.business.workspace.function.types.binary.DivideFunction;
-import es.ucm.fdi.business.workspace.function.types.binary.ExponentialFunction;
-import es.ucm.fdi.business.workspace.function.types.binary.LogarithmicFunction;
-import es.ucm.fdi.business.workspace.function.types.binary.ModuloFunction;
-import es.ucm.fdi.business.workspace.function.types.binary.ProductFunction;
-import es.ucm.fdi.business.workspace.function.types.binary.SubstractFunction;
-import es.ucm.fdi.business.workspace.function.types.binary.SumFunction;
-import es.ucm.fdi.business.workspace.function.types.unary.ConstantFunction;
-import es.ucm.fdi.business.workspace.function.types.unary.CosecantFunction;
-import es.ucm.fdi.business.workspace.function.types.unary.CosineFunction;
-import es.ucm.fdi.business.workspace.function.types.unary.CotangentFunction;
-import es.ucm.fdi.business.workspace.function.types.unary.IdentityFunction;
-import es.ucm.fdi.business.workspace.function.types.unary.LnFunction;
-import es.ucm.fdi.business.workspace.function.types.unary.Log10Function;
-import es.ucm.fdi.business.workspace.function.types.unary.SecantFunction;
-import es.ucm.fdi.business.workspace.function.types.unary.SineFunction;
-import es.ucm.fdi.business.workspace.function.types.unary.TangentFunction;
+import es.ucm.fdi.business.workspace.function.types.binary.*;
+import es.ucm.fdi.business.workspace.function.types.unary.*;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 
 /**

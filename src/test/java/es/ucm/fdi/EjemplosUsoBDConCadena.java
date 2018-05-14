@@ -51,7 +51,7 @@ public class EjemplosUsoBDConCadena
      * Ejemplo de prueba con la BD
      */
     public void testCreacion() {
-        MemoryDB<ProjectDTO> bdProjectTOs = new MemoryDB<ProjectDTO>();
+        MemoryDB<ProjectDTO> bdProjectTOs = new MemoryDB<>();
         ProjectDTO p1 = new ProjectDTO("p1");
         ProjectDTO p2 = new ProjectDTO("p2");
         assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n" + bdProjectTOs, bdProjectTOs.getIds().isEmpty());
@@ -68,7 +68,7 @@ public class EjemplosUsoBDConCadena
      * Otro ejemplo de prueba con la BD
      */
     public void testDestruccion() {
-        MemoryDB<String> bdCadenas = new MemoryDB<String>();
+        MemoryDB<String> bdCadenas = new MemoryDB<>();
         assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n" + bdCadenas, bdCadenas.getIds().isEmpty());
         bdCadenas.insert("hola", "1");
         assertTrue("La BD debe tener sólo un elemento.Contenido actual \n" + bdCadenas, bdCadenas.getIds().size() == 1);
@@ -80,7 +80,7 @@ public class EjemplosUsoBDConCadena
      * Ejemplo de búsqueda
      */
     public void testBuscar() {
-        MemoryDB<String> bdCadenas = new MemoryDB<String>();
+        MemoryDB<String> bdCadenas = new MemoryDB<>();
         assertTrue("La BD debía estar vacía y tiene elementos.Contenido actual \n" + bdCadenas, bdCadenas.getIds().isEmpty());
         bdCadenas.insert("hola", "1");
         assertTrue("La BD debe tener sólo un elemento. Contenido actual \n" + bdCadenas, bdCadenas.getIds().size() == 1);

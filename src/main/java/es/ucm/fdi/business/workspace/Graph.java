@@ -88,10 +88,10 @@ public class Graph implements ComponentComposite {
         }
         for (int j = 0; j < dim; ++j) {
             try {
-				domain.add(new Vertex(tam.length));
-			} catch (NoMatchDimensionException e) {
-				e.printStackTrace();
-			}
+                domain.add(new Vertex(tam.length));
+            } catch (NoMatchDimensionException e) {
+                e.printStackTrace();
+            }
         }
         int n = 1;
         for (int i = 0; i < tam.length; ++i) {

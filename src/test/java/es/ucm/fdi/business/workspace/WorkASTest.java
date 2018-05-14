@@ -14,15 +14,22 @@
 package es.ucm.fdi.business.workspace;
 
 import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
+import es.ucm.fdi.business.connectivity.AuthorshipDTO;
 import es.ucm.fdi.business.workspace.project.ProjectManagerAS;
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import es.ucm.fdi.business.workspace.project.WorkAS;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
 
+/**
+ * JUnit test for WorkAS class.
+ *
+ * @see WorkAS
+ * @author Javier Galiana
+ */
 public class WorkASTest {
 
     @Test
@@ -40,15 +47,10 @@ public class WorkASTest {
 
         proj.addVisualizationBO(views);
 
-        if (!proj.getProject().getViews().contains(views)) {
-            fail("VisualizationBOs not being added to project");
-        }
-
+        assertEquals("VisualizationBOs not being added to project", true, proj.getProject().getViews().contains(views));
+       
         projMan.saveChanges(proj.getProject());
 
-        if (projMan.openProject("exponentialex") == null) {
-            fail("Project was not saved!");
-        }
-
+        assertEquals("Project was not saved!", exponencial, projMan.openProject("exponentialex"));
     }
 }

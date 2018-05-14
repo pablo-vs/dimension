@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class DAOTest {
+public class AuthorshipDAOSQLTest {
 
     @Test
     public void AuthDAOSQLTest() throws SQLException, ClassNotFoundException {

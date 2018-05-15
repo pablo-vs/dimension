@@ -11,7 +11,7 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.integration;
+package es.ucm.fdi.integration.connectivity;
 
 import es.ucm.fdi.integration.connectivity.AuthorshipDAOSQLImp;
 import es.ucm.fdi.business.connectivity.AuthorshipDTO;
@@ -31,14 +31,13 @@ public class AuthorshipDAOSQLTest {
         AuthorshipDTO auth3 = new AuthorshipDTO("paco", "proyectoMediocre");
         ArrayList<AuthorshipDTO> results1 = new ArrayList<>(),
                 results2 = new ArrayList<>();
-        results1.add(auth3);
+	results1.add(auth3);
         results1.add(auth1);
         results2.add(auth1);
         results2.add(auth2);
         dao.addAuthorship(auth1);
         dao.addAuthorship(auth2);
         dao.addAuthorship(auth3);
-
         assertEquals("Invalid user search results", results1, dao.findByUser("paco"));
         assertEquals("Invalid project search results", results2, dao.findByProject("superProyecto"));
         dao.removeAuthorship(auth1);

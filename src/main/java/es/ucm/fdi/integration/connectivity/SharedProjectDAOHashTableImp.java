@@ -59,7 +59,7 @@ public class SharedProjectDAOHashTableImp implements SharedProjectDAO {
         ArrayList<SharedProjectDTO> results = new ArrayList<>();
         for (String s : database.getIds()) {
             SharedProjectDTO proj = database.find(s);
-            if (proj.getSharedID().equals(name)) {
+            if (proj.getID().equals(name)) {
                 results.add(proj);
             }
         }

@@ -66,7 +66,7 @@ public class SharedProjectDAOHashTableImpTest {
 		dao.addSharedProject(shared3);
 
 		assertEquals("Invalid sharedProject search results", results1,
-				dao.findByName("superProyecto"));
+				dao.findByName("exponential"));
 		assertEquals("The sharedProjects cannot be obtained", results2,
 				dao.getSharedProjects());
 

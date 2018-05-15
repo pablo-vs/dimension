@@ -40,7 +40,6 @@ public class SharedProjectDAOHashTableImpTest {
 	public void SharedProjectDAOHashTableTest() {
 
 		SharedProjectDAOHashTableImp dao = new SharedProjectDAOHashTableImp();
-
 		ProjectDTO exponencial = new ProjectDTO("exponential");
 		ProjectDTO logaritmica = new ProjectDTO("logaritmica");
 		ProjectDTO trigonometrica = new ProjectDTO("trigonometrica");

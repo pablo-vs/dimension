@@ -16,6 +16,7 @@ package es.ucm.fdi.integration.data;
 import java.sql.JDBCType;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
@@ -61,7 +62,8 @@ public abstract class DAOSQLImp<T> {
         }
         sb.append(")");
         try (PreparedStatement stmt = SQLDataSource.getStatement("INSERT INTO "
-                + table + " VALUES " + sb.toString())) {
+	     + table + " VALUES " + sb.toString());
+	     Connection con = stmt.getConnection();) {
             for (int i = 0; i < data.size(); ++i) {
                 stmt.setObject(i + 1, data.get(i)/*, columnJDBCType[i]*/);
             }
@@ -79,7 +81,8 @@ public abstract class DAOSQLImp<T> {
      */
     public void deleteRecord(String id) throws SQLException {
         try (PreparedStatement stmt = SQLDataSource.getStatement("DELETE FROM "
-                + table + " WHERE " + columns[0] + " = ?")) {
+                + table + " WHERE " + columns[0] + " = ?");
+	     Connection con = stmt.getConnection();) {
             stmt.setString(1, id);
             stmt.execute();
         } catch (SQLException e) {
@@ -100,12 +103,13 @@ public abstract class DAOSQLImp<T> {
         for (int i = 1; i < data.size(); ++i) {
             sb.append(", ").append(columns[i]).append(" = ?");
         }
-        try (PreparedStatement stmt = SQLDataSource.getStatement("UPDATE TABLE "
-                + table + " SET " + sb.toString() + " WHERE " + columns[0] + " = ?")) {
+        try (PreparedStatement stmt = SQLDataSource.getStatement("UPDATE "
+                + table + " SET " + sb.toString() + " WHERE " + columns[0] + " = ?");
+	     Connection con = stmt.getConnection();) {
             for (int i = 0; i < data.size(); ++i) {
-                stmt.setObject(i + 1, data.get(i), columnJDBCType[i]);
+                stmt.setObject(i + 1, data.get(i)/*, columnJDBCType[i]*/);
             }
-            stmt.setObject(data.size() + 1, data.get(0), columnJDBCType[0]);
+            stmt.setObject(data.size() + 1, data.get(0)/*, columnJDBCType[0]*/);
             stmt.execute();
         } catch (IllegalArgumentException | SQLException e) {
             throw new SQLException("Could not modify record in table:\n" + e.getMessage(), e);
@@ -130,7 +134,8 @@ public abstract class DAOSQLImp<T> {
                     .append(columns[column]).append(" = ?");
         }
         ArrayList<T> results = new ArrayList<>();
-        try (PreparedStatement stmt = SQLDataSource.getStatement(query.toString())) {
+        try (PreparedStatement stmt = SQLDataSource.getStatement(query.toString());
+	     Connection con = stmt.getConnection();) {
             if (value != null) {
                 stmt.setObject(1, value/*, columnJDBCType[col]*/);
             }
@@ -189,6 +194,17 @@ public abstract class DAOSQLImp<T> {
         }
 
         return data;
+    }
+
+    public void clear() throws SQLException {
+	try (PreparedStatement stmt = SQLDataSource.getStatement("DELETE FROM "
+								 + table);
+	     Connection con = stmt.getConnection();) {
+	    stmt.execute();
+        } catch (IllegalArgumentException | SQLException e) {
+            throw new SQLException("Could not clear table " + table
+				   + ":\n" + e.getMessage(), e);
+        }
     }
 
     /**

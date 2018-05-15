@@ -31,11 +31,13 @@ public class SQLDataSource {
     private static final String USER = "dimension";
     private static final String PASSWD = "dimension";
 
-    private static SQLDataSource instance;
+    private String db;
+
+    private static SQLDataSource instance = null;
     private BasicDataSource dataSource;
 
     /**
-     * Class constructor.
+     * Class initialization.
      * 
      * @throws SQLException provides information on a database access
      * error or other errors
@@ -43,9 +45,11 @@ public class SQLDataSource {
     private SQLDataSource() throws SQLException {
         dataSource = new BasicDataSource();
         dataSource.setDriverClassName(DRIVER);
-        dataSource.setUrl("jdbc:mysql://" + HOST + "/" + DB);
-        dataSource.setUsername(USER);
+	db = DB;
+     	dataSource.setUrl("jdbc:mysql://" + HOST + "/" + db);
+	dataSource.setUsername(USER);
         dataSource.setPassword(PASSWD);
+	dataSource.setMaxWait(2000);
     }
 
     /**
@@ -60,5 +64,16 @@ public class SQLDataSource {
             instance = new SQLDataSource();
         }
         return instance.dataSource.getConnection().prepareStatement(stmt);
+    }
+
+    //Change DB, for testing purposes
+    protected static void setDB(String newDb) throws SQLException{
+        if (instance == null) {
+            instance = new SQLDataSource();
+        }
+	if(!instance.db.equals(newDb) && !DB.equals(newDb)) {
+	    instance.db = newDb;
+	    instance.dataSource.setUrl("jdbc:mysql://" + HOST + "/" + newDb);
+	}
     }
 }

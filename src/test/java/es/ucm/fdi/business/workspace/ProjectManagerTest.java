@@ -37,13 +37,13 @@ public class ProjectManagerTest {
             projectMgr.newProject(raices);
             fail("Illegal character in project name!");
         } catch (IllegalArgumentException e) {
-            // todo correcto
+            // OK
         }
         try {
             projectMgr.removeProject("ra|||");
             fail("Deleted non-existing project!");
         } catch (IllegalArgumentException e) {
-            // todo correcto
+            // OK
         }
 
         List<AbstractFunction> funcs = new ArrayList<>();
@@ -62,14 +62,14 @@ public class ProjectManagerTest {
             projectMgr.openProject("polinomios43");
             fail("Opening non-existing project!");
         } catch (IllegalArgumentException e) {
-            // todo correcto
+            // OK
         }
 
         try {
             projectMgr.removeProject("polinomios43");
             fail("Removing non-existing project!");
         } catch (IllegalArgumentException e) {
-            // todo correcto
+            // OK
         }
 
         ProjectDTO trigonometricas = new ProjectDTO("trig");

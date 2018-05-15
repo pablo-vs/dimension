@@ -53,7 +53,7 @@ public class CosecantFunction extends UnaryFunction {
      */
     @Override
     public double evaluate(VariablesList vars) {
-        return 1 / Math.sin(function.evaluate(vars));
+        return 1 / Math.sin(Math.toRadians(function.evaluate(vars)));
     }
 
     public static class Parser extends UnaryFunction.Parser {

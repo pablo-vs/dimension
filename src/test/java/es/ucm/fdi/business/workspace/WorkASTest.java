@@ -14,7 +14,6 @@
 package es.ucm.fdi.business.workspace;
 
 import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
-import es.ucm.fdi.business.connectivity.AuthorshipDTO;
 import es.ucm.fdi.business.workspace.project.ProjectManagerAS;
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import es.ucm.fdi.business.workspace.project.WorkAS;
@@ -47,8 +46,9 @@ public class WorkASTest {
 
         proj.addVisualizationBO(views);
 
-        assertEquals("VisualizationBOs not being added to project", true, proj.getProject().getViews().contains(views));
-       
+        assertEquals("VisualizationBOs have not been added to the project", true,
+                proj.getProject().getViews().contains(views));
+
         projMan.saveChanges(proj.getProject());
 
         assertEquals("Project was not saved!", exponencial, projMan.openProject("exponentialex"));

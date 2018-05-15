@@ -53,7 +53,7 @@ public class SecantFunction extends UnaryFunction {
      */
     @Override
     public double evaluate(VariablesList vars) {
-        return 1 / Math.cos(function.evaluate(vars));
+        return 1 / Math.cos(Math.toRadians(function.evaluate(vars)));
     }
 
     public static class Parser extends UnaryFunction.Parser {

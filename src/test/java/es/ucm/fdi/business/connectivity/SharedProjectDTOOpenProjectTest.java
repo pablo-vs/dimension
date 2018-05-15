@@ -26,27 +26,27 @@ import static org.junit.Assert.assertEquals;
  * @see SharedProjectDTOOpenProject
  * @author Javier Galiana
  */
-
 public class SharedProjectDTOOpenProjectTest {
 
-	@Test
-	public void SharedProjectDTOOpenTest() {
+    @Test
+    public void SharedProjectDTOOpenTest() {
 
-		ProjectDTO proj1 = new ProjectDTO("proj1");
-		SharedProjectDTOOpenProjectImp openShared1 = new SharedProjectDTOOpenProjectImp(
-				proj1.getID(), proj1, "pepe");
-		ArrayList<String> authors = new ArrayList<>();
-		authors.add("pepe");
-		authors.add("paco");
-		authors.add("juan");
-		SharedProjectDTOOpenProjectImp openShared2 = new SharedProjectDTOOpenProjectImp(
-				proj1.getID(), proj1, authors);
+        ProjectDTO proj1 = new ProjectDTO("proj1");
+        SharedProjectDTOOpenProjectImp openShared1 = new SharedProjectDTOOpenProjectImp(
+                proj1.getID(), proj1, "Peter");
+        ArrayList<String> authors = new ArrayList<>();
+        authors.add("Peter");
+        authors.add("Tim");
+        authors.add("Josh");
+        SharedProjectDTOOpenProjectImp openShared2 = new SharedProjectDTOOpenProjectImp(
+                proj1.getID(), proj1, authors);
 
-		assertEquals("Everyone can read a Open Project", true,
-				openShared1.hasReadAccess("juan"));
-		assertEquals("This user is allowed to modify the project", true,
-				openShared2.hasWriteAccess("pepe"));
-		assertEquals("This user is not allowed to modify the project", false,
-				openShared2.hasWriteAccess("jose"));
-	}
+        assertEquals("Everyone can read a Open Project", true,
+                openShared1.hasReadAccess("Josh") && openShared1.hasReadAccess("Tim")
+                && openShared1.hasReadAccess("Peter"));
+        assertEquals("This user is allowed to modify the project", true,
+                openShared2.hasWriteAccess("Peter"));
+        assertEquals("This user is not allowed to modify the project", false,
+                openShared2.hasWriteAccess("Nate"));
+    }
 }

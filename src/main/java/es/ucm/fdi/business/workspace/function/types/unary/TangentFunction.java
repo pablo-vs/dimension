@@ -53,7 +53,7 @@ public class TangentFunction extends UnaryFunction {
      */
     @Override
     public double evaluate(VariablesList vars) {
-        return Math.tan(function.evaluate(vars));
+        return Math.tan(Math.toRadians(function.evaluate(vars)));
     }
 
     public static class Parser extends UnaryFunction.Parser {

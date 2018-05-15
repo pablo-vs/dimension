@@ -30,26 +30,24 @@ public class UserManagerTest {
     public void userManagementTest() {
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
         HashGenerator hashgen = new HashGenerator();
-        UserDTO pepe = new UserDTO("pepito", hashgen.hash("1234".toCharArray()));
-        UserDTO paco = new UserDTO("paquito", hashgen.hash("4321".toCharArray()));
-        userMgr.newUser(pepe);
-        userMgr.newUser(paco);
-        SessionDTO sesionPepe = userMgr.login("pepito", "1234");
-        SessionDTO sesionPaco = userMgr.login("paquito", "4321");
+        userMgr.newUser(new UserDTO("Peter", hashgen.hash("1234".toCharArray())));
+        userMgr.newUser(new UserDTO("Tim", hashgen.hash("4321".toCharArray())));
+        SessionDTO peterSession = userMgr.login("Peter", "1234");
+        SessionDTO timSession = userMgr.login("Tim", "4321");
         try {
-            userMgr.removeUser("pepito", sesionPaco);
-            fail("Illegal account access!!");
+            userMgr.removeUser("Peter", timSession);
+            fail("Illegal account access!");
         } catch (AccessControlException e) {
             //System.out.println("Authentication works");
         }
 
-        userMgr.removeUser("pepito", sesionPepe);
-        userMgr.logout(sesionPepe);
+        userMgr.removeUser("Peter", peterSession);
+        userMgr.logout(peterSession);
         try {
-            sesionPepe = userMgr.login("pepito", "1234");
+            peterSession = userMgr.login("Peter", "1234");
             fail("Logged in to nonexistent account!");
         } catch (NotFoundException e) {
-            //Todo correcto
+            // OK
         }
     }
 
@@ -58,17 +56,17 @@ public class UserManagerTest {
         HashGenerator hashgen = new HashGenerator();
         UserDAO dao = new UserDAOHashTableImp();
         String passwd = hashgen.hash("1234".toCharArray());
-        UserDTO user = new UserDTO("pedro", passwd);
+        UserDTO user = new UserDTO("Peter", passwd);
         UserManagerAS userMgr = UserManagerAS.getManager(dao);
         userMgr.newUser(user);
         try {
-            SessionDTO sesion = userMgr.login("pedro", "12345");
-            fail("La sesión no debería haberse iniciado");
+            SessionDTO sesion = userMgr.login("Peter", "12345");
+            fail("Session should have not begun.");
         } catch (AccessControlException e) {
-            //Todo correcto
+            // OK
         }
 
-        SessionDTO sesion = new SessionDTO("pedro", ZonedDateTime.now());
+        SessionDTO sesion = new SessionDTO("Peter", ZonedDateTime.now());
         assertFalse(userMgr.validateSession(sesion));
     }
 }

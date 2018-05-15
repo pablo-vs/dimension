@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import static org.junit.Assert.*;
 
@@ -27,33 +26,32 @@ import static org.junit.Assert.*;
  * @see SharedProjectDTOPrivateProject
  * @author Javier Galiana
  */
-
 public class SharedProjectDTOPrivateProjectTest {
 
-	@Test
-	public void SharedProjectDTOPrivateTest() {
+    @Test
+    public void SharedProjectDTOPrivateTest() {
 
-		ProjectDTO proj1 = new ProjectDTO("proj1");
-		ArrayList<String> authors = new ArrayList<>(), viewers = new ArrayList<>();
+        ProjectDTO proj1 = new ProjectDTO("proj1");
+        ArrayList<String> authors = new ArrayList<>(), viewers = new ArrayList<>();
 
-		authors.add("marta");
-		authors.add("paco");
-		authors.add("juan");
+        authors.add("Nate");
+        authors.add("Stephen");
+        authors.add("John");
 
-		viewers.add("pepe");
-		viewers.add("sara");
-		viewers.add("juan");
+        viewers.add("Peter");
+        viewers.add("Sarah");
+        viewers.add("John");
 
-		SharedProjectDTOPrivateProjectImp privateShared = new SharedProjectDTOPrivateProjectImp(
-				proj1.getID(), proj1, authors, viewers);
+        SharedProjectDTOPrivateProjectImp privateShared = new SharedProjectDTOPrivateProjectImp(
+                proj1.getID(), proj1, authors, viewers);
 
-		assertEquals("This user is allowed to read the project", true,
-				privateShared.hasReadAccess("sara"));
-		assertEquals("This user is not allowed to read the project", false,
-				privateShared.hasReadAccess("jose"));
-		assertEquals("This user is allowed to modify the project", true,
-				privateShared.hasWriteAccess("paco"));
-		assertEquals("This user is not allowed to modify the project", false,
-				privateShared.hasWriteAccess("jose"));
-	}
+        assertEquals("This user is allowed to read the project", true,
+                privateShared.hasReadAccess("Sarah"));
+        assertEquals("This user is not allowed to read the project", false,
+                privateShared.hasReadAccess("Josh"));
+        assertEquals("This user is allowed to modify the project", true,
+                privateShared.hasWriteAccess("Stephen"));
+        assertEquals("This user is not allowed to modify the project", false,
+                privateShared.hasWriteAccess("Peter"));
+    }
 }

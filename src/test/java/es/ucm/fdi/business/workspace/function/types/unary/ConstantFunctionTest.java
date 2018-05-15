@@ -11,47 +11,38 @@
  * You should have received a copy of the GNU General Public License
  * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.business.workspace.function.types.binary;
+package es.ucm.fdi.business.workspace.function.types.unary;
 
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Tests the DivideFunction class.
+ * Checks the functionality of the constant function.
  *
  * @author Inmaculada Pérez
+ * @see ConstantFunction
  */
-public class DivideFunctionTest {
-
-    public DivideFunctionTest() {
-    }
+public class ConstantFunctionTest {
 
     /**
-     * Test of toString method, of class DivideFunction.
+     * Test of toString method, of class ConstantFunction.
      */
     @Test
     public void testToString() {
-        System.out.println("toString");
-        DivideFunction instance = new DivideFunction();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        System.out.println("Testing 'toString' method...");
+        VariablesList vars = new VariablesList(new String[]{"x"});
+        assertEquals("5.0", (new ConstantFunction(5, vars)).toString());
     }
 
     /**
-     * Test of evaluate method, of class DivideFunction.
+     * Test of evaluate method, of class ConstantFunction.
      */
     @Test
     public void testEvaluate() {
-        System.out.println("evaluate");
-        VariablesList vars = null;
-        DivideFunction instance = new DivideFunction();
-        double expResult = 0.0;
-        double result = instance.evaluate(vars);
-        assertEquals(expResult, result, 0.0);
-        fail("The test case is a prototype.");
+        System.out.println("Testing 'evaluate' method...");
+        VariablesList vars = new VariablesList(new String[]{"x"});
+        assertEquals(5.0, (new ConstantFunction(5, vars)).evaluate(vars), 0.0);
     }
 
 }

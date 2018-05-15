@@ -45,7 +45,20 @@ public class VariablesList {
         for (int i = 0; i < n; ++i) {
             vars.put("x_" + i, new VariableDTO("x_" + i));
         }
+    }
 
+    /**
+     * Class constructor that initializes the list of variables with the values
+     * of an array.
+     *
+     * @param arrrayOfValues
+     * @param names
+     */
+    public VariablesList(int[] arrrayOfValues, String[] names) {
+        vars = new TreeMap<>();
+        for (int i = 0; i < arrrayOfValues.length; ++i) {
+            vars.put(names[i], new VariableDTO(names[i], arrrayOfValues[i]));
+        }
     }
 
     /**

@@ -53,7 +53,7 @@ public class CosineFunction extends UnaryFunction {
      */
     @Override
     public double evaluate(VariablesList vars) {
-        return Math.cos(function.evaluate(vars));
+        return Math.cos(Math.toRadians(function.evaluate(vars)));
     }
 
     public static class Parser extends UnaryFunction.Parser {

@@ -24,23 +24,22 @@ import static org.junit.Assert.assertEquals;
  * @see AuthorshipDTO
  * @author Javier Galiana
  */
-
 public class AuthorshipDTOTest {
 
-	@Test
-	public void authorDTOTest() {
+    @Test
+    public void authorDTOTest() {
 
-		AuthorshipDTO relationShip = new AuthorshipDTO("pepe",
-				"funcionContinua");
-		AuthorshipDTO relationShip2 = new AuthorshipDTO("paco",
-				"funcionDiscontinua");
-		FriendshipDTO friendship = new FriendshipDTO("pepe", "paco");
+        AuthorshipDTO relationShip = new AuthorshipDTO("Tim",
+                "continuousFunction");
+        AuthorshipDTO relationShip2 = new AuthorshipDTO("Jack",
+                "discontinuousFunction");
+        FriendshipDTO friendship = new FriendshipDTO("Tim", "Jack");
 
-		assertEquals("These objects do not have the same ID!", false,
-				relationShip.equals(relationShip2));
+        assertEquals("These objects do not have the same ID!", false,
+                relationShip.equals(relationShip2));
 
-		assertEquals("These objects are not from the same class!", false,
-				relationShip.equals(friendship));
+        assertEquals("These objects are not from the same class!", false,
+                relationShip.equals(friendship));
 
-	}
+    }
 }

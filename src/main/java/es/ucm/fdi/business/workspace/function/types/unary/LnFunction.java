@@ -42,15 +42,7 @@ public class LnFunction extends UnaryFunction {
         return "ln(" + function.toString() + ")";
     }
 
-    /**
-     * Evaluates the function at the point given by the variable list.
-     * <b>Note:</b> the given variable names must be equal to those of the
-     * function.
-     *
-     * @see AbstractFunction
-     * @param vars The vars list.
-     * @return The result of applying the function to the values.
-     */
+    @Override
     public double evaluate(VariablesList vars) {
         return Math.log(function.evaluate(vars));
     }

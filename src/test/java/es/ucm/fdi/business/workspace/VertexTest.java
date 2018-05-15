@@ -224,6 +224,8 @@ public class VertexTest {
 
     /**
      * Test of distanceTo method, of class Vertex.
+     *
+     * @throws java.lang.Exception
      */
     @Test
     public void testDistanceTo() throws Exception {

@@ -30,6 +30,7 @@ public class AuthorshipDAOSQLTest {
 		AuthorshipDTO auth1 = new AuthorshipDTO("paco", "superProyecto");
 		AuthorshipDTO auth2 = new AuthorshipDTO("pepe", "superProyecto");
 		AuthorshipDTO auth3 = new AuthorshipDTO("paco", "proyectoMediocre");
+		
 		ArrayList<AuthorshipDTO> results1 = new ArrayList<>(), 
 								 results2 = new ArrayList<>();
 		results1.add(auth3);

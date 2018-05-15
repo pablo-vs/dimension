@@ -148,6 +148,16 @@ public abstract class DAOSQLImp<T> {
         return data;
     }
 
+    public void clear() throws SQLException {
+	try (PreparedStatement stmt = SQLDataSource.getStatement("DELETE FROM "
+								 + table)) {
+	    stmt.execute();
+        } catch (IllegalArgumentException | SQLException e) {
+            throw new SQLException("Could not clear table " + table
+				   + ":\n" + e.getMessage(), e);
+        }
+    }
+
     public abstract List<Object> getData(T obj);
 
     public abstract T build(List<Object> data);

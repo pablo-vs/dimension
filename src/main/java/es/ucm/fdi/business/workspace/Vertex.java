@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.workspace;
 
@@ -140,21 +140,12 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         }
     }
 
-    /**
-     * Generates a VertexBOIterator in order to provide a way of iterate the
-     * Vertex
-     */
     @Override
     public Iterator<Double> iterator() {
         return new VertexBOIterator();
     }
 
-    /**
-     * Returns a string with all the values of the Vertex concatenated. It
-     * returns an empty string when the vertex is null
-     *
-     * @return s coordinates concatenated in a string
-     */
+    @Override
     public String toString() {
         if (0 == this.dim) {
             return new String();
@@ -183,22 +174,12 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
             this.cursor = 0;
         }
 
-        /**
-         * It returns if there are more elements available in the vertex.
-         *
-         * @return this.cursor < Vertex.this.dim
-         */
+        @Override
         public boolean hasNext() {
             return this.cursor < Vertex.this.dim;
         }
 
-        /**
-         * It returns the next value in the Vertex, if there are no more
-         * elements it throws an exception NoSuchElementException.
-         *
-         * @throws NoSuchElementException iterator out of range.
-         * @return Vertex.this.cmps[this.cursor]
-         */
+        @Override
         public Double next() {
             if (!this.hasNext()) {
                 throw new NoSuchElementException();
@@ -207,12 +188,8 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         }
     }
 
-    /**
-     * Returns a Vertex cloned with the same values of this Vertex
-     *
-     * @return clone a copy of Vertex
-     */
-    protected Vertex clone() {
+    @Override
+    protected Vertex clone() throws CloneNotSupportedException {
         // null vertex creation
         Vertex clone = new Vertex();
         //deep copying
@@ -235,12 +212,7 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         return hash;
     }
 
-    /**
-     * Returns whether the object of the argument is the same as this Vertex.
-     *
-     * @param other right hand object for the comparision
-     * @return (other == this)
-     */
+    @Override
     public boolean equals(Object other) {
         if (other == null) {
             return false;
@@ -300,46 +272,24 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         return distanceTo(new Vertex(dim));
     }
 
-    /**
-     * A leaf ComponentComposite cannot contain more objects. This method should
-     * not be implemented by a leaf in composite pattern.
-     *
-     * @param component
-     */
     @Override
     public void add(ComponentComposite component) {
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
 
-    /**
-     * A leaf ComponentComposite cannot contain more objects. This method should
-     * not be implemented by a leaf in composite pattern.
-     *
-     * @param component
-     */
     @Override
     public void delete(ComponentComposite component) {
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
 
-    /**
-     * A leaf ComponentComposite cannot contain more objects. This method should
-     * not be implemented by a leaf in composite pattern.
-     */
     @Override
     public void deleteAll() {
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
 
-    /**
-     * A leaf ComponentComposite cannot contain more objects. This method should
-     * not be implemented by a leaf in composite pattern.
-     *
-     * @return
-     */
     @Override
     public Iterator getCompositeIterator() {
         throw new UnsupportedOperationException("Not supported by leaf component"

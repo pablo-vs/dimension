@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.workspace.function.types;
 
@@ -26,7 +26,7 @@ public abstract class UnaryFunction implements AbstractFunction {
 
     protected AbstractFunction function;
 
-    protected VariablesList vars;
+    protected VariablesList variables;
 
     /**
      * Class constructor specifying the function and the list of variables.
@@ -35,7 +35,7 @@ public abstract class UnaryFunction implements AbstractFunction {
      * @param vars
      */
     public UnaryFunction(AbstractFunction function, VariablesList vars) {
-        this.vars = vars;
+        this.variables = vars;
         this.function = function;
     }
 
@@ -45,27 +45,18 @@ public abstract class UnaryFunction implements AbstractFunction {
      * @param vars
      */
     public UnaryFunction(VariablesList vars) {
-        this.vars = vars;
+        this.variables = vars;
     }
 
-    /**
-     * Returns the variables list of the function.
-     *
-     * @return The vars list.
-     */
-    public VariablesList getVars() {
-        return this.vars;
+    @Override
+    public VariablesList getVariables() {
+        return this.variables;
     }
 
-    /**
-     * Evaluates the function from a given array of vars.
-     *
-     * @param varsArray
-     * @return
-     */
+    @Override
     public double evaluate(double[] varsArray) {
-        this.vars.setVariables(varsArray);
-        return evaluate(vars);
+        this.variables.setVariables(varsArray);
+        return evaluate(variables);
     }
 
     public static abstract class Parser extends AbstractFunction.Parser {

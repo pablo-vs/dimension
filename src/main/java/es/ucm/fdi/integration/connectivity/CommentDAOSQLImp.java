@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.integration.connectivity;
 
@@ -24,6 +24,7 @@ import es.ucm.fdi.integration.data.DAOSQLImp;
 import java.util.ArrayList;
 
 /**
+ * The SQL implementation for CommentDAO.
  *
  * @author Inmaculada Pérez, Pablo Villalobos
  */
@@ -42,11 +43,6 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
         super(TABLE, COLUMNS, COLUMN_TYPES);
     }
 
-    /**
-     * Adds a new comment to the database.
-     *
-     * @param comment The new comment as a CommentDTO.
-     */
     @Override
     public void addComment(CommentDTO comment) throws DAOErrorException {
         try {
@@ -57,11 +53,6 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
         }
     }
 
-    /**
-     * Removes a comment from the database.
-     *
-     * @param comment The comment to remove.
-     */
     @Override
     public void removeComment(CommentDTO comment) throws DAOErrorException {
         try {
@@ -72,17 +63,11 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
         }
     }
 
-    /**
-     * Find an comment in the database matching the given username.
-     *
-     * @param username The identifier of the user.
-     * @return A List of comments where the author is the given user.
-     */
     @Override
     public List<CommentDTO> findByUser(String username) throws DAOErrorException {
         List<CommentDTO> result;
         try {
-            result = findByVal(1, username);
+            result = findByValue(1, username);
         } catch (SQLException e) {
             throw new DAOErrorException("Error while finding comments from " + username
                     + ".\n" + e.getMessage(), e);
@@ -90,17 +75,11 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
         return result;
     }
 
-    /**
-     * Find comments in the database matching the given project.
-     *
-     * @param project The identifier of the project.
-     * @return A List of comments where the project is the given one.
-     */
     @Override
     public List<CommentDTO> findByProject(String project) throws DAOErrorException {
         List<CommentDTO> result;
         try {
-            result = findByVal(2, project);
+            result = findByValue(2, project);
         } catch (SQLException e) {
             throw new DAOErrorException("Error while finding comments of " + project
                     + ".\n" + e.getMessage(), e);
@@ -108,11 +87,6 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
         return result;
     }
 
-    /**
-     * Returns all the stored comments.
-     *
-     * @return A List of CommentBOs.
-     */
     @Override
     public List<CommentDTO> getComments() {
         List<CommentDTO> result;
@@ -145,7 +119,7 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
         List<Object> data = new ArrayList<>();
         data.add(c.getId());
         data.add(c.getAuthor());
-        data.add(c.getProj());
+        data.add(c.getIDProject());
         data.add(c.getText());
         return data;
     }

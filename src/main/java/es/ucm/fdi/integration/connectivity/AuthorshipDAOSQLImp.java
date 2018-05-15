@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.integration.connectivity;
 
@@ -24,7 +24,8 @@ import es.ucm.fdi.integration.data.DAOSQLImp;
 import java.util.ArrayList;
 
 /**
- *
+ * The SQL implementation for AuthorshipDAO.
+ * 
  * @author Inmaculada Pérez, Pablo Villalobos
  */
 public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements AuthorshipDAO {
@@ -42,11 +43,6 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements Aut
         super(TABLE, COLUMNS, COLUMN_TYPES);
     }
 
-    /**
-     * Adds a new authorship to the database.
-     *
-     * @param auth The new authorship as a AuthorshipDTO.
-     */
     @Override
     public void addAuthorship(AuthorshipDTO auth) throws DAOErrorException {
         try {
@@ -57,11 +53,6 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements Aut
         }
     }
 
-    /**
-     * Removes a authorship from the database.
-     *
-     * @param auth The authorship to remove.
-     */
     @Override
     public void removeAuthorship(AuthorshipDTO auth) throws DAOErrorException {
         try {
@@ -72,17 +63,11 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements Aut
         }
     }
 
-    /**
-     * Find an autorship in the database matching the given username.
-     *
-     * @param username The identifier of the user.
-     * @return A List of authorships where the author is the given user.
-     */
     @Override
     public List<AuthorshipDTO> findByUser(String username) throws DAOErrorException {
         List<AuthorshipDTO> result;
         try {
-            result = findByVal(1, username);
+            result = findByValue(1, username);
         } catch (SQLException e) {
             throw new DAOErrorException("Error while finding authorships from " + username
                     + ".\n" + e.getMessage(), e);
@@ -90,17 +75,11 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements Aut
         return result;
     }
 
-    /**
-     * Find autorships in the database matching the given project.
-     *
-     * @param project The identifier of the project.
-     * @return A List of authorships where the project is the given one.
-     */
     @Override
     public List<AuthorshipDTO> findByProject(String project) throws DAOErrorException {
         List<AuthorshipDTO> result;
         try {
-            result = findByVal(2, project);
+            result = findByValue(2, project);
         } catch (SQLException e) {
             throw new DAOErrorException("Error while finding authorships of " + project
                     + ".\n" + e.getMessage(), e);
@@ -108,11 +87,6 @@ public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements Aut
         return result;
     }
 
-    /**
-     * Returns all the stored authorships.
-     *
-     * @return A List of AuthorshipBOs.
-     */
     @Override
     public List<AuthorshipDTO> getAuthorships() throws DAOErrorException {
         List<AuthorshipDTO> result;

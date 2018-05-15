@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.users;
 
@@ -30,8 +30,8 @@ public class UserManagerTest {
     public void userManagementTest() {
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
         HashGenerator hashgen = new HashGenerator();
-        userMgr.newUser(new UserDTO("Peter", hashgen.hash("1234".toCharArray())));
-        userMgr.newUser(new UserDTO("Tim", hashgen.hash("4321".toCharArray())));
+        userMgr.addNewUser(new UserDTO("Peter", hashgen.hash("1234".toCharArray())));
+        userMgr.addNewUser(new UserDTO("Tim", hashgen.hash("4321".toCharArray())));
         SessionDTO peterSession = userMgr.login("Peter", "1234");
         SessionDTO timSession = userMgr.login("Tim", "4321");
         try {
@@ -58,7 +58,7 @@ public class UserManagerTest {
         String passwd = hashgen.hash("1234".toCharArray());
         UserDTO user = new UserDTO("Peter", passwd);
         UserManagerAS userMgr = UserManagerAS.getManager(dao);
-        userMgr.newUser(user);
+        userMgr.addNewUser(user);
         try {
             SessionDTO sesion = userMgr.login("Peter", "12345");
             fail("Session should have not begun.");

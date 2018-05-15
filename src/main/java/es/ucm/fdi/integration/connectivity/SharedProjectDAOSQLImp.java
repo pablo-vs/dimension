@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.integration.connectivity;
 
@@ -78,7 +78,7 @@ public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implemen
         SharedProjectDTO result = null;
         List<SharedProjectDTO> find;
         try {
-            find = findByVal(0, id);
+            find = findByValue(0, id);
         } catch (SQLException e) {
             throw new DAOErrorException("Error while finding project " + id
                     + ".\n" + e.getMessage(), e);
@@ -93,7 +93,7 @@ public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implemen
     public List<SharedProjectDTO> findByName(String name) {
         List<SharedProjectDTO> result;
         try {
-            result = findByVal(1, name);
+            result = findByValue(1, name);
         } catch (SQLException e) {
             throw new DAOErrorException("Error while finding projects called " + name
                     + ".\n" + e.getMessage(), e);

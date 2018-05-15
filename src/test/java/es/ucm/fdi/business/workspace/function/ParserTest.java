@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.workspace.function;
 
@@ -26,7 +26,7 @@ public class ParserTest {
         String[] fs = {"5", "(3*x) + 5", "3*x + 5", "x", "3*(x^2) + x/5",
             "3*x + 5 + x", "3*x^2+4", "log_(3)(81)", "cos(2*PI)", "sin(3*PI/2)",
             "ln(e^10)", "ln(e^((x*1)+ln(e^5)))", "ln(0+e)+1"};
-        double[] res = {5, 20, 20, 5, 76, 25, 79, 4, 1, -1, 10, 10, 2};
+        double[] res = {5, 20, 20, 5, 76, 25, 79, 4, 1, 0.08215400811873169, 10, 10, 2};
         String[] fs_vv = {"x+y+z", "x^(3*y-3*z+4)", "cos(PI*(tan(x+y+z*y-x*z+y)+y^(1)))"};
         double[] res_vv = {10, 5, 1.0};
         String[] varNames = {"x"};

@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.workspace;
 
@@ -54,24 +54,11 @@ public class Visualization implements ComponentComposite {
         this.graphsAvailable = new ArrayList<>(graphics);
     }
 
-    /**
-     * Add a new ComponentComposite to the list of elements that a Visualization
-     * object contains. Typically in Visualization the elements added will be
-     * graphs.
-     *
-     * @param component new ComponentComposite element in the inner list.
-     */
     @Override
     public void add(ComponentComposite component) {
         graphsAvailable.add(component);
     }
 
-    /**
-     * Deletes a ComponentComposite that a Visualization object contains.
-     * Typically in Visualization this elements will be graphs.
-     *
-     * @param component which will be removed
-     */
     @Override
     public void delete(ComponentComposite component) {
         if (!graphsAvailable.remove(component)) {
@@ -80,22 +67,11 @@ public class Visualization implements ComponentComposite {
         }
     }
 
-    /**
-     * Removes all the elements in the range. All ComponentComposites are
-     * deleted.
-     */
     @Override
     public void deleteAll() {
         graphsAvailable.removeAll(graphsAvailable);
     }
 
-    /**
-     * Returns an operator over the list of ComponentComposite that a
-     * Visualization object contains. Typically in Visualization this elements
-     * will be graphs.
-     *
-     * @return listIterator over the elements of the visualization
-     */
     @Override
     public Iterator getCompositeIterator() {
         return graphsAvailable.listIterator();

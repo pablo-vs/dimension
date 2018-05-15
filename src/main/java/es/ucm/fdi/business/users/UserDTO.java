@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.users;
 
@@ -23,33 +23,17 @@ import twitter4j.auth.AccessToken;
  * Contains a user data.
  *
  * @author Eduardo Amaya, Javier Galiana, Inmaculada Pérez
- *
  */
 public class UserDTO implements Serializable {
 
-    /**
-     * Identifier
-     */
     private String ID;
-    /**
-     * Username
-     */
     private String name;
-    /**
-     * Password
-     */
     private String password;
     /**
      * Date of login
      */
     private Date date;
-    /**
-     * E-mail
-     */
     private String email;
-    /**
-     * Phone number
-     */
     private String telephone;
     /**
      * Icon
@@ -247,10 +231,10 @@ public class UserDTO implements Serializable {
     }
 
     /**
-     * @return null when no twitter access provided
+     * @return false when no twitter access provided
      */
     public boolean hasTwitterAccess() {
-        return (null == twitterAccess);
+        return (null != twitterAccess);
     }
 
 }

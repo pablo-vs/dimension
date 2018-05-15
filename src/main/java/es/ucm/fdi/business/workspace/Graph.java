@@ -90,7 +90,7 @@ public class Graph implements ComponentComposite {
             try {
                 domain.add(new Vertex(tam.length));
             } catch (NoMatchDimensionException e) {
-                e.printStackTrace();
+               // e.printStackTrace();
             }
         }
         int n = 1;
@@ -145,23 +145,11 @@ public class Graph implements ComponentComposite {
         return dimension;
     }
 
-    /**
-     * Adds a new ComponentComposite to the Graph object. Typically in Graph
-     * this elements will be vertex.
-     *
-     * @param component which will be added
-     */
     @Override
     public void add(ComponentComposite component) {
         range.add(component);
     }
 
-    /**
-     * Deletes a ComponentComposite that a Graph object contains. Typically in
-     * Graph this elements will be vertex.
-     *
-     * @param component which will be removed
-     */
     @Override
     public void delete(ComponentComposite component) {
         if (!range.remove(component)) {
@@ -170,21 +158,11 @@ public class Graph implements ComponentComposite {
         }
     }
 
-    /**
-     * Returns an operator over the list of ComponentComposite that a Graph
-     * object contains. Typically in Graph this elements will be vertex.
-     *
-     * @return listIterator over the elements of the graph
-     */
     @Override
     public ListIterator<ComponentComposite> getCompositeIterator() {
         return range.listIterator();
     }
 
-    /**
-     * Removes all the elements in the range. All ComponentComposites are
-     * deleted.
-     */
     @Override
     public void deleteAll() {
         range.removeAll(range);

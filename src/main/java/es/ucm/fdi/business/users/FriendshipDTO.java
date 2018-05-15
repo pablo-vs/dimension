@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.users;
 
@@ -20,13 +20,7 @@ package es.ucm.fdi.business.users;
  */
 public class FriendshipDTO {
 
-    /**
-     * User 1
-     */
     private final String user1;
-    /**
-     * User 2
-     */
     private final String user2;
 
     /**
@@ -40,11 +34,19 @@ public class FriendshipDTO {
         this.user2 = user2;
     }
 
-    public String getFirst() {
+    /**
+     * 
+     * @return the first user
+     */
+    public String getFirstUser() {
         return user1;
     }
 
-    public String getSecond() {
+    /**
+     * 
+     * @return the secondo user
+     */
+    public String getSecondUser() {
         return user2;
     }
 }

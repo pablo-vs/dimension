@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.users;
 
@@ -85,7 +85,7 @@ public class UserManagerAS {
      *
      * @param user The user to add.
      */
-    public void newUser(UserDTO user) throws DuplicatedIDException, IllegalArgumentException {
+    public void addNewUser(UserDTO user) throws DuplicatedIDException, IllegalArgumentException {
         if (!existsUser(user.getID())) {
             if (validateAccountDetails(user)) {
                 dao.addUser(user);
@@ -117,7 +117,7 @@ public class UserManagerAS {
     }
 
     /**
-     * Ban a user. This requires an active session.
+     * Bans a user. This requires an active session.
      *
      * @param user The new account details.
      * @param session The session from which to perform the action.
@@ -139,7 +139,7 @@ public class UserManagerAS {
     }
 
     /**
-     * Send a notification to a user. This requires an active session.
+     * Sends a notification to a user. This requires an active session.
      *
      * @param user The new account details.
      * @param session The session from which to perform the action.
@@ -157,7 +157,7 @@ public class UserManagerAS {
     }
 
     /**
-     * Modify a user's information in the database. This requires an active
+     * Modifies a user's information in the database. This requires an active
      * session.
      *
      * @param user The new account details.

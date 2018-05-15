@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.integration.data;
 
@@ -21,7 +21,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- *
+ * The SQL implementation for DAOs objects.
+ * 
  * @author Inmaculada Pérez, Pablo Villalobos
  * @param <T>
  */
@@ -33,12 +34,25 @@ public abstract class DAOSQLImp<T> {
 
     private JDBCType[] columnJDBCType;
 
+    /**
+     * Class constructor.
+     * 
+     * @param table
+     * @param columns
+     * @param columnJDBCType 
+     */
     public DAOSQLImp(String table, String[] columns, JDBCType[] columnJDBCType) {
         this.table = table;
         this.columns = columns;
         this.columnJDBCType = columnJDBCType;
     }
 
+    /**
+     * Adds a new object.
+     * 
+     * @param obj
+     * @throws SQLException 
+     */
     public void addRecord(T obj) throws SQLException {
         List<Object> data = getData(obj);
         StringBuilder sb = new StringBuilder("(?");
@@ -57,6 +71,12 @@ public abstract class DAOSQLImp<T> {
         }
     }
 
+    /**
+     * Deletes an object.
+     * 
+     * @param id
+     * @throws SQLException 
+     */
     public void deleteRecord(String id) throws SQLException {
         try (PreparedStatement stmt = SQLDataSource.getStatement("DELETE FROM "
                 + table + " WHERE " + columns[0] + " = ?")) {
@@ -67,6 +87,12 @@ public abstract class DAOSQLImp<T> {
         }
     }
 
+    /**
+     * Modifies an object.
+     * 
+     * @param obj
+     * @throws SQLException 
+     */
     public void modifyRecord(T obj) throws SQLException {
         List<Object> data = getData(obj);
         StringBuilder sb = new StringBuilder();
@@ -86,21 +112,27 @@ public abstract class DAOSQLImp<T> {
         }
     }
 
-    public List<T> findByVal(int col, Object val) throws SQLException {
+    /**
+     * @param column
+     * @param value
+     * @return the list corresponding to the column and value given
+     * @throws SQLException 
+     */
+    public List<T> findByValue(int column, Object value) throws SQLException {
         StringBuilder query = new StringBuilder();
-        if (col < 0 || col >= columns.length) {
-            throw new SQLException("No column with index " + col + " in table " + table);
+        if (column < 0 || column >= columns.length) {
+            throw new SQLException("No column with index " + column + " in table " + table);
         }
-        if (val == null) {
+        if (value == null) {
             query.append("SELECT * FROM ").append(table);
         } else {
             query.append("SELECT * FROM ").append(table).append(" WHERE ")
-                    .append(columns[col]).append(" = ?");
+                    .append(columns[column]).append(" = ?");
         }
         ArrayList<T> results = new ArrayList<>();
         try (PreparedStatement stmt = SQLDataSource.getStatement(query.toString())) {
-            if (val != null) {
-                stmt.setObject(1, val/*, columnJDBCType[col]*/);
+            if (value != null) {
+                stmt.setObject(1, value/*, columnJDBCType[col]*/);
             }
             ResultSet rs = stmt.executeQuery();
             rs.first();
@@ -116,10 +148,21 @@ public abstract class DAOSQLImp<T> {
         return results;
     }
 
+    /**
+     * @return all the recorded objects.
+     * @throws SQLException 
+     */
     public List<T> getAllRecords() throws SQLException {
-        return findByVal(0, null);
+        return findByValue(0, null);
     }
 
+    /**
+     * Reads the data.
+     * 
+     * @param rs
+     * @return list of data object
+     * @throws SQLException 
+     */
     private List<Object> readData(ResultSet rs) throws SQLException {
         List<Object> data = new ArrayList<>();
         for (int i = 1; i <= columns.length; ++i) {
@@ -148,8 +191,16 @@ public abstract class DAOSQLImp<T> {
         return data;
     }
 
+    /**
+     * @param obj
+     * @return an specific list of data objects.
+     */
     public abstract List<Object> getData(T obj);
 
+    /**
+     * @param data
+     * @return an object T build from a data list
+     */
     public abstract T build(List<Object> data);
 
 }

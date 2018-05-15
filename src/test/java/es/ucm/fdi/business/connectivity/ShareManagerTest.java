@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.connectivity;
 
@@ -41,11 +41,11 @@ public class ShareManagerTest {
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
         char[] password = {'1', '2', '3', '4'};
         UserDTO user = new UserDTO("pepe", hg.hash(password));
-        userMgr.newUser(user);
+        userMgr.addNewUser(user);
         UserDTO luis = new UserDTO("luis", hg.hash(password));
         UserDTO paco = new UserDTO("paco", hg.hash(password));
-        userMgr.newUser(luis);
-        userMgr.newUser(paco);
+        userMgr.addNewUser(luis);
+        userMgr.addNewUser(paco);
         List<String> authors = new ArrayList<String>();
         authors.add("pepe");
         authors.add("luis");
@@ -75,7 +75,7 @@ public class ShareManagerTest {
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
         ShareManagerAS shareMgr = ShareManagerAS.getManager(new SharedProjectDAOHashTableImp(), new AuthorshipDAOHashTableImp());
         UserDTO juan = new UserDTO("juan", hg.hash(password));
-        userMgr.newUser(juan);
+        userMgr.addNewUser(juan);
         SessionDTO juanSession = userMgr.login("juan", "1234");
 
         //test the rejection of unauthorised accesses

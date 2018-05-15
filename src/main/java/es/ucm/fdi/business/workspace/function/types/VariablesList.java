@@ -1,15 +1,15 @@
-/**
- * This file is part of Dimension.
- * Dimension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * Dimension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.workspace.function.types;
 
@@ -24,7 +24,7 @@ import java.util.Iterator;
  */
 public class VariablesList {
 
-    private TreeMap<String, VariableDTO> vars;
+    private TreeMap<String, VariableDTO> variables;
 
     /**
      * Class constructor specifying another list of variables.
@@ -32,7 +32,7 @@ public class VariablesList {
      * @param other list to copy from
      */
     public VariablesList(VariablesList other) {
-        vars = (TreeMap<String, VariableDTO>) other.vars.clone();
+        variables = (TreeMap<String, VariableDTO>) other.variables.clone();
     }
 
     /**
@@ -41,9 +41,9 @@ public class VariablesList {
      * @param n Size
      */
     public VariablesList(int n) {
-        vars = new TreeMap<>();
+        variables = new TreeMap<>();
         for (int i = 0; i < n; ++i) {
-            vars.put("x_" + i, new VariableDTO("x_" + i));
+            variables.put("x_" + i, new VariableDTO("x_" + i));
         }
     }
 
@@ -55,9 +55,9 @@ public class VariablesList {
      * @param names
      */
     public VariablesList(int[] arrrayOfValues, String[] names) {
-        vars = new TreeMap<>();
+        variables = new TreeMap<>();
         for (int i = 0; i < arrrayOfValues.length; ++i) {
-            vars.put(names[i], new VariableDTO(names[i], arrrayOfValues[i]));
+            variables.put(names[i], new VariableDTO(names[i], arrrayOfValues[i]));
         }
     }
 
@@ -68,9 +68,9 @@ public class VariablesList {
      * @param nameList the list with the names of the variables
      */
     public VariablesList(String[] nameList) {
-        vars = new TreeMap<>();
+        variables = new TreeMap<>();
         for (String s : nameList) {
-            vars.put(s, new VariableDTO(s));
+            variables.put(s, new VariableDTO(s));
         }
     }
 
@@ -81,8 +81,8 @@ public class VariablesList {
      * @param value
      */
     public void setVariable(int variable, double value) {
-        if (0 <= variable && variable < vars.size()) {
-            getVariableAtPosition(variable).setVal(value);
+        if (0 <= variable && variable < variables.size()) {
+            getVariableAtPosition(variable).setValue(value);
         }
     }
 
@@ -93,8 +93,8 @@ public class VariablesList {
      * @param value
      */
     public void setVariable(String variable, double value) {
-        if (vars.containsKey(variable)) {
-            vars.get(variable).setVal(value);
+        if (variables.containsKey(variable)) {
+            variables.get(variable).setValue(value);
         } else {
             throw new IllegalArgumentException("Variable " + variable + " does "
                     + "not exist!");
@@ -107,7 +107,7 @@ public class VariablesList {
      * @param values
      */
     public void setVariables(double[] values) {
-        if (values.length == vars.size()) {
+        if (values.length == variables.size()) {
             for (int i = 0; i < values.length; ++i) {
                 setVariable(i, values[i]);
             }
@@ -124,8 +124,8 @@ public class VariablesList {
      * @return the value of the given variable
      */
     public double getVariable(String variable) {
-        if (vars.containsKey(variable)) {
-            return vars.get(variable).getValue();
+        if (variables.containsKey(variable)) {
+            return variables.get(variable).getValue();
         } else {
             throw new IllegalArgumentException("Variable " + variable + " does"
                     + " not exist");
@@ -137,7 +137,7 @@ public class VariablesList {
      * @return the ordered set of variables
      */
     public Collection<VariableDTO> getVariables() {
-        return vars.values();
+        return variables.values();
     }
 
     /**
@@ -155,7 +155,7 @@ public class VariablesList {
      * @return if the list of variables is equal to the other one given
      */
     public boolean equals(VariablesList other) {
-        return (this == other) || (vars.keySet().equals(other.vars.keySet()));
+        return (this == other) || (variables.keySet().equals(other.variables.keySet()));
     }
 
     /**
@@ -165,8 +165,8 @@ public class VariablesList {
      */
     private VariableDTO getVariableAtPosition(int position) {
         VariableDTO variable = null;
-        if (0 <= position && position < vars.size()) {
-            Iterator<VariableDTO> it = vars.values().iterator();
+        if (0 <= position && position < variables.size()) {
+            Iterator<VariableDTO> it = variables.values().iterator();
             for (int i = 0; i <= position; ++i) {
                 variable = it.next();
             }

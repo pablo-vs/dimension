@@ -13,7 +13,6 @@
  */
 package es.ucm.fdi.integration.connectivity;
 
-import es.ucm.fdi.integration.connectivity.AuthorshipDAOSQLImp;
 import es.ucm.fdi.business.connectivity.AuthorshipDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -133,5 +133,69 @@ public class ProjectManagerASTest {
                 manager.openProject("prj1").getFunctions().equals(functionList));
 
     }
+    
+    /**
+     * General test using a manager. It tests the class by simulating
+     * a normal user interaction with the manager. 
+     */
+     @Test
+    public void projectManagementTest() {
+        ProjectManagerAS projectMgr = ProjectManagerAS
+                .getManager(new ProjectDAOHashTableImp());
+        ProjectDTO polinomios = new ProjectDTO("polinomios43");
+        ProjectDTO raices = new ProjectDTO("ra|||");
+        projectMgr.newProject(polinomios);
+        try {
+            projectMgr.newProject(raices);
+            fail("Illegal character in project name!");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+        try {
+            projectMgr.removeProject("ra|||");
+            fail("Deleted non-existing project!");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+
+        List<AbstractFunction> funcs = new ArrayList<>();
+        polinomios.setFunctions(funcs);
+
+        projectMgr.saveChanges(polinomios);
+
+        polinomios = projectMgr.openProject("polinomios43");
+        if (polinomios.getFunctions() == null) {
+            fail("Changes not being saved!");
+        }
+
+        projectMgr.removeProject("polinomios43");
+
+        try {
+            projectMgr.openProject("polinomios43");
+            fail("Opening non-existing project!");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+
+        try {
+            projectMgr.removeProject("polinomios43");
+            fail("Removing non-existing project!");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+
+        ProjectDTO trigonometricas = new ProjectDTO("trig");
+        try {
+            projectMgr.saveChanges(trigonometricas);
+        } catch (IllegalArgumentException e) {
+            fail("If saved project doesn't exist must create a new one");
+        }
+
+        try {
+            trigonometricas = projectMgr.openProject("trig");
+        } catch (IllegalArgumentException e) {
+            fail("If saved project doesn't exist must create a new one");
+        }
+    }
 
 }

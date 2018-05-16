@@ -18,6 +18,7 @@ import es.ucm.fdi.business.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
+import java.util.Iterator;
 import java.util.ListIterator;
 
 /**
@@ -46,12 +47,19 @@ public class Graph implements ComponentComposite {
      * List of {@link es.ucm.fdi.workspace Vertex} containing the vertex in the
      * range.
      */
-    private final List<ComponentComposite> range = new ArrayList<>();
+    private final List<Vertex> range = new ArrayList<>();
+
+    /**
+     * List of {@link es.ucm.fdi.workspace ComponentComposite} containing the
+     * functions.
+     */
+    private final List<ComponentComposite> functionList = new ArrayList<>();
 
     /**
      * Tree map with domain values.
      */
-    private final MultiTreeMap<Integer, Integer> object = new MultiTreeMap<>((a, b) -> a - b);
+    private final MultiTreeMap<Integer, Integer> object
+            = new MultiTreeMap<>((a, b) -> a - b);
     /**
      * Resolution of the graph, it indicates the factor used to calculate the
      * length of the
@@ -119,21 +127,22 @@ public class Graph implements ComponentComposite {
      * it generates a grid for the given points and then generates the vertex
      * representing the n-dimensional points in the range.
      *
-     * @param functions list of functions to be evaluated
      * @param dom_ini
      * @param dom_fin
      * @param resolution of the graph generated
      * @throws NoMatchDimensionException
      */
-    public void generate(List<AbstractFunction> functions, double[] dom_ini, double[] dom_fin, int resolution) throws NoMatchDimensionException {
+    public void generate(double[] dom_ini, double[] dom_fin, int resolution)
+            throws NoMatchDimensionException {
         this.resolution = resolution;
         getGrid(dom_ini, dom_fin);
         for (int i = 0; i < domain.size(); ++i) {
-            Vertex fv = new Vertex(functions.size());
-            for (int j = 0; j < functions.size(); ++j) {
-                fv.set(j, functions.get(j).evaluate(domain.get(i).getComps()));
+            Vertex fv = new Vertex(functionList.size());
+            for (int j = 0; j < functionList.size(); ++j) {
+                fv.set(j, ((AbstractFunction) functionList.get(j))
+                        .evaluate(domain.get(i).getComps()));
             }
-            add(fv);
+            addRange(fv);
         }
     }
 
@@ -146,6 +155,33 @@ public class Graph implements ComponentComposite {
     }
 
     /**
+     * Adds a new vertexes to the Graph object. It is added to the range.
+     *
+     * @param component which will be added
+     */
+    private void addRange(Vertex component) {
+        range.add(component);
+    }
+
+    /**
+     * Returns an operator over the list of vertexes that a Graph
+     * object contains in its range.
+     *
+     * @return listIterator over the elements of the graph
+     */
+    public ListIterator<Vertex> getIteratorRange() {
+        return range.listIterator();
+    }
+
+    /**
+     * Removes all the elements in the range. All vertexes are
+     * deleted.
+     */
+    public void cleanRangeList() {
+        range.removeAll(range);
+    }
+
+     /**
      * Adds a new ComponentComposite to the Graph object. Typically in Graph
      * this elements will be vertex.
      *
@@ -153,40 +189,52 @@ public class Graph implements ComponentComposite {
      */
     @Override
     public void add(ComponentComposite component) {
-        range.add(component);
+        functionList.add(component);
     }
 
-    /**
+    
+   /**
      * Deletes a ComponentComposite that a Graph object contains. Typically in
      * Graph this elements will be vertex.
      *
      * @param component which will be removed
      */
+
     @Override
     public void delete(ComponentComposite component) {
-        if (!range.remove(component)) {
+        if (!functionList.remove(component)) {
             throw new IllegalArgumentException("The component to be removed in "
                     + "the graph was not in the range");
         }
     }
-
-    /**
-     * Returns an operator over the list of ComponentComposite that a Graph
-     * object contains. Typically in Graph this elements will be vertex.
-     *
-     * @return listIterator over the elements of the graph
-     */
-    @Override
-    public ListIterator<ComponentComposite> getCompositeIterator() {
-        return range.listIterator();
-    }
-
     /**
      * Removes all the elements in the range. All ComponentComposites are
      * deleted.
      */
     @Override
     public void deleteAll() {
-        range.removeAll(range);
+        functionList.removeAll(functionList);
+    }
+
+        /**
+     * Returns an operator over the list of ComponentComposite that a Graph
+     * object contains. Typically in Graph this elements will be functions.
+     *
+     * @return listIterator over the elements of the graph
+     */
+    @Override
+    public Iterator getCompositeIterator() {
+        return functionList.listIterator();
+    }
+    
+     /**
+     * Returns the element at the given position index. Typically it will be 
+     * a function. 
+     * @param index
+     * @return
+     */
+    @Override
+    public ComponentComposite elementAt(int index) {
+        return functionList.get(index);
     }
 }

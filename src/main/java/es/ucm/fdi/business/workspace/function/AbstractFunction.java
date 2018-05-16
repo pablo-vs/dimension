@@ -13,10 +13,12 @@
  */
 package es.ucm.fdi.business.workspace.function;
 
+import es.ucm.fdi.business.workspace.ComponentComposite;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
+import java.util.Iterator;
 
 /**
- * Defines an interface function object. A function should contain a
+ * Defines an abstract function object. A function should contain a
  * {@link es.ucm.fdi.business.workspace.function.types.VariablesList VariablesList}
  * vars to define the number and name of the parameters. It also provides an
  * accessor method {@link #getVariables getVariables} which return the
@@ -25,17 +27,21 @@ import es.ucm.fdi.business.workspace.function.types.VariablesList;
  * {@link #evaluate(es.ucm.fdi.workspace.function.types.VariablesList) evaluate}
  * which calculates the value of the function given a
  * {@link es.ucm.fdi.business.workspace.function.types.VariablesList VariablesList}.
- *
+ *s
  * @author Javier Navalón, Arturo Acuaviva
  */
-public interface AbstractFunction {
+public abstract class AbstractFunction implements ComponentComposite{
 
+    protected VariablesList variables;
+    
     /**
      * Returns the variables list of the function.
      *
      * @return The variables list.
      */
-    public VariablesList getVariables();
+    public  VariablesList getVariables(){
+        return this.variables;
+    }
 
     /**
      * Evaluates the function at the point given by the variable list.
@@ -45,16 +51,19 @@ public interface AbstractFunction {
      * @param vars The vars list.
      * @return The result of applying the function to the values.
      */
-    public double evaluate(VariablesList vars);
+    public abstract double evaluate(VariablesList vars);
 
     /**
      * Evaluates the function from a given list of vars.
      *
-     * @param variables
+     * @param varsArray
      * @return
      */
-    public double evaluate(double[] variables);
-
+    public double evaluate(double[] varsArray) {
+        this.variables.setVariables(varsArray);
+        return evaluate(variables);
+    }
+    
     /**
      *
      * @return a sequence of characters describing the function
@@ -62,6 +71,64 @@ public interface AbstractFunction {
     @Override
     public abstract String toString();
 
+       /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @param component
+     */
+    @Override
+    public void add(ComponentComposite component) {
+        throw new UnsupportedOperationException("Not supported by leaf component"
+                + " composite objects.");
+    }
+
+    /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @param component
+     */
+    @Override
+    public void delete(ComponentComposite component) {
+        throw new UnsupportedOperationException("Not supported by leaf component"
+                + " composite objects.");
+    }
+
+    /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     */
+    @Override
+    public void deleteAll() {
+        throw new UnsupportedOperationException("Not supported by leaf component"
+                + " composite objects.");
+    }
+
+    /**
+     * A leaf ComponentComposite cannot contain objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @return
+     */
+    @Override
+    public Iterator getCompositeIterator() {
+        throw new UnsupportedOperationException("Not supported by leaf component"
+                + " composite objects.");
+    }
+    
+     /**
+     * A leaf ComponentComposite cannot contain objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @return
+     */
+    @Override
+    public ComponentComposite elementAt(int index) {
+        throw new UnsupportedOperationException("Not supported by leaf component"
+                + " composite objects.");
+    }
+    
     /**
      * Contains the specific parser for each function.
      *

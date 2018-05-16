@@ -13,9 +13,12 @@
  */
 package es.ucm.fdi.business.workspace.project;
 
+import es.ucm.fdi.business.workspace.Graph;
 import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
-import es.ucm.fdi.business.workspace.transformations.GraphTransformation;
+import es.ucm.fdi.business.workspace.transformations.TransformationStrategy;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Application service which provides functions for working in projects.
@@ -61,17 +64,46 @@ public class WorkAS {
     }
 
     /**
-     * Transforms a visualized function according to the given transformation.
-     *
-     * @param view The view to transform.
-     * @param func The function to transform.
-     * @param transformation The GraphTransformation to apply.
+     * Returns a list of the functions in the project.
+     * @return 
      */
-    public void transformFunction(int view, int func, GraphTransformation transformation) {
-        /*    Visualization visual = project.getViews().get(view);
-        Graph graph = visual.getGraph().get(func);
-        transformation.apply(graph);
-        visual.getGraph().set(func, graph);
-        project.getViews().set(view, visual); */
+    public List<AbstractFunction> getFunctions(){
+        return project.getFunctions();
     }
+    
+    /**
+     * Returns a list of the visualizations in the project.
+     * @return 
+     */
+    public List<Visualization> getVisualizations(){
+        return project.getViews();
+    }
+    
+    
+    /**
+     * Transforms a visualization according to the given transformation.
+     *
+     * @param view
+     * @param transformation
+     */
+    public static void transformVisualization(Visualization view,
+            TransformationStrategy transformation) {
+        Iterator it = view.getCompositeIterator();
+        while(it.hasNext()){
+            transformation.apply((Graph) it.next());
+        }
+    }
+    
+      /**
+     * Transforms all the views in the project using the given transformation.
+     *
+     * @param transformation
+     */
+    public void transformProject(TransformationStrategy transformation) {
+        Iterator it = project.getViews().listIterator();
+        while(it.hasNext()){
+            transformation.apply((Graph) it.next());
+        }
+    }
+    
 }

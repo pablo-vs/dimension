@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,7 +33,7 @@ public class CosineFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x", "y"});
-        CosineFunction instance = new CosineFunction(FunctionParserUtils
+        CosineFunction instance = new CosineFunction(FunctionParser
                 .parse("2*x + y/3", vars), vars);
         assertEquals("cos(((2.0) * (x)) + ((y) / (3.0)))", instance.toString());
     }
@@ -46,7 +46,7 @@ public class CosineFunctionTest {
         System.out.println("Testing 'evaluate' method...");
         String[] varNames = {"x", "y"};
         VariablesList vars = new VariablesList(varNames);
-        CosineFunction instance = new CosineFunction(FunctionParserUtils
+        CosineFunction instance = new CosineFunction(FunctionParser
                 .parse("2*x + 3*y", vars), vars);
         int[] varsValues = {2, 3};
         assertEquals(Math.cos(Math.toRadians(5)),

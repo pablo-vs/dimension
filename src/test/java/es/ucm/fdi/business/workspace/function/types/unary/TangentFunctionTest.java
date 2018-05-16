@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,7 +33,7 @@ public class TangentFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x", "y"});
-        TangentFunction instance = new TangentFunction(FunctionParserUtils
+        TangentFunction instance = new TangentFunction(FunctionParser
                 .parse("x*y", vars), vars);
         assertEquals("tan((x) * (y))", instance.toString());
     }
@@ -46,7 +46,7 @@ public class TangentFunctionTest {
         System.out.println("Testing 'evaluate' method...");
         String[] varNames = {"x", "y"};
         VariablesList vars = new VariablesList(varNames);
-        TangentFunction instance = new TangentFunction(FunctionParserUtils
+        TangentFunction instance = new TangentFunction(FunctionParser
                 .parse("x*y", vars), vars);
         int[] varsValues = {8, 6};
         assertEquals(Math.tan(Math.toRadians(48)),

@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.binary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import es.ucm.fdi.business.workspace.function.types.unary.ConstantFunction;
 import es.ucm.fdi.business.workspace.function.types.unary.IdentityFunction;
@@ -35,9 +35,9 @@ public class ModuloFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        IdentityFunction instance1 = new IdentityFunction(FunctionParserUtils
+        IdentityFunction instance1 = new IdentityFunction(FunctionParser
                 .parse("2*x", vars).toString(), vars);
-        IdentityFunction instance2 = new IdentityFunction(FunctionParserUtils
+        IdentityFunction instance2 = new IdentityFunction(FunctionParser
                 .parse("x", vars).toString(), vars);
         ModuloFunction instanceMod = new ModuloFunction(instance1, instance2, vars);
         assertEquals("((2.0) * (x)) % (x)", instanceMod.toString());
@@ -51,7 +51,7 @@ public class ModuloFunctionTest {
         System.out.println("Testing 'evaluate' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
         ConstantFunction instance1 = new ConstantFunction(7.0, vars);
-        IdentityFunction instance2 = new IdentityFunction(FunctionParserUtils
+        IdentityFunction instance2 = new IdentityFunction(FunctionParser
                 .parse("x", vars).toString(), vars);
         ModuloFunction instanceMod = new ModuloFunction(instance1, instance2, vars);
         int[] varValues = {3};

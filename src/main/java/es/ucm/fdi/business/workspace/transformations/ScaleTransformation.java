@@ -36,11 +36,11 @@ public class ScaleTransformation extends TransformationStrategy {
         super(x, y, z);
     }
 
-
     /**
-     * Modifies the given graph shrinking it proportionally to 
-     * the value specified by x,y and z.
-     * @param g 
+     * Modifies the given graph shrinking it proportionally to the value
+     * specified by x,y and z.
+     *
+     * @param g
      */
     @Override
     public void apply(Graph g) {

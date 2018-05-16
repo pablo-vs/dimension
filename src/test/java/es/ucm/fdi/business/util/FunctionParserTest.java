@@ -11,15 +11,16 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.business.workspace.function;
+package es.ucm.fdi.business.util;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
+import es.ucm.fdi.business.workspace.function.AbstractFunction;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 
-public class ParserTest {
+public class FunctionParserTest {
 
     @Test
     public void basicParserTest() {
@@ -37,7 +38,7 @@ public class ParserTest {
         System.out.println("First test, evaluating functions at x = " + value);
         for (int i = 0; i < fs.length; ++i) {
             String aux = fs[i];
-            AbstractFunction f = FunctionParserUtils.parse(aux, vars);
+            AbstractFunction f = FunctionParser.parse(aux, vars);
             vars.setVariable("x", value);
             System.out.println("Input: " + fs[i] + " | Parsed function: " + f
                     + " | Result = " + f.evaluate(vars));
@@ -47,7 +48,7 @@ public class ParserTest {
                 + " , y = " + value2 + ", z = " + value3);
         for (int i = 0; i < fs_vv.length; ++i) {
             String aux = fs_vv[i];
-            AbstractFunction f = FunctionParserUtils.parse(aux, vars2);
+            AbstractFunction f = FunctionParser.parse(aux, vars2);
             vars2.setVariable("x", value);
             vars2.setVariable("y", value2);
             vars2.setVariable("z", value3);

@@ -30,12 +30,12 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  * @author Arturo Acuaviva
  * @version 06.04.2018
  */
-public final class FunctionParserUtils {
+public final class FunctionParser {
 
     /**
      * This private constructor is used to avoid utility class instantiation.
      */
-    private FunctionParserUtils() {
+    private FunctionParser() {
     }
 
     /**

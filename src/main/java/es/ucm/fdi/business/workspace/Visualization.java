@@ -100,13 +100,14 @@ public class Visualization implements ComponentComposite {
     public Iterator getCompositeIterator() {
         return graphsAvailable.listIterator();
     }
-    
+
     /**
      * Returns a graph in the position specified
+     *
      * @param graphIndex
-     * @return 
+     * @return
      */
-    public ComponentComposite elementAt(int graphIndex){
+    public ComponentComposite elementAt(int graphIndex) {
         return graphsAvailable.get(graphIndex);
     }
 

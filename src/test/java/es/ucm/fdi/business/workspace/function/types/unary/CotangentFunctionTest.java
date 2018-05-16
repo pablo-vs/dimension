@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,7 +33,7 @@ public class CotangentFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        CotangentFunction instance = new CotangentFunction(FunctionParserUtils
+        CotangentFunction instance = new CotangentFunction(FunctionParser
                 .parse("x^2", vars), vars);
         assertEquals("cotan((x) ^ (2.0))", instance.toString());
     }
@@ -46,7 +46,7 @@ public class CotangentFunctionTest {
         System.out.println("Testing 'evaluate' method...");
         String[] varNames = {"x"};
         VariablesList vars = new VariablesList(varNames);
-        CotangentFunction instance = new CotangentFunction(FunctionParserUtils
+        CotangentFunction instance = new CotangentFunction(FunctionParser
                 .parse("x^2", vars), vars);
         int[] varsValues = {9};
         assertEquals(1 / Math.tan(Math.toRadians(81)),

@@ -27,19 +27,20 @@ import java.util.Iterator;
  * {@link #evaluate(es.ucm.fdi.workspace.function.types.VariablesList) evaluate}
  * which calculates the value of the function given a
  * {@link es.ucm.fdi.business.workspace.function.types.VariablesList VariablesList}.
- *s
+ * s
+ *
  * @author Javier Navalón, Arturo Acuaviva
  */
-public abstract class AbstractFunction implements ComponentComposite{
+public abstract class AbstractFunction implements ComponentComposite {
 
     protected VariablesList variables;
-    
+
     /**
      * Returns the variables list of the function.
      *
      * @return The variables list.
      */
-    public  VariablesList getVariables(){
+    public VariablesList getVariables() {
         return this.variables;
     }
 
@@ -63,7 +64,7 @@ public abstract class AbstractFunction implements ComponentComposite{
         this.variables.setVariables(varsArray);
         return evaluate(variables);
     }
-    
+
     /**
      *
      * @return a sequence of characters describing the function
@@ -71,7 +72,7 @@ public abstract class AbstractFunction implements ComponentComposite{
     @Override
     public abstract String toString();
 
-       /**
+    /**
      * A leaf ComponentComposite cannot contain more objects. This method should
      * not be implemented by a leaf in composite pattern.
      *
@@ -106,8 +107,8 @@ public abstract class AbstractFunction implements ComponentComposite{
     }
 
     /**
-     * A leaf ComponentComposite cannot contain objects. This method should
-     * not be implemented by a leaf in composite pattern.
+     * A leaf ComponentComposite cannot contain objects. This method should not
+     * be implemented by a leaf in composite pattern.
      *
      * @return
      */
@@ -116,10 +117,10 @@ public abstract class AbstractFunction implements ComponentComposite{
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
-    
-     /**
-     * A leaf ComponentComposite cannot contain objects. This method should
-     * not be implemented by a leaf in composite pattern.
+
+    /**
+     * A leaf ComponentComposite cannot contain objects. This method should not
+     * be implemented by a leaf in composite pattern.
      *
      * @return
      */
@@ -128,7 +129,7 @@ public abstract class AbstractFunction implements ComponentComposite{
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
-    
+
     /**
      * Contains the specific parser for each function.
      *

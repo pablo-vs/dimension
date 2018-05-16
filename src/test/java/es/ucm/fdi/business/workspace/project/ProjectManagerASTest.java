@@ -97,9 +97,9 @@ public class ProjectManagerASTest {
                 manager.openProject("test1").getID(), "test1");
         assertEquals("Project opened correctly",
                 manager.openProject("test2").getID(), "test2");
-         assertEquals("Project opened correctly",
+        assertEquals("Project opened correctly",
                 manager.openProject("test3").getID(), "test3");
-                // Removing new projects
+        // Removing new projects
         manager.removeProject("test1");
         manager.removeProject("test2");
         manager.removeProject("test3");
@@ -133,12 +133,12 @@ public class ProjectManagerASTest {
                 manager.openProject("prj1").getFunctions().equals(functionList));
 
     }
-    
+
     /**
-     * General test using a manager. It tests the class by simulating
-     * a normal user interaction with the manager. 
+     * General test using a manager. It tests the class by simulating a normal
+     * user interaction with the manager.
      */
-     @Test
+    @Test
     public void projectManagementTest() {
         ProjectManagerAS projectMgr = ProjectManagerAS
                 .getManager(new ProjectDAOHashTableImp());

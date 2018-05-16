@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -49,8 +49,6 @@ public abstract class BinaryFunction extends AbstractFunction {
         this.function2 = function2;
     }
 
-
-    
     public static abstract class Parser extends AbstractFunction.Parser {
 
         @Override
@@ -69,12 +67,12 @@ public abstract class BinaryFunction extends AbstractFunction {
         public static AbstractFunction[] parseFunctions(String strParam, VariablesList variables, Pattern operator) {
             AbstractFunction[] funcs = {null, null};
             boolean success = true;
-            String str = FunctionParserUtils.stripExtraParenthesis(strParam);
+            String str = FunctionParser.stripExtraParenthesis(strParam);
             int endFirst = 0, startSecond;
             if (!str.isEmpty()) {
                 if (str.charAt(0) == '(') {
                     try {
-                        endFirst = FunctionParserUtils.getEndOfParenthesis(str, 0);
+                        endFirst = FunctionParser.getEndOfParenthesis(str, 0);
                     } catch (IllegalArgumentException e) {
                         success = false;
                     }
@@ -87,9 +85,9 @@ public abstract class BinaryFunction extends AbstractFunction {
                         do {
                             endFirst = m.start();
                             startSecond = m.end();
-                            funcs[0] = FunctionParserUtils.parse(str.substring(0, endFirst), variables);
+                            funcs[0] = FunctionParser.parse(str.substring(0, endFirst), variables);
                             if (funcs[0] != null) {
-                                funcs[1] = FunctionParserUtils.parse(str.substring(startSecond), variables);
+                                funcs[1] = FunctionParser.parse(str.substring(startSecond), variables);
                                 done = funcs[1] != null;
                             }
                         } while (!done && !m.hitEnd() && m.find());

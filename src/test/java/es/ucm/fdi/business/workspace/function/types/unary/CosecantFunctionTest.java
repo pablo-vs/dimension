@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,7 +33,7 @@ public class CosecantFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        CosecantFunction instance = new CosecantFunction(FunctionParserUtils
+        CosecantFunction instance = new CosecantFunction(FunctionParser
                 .parse("PI/2", vars), vars);
         assertEquals("cosec((3.141592653589793) / (2.0))", instance.toString());
     }
@@ -45,7 +45,7 @@ public class CosecantFunctionTest {
     public void testEvaluate() {
         System.out.println("Testing 'evaluate' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        CosecantFunction instance = new CosecantFunction(FunctionParserUtils
+        CosecantFunction instance = new CosecantFunction(FunctionParser
                 .parse("PI/2", vars), vars);
         assertEquals(1 / Math.sin(Math.toRadians(Math.PI / 2)), instance.evaluate(vars), 0.1);
     }

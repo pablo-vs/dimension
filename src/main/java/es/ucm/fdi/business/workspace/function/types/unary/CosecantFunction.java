@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 import es.ucm.fdi.business.workspace.function.types.UnaryFunction;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 
 /**
@@ -56,7 +56,7 @@ public class CosecantFunction extends UnaryFunction {
             CosecantFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {
-                AbstractFunction arg = FunctionParserUtils.parse(strArg, variables);
+                AbstractFunction arg = FunctionParser.parse(strArg, variables);
                 if (arg != null) {
                     result = new CosecantFunction(arg, variables);
                 }

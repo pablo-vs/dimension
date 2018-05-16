@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import java.util.regex.Pattern;
 
 import es.ucm.fdi.business.workspace.function.types.UnaryFunction;
@@ -56,7 +56,7 @@ public class CosineFunction extends UnaryFunction {
             CosineFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {
-                AbstractFunction arg = FunctionParserUtils.parse(strArg, variables);
+                AbstractFunction arg = FunctionParser.parse(strArg, variables);
                 if (arg != null) {
                     result = new CosineFunction(arg, variables);
                 }

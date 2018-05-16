@@ -11,12 +11,19 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.business.workspace.function.types;
+package es.ucm.fdi.business.workspace.function;
 
+import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class VariableTest {
+/**
+ * JUnit test for VariablesList class.
+ *
+ * @see VariablesList
+ * @author Inmaculada Pérez
+ */
+public class VariablesListTest {
 
     @Test
     public void variableTest() {

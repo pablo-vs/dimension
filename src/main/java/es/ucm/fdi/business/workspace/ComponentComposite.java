@@ -51,4 +51,11 @@ public interface ComponentComposite {
      */
     public Iterator getCompositeIterator();
 
+    /**
+     * Returns a CompositeComponent at a given position by the index.
+     * @param index
+     * @return 
+     */
+    public ComponentComposite elementAt(int index);
+    
 }

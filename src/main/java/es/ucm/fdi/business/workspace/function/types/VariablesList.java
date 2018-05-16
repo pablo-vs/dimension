@@ -24,7 +24,7 @@ import java.util.Iterator;
  */
 public class VariablesList {
 
-    private TreeMap<String, VariableDTO> variables;
+    private TreeMap<String, VariableDTO> varsMap;
 
     /**
      * Class constructor specifying another list of variables.
@@ -32,7 +32,7 @@ public class VariablesList {
      * @param other list to copy from
      */
     public VariablesList(VariablesList other) {
-        variables = (TreeMap<String, VariableDTO>) other.variables.clone();
+        varsMap = (TreeMap<String, VariableDTO>) other.varsMap.clone();
     }
 
     /**
@@ -41,9 +41,9 @@ public class VariablesList {
      * @param n Size
      */
     public VariablesList(int n) {
-        variables = new TreeMap<>();
+        varsMap = new TreeMap<>();
         for (int i = 0; i < n; ++i) {
-            variables.put("x_" + i, new VariableDTO("x_" + i));
+            varsMap.put("x_" + i, new VariableDTO("x_" + i));
         }
     }
 
@@ -55,9 +55,9 @@ public class VariablesList {
      * @param names
      */
     public VariablesList(int[] arrrayOfValues, String[] names) {
-        variables = new TreeMap<>();
+        varsMap = new TreeMap<>();
         for (int i = 0; i < arrrayOfValues.length; ++i) {
-            variables.put(names[i], new VariableDTO(names[i], arrrayOfValues[i]));
+            varsMap.put(names[i], new VariableDTO(names[i], arrrayOfValues[i]));
         }
     }
 
@@ -68,9 +68,9 @@ public class VariablesList {
      * @param nameList the list with the names of the variables
      */
     public VariablesList(String[] nameList) {
-        variables = new TreeMap<>();
+        varsMap = new TreeMap<>();
         for (String s : nameList) {
-            variables.put(s, new VariableDTO(s));
+            varsMap.put(s, new VariableDTO(s));
         }
     }
 
@@ -81,7 +81,7 @@ public class VariablesList {
      * @param value
      */
     public void setVariable(int variable, double value) {
-        if (0 <= variable && variable < variables.size()) {
+        if (0 <= variable && variable < varsMap.size()) {
             getVariableAtPosition(variable).setValue(value);
         }
     }
@@ -93,8 +93,8 @@ public class VariablesList {
      * @param value
      */
     public void setVariable(String variable, double value) {
-        if (variables.containsKey(variable)) {
-            variables.get(variable).setValue(value);
+        if (varsMap.containsKey(variable)) {
+            varsMap.get(variable).setValue(value);
         } else {
             throw new IllegalArgumentException("Variable " + variable + " does "
                     + "not exist!");
@@ -107,7 +107,7 @@ public class VariablesList {
      * @param values
      */
     public void setVariables(double[] values) {
-        if (values.length == variables.size()) {
+        if (values.length == varsMap.size()) {
             for (int i = 0; i < values.length; ++i) {
                 setVariable(i, values[i]);
             }
@@ -124,8 +124,8 @@ public class VariablesList {
      * @return the value of the given variable
      */
     public double getVariable(String variable) {
-        if (variables.containsKey(variable)) {
-            return variables.get(variable).getValue();
+        if (varsMap.containsKey(variable)) {
+            return varsMap.get(variable).getValue();
         } else {
             throw new IllegalArgumentException("Variable " + variable + " does"
                     + " not exist");
@@ -137,7 +137,7 @@ public class VariablesList {
      * @return the ordered set of variables
      */
     public Collection<VariableDTO> getVariables() {
-        return variables.values();
+        return varsMap.values();
     }
 
     /**
@@ -155,7 +155,7 @@ public class VariablesList {
      * @return if the list of variables is equal to the other one given
      */
     public boolean equals(VariablesList other) {
-        return (this == other) || (variables.keySet().equals(other.variables.keySet()));
+        return (this == other) || (varsMap.keySet().equals(other.varsMap.keySet()));
     }
 
     /**
@@ -165,8 +165,8 @@ public class VariablesList {
      */
     private VariableDTO getVariableAtPosition(int position) {
         VariableDTO variable = null;
-        if (0 <= position && position < variables.size()) {
-            Iterator<VariableDTO> it = variables.values().iterator();
+        if (0 <= position && position < varsMap.size()) {
+            Iterator<VariableDTO> it = varsMap.values().iterator();
             for (int i = 0; i <= position; ++i) {
                 variable = it.next();
             }

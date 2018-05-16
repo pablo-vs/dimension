@@ -54,11 +54,24 @@ public class Visualization implements ComponentComposite {
         this.graphsAvailable = new ArrayList<>(graphics);
     }
 
+    /**
+     * Add a new ComponentComposite to the list of elements that a Visualization
+     * object contains. Typically in Visualization the elements added will be
+     * graphs.
+     *
+     * @param component new ComponentComposite element in the inner list.
+     */
     @Override
     public void add(ComponentComposite component) {
         graphsAvailable.add(component);
     }
 
+    /**
+     * Deletes a ComponentComposite that a Visualization object contains.
+     * Typically in Visualization this elements will be graphs.
+     *
+     * @param component which will be removed
+     */
     @Override
     public void delete(ComponentComposite component) {
         if (!graphsAvailable.remove(component)) {
@@ -67,14 +80,34 @@ public class Visualization implements ComponentComposite {
         }
     }
 
+    /**
+     * Removes all the elements in the range. All ComponentComposites are
+     * deleted.
+     */
     @Override
     public void deleteAll() {
         graphsAvailable.removeAll(graphsAvailable);
     }
 
+    /**
+     * Returns an operator over the list of ComponentComposite that a
+     * Visualization object contains. Typically in Visualization this elements
+     * will be graphs.
+     *
+     * @return listIterator over the elements of the visualization
+     */
     @Override
     public Iterator getCompositeIterator() {
         return graphsAvailable.listIterator();
+    }
+    
+    /**
+     * Returns a graph in the position specified
+     * @param graphIndex
+     * @return 
+     */
+    public ComponentComposite elementAt(int graphIndex){
+        return graphsAvailable.get(graphIndex);
     }
 
     /**

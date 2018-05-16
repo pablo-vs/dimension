@@ -24,20 +24,7 @@ import java.util.ListIterator;
  *
  * @author Brian Leiva, Inmaculada Pérez
  */
-public class RotateTransformation implements GraphTransformation {
-
-    /**
-     * Amount to rotate in the X axis
-     */
-    private final double x;
-    /**
-     * Amount to rotate in the Y axis
-     */
-    private final double y;
-    /**
-     * Amount to rotate in the Z axis
-     */
-    private final double z;
+public class RotateTransformation extends TransformationStrategy {
 
     /**
      * Class constructor receiving the number representing the rotation in each
@@ -48,9 +35,7 @@ public class RotateTransformation implements GraphTransformation {
      * @param z
      */
     public RotateTransformation(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        super(x, y, z);
     }
 
     /**
@@ -73,10 +58,10 @@ public class RotateTransformation implements GraphTransformation {
      */
     private static void rotateX(Graph g, double d) {
 
-        double minY = ((Vertex) g.getCompositeIterator().next()).at(1), maxY = minY,
-                minZ = ((Vertex) g.getCompositeIterator().next()).at(2), maxZ = minZ;
+        double minY = ((Vertex) g.getIteratorRange().next()).at(1), maxY = minY,
+                minZ = ((Vertex) g.getIteratorRange().next()).at(2), maxZ = minZ;
 
-        ListIterator iterator = g.getCompositeIterator();
+        ListIterator iterator = g.getIteratorRange();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -96,7 +81,7 @@ public class RotateTransformation implements GraphTransformation {
         }
 
         double centerY = (maxY + minY) / 2, centerZ = (maxZ + minZ) / 2;
-        iterator = g.getCompositeIterator();
+        iterator = g.getIteratorRange();
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             double y = v.at(1), z = v.at(2), dist;
@@ -114,9 +99,9 @@ public class RotateTransformation implements GraphTransformation {
      */
     private static void rotateY(Graph g, double d) {
 
-        double minX = ((Vertex) g.getCompositeIterator().next()).at(0), maxX = minX,
-                minZ = ((Vertex) g.getCompositeIterator().next()).at(2), maxZ = minZ;
-        ListIterator iterator = g.getCompositeIterator();
+        double minX = ((Vertex) g.getIteratorRange().next()).at(0), maxX = minX,
+                minZ = ((Vertex) g.getIteratorRange().next()).at(2), maxZ = minZ;
+        ListIterator iterator = g.getIteratorRange();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -135,7 +120,7 @@ public class RotateTransformation implements GraphTransformation {
             }
         }
         double centerX = (maxX + minX) / 2, centerZ = (maxZ + minZ) / 2;
-        iterator = g.getCompositeIterator();
+        iterator = g.getIteratorRange();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -154,9 +139,9 @@ public class RotateTransformation implements GraphTransformation {
      * @param d
      */
     private static void rotatZ(Graph g, double d) {
-        double minX = ((Vertex) g.getCompositeIterator().next()).at(0), maxX = minX,
-                minY = ((Vertex) g.getCompositeIterator().next()).at(1), maxY = minY;
-        ListIterator iterator = g.getCompositeIterator();
+        double minX = ((Vertex) g.getIteratorRange().next()).at(0), maxX = minX,
+                minY = ((Vertex) g.getIteratorRange().next()).at(1), maxY = minY;
+        ListIterator iterator = g.getIteratorRange();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();

@@ -62,14 +62,14 @@ public class GraphTest {
         };
 
         System.out.println("Graph generation: generate | getGrid");
-        testGraph.generate(functionsList, dom_ini, dom_fin, 2);
-
+        testGraph.add(new IdentityFunction("x_1", new VariablesList(3)));
+        testGraph.generate(dom_ini, dom_fin, 2);
+        /* Checking the output produced
         Iterator it = testGraph.getCompositeIterator();
-        /* This is way too verbose, is there any need?
-
 	  while (it.hasNext()) {
             System.out.println(it.next());
-	  }*/ 
+	  }
+         */
     }
 
     /**
@@ -118,18 +118,6 @@ public class GraphTest {
         while (it.hasNext()) {
             if (counter >= 12) {
                 fail("We only added 12 elements");
-            }
-            assertEquals(listOfVertex[counter], it.next());
-            counter++;
-        }
-        // deleting the last and the first element
-        testGraph.delete(v1);
-        testGraph.delete(v12);
-        it = testGraph.getCompositeIterator();
-        counter = 1;
-        while (it.hasNext()) {
-            if (counter >= 11) {
-                fail("We had 12 elements and deleted 2 elements");
             }
             assertEquals(listOfVertex[counter], it.next());
             counter++;

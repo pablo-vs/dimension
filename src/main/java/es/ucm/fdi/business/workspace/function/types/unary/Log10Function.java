@@ -52,7 +52,7 @@ public class Log10Function extends UnaryFunction {
         private static final Pattern REGEX = Pattern.compile("log\\((.*)\\)");
 
         @Override
-        public Log10Function parse(String strParam, VariablesList variables) {
+        public UnaryFunction parse(String strParam, VariablesList variables) {
             Log10Function result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {

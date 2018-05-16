@@ -17,16 +17,17 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.workspace.ComponentComposite;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
+import java.util.Iterator;
 
 /**
  * @author Inmaculada Pérez, Javier Navalon
  */
-public abstract class UnaryFunction implements AbstractFunction {
+public abstract class UnaryFunction extends AbstractFunction  {
 
     protected AbstractFunction function;
 
-    protected VariablesList variables;
 
     /**
      * Class constructor specifying the function and the list of variables.
@@ -48,16 +49,7 @@ public abstract class UnaryFunction implements AbstractFunction {
         this.variables = vars;
     }
 
-    @Override
-    public VariablesList getVariables() {
-        return this.variables;
-    }
 
-    @Override
-    public double evaluate(double[] varsArray) {
-        this.variables.setVariables(varsArray);
-        return evaluate(variables);
-    }
 
     public static abstract class Parser extends AbstractFunction.Parser {
 

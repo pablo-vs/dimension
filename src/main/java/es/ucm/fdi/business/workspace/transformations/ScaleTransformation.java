@@ -18,25 +18,12 @@ import es.ucm.fdi.business.workspace.Vertex;
 import java.util.ListIterator;
 
 /**
- * Provides a way of dealing with scale transformations in 3D. Given
- * a certain number it will shrink the graph proportionally.
+ * Provides a way of dealing with scale transformations in 3D. Given a certain
+ * number it will shrink the graph proportionally.
  *
  * @author Brian Leiva, Inmaculada Pérez
  */
-public class ScaleTransformation implements GraphTransformation {
-
-    /**
-     * Amount to shrink the X axis
-     */
-    private final double x;
-    /**
-     * Amount to shrink the Y axis
-     */
-    private final double y;
-    /**
-     * Amount to shrink the Z axis
-     */
-    private final double z;
+public class ScaleTransformation extends TransformationStrategy {
 
     /**
      * Class constructor specifying the amount to shrink in each axis.
@@ -46,11 +33,15 @@ public class ScaleTransformation implements GraphTransformation {
      * @param z Z axis
      */
     public ScaleTransformation(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        super(x, y, z);
     }
 
+
+    /**
+     * Modifies the given graph shrinking it proportionally to 
+     * the value specified by x,y and z.
+     * @param g 
+     */
     @Override
     public void apply(Graph g) {
         shrinkX(g, x);
@@ -59,15 +50,15 @@ public class ScaleTransformation implements GraphTransformation {
     }
 
     /**
-     * Shrink the X axis.
+     * Shrinks the X axis.
      *
      * @param g the graph which is going to modified
      * @param d quantify indicating the amount which will be shrunk
      */
     private static void shrinkX(Graph g, double d) {
-        double min = ((Vertex) g.getCompositeIterator().next()).at(0), max = min;
+        double min = ((Vertex) g.getIteratorRange().next()).at(0), max = min;
 
-        ListIterator iterator = g.getCompositeIterator();
+        ListIterator iterator = g.getIteratorRange();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -88,15 +79,15 @@ public class ScaleTransformation implements GraphTransformation {
     }
 
     /**
-     * Shrink the Y axis.
+     * Shrinks the Y axis.
      *
      * @param g the graph which is going to modified
      * @param d quantify indicating the amount which will be shrunk
      */
     private static void shrinkY(Graph g, double d) {
-        double min = ((Vertex) g.getCompositeIterator().next()).at(1), max = min;
+        double min = ((Vertex) g.getIteratorRange().next()).at(1), max = min;
 
-        ListIterator iterator = g.getCompositeIterator();
+        ListIterator iterator = g.getIteratorRange();
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             double n = v.at(1);
@@ -116,16 +107,16 @@ public class ScaleTransformation implements GraphTransformation {
     }
 
     /**
-     * Shrink the Z axis.
+     * Shrinks the Z axis.
      *
      * @param g the graph which is going to modified
      * @param d quantify indicating the amount which will be shrunk
      */
     private static void shrinkZ(Graph g, double d) {
 
-        double min = ((Vertex) g.getCompositeIterator().next()).at(2), max = min;
+        double min = ((Vertex) g.getIteratorRange().next()).at(2), max = min;
 
-        ListIterator iterator = g.getCompositeIterator();
+        ListIterator iterator = g.getIteratorRange();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();

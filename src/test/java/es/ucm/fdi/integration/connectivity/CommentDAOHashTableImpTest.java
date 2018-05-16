@@ -29,16 +29,16 @@ import static org.junit.Assert.*;
  * @author Javier Galiana
  */
 public class CommentDAOHashTableImpTest {
-	
-	@Test
-	public void CommentDAOHashTableTest () {
+
+    @Test
+    public void CommentDAOHashTableTest() {
         CommentDAOHashTableImp dao = new CommentDAOHashTableImp();
         CommentDTO comm1 = new CommentDTO("juan", "superProyecto", "Me gusta tu superProyecto");
         CommentDTO comm2 = new CommentDTO("maria", "superProyecto", "Me gusta tu superProyecto");
         CommentDTO comm3 = new CommentDTO("juan", "proyectoMediocre", "No me gusta tu proyectoMediocre");
         ArrayList<CommentDTO> results1 = new ArrayList<>(),
-                			  results2 = new ArrayList<>(), 
-                			  results3 = new ArrayList<>();
+                results2 = new ArrayList<>(),
+                results3 = new ArrayList<>();
         results1.add(comm1);
         results1.add(comm3);
         results2.add(comm1);
@@ -46,17 +46,17 @@ public class CommentDAOHashTableImpTest {
         results3.add(comm1);
         results3.add(comm2);
         results3.add(comm3);
-        
+
         dao.addComment(comm1);
         dao.addComment(comm2);
         dao.addComment(comm3);
-       
+
         assertEquals("Invalid user search results", results1, dao.findByUser("juan"));
         assertEquals("Invalid project search results", results2, dao.findByProject("superProyecto"));
         assertEquals("The Comments cannot be obtained", results3, dao.getComments());
-       
+
         dao.removeComment(comm1);
         dao.removeComment(comm2);
         dao.removeComment(comm3);
-	}
+    }
 }

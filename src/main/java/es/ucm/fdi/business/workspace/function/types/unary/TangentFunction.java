@@ -52,7 +52,7 @@ public class TangentFunction extends UnaryFunction {
         private static final Pattern REGEX = Pattern.compile("tan\\((.*)\\)");
 
         @Override
-        public TangentFunction parse(String strParam, VariablesList variables) {
+        public UnaryFunction parse(String strParam, VariablesList variables) {
             TangentFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {

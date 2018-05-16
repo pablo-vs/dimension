@@ -52,7 +52,7 @@ public class SecantFunction extends UnaryFunction {
         private static final Pattern REGEX = Pattern.compile("secan\\((.*)\\)");
 
         @Override
-        public SecantFunction parse(String strParam, VariablesList variables) {
+        public UnaryFunction parse(String strParam, VariablesList variables) {
             SecantFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {

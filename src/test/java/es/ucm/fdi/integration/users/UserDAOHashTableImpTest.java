@@ -32,10 +32,10 @@ import static org.junit.Assert.*;
  * @author Javier Galiana
  */
 public class UserDAOHashTableImpTest {
-	
-	@Test
-	public void UserDAOHashTableTest(){
-		
+
+    @Test
+    public void UserDAOHashTableTest() {
+
         UserDAOHashTableImp dao = new UserDAOHashTableImp();
         UserDTO user1 = new UserDTO("paco", "clavesecreta");
         UserDTO user2 = new UserDTO("pepe", "password");
@@ -45,23 +45,23 @@ public class UserDAOHashTableImpTest {
         results1.add(user3);
         results1.add(user1);
         results1.add(user2);
-        
+
         dao.addUser(user1);
         dao.addUser(user2);
         dao.addUser(user3);
-       
+
         assertEquals("Invalid user search results", user1, dao.findUser("paco"));
         assertEquals("The Users cannot be loaded", results1, dao.getUsers());
-        
+
         Period newBanTime = Period.between(LocalDate.of(2018, Month.DECEMBER, 9), LocalDate.now());
         user1.setBanTime(newBanTime);;
-        
+
         dao.modifyUser(user1);
-        
-        assertEquals("The user found is not the expected", user1 , dao.findUser(user1.getID()));
-        
+
+        assertEquals("The user found is not the expected", user1, dao.findUser(user1.getID()));
+
         dao.removeUser(user1.getID());
         dao.removeUser(user2.getID());
         dao.removeUser(user3.getID());
-	}
+    }
 }

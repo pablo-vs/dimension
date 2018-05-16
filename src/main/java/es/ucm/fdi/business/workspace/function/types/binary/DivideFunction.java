@@ -64,7 +64,7 @@ public class DivideFunction extends BinaryFunction {
         private static final Pattern REGEX = Pattern.compile(" */ *");
 
         @Override
-        public DivideFunction parse(String name, VariablesList variables) {
+        public BinaryFunction parse(String name, VariablesList variables) {
             DivideFunction function = null;
             AbstractFunction[] parsedFunction = BinaryFunction.Parser.parseFunctions(name, variables, REGEX);
             if (parsedFunction[0] != null && parsedFunction[1] != null) {

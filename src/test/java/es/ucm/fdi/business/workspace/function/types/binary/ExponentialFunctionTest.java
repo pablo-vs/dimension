@@ -56,8 +56,8 @@ public class ExponentialFunctionTest {
         ConstantFunction instance1 = new ConstantFunction(Math.E, vars);
         ExponentialFunction instanceExp = new ExponentialFunction(instance1, instance2, vars);
         int[] varValues = {14};
-        assertEquals(Math.pow(Math.E, 14), 
+        assertEquals(Math.pow(Math.E, 14),
                 instanceExp.evaluate(new VariablesList(varValues, new String[]{"x"})), 0.1);
     }
-    
+
 }

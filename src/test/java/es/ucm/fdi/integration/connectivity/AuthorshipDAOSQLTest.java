@@ -13,7 +13,6 @@
  */
 package es.ucm.fdi.integration.connectivity;
 
-import es.ucm.fdi.integration.connectivity.AuthorshipDAOSQLImp;
 import es.ucm.fdi.business.connectivity.AuthorshipDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AuthorshipDAOSQLTest {
-  
+    
     @Test
     public void AuthDAOSQLTest() throws SQLException {
 	AuthorshipDAOSQLImp dao = new AuthorshipDAOSQLImp();

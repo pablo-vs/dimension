@@ -16,19 +16,45 @@ package es.ucm.fdi.business.workspace.transformations;
 import es.ucm.fdi.business.workspace.Graph;
 
 /**
- * Public interface representing a modification in a graph. Every modification
+ * Public abstract class representing a modification in a graph. Every modification
  * that could be applied to a graph implements this interface. The interface
  * allows the usage of the strategy pattern, each different transformation is
  * taken as a different approach (strategy) to the problem of transforming a
  * function.
  */
-public interface GraphTransformation {
+public abstract class TransformationStrategy {
 
     /**
+     * X axis value modification
+     */
+    protected final double x;
+    /**
+     * Y axis value modification
+     */
+    protected final double y;
+    /**
+     * Z axis value modification
+     */
+    protected final double z;
+    
+    /**
+     * Class constructor. It receives as parameters a numeric value
+     * showing how the graph will change in each axis. 
+     * @param x
+     * @param y
+     * @param z 
+     */
+    TransformationStrategy(double x, double y, double z){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    
+    /**
      * Applies the transformation to the given graph. Each class which
-     * implements this interface must define its own apply method.
+     * implements this abstract class must define its own apply method.
      *
      * @param graph
      */
-    public void apply(Graph graph);
+    public abstract void apply(Graph graph);
 }

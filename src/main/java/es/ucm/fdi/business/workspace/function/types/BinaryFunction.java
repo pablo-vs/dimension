@@ -24,11 +24,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  *
  * @author Inmaculada Pérez, Javier Navalón
  */
-public abstract class BinaryFunction implements AbstractFunction {
+public abstract class BinaryFunction extends AbstractFunction {
 
     protected AbstractFunction function1;
     protected AbstractFunction function2;
-    protected VariablesList variables;
 
     /**
      * Class constructor.
@@ -50,17 +49,8 @@ public abstract class BinaryFunction implements AbstractFunction {
         this.function2 = function2;
     }
 
-    @Override
-    public VariablesList getVariables() {
-        return this.variables;
-    }
 
-    @Override
-    public double evaluate(double[] varsArray) {
-        this.variables.setVariables(varsArray);
-        return evaluate(variables);
-    }
-
+    
     public static abstract class Parser extends AbstractFunction.Parser {
 
         @Override

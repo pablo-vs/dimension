@@ -24,7 +24,7 @@ public class ProjectManagerAS {
 
     // Singleton pattern
     private static ProjectManagerAS instance;
-    private ProjectDAO dao;
+    private final ProjectDAO dao;
 
     /**
      * Class constructor specifying DAO project.

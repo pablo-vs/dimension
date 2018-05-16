@@ -27,16 +27,16 @@ import static org.junit.Assert.*;
  * @author Javier Galiana
  */
 public class AuthorshipDAOHashTableImpTest {
-	
-	@Test
-	public void AuthorDAOHashTableTest(){
+
+    @Test
+    public void AuthorDAOHashTableTest() {
         AuthorshipDAOHashTableImp dao = new AuthorshipDAOHashTableImp();
         AuthorshipDTO auth1 = new AuthorshipDTO("paco", "superProyecto");
         AuthorshipDTO auth2 = new AuthorshipDTO("pepe", "superProyecto");
         AuthorshipDTO auth3 = new AuthorshipDTO("paco", "proyectoMediocre");
         ArrayList<AuthorshipDTO> results1 = new ArrayList<>(),
-                				 results2 = new ArrayList<>(), 
-                				 results3 = new ArrayList<>();
+                results2 = new ArrayList<>(),
+                results3 = new ArrayList<>();
         results1.add(auth1);
         results1.add(auth3);
         results2.add(auth2);
@@ -44,17 +44,17 @@ public class AuthorshipDAOHashTableImpTest {
         results3.add(auth2);
         results3.add(auth1);
         results3.add(auth3);
-        
+
         dao.addAuthorship(auth1);
         dao.addAuthorship(auth2);
         dao.addAuthorship(auth3);
-       
+
         assertEquals("Invalid user search results", results1, dao.findByUser("paco"));
         assertEquals("Invalid project search results", results2, dao.findByProject("superProyecto"));
         assertEquals("The Authorships cannot be loaded", results3, dao.getAuthorships());
-       
+
         dao.removeAuthorship(auth1);
         dao.removeAuthorship(auth2);
         dao.removeAuthorship(auth3);
-	}
+    }
 }

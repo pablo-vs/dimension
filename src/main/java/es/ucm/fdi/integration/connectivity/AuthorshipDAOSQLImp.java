@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 /**
  * The SQL implementation for AuthorshipDAO.
- * 
+ *
  * @author Inmaculada Pérez, Pablo Villalobos
  */
 public class AuthorshipDAOSQLImp extends DAOSQLImp<AuthorshipDTO> implements AuthorshipDAO {

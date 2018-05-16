@@ -64,7 +64,7 @@ public class ExponentialFunction extends BinaryFunction {
         private static final Pattern REGEX = Pattern.compile(" *\\^ *");
 
         @Override
-        public ExponentialFunction parse(String str, VariablesList variables) {
+        public BinaryFunction parse(String str, VariablesList variables) {
             ExponentialFunction function = null;
             AbstractFunction[] parsedFunction = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
             if (parsedFunction[0] != null && parsedFunction[1] != null) {

@@ -55,9 +55,9 @@ public class ModuloFunctionTest {
                 .parse("x", vars).toString(), vars);
         ModuloFunction instanceMod = new ModuloFunction(instance1, instance2, vars);
         int[] varValues = {3};
-        
-        assertEquals(1.0, 
+
+        assertEquals(1.0,
                 instanceMod.evaluate(new VariablesList(varValues, new String[]{"x"})), 0.0);
     }
-    
+
 }

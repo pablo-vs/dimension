@@ -12,10 +12,10 @@ public class SQLDataSourceTest {
 
     @Test
     public void statementTest() throws SQLException {
-	try (PreparedStatement stmt = SQLDataSource.getStatement("SHOW TABLES")) {
-	    assertTrue(stmt.execute());
-	} catch(SQLException e) {
-	    throw e;
-	}
+        try (PreparedStatement stmt = SQLDataSource.getStatement("SHOW TABLES")) {
+            assertTrue(stmt.execute());
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 }

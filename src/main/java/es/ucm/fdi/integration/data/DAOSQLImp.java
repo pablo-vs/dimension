@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 /**
  * The SQL implementation for DAOs objects.
- * 
+ *
  * @author Inmaculada Pérez, Pablo Villalobos
  * @param <T>
  */
@@ -37,10 +37,10 @@ public abstract class DAOSQLImp<T> {
 
     /**
      * Class constructor.
-     * 
+     *
      * @param table
      * @param columns
-     * @param columnJDBCType 
+     * @param columnJDBCType
      */
     public DAOSQLImp(String table, String[] columns, JDBCType[] columnJDBCType) {
         this.table = table;
@@ -50,9 +50,9 @@ public abstract class DAOSQLImp<T> {
 
     /**
      * Adds a new object.
-     * 
+     *
      * @param obj
-     * @throws SQLException 
+     * @throws SQLException
      */
     public void addRecord(T obj) throws SQLException {
         List<Object> data = getData(obj);
@@ -62,8 +62,8 @@ public abstract class DAOSQLImp<T> {
         }
         sb.append(")");
         try (PreparedStatement stmt = SQLDataSource.getStatement("INSERT INTO "
-	     + table + " VALUES " + sb.toString());
-	     Connection con = stmt.getConnection();) {
+                + table + " VALUES " + sb.toString());
+                Connection con = stmt.getConnection();) {
             for (int i = 0; i < data.size(); ++i) {
                 stmt.setObject(i + 1, data.get(i)/*, columnJDBCType[i]*/);
             }
@@ -75,14 +75,14 @@ public abstract class DAOSQLImp<T> {
 
     /**
      * Deletes an object.
-     * 
+     *
      * @param id
-     * @throws SQLException 
+     * @throws SQLException
      */
     public void deleteRecord(String id) throws SQLException {
         try (PreparedStatement stmt = SQLDataSource.getStatement("DELETE FROM "
                 + table + " WHERE " + columns[0] + " = ?");
-	     Connection con = stmt.getConnection();) {
+                Connection con = stmt.getConnection();) {
             stmt.setString(1, id);
             stmt.execute();
         } catch (SQLException e) {
@@ -92,9 +92,9 @@ public abstract class DAOSQLImp<T> {
 
     /**
      * Modifies an object.
-     * 
+     *
      * @param obj
-     * @throws SQLException 
+     * @throws SQLException
      */
     public void modifyRecord(T obj) throws SQLException {
         List<Object> data = getData(obj);
@@ -105,7 +105,7 @@ public abstract class DAOSQLImp<T> {
         }
         try (PreparedStatement stmt = SQLDataSource.getStatement("UPDATE "
                 + table + " SET " + sb.toString() + " WHERE " + columns[0] + " = ?");
-	     Connection con = stmt.getConnection();) {
+                Connection con = stmt.getConnection();) {
             for (int i = 0; i < data.size(); ++i) {
                 stmt.setObject(i + 1, data.get(i)/*, columnJDBCType[i]*/);
             }
@@ -120,7 +120,7 @@ public abstract class DAOSQLImp<T> {
      * @param column
      * @param value
      * @return the list corresponding to the column and value given
-     * @throws SQLException 
+     * @throws SQLException
      */
     public List<T> findByValue(int column, Object value) throws SQLException {
         StringBuilder query = new StringBuilder();
@@ -135,7 +135,7 @@ public abstract class DAOSQLImp<T> {
         }
         ArrayList<T> results = new ArrayList<>();
         try (PreparedStatement stmt = SQLDataSource.getStatement(query.toString());
-	     Connection con = stmt.getConnection();) {
+                Connection con = stmt.getConnection();) {
             if (value != null) {
                 stmt.setObject(1, value/*, columnJDBCType[col]*/);
             }
@@ -155,7 +155,7 @@ public abstract class DAOSQLImp<T> {
 
     /**
      * @return all the recorded objects.
-     * @throws SQLException 
+     * @throws SQLException
      */
     public List<T> getAllRecords() throws SQLException {
         return findByValue(0, null);
@@ -163,10 +163,10 @@ public abstract class DAOSQLImp<T> {
 
     /**
      * Reads the data.
-     * 
+     *
      * @param rs
      * @return list of data object
-     * @throws SQLException 
+     * @throws SQLException
      */
     private List<Object> readData(ResultSet rs) throws SQLException {
         List<Object> data = new ArrayList<>();
@@ -197,13 +197,13 @@ public abstract class DAOSQLImp<T> {
     }
 
     public void clear() throws SQLException {
-	try (PreparedStatement stmt = SQLDataSource.getStatement("DELETE FROM "
-								 + table);
-	     Connection con = stmt.getConnection();) {
-	    stmt.execute();
+        try (PreparedStatement stmt = SQLDataSource.getStatement("DELETE FROM "
+                + table);
+                Connection con = stmt.getConnection();) {
+            stmt.execute();
         } catch (IllegalArgumentException | SQLException e) {
             throw new SQLException("Could not clear table " + table
-				   + ":\n" + e.getMessage(), e);
+                    + ":\n" + e.getMessage(), e);
         }
     }
 

@@ -56,8 +56,8 @@ public class DivideFunctionTest {
                 .parse("2*x", vars), vars);
         DivideFunction instanceDiv = new DivideFunction(instance1, instance2, vars);
         int[] varValues = {6};
-        assertEquals(Math.cos(Math.toRadians(6)) / Math.sin(Math.toRadians(12)), 
+        assertEquals(Math.cos(Math.toRadians(6)) / Math.sin(Math.toRadians(12)),
                 instanceDiv.evaluate(new VariablesList(varValues, new String[]{"x"})), 0.1);
     }
-    
+
 }

@@ -32,15 +32,16 @@ import static org.junit.Assert.*;
  * @author Arturo Acuaviva
  */
 public class ProjectManagerASTest {
-    
+
     ProjectDAO newProject;
     ProjectManagerAS manager;
-    
-    public ProjectManagerASTest() { }
+
+    public ProjectManagerASTest() {
+    }
 
     /**
-     * Setting up the test class. We create a not
-     * empty project containing projects with ids prj1 and prj2
+     * Setting up the test class. We create a not empty project containing
+     * projects with ids prj1 and prj2
      */
     @Before
     public void setUp() {
@@ -49,7 +50,7 @@ public class ProjectManagerASTest {
         newProject.addProject(new ProjectDTO("prj2"));
         manager = ProjectManagerAS.getManager(newProject);
     }
-   
+
     /**
      * Test of newProject method, of class ProjectManagerAS.
      */
@@ -69,8 +70,8 @@ public class ProjectManagerASTest {
                 manager.getDao().containsProject("test3"));
         // Removing new projects
         manager.removeProject("test1");
-         manager.removeProject("test2");
-          manager.removeProject("test3");
+        manager.removeProject("test2");
+        manager.removeProject("test3");
         // Check if they were removed
         assertFalse("The project was correctly removed",
                 manager.getDao().containsProject("test1"));
@@ -78,9 +79,8 @@ public class ProjectManagerASTest {
                 manager.getDao().containsProject("test2"));
         assertFalse("The project was correctly removed",
                 manager.getDao().containsProject("test3"));
-          
-    }
 
+    }
 
     /**
      * Test of openProject method, of class ProjectManagerAS.
@@ -88,11 +88,21 @@ public class ProjectManagerASTest {
     @Test
     public void testOpenProject() {
         System.out.println("openProject");
-       //Opening prj1 and prj2
-       assertEquals("Project opened correctly", 
-               manager.openProject("prj1").getID(), "prj1");
-        assertEquals("Project opened correctly", 
-               manager.openProject("prj2").getID(), "prj2");
+        // Adding new projects
+        manager.newProject(new ProjectDTO("test1"));
+        manager.newProject(new ProjectDTO("test2"));
+        manager.newProject(new ProjectDTO("test3"));
+        //Opening test1, test2 and test3
+        assertEquals("Project opened correctly",
+                manager.openProject("test1").getID(), "test1");
+        assertEquals("Project opened correctly",
+                manager.openProject("test2").getID(), "test2");
+         assertEquals("Project opened correctly",
+                manager.openProject("test3").getID(), "test3");
+                // Removing new projects
+        manager.removeProject("test1");
+        manager.removeProject("test2");
+        manager.removeProject("test3");
     }
 
     /**
@@ -117,11 +127,11 @@ public class ProjectManagerASTest {
         // Changes saved
         manager.saveChanges(prj1);
         // Check if changes were correctly saved
-        assertTrue("Views changes correctly saved", 
+        assertTrue("Views changes correctly saved",
                 manager.openProject("prj1").getViews().equals(visualizationList));
         assertTrue("Function list changes correctly saved",
                 manager.openProject("prj1").getFunctions().equals(functionList));
-        
+
     }
-    
+
 }

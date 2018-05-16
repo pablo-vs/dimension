@@ -20,7 +20,7 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 /**
  * Contains the data source to use SQL to implement DAOs.
- * 
+ *
  * @author Inmaculada Pérez, Pablo Villalobos
  */
 public class SQLDataSource {
@@ -38,26 +38,26 @@ public class SQLDataSource {
 
     /**
      * Class initialization.
-     * 
-     * @throws SQLException provides information on a database access
-     * error or other errors
+     *
+     * @throws SQLException provides information on a database access error or
+     * other errors
      */
     private SQLDataSource() throws SQLException {
         dataSource = new BasicDataSource();
         dataSource.setDriverClassName(DRIVER);
-	db = DB;
-     	dataSource.setUrl("jdbc:mysql://" + HOST + "/" + db);
-	dataSource.setUsername(USER);
+        db = DB;
+        dataSource.setUrl("jdbc:mysql://" + HOST + "/" + db);
+        dataSource.setUsername(USER);
         dataSource.setPassword(PASSWD);
-	dataSource.setMaxWait(2000);
+        dataSource.setMaxWait(2000);
     }
 
     /**
-     * 
+     *
      * @param stmt
      * @return the statement
-     * @throws SQLException provides information on a database access
-     * error or other errors
+     * @throws SQLException provides information on a database access error or
+     * other errors
      */
     public static PreparedStatement getStatement(String stmt) throws SQLException {
         if (instance == null) {
@@ -67,13 +67,13 @@ public class SQLDataSource {
     }
 
     //Change DB, for testing purposes
-    protected static void setDB(String newDb) throws SQLException{
+    protected static void setDB(String newDb) throws SQLException {
         if (instance == null) {
             instance = new SQLDataSource();
         }
-	if(!instance.db.equals(newDb) && !DB.equals(newDb)) {
-	    instance.db = newDb;
-	    instance.dataSource.setUrl("jdbc:mysql://" + HOST + "/" + newDb);
-	}
+        if (!instance.db.equals(newDb) && !DB.equals(newDb)) {
+            instance.db = newDb;
+            instance.dataSource.setUrl("jdbc:mysql://" + HOST + "/" + newDb);
+        }
     }
 }

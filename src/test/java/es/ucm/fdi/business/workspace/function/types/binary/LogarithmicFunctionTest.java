@@ -55,8 +55,8 @@ public class LogarithmicFunctionTest {
         ConstantFunction instance1 = new ConstantFunction(6, vars);
         LogarithmicFunction instanceLog = new LogarithmicFunction(instance1, instance2, vars);
         int[] varValues = {14};
-        assertEquals(1.47288593973623, 
+        assertEquals(1.47288593973623,
                 instanceLog.evaluate(new VariablesList(varValues, new String[]{"x"})), 0.1);
     }
-    
+
 }

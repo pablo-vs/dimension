@@ -18,8 +18,8 @@ import es.ucm.fdi.business.workspace.Vertex;
 import java.util.ListIterator;
 
 /**
- * Provides a way of dealing with scale transformations in 3D. Given
- * a certain number it will shrink the graph proportionally.
+ * Provides a way of dealing with scale transformations in 3D. Given a certain
+ * number it will shrink the graph proportionally.
  *
  * @author Brian Leiva, Inmaculada Pérez
  */

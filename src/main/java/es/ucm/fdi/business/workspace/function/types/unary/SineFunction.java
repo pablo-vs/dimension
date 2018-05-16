@@ -41,7 +41,7 @@ public class SineFunction extends UnaryFunction {
     public String toString() {
         return "sin(" + function.toString() + ")";
     }
-    
+
     @Override
     public double evaluate(VariablesList vars) {
         return Math.sin(Math.toRadians(function.evaluate(vars)));

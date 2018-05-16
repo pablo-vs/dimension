@@ -35,7 +35,7 @@ public class FriendshipDTO {
     }
 
     /**
-     * 
+     *
      * @return the first user
      */
     public String getFirstUser() {
@@ -43,7 +43,7 @@ public class FriendshipDTO {
     }
 
     /**
-     * 
+     *
      * @return the secondo user
      */
     public String getSecondUser() {

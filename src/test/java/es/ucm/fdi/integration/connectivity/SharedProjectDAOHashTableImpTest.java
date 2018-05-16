@@ -36,48 +36,48 @@ import static org.junit.Assert.*;
  */
 public class SharedProjectDAOHashTableImpTest {
 
-	@Test
-	public void SharedProjectDAOHashTableTest() {
+    @Test
+    public void SharedProjectDAOHashTableTest() {
 
-		SharedProjectDAOHashTableImp dao = new SharedProjectDAOHashTableImp();
-		ProjectDTO exponencial = new ProjectDTO("exponential");
-		ProjectDTO logaritmica = new ProjectDTO("logaritmica");
-		ProjectDTO trigonometrica = new ProjectDTO("trigonometrica");
-		WorkAS proj = new WorkAS(exponencial);
+        SharedProjectDAOHashTableImp dao = new SharedProjectDAOHashTableImp();
+        ProjectDTO exponencial = new ProjectDTO("exponential");
+        ProjectDTO logaritmica = new ProjectDTO("logaritmica");
+        ProjectDTO trigonometrica = new ProjectDTO("trigonometrica");
+        WorkAS proj = new WorkAS(exponencial);
 
-		SharedProjectDTO shared1 = new SharedProjectDTOOpenProjectImp(
-				"superProyecto", exponencial, "pepe");
-		SharedProjectDTO shared2 = new SharedProjectDTOOpenProjectImp(
-				"megaProyecto", logaritmica, "Maria");
-		SharedProjectDTO shared3 = new SharedProjectDTOOpenProjectImp(
-				"proyectoMediocre", trigonometrica, "Mar");
-		
-		ArrayList<SharedProjectDTO> results1 = new ArrayList<>(), 
-									results2 = new ArrayList<>();
-		
-		results1.add(shared1);
-		results2.add(shared3);
-		results2.add(shared1);
-		results2.add(shared2);
+        SharedProjectDTO shared1 = new SharedProjectDTOOpenProjectImp(
+                "superProyecto", exponencial, "pepe");
+        SharedProjectDTO shared2 = new SharedProjectDTOOpenProjectImp(
+                "megaProyecto", logaritmica, "Maria");
+        SharedProjectDTO shared3 = new SharedProjectDTOOpenProjectImp(
+                "proyectoMediocre", trigonometrica, "Mar");
 
-		dao.addSharedProject(shared1);
-		dao.addSharedProject(shared2);
-		dao.addSharedProject(shared3);
+        ArrayList<SharedProjectDTO> results1 = new ArrayList<>(),
+                results2 = new ArrayList<>();
 
-		assertEquals("Invalid sharedProject search results", results1,
-				dao.findByName("exponential"));
-		assertEquals("The sharedProjects cannot be obtained", results2,
-				dao.getSharedProjects());
+        results1.add(shared1);
+        results2.add(shared3);
+        results2.add(shared1);
+        results2.add(shared2);
 
-		Visualization views = new Visualization();
-		proj.addVisualizationBO(views);
-		dao.modifySharedProject(shared1);
+        dao.addSharedProject(shared1);
+        dao.addSharedProject(shared2);
+        dao.addSharedProject(shared3);
 
-		assertEquals("The sharedProject found is not the expected", shared1,
-				dao.findSharedProject(shared1.getSharedID()));
+        assertEquals("Invalid sharedProject search results", results1,
+                dao.findByName("exponential"));
+        assertEquals("The sharedProjects cannot be obtained", results2,
+                dao.getSharedProjects());
 
-		dao.removeSharedProject(shared1.getSharedID());
-		dao.removeSharedProject(shared2.getSharedID());
-		dao.removeSharedProject(shared3.getSharedID());
-	}
+        Visualization views = new Visualization();
+        proj.addVisualizationBO(views);
+        dao.modifySharedProject(shared1);
+
+        assertEquals("The sharedProject found is not the expected", shared1,
+                dao.findSharedProject(shared1.getSharedID()));
+
+        dao.removeSharedProject(shared1.getSharedID());
+        dao.removeSharedProject(shared2.getSharedID());
+        dao.removeSharedProject(shared3.getSharedID());
+    }
 }

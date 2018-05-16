@@ -90,7 +90,7 @@ public class Graph implements ComponentComposite {
             try {
                 domain.add(new Vertex(tam.length));
             } catch (NoMatchDimensionException e) {
-               // e.printStackTrace();
+                // e.printStackTrace();
             }
         }
         int n = 1;
@@ -145,7 +145,7 @@ public class Graph implements ComponentComposite {
         return dimension;
     }
 
-     /**
+    /**
      * Adds a new ComponentComposite to the Graph object. Typically in Graph
      * this elements will be vertex.
      *

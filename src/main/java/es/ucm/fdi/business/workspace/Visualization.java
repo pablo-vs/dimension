@@ -54,7 +54,7 @@ public class Visualization implements ComponentComposite {
         this.graphsAvailable = new ArrayList<>(graphics);
     }
 
-     /**
+    /**
      * Add a new ComponentComposite to the list of elements that a Visualization
      * object contains. Typically in Visualization the elements added will be
      * graphs.
@@ -66,7 +66,7 @@ public class Visualization implements ComponentComposite {
         graphsAvailable.add(component);
     }
 
-      /**
+    /**
      * Deletes a ComponentComposite that a Visualization object contains.
      * Typically in Visualization this elements will be graphs.
      *
@@ -88,8 +88,8 @@ public class Visualization implements ComponentComposite {
     public void deleteAll() {
         graphsAvailable.removeAll(graphsAvailable);
     }
-    
- /**
+
+    /**
      * Returns an operator over the list of ComponentComposite that a
      * Visualization object contains. Typically in Visualization this elements
      * will be graphs.

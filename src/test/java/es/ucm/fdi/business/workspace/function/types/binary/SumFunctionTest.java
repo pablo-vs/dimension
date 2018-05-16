@@ -55,8 +55,8 @@ public class SumFunctionTest {
                 .parse("2*x", vars), vars);
         SumFunction instanceSum = new SumFunction(instance1, instance2, vars);
         int[] varValues = {6};
-        assertEquals(Math.log10(6.0) + Math.log10(12.0), 
+        assertEquals(Math.log10(6.0) + Math.log10(12.0),
                 instanceSum.evaluate(new VariablesList(varValues, new String[]{"x"})), 0.0);
     }
-    
+
 }

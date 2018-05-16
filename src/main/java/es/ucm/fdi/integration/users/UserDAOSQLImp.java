@@ -19,7 +19,8 @@ import java.sql.SQLException;
 import java.sql.JDBCType;
 
 import java.util.Date;
-import java.time.Period;
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
@@ -39,18 +40,18 @@ import java.util.ArrayList;
  */
 public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
 
-    private static final int REQUIERED_LENGTH = 11;
+    private static final int REQUIERED_LENGTH = 10;
 
     private static final String TABLE = "users";
 
-    private static final String[] COLUMNS = {"id", "name", "passwd", "date", "email", "telephone",
-        "picture", "description", "type", "banTime", "twitter"};
+    private static final String[] COLUMNS = {"id", "name", "password", "date", "email", "telephone",
+        "picture", "description", "type", "banTime"};
 
     private static final JDBCType[] COLUMN_TYPES
             = {JDBCType.VARCHAR, JDBCType.VARCHAR, JDBCType.VARCHAR,
                 JDBCType.DATE, JDBCType.VARCHAR, JDBCType.VARCHAR,
-                JDBCType.VARCHAR, JDBCType.VARCHAR, JDBCType.VARCHAR,
-                JDBCType.TIMESTAMP, JDBCType.VARCHAR};
+                JDBCType.VARCHAR, JDBCType.VARCHAR, JDBCType.INTEGER,
+                JDBCType.TIMESTAMP};
 
     /**
      * Class constructor.
@@ -161,8 +162,7 @@ public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
             data.add(u.getPicture());
             data.add(u.getDescription());
             data.add(u.getType());
-            data.add(u.getBanTime());
-            data.add(twitterAccess);
+            data.add(u.getBanTime() == null ? null : u.getBanTime().toInstant());
 
             return data;
         } catch (IOException e) {
@@ -177,32 +177,24 @@ public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
             throw new IllegalArgumentException("Constructor requires 11 objects, "
                     + data.size() + " given");
         }
-        if (!(data.get(0) instanceof String && data.get(1) instanceof String
-                && data.get(2) instanceof String
-                && data.get(3) instanceof Date && data.get(4) instanceof String
-                && data.get(5) instanceof String && data.get(6) instanceof String
-                && data.get(7) instanceof String && data.get(8) instanceof Integer
-                && data.get(9) instanceof Period && data.get(10) instanceof String)) {
+        if (!(data.get(0) instanceof String && (data.get(1) == null || data.get(1) instanceof String)
+	      && data.get(2) instanceof String
+	      && (data.get(3) == null || data.get(3) instanceof Date)
+	      && (data.get(4) == null || data.get(4) instanceof String)
+	      && (data.get(5) == null || data.get(5) instanceof String)
+	      && (data.get(6) == null || data.get(6) instanceof String)
+	      && (data.get(7) == null || data.get(7) instanceof String)
+	      && data.get(8) instanceof Integer
+	      && (data.get(4) == null || data.get(9) instanceof ZonedDateTime))) {
             throw new IllegalArgumentException("Invalid data type");
         }
 
-        Object token;
-        try {
-            ByteArrayInputStream str = new ByteArrayInputStream(((String) data.get(10)).getBytes("UTF-8"));
-            token = new ObjectInputStream(str).readObject();
-            if (!(token instanceof AccessToken)) {
-                throw new IllegalArgumentException("Could not read access token");
-            }
-        } catch (ClassNotFoundException | IOException e) {
-            throw new IllegalArgumentException("Could not read access token");
-        }
-
-        UserType type = UserType.fromInt((Integer) data.get(8));
+	UserType type = UserType.fromInt((Integer) data.get(8));
 
         return new UserDTO((String) data.get(0), (String) data.get(1),
                 (String) data.get(2), (Date) data.get(3), (String) data.get(4),
                 (String) data.get(5), (String) data.get(6), (String) data.get(7),
-                type, (Period) data.get(9), (AccessToken) token);
+                type, (ZonedDateTime) data.get(9));
     }
 
     @Override

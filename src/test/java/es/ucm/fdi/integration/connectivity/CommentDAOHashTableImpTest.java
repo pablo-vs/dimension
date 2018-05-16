@@ -18,6 +18,7 @@ import org.junit.Test;
 import es.ucm.fdi.business.connectivity.CommentDTO;
 import es.ucm.fdi.integration.connectivity.CommentDAOHashTableImp;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -33,9 +34,9 @@ public class CommentDAOHashTableImpTest {
     @Test
     public void CommentDAOHashTableTest() {
         CommentDAOHashTableImp dao = new CommentDAOHashTableImp();
-        CommentDTO comm1 = new CommentDTO("juan", "superProyecto", "Me gusta tu superProyecto");
-        CommentDTO comm2 = new CommentDTO("maria", "superProyecto", "Me gusta tu superProyecto");
-        CommentDTO comm3 = new CommentDTO("juan", "proyectoMediocre", "No me gusta tu proyectoMediocre");
+        CommentDTO comm1 = new CommentDTO("juan", "superProyecto", "Me gusta tu superProyecto", new Date(18, 5, 17));
+        CommentDTO comm2 = new CommentDTO("maria", "superProyecto", "Me gusta tu superProyecto", new Date(18, 5, 17));
+        CommentDTO comm3 = new CommentDTO("juan", "proyectoMediocre", "No me gusta tu proyectoMediocre", new Date(18, 4, 12));
         ArrayList<CommentDTO> results1 = new ArrayList<>(),
                 results2 = new ArrayList<>(),
                 results3 = new ArrayList<>();

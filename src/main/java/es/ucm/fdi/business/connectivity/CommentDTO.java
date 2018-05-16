@@ -13,6 +13,8 @@
  */
 package es.ucm.fdi.business.connectivity;
 
+import java.sql.Date;
+
 /**
  * Represents a comment in a project.
  *
@@ -24,6 +26,7 @@ public class CommentDTO {
     private final String project;
     private final String text;
     private final String id;
+    private final Date date;
 
     /**
      * Class constructor specifying the project, the author and the comment
@@ -32,15 +35,17 @@ public class CommentDTO {
      * @param author
      * @param proj
      * @param text Text
+     * @param date
      */
-    public CommentDTO(String author, String proj, String text) {
+    public CommentDTO(String author, String proj, String text, Date date) {
         this.author = author;
         this.project = proj;
         this.text = text;
-        id = author + proj + text.hashCode();
+        this.date = date;
+        id = author + proj + text.hashCode() + date.hashCode();
     }
 
-    /**
+	/**
      *
      * @return the author of the comment
      */
@@ -63,6 +68,14 @@ public class CommentDTO {
     public String getText() {
         return text;
     }
+    
+    /**
+    *
+    * @return the comment's date
+    */
+   public Date getDate() {
+       return date;
+   }
 
     /**
      *
@@ -70,6 +83,15 @@ public class CommentDTO {
      */
     public String getId() {
         return id;
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof CommentDTO)) {
+            return false;
+        } else {
+            return id.equals(((CommentDTO) other).getId());
+        }
     }
 
 }

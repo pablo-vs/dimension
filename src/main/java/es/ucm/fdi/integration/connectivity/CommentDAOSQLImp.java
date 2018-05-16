@@ -22,6 +22,7 @@ import java.util.List;
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
 import es.ucm.fdi.integration.data.DAOSQLImp;
 import java.util.ArrayList;
+import java.sql.Date;
 
 /**
  * The SQL implementation for CommentDAO.
@@ -30,19 +31,19 @@ import java.util.ArrayList;
  */
 public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDAO {
 
-    private static final int REQUIRED_LENGTH = 4;
+    private static final int REQUIRED_LENGTH = 5;
 
     private static final String TABLE = "comments";
 
-    private static final String[] COLUMNS = {"id", "author", "project", "text"};
+    private static final String[] COLUMNS = {"id", "author", "project", "text", "date"};
 
     private static final JDBCType[] COLUMN_TYPES = {JDBCType.VARCHAR, JDBCType.VARCHAR,
-        JDBCType.VARCHAR, JDBCType.VARCHAR};
+        JDBCType.VARCHAR, JDBCType.VARCHAR, JDBCType.DATE};
 
     public CommentDAOSQLImp() {
         super(TABLE, COLUMNS, COLUMN_TYPES);
     }
-
+    
     @Override
     public void addComment(CommentDTO comment) throws DAOErrorException {
         try {
@@ -102,16 +103,18 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
     @Override
     public CommentDTO build(List<Object> data) {
         if (data.size() != REQUIRED_LENGTH) {
-            throw new IllegalArgumentException("Constructor requires 4 objects, "
+            throw new IllegalArgumentException("Constructor requires 5 objects, "
                     + data.size() + " given");
         }
         if (!(data.get(0) instanceof String && data.get(1) instanceof String
-                && data.get(2) instanceof String && data.get(3) instanceof String)) {
+                && data.get(2) instanceof String && data.get(3) instanceof String
+                && data.get(4) instanceof Date)) {
             throw new IllegalArgumentException("Invalid data type");
         }
         return new CommentDTO((String) data.get(1),
                 (String) data.get(2),
-                (String) data.get(3));
+                (String) data.get(3),
+                (Date) data.get(4));
     }
 
     @Override
@@ -121,6 +124,7 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
         data.add(c.getAuthor());
         data.add(c.getIDProject());
         data.add(c.getText());
+        data.add(c.getDate());
         return data;
     }
 }

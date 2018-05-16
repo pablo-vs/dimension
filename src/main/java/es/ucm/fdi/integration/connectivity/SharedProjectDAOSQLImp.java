@@ -120,10 +120,10 @@ public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implemen
                     + data.size() + " given");
         }
         if (!(data.get(0) instanceof String && data.get(1) instanceof String
-                && data.get(2) instanceof String && data.get(3) instanceof InputStream)) {
+                && data.get(2) instanceof InputStream)) {
             throw new IllegalArgumentException("Invalid data type");
         }
-        try (ObjectInputStream str = new ObjectInputStream((InputStream) data.get(3))) {
+        try (ObjectInputStream str = new ObjectInputStream((InputStream) data.get(2))) {
             return (SharedProjectDTO) str.readObject();
         } catch (ClassNotFoundException | IOException e) {
             throw new IllegalArgumentException("Could not read project from binary data");

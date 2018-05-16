@@ -52,7 +52,7 @@ public class SineFunction extends UnaryFunction {
         private static final Pattern REGEX = Pattern.compile("sin\\((.*)\\)");
 
         @Override
-        public SineFunction parse(String strParam, VariablesList variables) {
+        public UnaryFunction parse(String strParam, VariablesList variables) {
             SineFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {

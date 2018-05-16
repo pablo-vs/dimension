@@ -52,7 +52,7 @@ public class LnFunction extends UnaryFunction {
         private static final Pattern REGEX = Pattern.compile("ln\\((.*)\\)");
 
         @Override
-        public LnFunction parse(String strParam, VariablesList variables) {
+        public UnaryFunction parse(String strParam, VariablesList variables) {
             LnFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {

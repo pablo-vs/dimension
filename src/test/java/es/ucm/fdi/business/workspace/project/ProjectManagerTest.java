@@ -11,7 +11,7 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.business.workspace;
+package es.ucm.fdi.business.workspace.project;
 
 import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business.workspace.project.ProjectManagerAS;

@@ -63,13 +63,12 @@ public class GraphTest {
 
         System.out.println("Graph generation: generate | getGrid");
         testGraph.generate(functionsList, dom_ini, dom_fin, 2);
-
+        /* Checking the output produced
         Iterator it = testGraph.getCompositeIterator();
-        /* This is way too verbose, is there any need?
-
 	  while (it.hasNext()) {
             System.out.println(it.next());
-	  }*/ 
+	  }
+        */
     }
 
     /**

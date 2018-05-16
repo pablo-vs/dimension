@@ -63,7 +63,7 @@ public class SubstractFunction extends BinaryFunction {
         private static final Pattern REGEX = Pattern.compile(" *- *");
 
         @Override
-        public SubstractFunction parse(String str, VariablesList variables) {
+        public BinaryFunction parse(String str, VariablesList variables) {
             SubstractFunction func = null;
             AbstractFunction[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
             if (funcs[0] != null && funcs[1] != null) {

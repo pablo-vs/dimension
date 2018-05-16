@@ -52,7 +52,7 @@ public class CotangentFunction extends UnaryFunction {
         private static final Pattern REGEX = Pattern.compile("cotan\\((.*)\\)");
 
         @Override
-        public CotangentFunction parse(String strParam, VariablesList variables) {
+        public UnaryFunction parse(String strParam, VariablesList variables) {
             CotangentFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {

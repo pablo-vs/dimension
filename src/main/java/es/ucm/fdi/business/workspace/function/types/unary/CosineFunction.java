@@ -52,7 +52,7 @@ public class CosineFunction extends UnaryFunction {
         private static final Pattern REGEX = Pattern.compile("cos\\((.*)\\)");
 
         @Override
-        public CosineFunction parse(String strParam, VariablesList variables) {
+        public UnaryFunction parse(String strParam, VariablesList variables) {
             CosineFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {

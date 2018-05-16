@@ -65,7 +65,7 @@ public class LogarithmicFunction extends BinaryFunction {
         private static final Pattern REGEX = Pattern.compile(" *log_(\\(.*\\))(\\(.*\\))");
 
         @Override
-        public LogarithmicFunction parse(String strParam, VariablesList variables) {
+        public BinaryFunction parse(String strParam, VariablesList variables) {
             String str = FunctionParserUtils.stripExtraParenthesis(strParam);
             LogarithmicFunction result = null;
             Matcher m = REGEX.matcher(str);

@@ -57,7 +57,7 @@ public class ConstantFunction extends UnaryFunction {
         private static final Pattern E_REGEX = Pattern.compile("e");
 
         @Override
-        public ConstantFunction parse(String strParam, VariablesList variables) {
+        public UnaryFunction parse(String strParam, VariablesList variables) {
             String str = FunctionParserUtils.stripExtraParenthesis(strParam);
             Matcher digitMatcher = REGEX.matcher(str), piMatcher = PI_REGEX.matcher(str),
                     eMatcher = E_REGEX.matcher(str);

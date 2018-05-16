@@ -272,24 +272,46 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         return distanceTo(new Vertex(dim));
     }
 
+    /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @param component
+     */
     @Override
     public void add(ComponentComposite component) {
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
 
+    /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @param component
+     */
     @Override
     public void delete(ComponentComposite component) {
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
 
+    /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     */
     @Override
     public void deleteAll() {
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
 
+    /**
+     * A leaf ComponentComposite cannot contain more objects. This method should
+     * not be implemented by a leaf in composite pattern.
+     *
+     * @return
+     */
     @Override
     public Iterator getCompositeIterator() {
         throw new UnsupportedOperationException("Not supported by leaf component"

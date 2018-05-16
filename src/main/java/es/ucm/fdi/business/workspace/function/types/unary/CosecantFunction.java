@@ -52,7 +52,7 @@ public class CosecantFunction extends UnaryFunction {
         private static final Pattern REGEX = Pattern.compile("cosec\\((.*)\\)");
 
         @Override
-        public CosecantFunction parse(String strParam, VariablesList variables) {
+        public UnaryFunction parse(String strParam, VariablesList variables) {
             CosecantFunction result = null;
             String strArg = UnaryFunction.Parser.parsePattern(strParam, REGEX);
             if (strArg != null) {

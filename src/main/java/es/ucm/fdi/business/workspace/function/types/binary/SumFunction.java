@@ -64,7 +64,7 @@ public class SumFunction extends BinaryFunction {
         private static final Pattern REGEX = Pattern.compile(" *\\+ *");
 
         @Override
-        public SumFunction parse(String str, VariablesList variables) {
+        public BinaryFunction parse(String str, VariablesList variables) {
             SumFunction func = null;
             AbstractFunction[] funcs = BinaryFunction.Parser.parseFunctions(str, variables, REGEX);
             if (funcs[0] != null && funcs[1] != null) {

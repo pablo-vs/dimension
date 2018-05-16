@@ -52,7 +52,7 @@ public class IdentityFunction extends UnaryFunction {
     public static class Parser extends UnaryFunction.Parser {
 
         @Override
-        public IdentityFunction parse(String str, VariablesList variables) {
+        public UnaryFunction parse(String str, VariablesList variables) {
             IdentityFunction f = null;
             for (VariableDTO v : variables.getVariables()) {
                 if (Pattern.matches(" *" + v.getName() + " *", str)) {

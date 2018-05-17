@@ -1,0 +1,1 @@
+keytool error in spanish language: java.util.IllegalFormatConversionException: d != java.lang.String can be fixed when generating new certificates and keystores by forcing java to use English: -J-Duser.language=en

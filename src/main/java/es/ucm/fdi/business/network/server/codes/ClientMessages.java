@@ -9,6 +9,9 @@ public class ClientMessages {
     public final int type;
     public final String msg;
     
+    public String field1;
+    public String field2;
+    
     private ClientMessages(int type){
         this.type = type;
         this.msg = "";
@@ -25,5 +28,6 @@ public class ClientMessages {
     public String getMessage(){
         return msg;
     }
+   
     
 }

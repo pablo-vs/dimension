@@ -98,16 +98,6 @@ public class Server implements Runnable {
         this.PORT = _PORT;
     }
 
-    /**
-     * Method to show messages with the date when they were received. This
-     * method allows the class to change how data is showed.
-     *
-     * @param msg
-     */
-    private void displayMessage(String msg) {
-        System.out.println( "[" + dataTimeFormat.format(new Date()) + "] " + msg);
-    }
-
     private void initializeSSLContext() throws ServerSSLException {
         KeyManager[] keyManagers = null;
         TrustManager[] trustManagers = null;
@@ -151,6 +141,34 @@ public class Server implements Runnable {
         }
     }
 
+    private void initializeServer() {
+
+        // Initializes SSL by setting the certificates location
+        try{
+            initializeSSLContext();
+        } catch(ServerSSLException e){
+            throw new RuntimeException("Cannot configurate SSL context", e);
+        } 
+        // SSL server socket creation
+        try {
+            SSLServerSocketFactory ssf = context.getServerSocketFactory();
+            serverSocket = (SSLServerSocket) ssf.createServerSocket(PORT);
+            serverSocket.setNeedClientAuth(false);
+                      
+        } catch (IOException e) {
+            throw new RuntimeException("Cannot open port " + PORT, e);
+        }
+    }
+
+     /**
+     * Method to show messages with the date when they were received. This
+     * method allows the class to change how data is showed.
+     *
+     * @param msg
+     */
+    private void displayMessage(String msg) {
+        System.out.println( "[" + dataTimeFormat.format(new Date()) + "] " + msg);
+    }
     /**
      *
      * @throws RuntimeException
@@ -218,25 +236,6 @@ public class Server implements Runnable {
             }
 
         });
-    }
-
-    private void initializeServer() {
-
-        // Initializes SSL by setting the certificates location
-        try{
-            initializeSSLContext();
-        } catch(ServerSSLException e){
-            throw new RuntimeException("Cannot configurate SSL context", e);
-        } 
-        // SSL server socket creation
-        try {
-            SSLServerSocketFactory ssf = context.getServerSocketFactory();
-            serverSocket = (SSLServerSocket) ssf.createServerSocket(PORT);
-            serverSocket.setNeedClientAuth(false);
-                      
-        } catch (IOException e) {
-            throw new RuntimeException("Cannot open port " + PORT, e);
-        }
     }
 
     private void clientLogout(ClientThread client) throws IOException{

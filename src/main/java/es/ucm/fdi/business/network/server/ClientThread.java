@@ -17,6 +17,7 @@ import java.net.Socket;
     private final ObjectInputStream  streamInput;
     private final PrintWriter streamOutput;
     private final Server server;
+    
     ClientThread(int id, Socket clientSocket, Server server) throws IOException {
         this.server = server;
         this.id = id;

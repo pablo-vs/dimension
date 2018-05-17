@@ -1,4 +1,5 @@
 /*
+ /*
   This file is part of Dimension.
   Dimension is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,6 +20,9 @@ import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business.workspace.project.ProjectManagerAS;
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import es.ucm.fdi.business.workspace.project.WorkAS;
+import es.ucm.fdi.business.workspace.transformations.ScaleTransformation;
+import es.ucm.fdi.business.workspace.transformations.TransformationStrategy;
+
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 
@@ -28,9 +32,11 @@ import org.junit.Test;
 
 /**
  * JUnit test for WorkAS class.
+ * Añado test para transformVisualization()
  *
  * @see WorkAS
  * @author Javier Galiana
+ * @author Eloy Mósig
  */
 public class WorkASTest {
 
@@ -48,6 +54,8 @@ public class WorkASTest {
         Visualization views = new Visualization();
 
         proj.addVisualizationBO(views);
+        
+        proj.transformVisualization(views, new ScaleTransformation(2, 3, 4));
 
         assertEquals("VisualizationBOs have not been added to the project", true,
                 proj.getProject().getViews().contains(views));

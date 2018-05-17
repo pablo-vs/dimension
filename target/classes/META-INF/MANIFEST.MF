@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: usuario_local
-Build-Jdk: 1.7.0
+Built-By: Usuario
+Build-Jdk: 1.8.0_171
 Created-By: Maven Integration for Eclipse
 

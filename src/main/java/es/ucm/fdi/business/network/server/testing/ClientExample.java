@@ -3,7 +3,9 @@ package es.ucm.fdi.business.network.server.testing;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
+import javax.net.SocketFactory;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 /**
  * Client created for the sake of testing the Server. The client is incomplete 
  * and should not be used as a full-working client.
@@ -13,7 +15,7 @@ public class ClientExample {
 
     private ObjectInputStream sInput;		// to read from the socket
     private ObjectOutputStream sOutput;		// to write on the socket
-    private Socket socket;					// socket object
+    private SSLSocket socket;					// socket object
     private final String server;
     private final String username;	// server and username
     private final int port;
@@ -27,7 +29,8 @@ public class ClientExample {
     public boolean start() {
         // try to connect to the server
         try {
-            socket = new Socket(server, port);
+             SocketFactory socketFactory = SSLSocketFactory.getDefault();
+            socket = (SSLSocket) socketFactory.createSocket(server, port);
         } // exception handler if it failed
         catch (IOException ec) {
             display("Error connectiong to server:" + ec);

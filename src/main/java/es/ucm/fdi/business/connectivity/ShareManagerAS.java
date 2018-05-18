@@ -16,6 +16,7 @@ package es.ucm.fdi.business.connectivity;
 import java.util.List;
 import java.util.ArrayList;
 import java.security.AccessControlException;
+import java.sql.Date;
 
 import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business.workspace.project.ProjectManagerAS;
@@ -148,13 +149,13 @@ public class ShareManagerAS {
      * @param comment
      */
     public void addComment(String projID, SessionDTO session,
-            String comment) {
+            String comment, Date date) {
         SharedProjectDTO project = projectDB.findSharedProject(projID);
         if (project != null) {
             if (userMan.authenticate(session.getUser(), session)) {
                 if (project.hasReadAccess(session.getUser())) {
                     commentDB.addComment(new CommentDTO(session.getUser(),
-                            projID, comment));
+                            projID, comment, date));
                 } else {
                     throw new AccessControlException("User "
                             + session.getUser() + " cannot add a comment in "

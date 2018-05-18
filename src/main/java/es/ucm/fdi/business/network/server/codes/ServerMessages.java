@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,16 +24,19 @@ public class ServerMessages {
 
     public ServerMessages(int type){
         try {
-            FileInputStream fileInput;
-            fileInput = new FileInputStream
-                             (new File("src/main/resources/properties/en.servermessages.properties"));
+            URL resource = ServerMessages.class.getClassLoader()
+                    .getResource("properties/en.servermessages.properties");     
+            File file = new File(resource.toURI());
+            FileInputStream fileInput = new FileInputStream(file);
             properties.load(fileInput);
             fileInput.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ServerMessages.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(ServerMessages.class.getName()).log(Level.SEVERE, null, ex);
-        }     
+        } catch (URISyntaxException ex) {     
+            Logger.getLogger(ServerMessages.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.type = type;
         switch(type){
             case WELCOME:{

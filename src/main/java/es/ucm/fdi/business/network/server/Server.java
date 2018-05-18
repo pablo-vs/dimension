@@ -14,9 +14,13 @@
 package es.ucm.fdi.business.network.server;
 
 import es.ucm.fdi.business.exceptions.network.ServerSSLException;
+import es.ucm.fdi.business.network.server.codes.ServerMessages;
+import java.io.File;
 import java.io.FileInputStream;
 import java.net.Socket;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -27,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -81,6 +87,8 @@ public class Server implements Runnable {
 
     private SSLContext context;
 
+    private static final String PASSWORD_SERVERJKS = "password";
+    private static final String PASSWORD_TRUSTEDJKS = "password";
     /**
      * Server constructor with no parameters. The port used will be the default
      * port 8080
@@ -105,27 +113,33 @@ public class Server implements Runnable {
         //Server key certificates storage access
         try {
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            FileInputStream file = new FileInputStream("src/main/resources/certs/server/serverKey.jks");
-            keyStore.load(file, "servpass".toCharArray());
+             URL resource = Server.class.getClassLoader()
+                    .getResource("certs/server/serverKey.jks");     
+            File serverKeyFile = new File(resource.toURI());
+            FileInputStream fileStream = new FileInputStream(serverKeyFile);
+            keyStore.load(fileStream, PASSWORD_SERVERJKS.toCharArray());
             KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-            kmf.init(keyStore, "servpass".toCharArray());
+            kmf.init(keyStore, PASSWORD_SERVERJKS.toCharArray());
             keyManagers = kmf.getKeyManagers();
         } catch (KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException
-                | UnrecoverableKeyException ex) {
+                | UnrecoverableKeyException | URISyntaxException ex) {
             throw new ServerSSLException("Unexpected exception at server key certificates storage", ex);
-        }
+        } 
 
         // Trusted certificates storage access
         try {
-            KeyStore trustedStore = KeyStore.getInstance(KeyStore.getDefaultType());            
-            FileInputStream file = new FileInputStream("src/main/certs/server/serverTrustedCerts.jks");
-            trustedStore.load(file,"servpass".toCharArray());
+            KeyStore trustedStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            URL resource = Server.class.getClassLoader()
+                    .getResource("certs/server/serverTrustedCerts.jks");     
+            File serverKeyTrustedFile = new File(resource.toURI());
+            FileInputStream fileStream = new FileInputStream(serverKeyTrustedFile);
+            trustedStore.load(fileStream, PASSWORD_TRUSTEDJKS.toCharArray());
             TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
             tmf.init(trustedStore);
             trustManagers = tmf.getTrustManagers();
-        } catch (NoSuchAlgorithmException | KeyStoreException | IOException | CertificateException ex) {
+        } catch (NoSuchAlgorithmException | URISyntaxException | KeyStoreException | IOException | CertificateException ex) {
             throw new ServerSSLException("Unexpected exception at trusted certificates storage", ex);
-        }
+        } 
         
         // Context instantiation
         try {

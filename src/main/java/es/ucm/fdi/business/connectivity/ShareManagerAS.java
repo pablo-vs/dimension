@@ -13,6 +13,7 @@
  */
 package es.ucm.fdi.business.connectivity;
 
+import java.util.Date;	
 import java.util.List;
 import java.util.ArrayList;
 import java.security.AccessControlException;
@@ -154,7 +155,7 @@ public class ShareManagerAS {
             if (userMan.authenticate(session.getUser(), session)) {
                 if (project.hasReadAccess(session.getUser())) {
                     commentDB.addComment(new CommentDTO(session.getUser(),
-                            projID, comment));
+                            projID, comment, new Date()));
                 } else {
                     throw new AccessControlException("User "
                             + session.getUser() + " cannot add a comment in "

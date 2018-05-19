@@ -75,4 +75,12 @@ public abstract class SharedProjectDTO extends ProjectDTO {
         return sharedID;
     }
 
+    @Override
+    public boolean equals(Object other) {
+	if(other instanceof SharedProjectDTO) {
+	    return ((SharedProjectDTO)other).sharedID.equals(sharedID);
+	} else {
+	    return false;
+	}
+    }
 }

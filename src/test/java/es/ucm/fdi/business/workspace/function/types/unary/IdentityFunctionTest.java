@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,7 +33,7 @@ public class IdentityFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        IdentityFunction instance = new IdentityFunction(FunctionParserUtils
+        IdentityFunction instance = new IdentityFunction(FunctionParser
                 .parse("x", vars).toString(), vars);
         assertEquals("x", instance.toString());
     }
@@ -46,7 +46,7 @@ public class IdentityFunctionTest {
         System.out.println("evaluate");
         String[] varNames = {"x"};
         VariablesList vars = new VariablesList(varNames);
-        IdentityFunction instance = new IdentityFunction(FunctionParserUtils
+        IdentityFunction instance = new IdentityFunction(FunctionParser
                 .parse("x", vars).toString(), vars);
         int[] varsValues = {18};
         VariablesList varsEvaluate = new VariablesList(varsValues, varNames);

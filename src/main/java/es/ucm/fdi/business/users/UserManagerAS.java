@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.users;
 
-import java.time.Period;
+import java.time.ZonedDateTime;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -124,8 +124,8 @@ public class UserManagerAS {
      * @param banTime The ban period.
      * @param banNotification The notification which is sent to the user.
      */
-    public void banUser(UserDTO user, SessionDTO session, Period banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
-        if (!banTime.isNegative()) {
+    public void banUser(UserDTO user, SessionDTO session, ZonedDateTime banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
+        if (!banTime.isAfter(ZonedDateTime.now())) {
             if (authenticate(user.getID(), session)) {
                 if (validateAccountDetails(user)) {
                     dao.banUser(user.getID());

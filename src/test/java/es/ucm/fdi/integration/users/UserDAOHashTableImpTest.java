@@ -18,7 +18,8 @@ import es.ucm.fdi.business.users.UserDTO;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.Period;
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -53,8 +54,9 @@ public class UserDAOHashTableImpTest {
         assertEquals("Invalid user search results", user1, dao.findUser("paco"));
         assertEquals("The Users cannot be loaded", results1, dao.getUsers());
 
-        Period newBanTime = Period.between(LocalDate.of(2018, Month.DECEMBER, 9), LocalDate.now());
-        user1.setBanTime(newBanTime);;
+        ZonedDateTime newBanTime = ZonedDateTime.of(2018, 12,
+						    9, 8, 37, 28, 824, ZoneId.of("UTC"));
+        user1.setBanTime(newBanTime);
 
         dao.modifyUser(user1);
 

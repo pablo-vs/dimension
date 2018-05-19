@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.binary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import es.ucm.fdi.business.workspace.function.types.unary.CosineFunction;
 import es.ucm.fdi.business.workspace.function.types.unary.SineFunction;
@@ -35,9 +35,9 @@ public class DivideFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        CosineFunction instance1 = new CosineFunction(FunctionParserUtils
+        CosineFunction instance1 = new CosineFunction(FunctionParser
                 .parse("x", vars), vars);
-        SineFunction instance2 = new SineFunction(FunctionParserUtils
+        SineFunction instance2 = new SineFunction(FunctionParser
                 .parse("2*x", vars), vars);
         DivideFunction instanceDiv = new DivideFunction(instance1, instance2, vars);
         assertEquals("(cos(x)) / (sin((2.0) * (x)))", instanceDiv.toString());
@@ -50,9 +50,9 @@ public class DivideFunctionTest {
     public void testEvaluate() {
         System.out.println("Testing 'evaluate' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        CosineFunction instance1 = new CosineFunction(FunctionParserUtils
+        CosineFunction instance1 = new CosineFunction(FunctionParser
                 .parse("x", vars), vars);
-        SineFunction instance2 = new SineFunction(FunctionParserUtils
+        SineFunction instance2 = new SineFunction(FunctionParser
                 .parse("2*x", vars), vars);
         DivideFunction instanceDiv = new DivideFunction(instance1, instance2, vars);
         int[] varValues = {6};

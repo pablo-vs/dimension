@@ -14,7 +14,7 @@
 package es.ucm.fdi.business.users;
 
 import java.util.Date;
-import java.time.Period;
+import java.time.ZonedDateTime;
 import java.io.Serializable;
 import java.text.ParseException;
 import twitter4j.auth.AccessToken;
@@ -50,7 +50,7 @@ public class UserDTO implements Serializable {
     /**
      * Banned period
      */
-    private Period banTime;
+    private ZonedDateTime banTime;
 
     /**
      * Representing authorized Access Twitter Token which is passed to the
@@ -86,7 +86,7 @@ public class UserDTO implements Serializable {
      */
     public UserDTO(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
-            UserType type, Period banTime, AccessToken twitterAccess) {
+            UserType type, ZonedDateTime banTime) {
         this.ID = ID;
         this.password = password;
         this.name = name;
@@ -97,7 +97,6 @@ public class UserDTO implements Serializable {
         this.description = description;
         this.type = type;
         this.banTime = banTime;
-        this.twitterAccess = twitterAccess;
     }
 
     /**
@@ -120,10 +119,11 @@ public class UserDTO implements Serializable {
      */
     public UserDTO(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
-            UserType type, Period banTime, String twitterAccessToken, String twitterAccessTokenSecret)
+            UserType type, ZonedDateTime banTime, String twitterAccessToken, String twitterAccessTokenSecret)
             throws ParseException {
         this(ID, name, password, date, email, telephone, picture, description, type,
-                banTime, new AccessToken(twitterAccessToken, twitterAccessTokenSecret));
+	     banTime);
+	 twitterAccess = new AccessToken(twitterAccessToken, twitterAccessTokenSecret);
     }
 
     /**
@@ -202,7 +202,7 @@ public class UserDTO implements Serializable {
      *
      * @return the ban period
      */
-    public Period getBanTime() {
+    public ZonedDateTime getBanTime() {
         return banTime;
     }
 
@@ -210,7 +210,7 @@ public class UserDTO implements Serializable {
      *
      * @param newBanTime The new ban period
      */
-    public void setBanTime(Period newBanTime) {
+    public void setBanTime(ZonedDateTime newBanTime) {
         banTime = newBanTime;
     }
 
@@ -237,4 +237,9 @@ public class UserDTO implements Serializable {
         return (null != twitterAccess);
     }
 
+    @Override
+    public boolean equals(Object other) {
+	return (other instanceof UserDTO) && ((UserDTO)other).ID.equals(ID);
+    }
+    
 }

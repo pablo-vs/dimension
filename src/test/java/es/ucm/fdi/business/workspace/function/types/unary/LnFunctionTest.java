@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,7 +33,7 @@ public class LnFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        LnFunction instance = new LnFunction(FunctionParserUtils
+        LnFunction instance = new LnFunction(FunctionParser
                 .parse("e^2", vars), vars);
         System.out.println(instance.toString());
         assertEquals("ln((2.718281828459045) ^ (2.0))", instance.toString());
@@ -46,7 +46,7 @@ public class LnFunctionTest {
     public void testEvaluate() {
         System.out.println("Testing 'evaluate' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        LnFunction instance = new LnFunction(FunctionParserUtils
+        LnFunction instance = new LnFunction(FunctionParser
                 .parse("e^2", vars), vars);
         assertEquals(Math.log(Math.pow(Math.E, 2)), instance.evaluate(vars), 0.1);
     }

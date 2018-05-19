@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.binary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import es.ucm.fdi.business.workspace.function.types.unary.ConstantFunction;
 import es.ucm.fdi.business.workspace.function.types.unary.IdentityFunction;
@@ -36,9 +36,9 @@ public class ExponentialFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        IdentityFunction instance1 = new IdentityFunction(FunctionParserUtils
+        IdentityFunction instance1 = new IdentityFunction(FunctionParser
                 .parse("x", vars).toString(), vars);
-        Log10Function instance2 = new Log10Function(FunctionParserUtils
+        Log10Function instance2 = new Log10Function(FunctionParser
                 .parse("x", vars), vars);
         ExponentialFunction instanceExp = new ExponentialFunction(instance1, instance2, vars);
         assertEquals("(x) ^ (log(x))", instanceExp.toString());
@@ -51,7 +51,7 @@ public class ExponentialFunctionTest {
     public void testEvaluate() {
         System.out.println("Testing 'evaluate' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        IdentityFunction instance2 = new IdentityFunction(FunctionParserUtils
+        IdentityFunction instance2 = new IdentityFunction(FunctionParser
                 .parse("x", vars).toString(), vars);
         ConstantFunction instance1 = new ConstantFunction(Math.E, vars);
         ExponentialFunction instanceExp = new ExponentialFunction(instance1, instance2, vars);

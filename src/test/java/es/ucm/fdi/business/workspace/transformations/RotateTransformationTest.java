@@ -14,7 +14,7 @@
 package es.ucm.fdi.business.workspace.transformations;
 
 import es.ucm.fdi.business.exceptions.NoMatchDimensionException;
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.Graph;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 import es.ucm.fdi.business.workspace.function.AbstractFunction.Parser;
@@ -62,25 +62,42 @@ public class RotateTransformationTest {
         // The function to test is going to be f(x,y,z) = x+y+z
          String[] varNames = {"x", "y", "z"};
         VariablesList vars = new VariablesList(varNames);
-        AbstractFunction function = FunctionParserUtils.parse("x + y + z", vars);
+        AbstractFunction function = FunctionParser.parse("x + y + z", vars);
         System.out.println(function.toString());
         testGraph.add(function);
         testGraph.generate(dom_ini, dom_fin, 2);
         
         System.out.println("Previous:");
         Iterator it = testGraph.getIteratorRange();
-        while(it.hasNext()) {
+         /*
+
+	  THIS IS WAY TOO VERBOSE, IS IT REALLY NECESSARY??
+
+	while(it.hasNext()) {
             System.out.print(it.next() + " ");
         }
         System.out.println();
+
+	*/
         
-        noRotation.apply(testGraph);
-         System.out.println("AfterNoModification:");
+        
+
+	//THIS FAILS
+	noRotation.apply(testGraph);
+
+
+	System.out.println("AfterNoModification:");
         it = testGraph.getIteratorRange();
-        while(it.hasNext()) {
+        /*
+
+	  THIS IS WAY TOO VERBOSE, IS IT REALLY NECESSARY??
+
+	while(it.hasNext()) {
             System.out.print(it.next() + " ");
         }
         System.out.println();
+
+	*/
         
         /*
         rotation.apply(testGraph);

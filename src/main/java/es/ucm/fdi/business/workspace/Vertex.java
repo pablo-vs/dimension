@@ -317,11 +317,10 @@ public class Vertex implements Iterable<Double>, Cloneable, ComponentComposite {
         throw new UnsupportedOperationException("Not supported by leaf component"
                 + " composite objects.");
     }
-    
-       
-     /**
-     * A leaf ComponentComposite cannot contain objects. This method should
-     * not be implemented by a leaf in composite pattern.
+
+    /**
+     * A leaf ComponentComposite cannot contain objects. This method should not
+     * be implemented by a leaf in composite pattern.
      *
      * @return
      */

@@ -16,7 +16,7 @@ package es.ucm.fdi.business.util;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class HashTest {
+public class HashGeneratorTest {
 
     @Test
     public void authenticateTest() {

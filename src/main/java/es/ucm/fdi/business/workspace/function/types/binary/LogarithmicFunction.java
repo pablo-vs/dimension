@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 
 import es.ucm.fdi.business.workspace.function.types.BinaryFunction;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 
 /**
@@ -66,12 +66,12 @@ public class LogarithmicFunction extends BinaryFunction {
 
         @Override
         public BinaryFunction parse(String strParam, VariablesList variables) {
-            String str = FunctionParserUtils.stripExtraParenthesis(strParam);
+            String str = FunctionParser.stripExtraParenthesis(strParam);
             LogarithmicFunction result = null;
             Matcher m = REGEX.matcher(str);
             if (m.matches()) {
-                AbstractFunction f1 = FunctionParserUtils.parse(m.group(1), variables);
-                AbstractFunction f2 = FunctionParserUtils.parse(m.group(2), variables);
+                AbstractFunction f1 = FunctionParser.parse(m.group(1), variables);
+                AbstractFunction f2 = FunctionParser.parse(m.group(2), variables);
                 if (f1 != null && f2 != null) {
                     result = new LogarithmicFunction(f1, f2, variables);
                 }

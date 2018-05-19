@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.binary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import es.ucm.fdi.business.workspace.function.types.unary.Log10Function;
 import org.junit.Test;
@@ -34,9 +34,9 @@ public class SubstractFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        Log10Function instance1 = new Log10Function(FunctionParserUtils
+        Log10Function instance1 = new Log10Function(FunctionParser
                 .parse("x", vars), vars);
-        Log10Function instance2 = new Log10Function(FunctionParserUtils
+        Log10Function instance2 = new Log10Function(FunctionParser
                 .parse("2*x", vars), vars);
         SubstractFunction instanceSub = new SubstractFunction(instance1, instance2, vars);
         assertEquals("(log(x)) - (log((2.0) * (x)))", instanceSub.toString());
@@ -49,9 +49,9 @@ public class SubstractFunctionTest {
     public void testEvaluate() {
         System.out.println("Testing 'evaluate' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        Log10Function instance1 = new Log10Function(FunctionParserUtils
+        Log10Function instance1 = new Log10Function(FunctionParser
                 .parse("x", vars), vars);
-        Log10Function instance2 = new Log10Function(FunctionParserUtils
+        Log10Function instance2 = new Log10Function(FunctionParser
                 .parse("2*x", vars), vars);
         SubstractFunction instanceSub = new SubstractFunction(instance1, instance2, vars);
         int[] varValues = {6};

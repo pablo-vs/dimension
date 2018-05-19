@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.binary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import es.ucm.fdi.business.workspace.function.types.unary.ConstantFunction;
 import es.ucm.fdi.business.workspace.function.types.unary.IdentityFunction;
@@ -37,7 +37,7 @@ public class LogarithmicFunctionTest {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
         ConstantFunction instance1 = new ConstantFunction(3, vars);
-        Log10Function instance2 = new Log10Function(FunctionParserUtils
+        Log10Function instance2 = new Log10Function(FunctionParser
                 .parse("2*x", vars), vars);
         LogarithmicFunction instanceLog = new LogarithmicFunction(instance1, instance2, vars);
         assertEquals("log_(3.0)(log((2.0) * (x)))", instanceLog.toString());
@@ -50,7 +50,7 @@ public class LogarithmicFunctionTest {
     public void testEvaluate() {
         System.out.println("Testing 'evaluate' method...");
         VariablesList vars = new VariablesList(new String[]{"x"});
-        IdentityFunction instance2 = new IdentityFunction(FunctionParserUtils
+        IdentityFunction instance2 = new IdentityFunction(FunctionParser
                 .parse("x", vars).toString(), vars);
         ConstantFunction instance1 = new ConstantFunction(6, vars);
         LogarithmicFunction instanceLog = new LogarithmicFunction(instance1, instance2, vars);

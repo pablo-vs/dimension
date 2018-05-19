@@ -65,21 +65,22 @@ public class WorkAS {
 
     /**
      * Returns a list of the functions in the project.
-     * @return 
+     *
+     * @return
      */
-    public List<AbstractFunction> getFunctions(){
+    public List<AbstractFunction> getFunctions() {
         return project.getFunctions();
     }
-    
+
     /**
      * Returns a list of the visualizations in the project.
-     * @return 
+     *
+     * @return
      */
-    public List<Visualization> getVisualizations(){
+    public List<Visualization> getVisualizations() {
         return project.getViews();
     }
-    
-    
+
     /**
      * Transforms a visualization according to the given transformation.
      *
@@ -89,21 +90,21 @@ public class WorkAS {
     public static void transformVisualization(Visualization view,
             TransformationStrategy transformation) {
         Iterator it = view.getCompositeIterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             transformation.apply((Graph) it.next());
         }
     }
-    
-      /**
+
+    /**
      * Transforms all the views in the project using the given transformation.
      *
      * @param transformation
      */
     public void transformProject(TransformationStrategy transformation) {
         Iterator it = project.getViews().listIterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             transformation.apply((Graph) it.next());
         }
     }
-    
+
 }

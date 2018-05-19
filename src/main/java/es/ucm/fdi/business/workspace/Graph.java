@@ -164,8 +164,8 @@ public class Graph implements ComponentComposite {
     }
 
     /**
-     * Returns an operator over the list of vertexes that a Graph
-     * object contains in its range.
+     * Returns an operator over the list of vertexes that a Graph object
+     * contains in its range.
      *
      * @return listIterator over the elements of the graph
      */
@@ -174,14 +174,13 @@ public class Graph implements ComponentComposite {
     }
 
     /**
-     * Removes all the elements in the range. All vertexes are
-     * deleted.
+     * Removes all the elements in the range. All vertexes are deleted.
      */
     public void cleanRangeList() {
         range.removeAll(range);
     }
 
-     /**
+    /**
      * Adds a new ComponentComposite to the Graph object. Typically in Graph
      * this elements will be vertex.
      *
@@ -192,14 +191,12 @@ public class Graph implements ComponentComposite {
         functionList.add(component);
     }
 
-    
-   /**
+    /**
      * Deletes a ComponentComposite that a Graph object contains. Typically in
      * Graph this elements will be vertex.
      *
      * @param component which will be removed
      */
-
     @Override
     public void delete(ComponentComposite component) {
         if (!functionList.remove(component)) {
@@ -207,6 +204,7 @@ public class Graph implements ComponentComposite {
                     + "the graph was not in the range");
         }
     }
+
     /**
      * Removes all the elements in the range. All ComponentComposites are
      * deleted.
@@ -216,7 +214,7 @@ public class Graph implements ComponentComposite {
         functionList.removeAll(functionList);
     }
 
-        /**
+    /**
      * Returns an operator over the list of ComponentComposite that a Graph
      * object contains. Typically in Graph this elements will be functions.
      *
@@ -226,10 +224,11 @@ public class Graph implements ComponentComposite {
     public Iterator getCompositeIterator() {
         return functionList.listIterator();
     }
-    
-     /**
-     * Returns the element at the given position index. Typically it will be 
-     * a function. 
+
+    /**
+     * Returns the element at the given position index. Typically it will be a
+     * function.
+     *
      * @param index
      * @return
      */

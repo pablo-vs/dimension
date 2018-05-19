@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
-import es.ucm.fdi.business.util.FunctionParserUtils;
+import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,7 +33,7 @@ public class SineFunctionTest {
     public void testToString() {
         System.out.println("Testing 'toString' method...");
         VariablesList vars = new VariablesList(new String[]{"x", "y", "z"});
-        SineFunction instance = new SineFunction(FunctionParserUtils
+        SineFunction instance = new SineFunction(FunctionParser
                 .parse("x + y/4 - 5*z", vars), vars);
         assertEquals("sin((x) + (((y) / (4.0)) - ((5.0) * (z))))", instance.toString());
     }
@@ -46,7 +46,7 @@ public class SineFunctionTest {
         System.out.println("Testing 'evaluate' method...");
         String[] varNames = {"x", "y", "z"};
         VariablesList vars = new VariablesList(varNames);
-        SineFunction instance = new SineFunction(FunctionParserUtils
+        SineFunction instance = new SineFunction(FunctionParser
                 .parse("x + y/4 - 5*z", vars), vars);
         int[] varsValues = {2, 3, 4};
         assertEquals(Math.sin(Math.toRadians(2 + (3 / 4) - 20)),

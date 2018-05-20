@@ -1,4 +1,4 @@
-package es.ucm.fdi.business.network.server.testing;
+package es.ucm.fdi.business.network.testing;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

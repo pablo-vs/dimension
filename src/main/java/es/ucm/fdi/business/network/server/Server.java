@@ -13,8 +13,12 @@
  */
 package es.ucm.fdi.business.network.server;
 
+import es.ucm.fdi.business.connectivity.ShareManagerAS;
 import es.ucm.fdi.business.exceptions.network.ServerSSLException;
-import es.ucm.fdi.business.network.server.codes.ServerMessages;
+import es.ucm.fdi.business.users.UserManagerAS;
+import es.ucm.fdi.business.workspace.project.ProjectDTO;
+import es.ucm.fdi.business.workspace.project.WorkAS;
+import es.ucm.fdi.integration.users.UserDAOSQLImp;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.Socket;
@@ -31,8 +35,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -42,9 +44,24 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
 /**
- * Implementation
+ * Implementation of a <code>Server</code>. A <code>Server</code> is a runnable object
+ * which allows multiple connections from clients. The server listens from each 
+ * clients and multiple operations are allow such as: login, register, logout, 
+ * generate image from function... All of these options are received as a 
+ * package request from a client; each package is processed and then an appropiate protocol
+ * is applied according to the type of request that has been made. The server
+ * keeps a list of all clients that are currently connected to the server. Each
+ * client is managed through each own <code>ClientThread</code>. The sockets
+ * are handled in an SSL context which is created using the appropiated certificates.
+ * The encryption algorithm used for the SSL connections is RSA and its implementation
+ * relies on the <code>SSLSocketServer</code> methods. 
+ * Also, it is remarkable that the idGenerator creates a new id for each new client. Due to
+ * the variable type (int), its range is limitated to the range of an int. What's more,
+ * once the limit is reached the server will start over giving negative id values, and 
+ * if many users are still connected during a long time, id collision could happen. 
+ * This is really unlike though, since the range of connections the project is supposed to
+ * handle does not overcome thousand of connections simultaneously.
  *
- * There is a problem with the idGenerator
  * @author Arturo Acuaviva
  */
 public class Server implements Runnable {
@@ -81,19 +98,42 @@ public class Server implements Runnable {
     private final Map<Integer, ClientThread> clientsListeners = new HashMap<>();
 
     /**
-     *
+     * Factory object to create a SSLServerSocket
      */
     private SSLServerSocketFactory sslServerSocketFactory;
-
+    /**
+     * Context to create a SSL socket from a factory (providing the
+     * certificates)
+     */
     private SSLContext context;
-
+    /**
+     * Password of the serverKey.jks file containing the keys for the server
+     */
     private static final String PASSWORD_SERVERJKS = "password";
+    /**
+     * Password of the serverTrustedCerts.jks file containing the clients
+     * trusted
+     */
     private static final String PASSWORD_TRUSTEDJKS = "password";
+    /**
+     * Application Service for managing users
+     */
+    private UserManagerAS userManager;
+    /**
+     * Application Service for sharing and importing projects
+     */
+    private ShareManagerAS shareManager;
+    /**
+     * Application Service for managing a project
+     */
+    private WorkAS workManager;
+
     /**
      * Server constructor with no parameters. The port used will be the default
      * port 8080
      */
     public Server() {
+        applicationServiceInitialization();
         PORT = 8080;
     }
 
@@ -103,9 +143,30 @@ public class Server implements Runnable {
      * @param _PORT
      */
     public Server(int _PORT) {
+        applicationServiceInitialization();
         this.PORT = _PORT;
     }
 
+    /**
+     * Initializes the Application Service provided. It access to the databases
+     * and initializes the Application Service to be ready to manage them.
+     */
+    private void applicationServiceInitialization() {
+        userManager = UserManagerAS.getManager(new UserDAOSQLImp());
+        // shareManager = ShareManagerAS.getManager(new SharedProjectDAOSQLImp(),
+        //         new AuthorshipDAOSQLImp());
+        workManager = new WorkAS(new ProjectDTO("empty_project"));
+    }
+
+    /**
+     * Initializes the SSL context checking the certificates. It reads the files
+     * with the keys and certificates of the trusted clients and allows the
+     * creation of a context to create SSL sockets (RSA algorithm encryption
+     * used).
+     *
+     * @throws ServerSSLException whenever a certificate is corrupted or cannot
+     * be accessed
+     */
     private void initializeSSLContext() throws ServerSSLException {
         KeyManager[] keyManagers = null;
         TrustManager[] trustManagers = null;
@@ -113,8 +174,8 @@ public class Server implements Runnable {
         //Server key certificates storage access
         try {
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-             URL resource = Server.class.getClassLoader()
-                    .getResource("certs/server/serverKey.jks");     
+            URL resource = Server.class.getClassLoader()
+                    .getResource("certs/server/serverKey.jks");
             File serverKeyFile = new File(resource.toURI());
             FileInputStream fileStream = new FileInputStream(serverKeyFile);
             keyStore.load(fileStream, PASSWORD_SERVERJKS.toCharArray());
@@ -124,13 +185,13 @@ public class Server implements Runnable {
         } catch (KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException
                 | UnrecoverableKeyException | URISyntaxException ex) {
             throw new ServerSSLException("Unexpected exception at server key certificates storage", ex);
-        } 
+        }
 
         // Trusted certificates storage access
         try {
             KeyStore trustedStore = KeyStore.getInstance(KeyStore.getDefaultType());
             URL resource = Server.class.getClassLoader()
-                    .getResource("certs/server/serverTrustedCerts.jks");     
+                    .getResource("certs/server/serverTrustedCerts.jks");
             File serverKeyTrustedFile = new File(resource.toURI());
             FileInputStream fileStream = new FileInputStream(serverKeyTrustedFile);
             trustedStore.load(fileStream, PASSWORD_TRUSTEDJKS.toCharArray());
@@ -139,8 +200,8 @@ public class Server implements Runnable {
             trustManagers = tmf.getTrustManagers();
         } catch (NoSuchAlgorithmException | URISyntaxException | KeyStoreException | IOException | CertificateException ex) {
             throw new ServerSSLException("Unexpected exception at trusted certificates storage", ex);
-        } 
-        
+        }
+
         // Context instantiation
         try {
             context = SSLContext.getInstance("TLS");
@@ -155,34 +216,40 @@ public class Server implements Runnable {
         }
     }
 
+    /**
+     * Initializes the server. It creates a context to generate a new server
+     * socket. Once created the main server socket the server will be start
+     * listening from the port indicated.
+     */
     private void initializeServer() {
 
         // Initializes SSL by setting the certificates location
-        try{
+        try {
             initializeSSLContext();
-        } catch(ServerSSLException e){
+        } catch (ServerSSLException e) {
             throw new RuntimeException("Cannot configurate SSL context", e);
-        } 
+        }
         // SSL server socket creation
         try {
             SSLServerSocketFactory ssf = context.getServerSocketFactory();
             serverSocket = (SSLServerSocket) ssf.createServerSocket(PORT);
             serverSocket.setNeedClientAuth(false);
-                      
+
         } catch (IOException e) {
             throw new RuntimeException("Cannot open port " + PORT, e);
         }
     }
 
-     /**
+    /**
      * Method to show messages with the date when they were received. This
-     * method allows the class to change how data is showed.
+     * method allows the class to change how data is portrayed.
      *
      * @param msg
      */
     private void displayMessage(String msg) {
-        System.out.println( "[" + dataTimeFormat.format(new Date()) + "] " + msg);
+        System.out.println("[" + dataTimeFormat.format(new Date()) + "] " + msg);
     }
+
     /**
      *
      * @throws RuntimeException
@@ -194,9 +261,9 @@ public class Server implements Runnable {
         }
         // Starts listening at the port given
         initializeServer();
-        
-         displayMessage("Server starts running!");
-         
+
+        displayMessage("Server starts running!");
+
         // Main loop, while not stop
         while (!stopsRunning) {
             // Creates and tries to accept a new client
@@ -223,16 +290,20 @@ public class Server implements Runnable {
             } catch (IOException e) {
                 clientsListeners.remove(idGenerator);
                 throw new RuntimeException("Error at client creation, client id: "
-                       + idGenerator, e);
+                        + idGenerator, e);
             }
             idGenerator++;
         }
     }
 
+    /**
+     * Stops the execution of the server. This method closes the server socket
+     * and prevents from listening from more clients. It also closes each client
+     * socket opened for listening.
+     */
     public synchronized void stop() {
         // stops main loop
         stopsRunning = true;
-        
         // Closing the server socket
         try {
             this.serverSocket.close();
@@ -240,7 +311,7 @@ public class Server implements Runnable {
         } catch (IOException e) {
             throw new RuntimeException("Error while closing server", e);
         }
-        
+
         // Closing streams opened by clients
         clientsListeners.values().forEach((ClientThread client) -> {
             try {
@@ -252,21 +323,18 @@ public class Server implements Runnable {
         });
     }
 
-    private void clientLogout(ClientThread client) throws IOException{
+    /**
+     * Provides a way of registering a logging out from a client. A client
+     * could call this method by indicating its thread and therefore it will
+     * be removed from the list of listening clients. 
+     * @param client to be removed
+     * @throws IOException thrown whenever closing sockets connection fails
+     */
+    protected void clientLogout(ClientThread client) throws IOException {
         // remove from the client list
-        clientsListeners.remove(client.getID()); 
+        clientsListeners.remove(client.getID());
         // closing client sockets and streams
         client.close();
     }
-    
 
-
-    
-    
-    
-    
-    
-    
-    
-    
 }

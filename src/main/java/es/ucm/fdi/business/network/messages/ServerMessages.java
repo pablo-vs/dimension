@@ -1,17 +1,31 @@
-package es.ucm.fdi.business.network.server.codes;
+/*
+  This file is part of Dimension.
+  Dimension is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Dimension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package es.ucm.fdi.business.network.messages;
 
+import es.ucm.fdi.business.exceptions.network.PackagesDefaultMessagesException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+/**
+ * 
+ * @author Arturo Acuaviva 
+ */
 public class ServerMessages {
-    
     
     public static final int WELCOME = 0;
     public static final int LOG_IN = 1;
@@ -22,7 +36,7 @@ public class ServerMessages {
     private final String msg;
     private Properties properties = new Properties();
 
-    public ServerMessages(int type){
+    public ServerMessages(int type) throws PackagesDefaultMessagesException{
         try {
             URL resource = ServerMessages.class.getClassLoader()
                     .getResource("properties/en.servermessages.properties");     
@@ -30,12 +44,9 @@ public class ServerMessages {
             FileInputStream fileInput = new FileInputStream(file);
             properties.load(fileInput);
             fileInput.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ServerMessages.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ServerMessages.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {     
-            Logger.getLogger(ServerMessages.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | URISyntaxException ex) {
+            throw new PackagesDefaultMessagesException(
+                    "Error while loading server message type:" + type ,ex);
         }
         this.type = type;
         switch(type){

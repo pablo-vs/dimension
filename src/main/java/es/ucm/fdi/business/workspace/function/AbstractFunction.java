@@ -13,7 +13,10 @@
  */
 package es.ucm.fdi.business.workspace.function;
 
-import es.ucm.fdi.business.workspace.ComponentComposite;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+
+import es.ucm.fdi.business.workspace.ComponentComposite;	
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import java.util.Iterator;
 
@@ -40,6 +43,7 @@ public abstract class AbstractFunction implements ComponentComposite {
      *
      * @return The variables list.
      */
+    @XmlElement
     public VariablesList getVariables() {
         return this.variables;
     }

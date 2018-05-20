@@ -45,10 +45,10 @@ public class ProjectManagerASTest {
      */
     @Before
     public void setUp() {
-        newProject = new ProjectDAOHashTableImp();
+        newProject = new ProjectDAOHashTableImp("pepe");
         newProject.addProject(new ProjectDTO("prj1"));
         newProject.addProject(new ProjectDTO("prj2"));
-        manager = ProjectManagerAS.getManager(newProject);
+        manager = new ProjectManagerAS(newProject, "pepe");
     }
 
     /**
@@ -140,8 +140,7 @@ public class ProjectManagerASTest {
      */
     @Test
     public void projectManagementTest() {
-        ProjectManagerAS projectMgr = ProjectManagerAS
-                .getManager(new ProjectDAOHashTableImp());
+        ProjectManagerAS projectMgr = new ProjectManagerAS(new ProjectDAOHashTableImp("pepe"), "pepe");
         ProjectDTO polinomios = new ProjectDTO("polinomios43");
         ProjectDTO raices = new ProjectDTO("ra|||");
         projectMgr.newProject(polinomios);

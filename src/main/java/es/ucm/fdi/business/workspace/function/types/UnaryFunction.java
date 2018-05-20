@@ -13,7 +13,9 @@
  */
 package es.ucm.fdi.business.workspace.function.types;
 
-import java.util.regex.Pattern;
+import javax.xml.bind.annotation.XmlElement;
+
+import java.util.regex.Pattern;	
 import java.util.regex.Matcher;
 
 import es.ucm.fdi.business.util.FunctionParser;
@@ -26,6 +28,7 @@ import java.util.Iterator;
  */
 public abstract class UnaryFunction extends AbstractFunction {
 
+	@XmlElement
     protected AbstractFunction function;
 
     /**
@@ -48,6 +51,7 @@ public abstract class UnaryFunction extends AbstractFunction {
         this.variables = vars;
     }
 
+    
     public static abstract class Parser extends AbstractFunction.Parser {
 
         @Override

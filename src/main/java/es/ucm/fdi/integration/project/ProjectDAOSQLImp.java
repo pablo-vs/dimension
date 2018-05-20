@@ -6,9 +6,14 @@ package es.ucm.fdi.integration.project;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;	
+import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.sql.JDBCType;
 import java.sql.SQLException;
@@ -30,9 +35,11 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
 	private static final JDBCType [] COLUMN_TYPES = {JDBCType.VARCHAR, JDBCType.VARCHAR,
 		JDBCType.VARCHAR, JDBCType.VARCHAR};
 	private static final int REQUIRED_LENGTH = 4;
+	private final String user;
 	
-	public ProjectDAOSQLImp() {
+	public ProjectDAOSQLImp(String user) {
 		super(TABLE, COLUMNS, COLUMN_TYPES);
+		this.user = user + ":";
 	}
 	
 	/**
@@ -41,7 +48,7 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
      * @param project The new project as a ProjectDTO.
      */
     @Override
-    public void addProject(ProjectDTO project, String user) throws DAOErrorException {
+    public void addProject(ProjectDTO project) throws DAOErrorException {
         try {
             addRecord(project);
         } catch (SQLException e) {
@@ -58,7 +65,7 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
     @Override
     public void removeProject(String id) {
         try {
-            deleteRecord(id);
+            deleteRecord(nameToID(id));
         } catch (SQLException e) {
             throw new DAOErrorException("Error while removing project " + id
                     + ".\n" + e.getMessage(), e);
@@ -91,7 +98,7 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
         ProjectDTO result = null;
         List<ProjectDTO> find;
         try {
-            find = findByValue(0, id);
+            find = findByValue(0, nameToID(id));
         } catch (SQLException e) {
             throw new DAOErrorException("Error while finding project " + id
                     + ".\n" + e.getMessage(), e);
@@ -123,46 +130,47 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
     public List<Object> getData(ProjectDTO proj) {
         try {
             List<Object> data = new ArrayList<>();
-            data.add(proj.getID() + proj.get());
-            data.add(proj.getID());
+            ByteArrayOutputStream str = new ByteArrayOutputStream();
+            JAXBContext.newInstance().createMarshaller().marshal(proj, str);
             
-            data.add(proj.getPassword());
-            data.add(proj.getDate());
-            data.add(proj.getEmail());
-            data.add(proj.getTelephone());
-            data.add(proj.getPicture());
-            data.add(proj.getDescription());
-            data.add(proj.getType());
-            data.add(proj.getBanTime() == null ? null : u.getBanTime().toInstant());
+            data.add(nameToID(proj.getID()));
+            data.add(user);
+            data.add(proj.getID());
+            data.add(str.toByteArray());
+            
 
             return data;
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Could not serialize AccessToken for project "
-                    + u.getID());
+        } catch (JAXBException e) {
+            throw new DAOErrorException("Could not marshall project.\n" + e.getMessage(), e);
         }
     }
 
     @Override
     public ProjectDTO build(List<Object> data) {
         if (data.size() != REQUIRED_LENGTH) {
-            throw new IllegalArgumentException("Constructor requires 11 objects, "
+            throw new IllegalArgumentException("Constructor requires 4 objects, "
                     + data.size() + " given");
         }
         if (!(data.get(0) instanceof String && (data.get(1) == null || data.get(1) instanceof String)
-	      && data.get(2) instanceof String
-	      && (data.get(3) == null || data.get(3) instanceof Date)
-	      && (data.get(4) == null || data.get(4) instanceof String)
-	      && (data.get(5) == null || data.get(5) instanceof String)
-	      && (data.get(6) == null || data.get(6) instanceof String)
-	      && (data.get(7) == null || data.get(7) instanceof String)
-	      && data.get(8) instanceof Integer
-	      && (data.get(4) == null || data.get(9) instanceof ZonedDateTime))) {
+	      && data.get(2) instanceof String && data.get(3) instanceof InputStream)) {
             throw new IllegalArgumentException("Invalid data type");
         }
-
-	projectType type = projectType.fromInt((Integer) data.get(8));
-
-        return new ProjectDTO();
+        
+        try {
+			return (ProjectDTO) JAXBContext.newInstance().createUnmarshaller().unmarshal((InputStream)data.get(3));
+		} catch (JAXBException e) {
+			throw new DAOErrorException("Could not unmarshal project.\n" + e.getMessage(), e);
+		}
     }
+    
+    private String nameToID(String name) {
+    	return user+"/"+name;
+    }
+
+	@Override
+	public boolean containsProject(String id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

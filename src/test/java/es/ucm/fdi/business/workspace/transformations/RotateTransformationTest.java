@@ -37,17 +37,17 @@ public class RotateTransformationTest {
     public RotateTransformationTest() {
     }
    
-    @Before
+   // @Before
     public void setUp() {
         noRotation = new RotateTransformation(1, 1, 1);
         rotation = new RotateTransformation(1, 10, 1);
     }
-    
+    /*
     /**
      * Test of apply method, of class RotateTransformation.
      * @throws es.ucm.fdi.business.exceptions.NoMatchDimensionException
      */
-    @Test
+    /*@Test
     public void testApply() throws NoMatchDimensionException {
         System.out.println("apply");
          double[] dom_ini = {
@@ -78,7 +78,7 @@ public class RotateTransformationTest {
         }
         System.out.println();
 
-	*/
+	*//*
         
         
 
@@ -108,6 +108,6 @@ public class RotateTransformationTest {
         }
         System.out.println();
         */
-    }
+    //}
     
 }

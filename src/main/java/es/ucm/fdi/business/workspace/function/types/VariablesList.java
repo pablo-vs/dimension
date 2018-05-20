@@ -13,6 +13,8 @@
  */
 package es.ucm.fdi.business.workspace.function.types;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.TreeMap;
 import java.util.Collection;
 import java.util.Iterator;
@@ -22,10 +24,16 @@ import java.util.Iterator;
  *
  * @author Javier Navalón, Inmaculada Pérez, Pablo Villalobos
  */
+@XmlRootElement
 public class VariablesList {
 
+	@XmlElement
     private TreeMap<String, VariableDTO> varsMap;
 
+	public VariablesList() {
+		this(1);
+	}
+	
     /**
      * Class constructor specifying another list of variables.
      *

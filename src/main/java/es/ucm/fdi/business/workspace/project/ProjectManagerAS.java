@@ -14,6 +14,7 @@
 package es.ucm.fdi.business.workspace.project;
 
 import es.ucm.fdi.integration.project.ProjectDAO;
+import es.ucm.fdi.integration.project.ProjectDAOSQLImp;
 
 /**
  * Application service to manage the traffic of projects.
@@ -22,17 +23,27 @@ import es.ucm.fdi.integration.project.ProjectDAO;
  */
 public class ProjectManagerAS {
 
-    // Singleton pattern
-    private static ProjectManagerAS instance;
+
     private final ProjectDAO dao;
+    private final String user;
 
     /**
-     * Class constructor specifying DAO project.
+     * Class constructor specifying DAO project and user.
      *
      * @param dao
      */
-    private ProjectManagerAS(ProjectDAO dao) {
+    public ProjectManagerAS(ProjectDAO dao, String user) {
         this.dao = dao;
+        this.user = user;
+    }
+    
+    /**
+     * Class constructor specifying user (default DAO SQL).
+     *
+     * @param dao
+     */
+    public ProjectManagerAS(String user) {
+        this(new ProjectDAOSQLImp(user), user);
     }
 
     /**
@@ -41,20 +52,6 @@ public class ProjectManagerAS {
      */
     public ProjectDAO getDao() {
         return dao;
-    }
-
-    /**
-     * Get the current manager or create a new one if it does not exist, using
-     * the given database.
-     *
-     * @param dao The ProjectDAO to use.
-     * @return The Project Manager.
-     */
-    public static ProjectManagerAS getManager(ProjectDAO dao) {
-        if (instance == null) {
-            instance = new ProjectManagerAS(dao);
-        }
-        return instance;
     }
 
     /**

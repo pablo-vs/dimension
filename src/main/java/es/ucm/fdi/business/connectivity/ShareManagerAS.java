@@ -38,8 +38,6 @@ public class ShareManagerAS {
     // Singleton pattern
 
     private static ShareManagerAS instance;
-    private final ProjectManagerAS localProjMan = ProjectManagerAS
-            .getManager(new ProjectDAOHashTableImp());
     private final UserManagerAS userMan = UserManagerAS
             .getManager(new UserDAOHashTableImp());
     private final SharedProjectDAO projectDB;
@@ -175,12 +173,12 @@ public class ShareManagerAS {
      * @param proj The project to import.
      * @param session The session to validate this operation.
      */
-    public void importProject(SharedProjectDTO proj, SessionDTO session)
+    public void importProject(SharedProjectDTO proj, SessionDTO session, ProjectManagerAS projMan)
             throws NotFoundException, AccessControlException {
 
         if (userMan.authenticate(session.getUser(), session)) {
             if (proj.hasReadAccess(session.getUser())) {
-                localProjMan.newProject(new ProjectDTO(proj));
+                projMan.newProject(new ProjectDTO(proj));
             } else {
                 throw new AccessControlException("User " + session.getUser()
                         + " cannot modify " + proj.getID());

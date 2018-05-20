@@ -13,6 +13,9 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -25,10 +28,16 @@ import es.ucm.fdi.business.util.FunctionParser;
  *
  * @author Javier Navalón
  */
+@XmlRootElement
 public class ConstantFunction extends UnaryFunction {
 
+	@XmlElement
     private final double num;
 
+	public ConstantFunction() {
+		this(0, new VariablesList());
+	}
+	
     /**
      * Class constructor specifying number and variables list.
      *

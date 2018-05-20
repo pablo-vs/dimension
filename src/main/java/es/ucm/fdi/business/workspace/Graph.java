@@ -13,7 +13,10 @@
  */
 package es.ucm.fdi.business.workspace;
 
-import es.ucm.fdi.business.exceptions.NoMatchDimensionException;
+import javax.xml.bind.annotation.XmlRootElement;	
+import javax.xml.bind.annotation.XmlElement;
+
+import es.ucm.fdi.business.exceptions.NoMatchDimensionException;	
 import es.ucm.fdi.business.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,43 +32,54 @@ import java.util.ListIterator;
  * @author Brian Leiva
  * @author Eloy Mósig
  */
-public class Graph implements ComponentComposite {
+@XmlRootElement
+public class Graph/* implements ComponentComposite*/ {
 
     /**
      *
      * Int value representing the dimension of the object depicted by the graph.
      */
+	@XmlElement
     private final int dimension;
 
     /**
      * List of {@link es.ucm.fdi.workspace Vertex} containing the vertex in the
      * domain.
      */
+	@XmlElement
     private final List<Vertex> domain = new ArrayList<>();
 
     /**
      * List of {@link es.ucm.fdi.workspace Vertex} containing the vertex in the
      * range.
      */
+	@XmlElement
     private final List<Vertex> range = new ArrayList<>();
 
     /**
      * List of {@link es.ucm.fdi.workspace ComponentComposite} containing the
      * functions.
      */
-    private final List<ComponentComposite> functionList = new ArrayList<>();
+	@XmlElement
+    private final List</*ComponentComposite*/AbstractFunction> functionList = new ArrayList<>();
 
     /**
      * Tree map with domain values.
      */
+	@XmlElement
     private final MultiTreeMap<Integer, Integer> object
             = new MultiTreeMap<>((a, b) -> a - b);
     /**
      * Resolution of the graph, it indicates the factor used to calculate the
      * length of the
      */
+	@XmlElement
     private int resolution;
 
+	public Graph() {
+		this(3);
+	}
+	
     /**
      * Class constructor specifying the dimension of the graph.
      *
@@ -159,7 +173,7 @@ public class Graph implements ComponentComposite {
      *
      * @param component which will be added
      */
-    private void addRange(Vertex component) {
+    public void addRange(Vertex component) {
         range.add(component);
     }
 
@@ -186,7 +200,10 @@ public class Graph implements ComponentComposite {
      *
      * @param component which will be added
      */
-    @Override
+    public void add(AbstractFunction func) {
+        functionList.add(func);
+    }
+   /* @Override
     public void add(ComponentComposite component) {
         functionList.add(component);
     }
@@ -197,7 +214,7 @@ public class Graph implements ComponentComposite {
      *
      * @param component which will be removed
      */
-    @Override
+   /* @Override
     public void delete(ComponentComposite component) {
         if (!functionList.remove(component)) {
             throw new IllegalArgumentException("The component to be removed in "
@@ -209,7 +226,7 @@ public class Graph implements ComponentComposite {
      * Removes all the elements in the range. All ComponentComposites are
      * deleted.
      */
-    @Override
+   /* @Override
     public void deleteAll() {
         functionList.removeAll(functionList);
     }
@@ -220,7 +237,7 @@ public class Graph implements ComponentComposite {
      *
      * @return listIterator over the elements of the graph
      */
-    @Override
+  /*  @Override
     public Iterator getCompositeIterator() {
         return functionList.listIterator();
     }
@@ -232,8 +249,8 @@ public class Graph implements ComponentComposite {
      * @param index
      * @return
      */
-    @Override
+  /*  @Override
     public ComponentComposite elementAt(int index) {
         return functionList.get(index);
-    }
+    }*/
 }

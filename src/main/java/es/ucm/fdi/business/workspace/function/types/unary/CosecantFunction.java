@@ -13,6 +13,8 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.regex.Pattern;
 
 import es.ucm.fdi.business.workspace.function.types.UnaryFunction;
@@ -25,8 +27,13 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  *
  * @author Inmaculada Pérez
  */
+@XmlRootElement
 public class CosecantFunction extends UnaryFunction {
 
+	public CosecantFunction() {
+		this(new ConstantFunction(), new VariablesList());
+	}
+	
     /**
      * Class constructor specifying functionBO and variables list.
      *

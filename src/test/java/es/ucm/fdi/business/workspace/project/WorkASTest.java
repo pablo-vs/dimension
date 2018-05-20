@@ -38,7 +38,7 @@ public class WorkASTest {
     public void workASTest() {
 
         ProjectDTO exponencial = new ProjectDTO("exponentialex");
-        ProjectManagerAS projMan = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
+        ProjectManagerAS projMan = new ProjectManagerAS(new ProjectDAOHashTableImp("pepe"), "pepe");
         WorkAS proj = new WorkAS(exponencial);
 
         List<Graph> g = new ArrayList<>();

@@ -21,14 +21,10 @@ import java.util.*;
  * Values for the same key will be returned and traversed in order of insertion;
  * that is, newer values with the same key will be stored after any other values
  * with the same key.
- *
- * @param <K> key
- * @param <V> value
  */
 public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
 
-    public MultiTreeMap() {
-    }
+    public MultiTreeMap() {}
 
     public MultiTreeMap(Comparator<K> comparator) {
         super(comparator);
@@ -36,28 +32,26 @@ public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
 
     /**
      * Adds a value at the end of the list of values for the specified key.
-     *
      * @param key to add the value under
      * @param value to add
      */
     public void putValue(K key, V value) {
-        if (!containsKey(key)) {
+        if ( ! containsKey(key)) {
             put(key, new ArrayList<>());
         }
         get(key).add(value);
     }
 
     /**
-     * Removes the first occurrence of a value from the list found at a given
-     * key. Efficiency is O(size-of-that-list)
-     *
+     * Removes the first occurrence of a value from the list found at
+     * a given key. Efficiency is O(size-of-that-list)
      * @param key to look into
      * @param value within the list found at that key to remove. The first
-     * element that is equals to this one will be removed.
+     *              element that is equals to this one will be removed.
      * @return true if removed, false if not found
      */
     public boolean removeValue(K key, V value) {
-        if (!containsKey(key)) {
+        if ( ! containsKey(key)) {
             return false;
         }
         ArrayList<V> bucket = get(key);
@@ -70,8 +64,6 @@ public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
 
     /**
      * Returns the total number of values stored in this multimap
-     *
-     * @return size of values
      */
     public int sizeOfValues() {
         int total = 0;
@@ -82,17 +74,16 @@ public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
     }
 
     /**
-     * Returns the values as a read-only list. Changes to this structure will be
-     * immediately reflected in the list.
-     *
-     * @return values list
+     * Returns the values as a read-only list. Changes to this structure
+     * will be immediately reflected in the list.
      */
     public List<V> valuesList() {
         return new InnerList();
     }
 
     /**
-     * A logical, read-only list containing all elements in correct order.
+     * A logical, read-only list containing all elements in
+     * correct order.
      */
     private class InnerList extends AbstractList<V> {
 
@@ -108,7 +99,7 @@ public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
             ArrayList<V> current = it.next(); // not empty, therefore hasNext()
             int start = 0;
 
-            while (index >= (start + current.size())) {
+            while (index >= (start+current.size())) {
                 if (!it.hasNext()) {
                     throw new IndexOutOfBoundsException(
                             "Index " + index + " is out of bounds");
@@ -127,8 +118,9 @@ public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
     }
 
     /**
-     * Iterates through all internal values (not the arraylists themselves),
-     * first by key order, and within each bucket, by insertion order.
+     * Iterates through all internal values
+     * (not the arraylists themselves), first by key order,
+     * and within each bucket, by insertion order.
      */
     private class InnerIterator implements Iterator<V> {
 
@@ -143,7 +135,7 @@ public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
         }
 
         private void advance() {
-            if (valueIterator == null || !valueIterator.hasNext()) {
+            if (valueIterator == null || ! valueIterator.hasNext()) {
                 if (arrayIterator.hasNext()) {
                     valueIterator = arrayIterator.next().iterator();
                     if (valueIterator.hasNext()) {
@@ -172,7 +164,6 @@ public class MultiTreeMap<K, V> extends TreeMap<K, ArrayList<V>> {
 
     /**
      * Allows iteration by base values.
-     *
      * @return iterable values, ordered by key and then by order-of-insertion
      */
     public Iterable<V> innerValues() {

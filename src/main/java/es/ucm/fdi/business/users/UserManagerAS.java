@@ -18,12 +18,14 @@ import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.security.AccessControlException;
+import java.sql.Date;
 
 import es.ucm.fdi.business.util.HashGenerator;
 import es.ucm.fdi.business.connectivity.CommentDTO;
 import es.ucm.fdi.integration.connectivity.CommentDAO;
 import es.ucm.fdi.business.exceptions.DuplicatedIDException;
 import es.ucm.fdi.business.exceptions.NotFoundException;
+import es.ucm.fdi.integration.users.NotificationDAO;
 import es.ucm.fdi.integration.users.UserDAO;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -141,15 +143,16 @@ public class UserManagerAS {
     /**
      * Sends a notification to a user. This requires an active session.
      *
+     * @param notifications Notifications data access object.
      * @param user The new account details.
      * @param session The session from which to perform the action.
      * @param notification The notification which is sent to the user.
+     * @param date The date when the notification is sent.
      */
-    public void notifyUser(UserDTO user, SessionDTO session, String notification) throws AccessControlException, IllegalArgumentException {
+    public void notifyUser(NotificationDAO notifications, UserDTO user, SessionDTO session, String notification, Date date) throws AccessControlException, IllegalArgumentException {
         if (authenticate(user.getID(), session)) {
             if (validateAccountDetails(user)) {
-                //user.getNotifications().add(notification);
-                dao.modifyUser(user);
+            	notifications.addNotification(new NotificationDTO(user.getID(), notification, date));
             }
         } else {
             throw new AccessControlException("Invalid session");

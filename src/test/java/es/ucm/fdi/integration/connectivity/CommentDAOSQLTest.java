@@ -40,12 +40,7 @@ public class CommentDAOSQLTest {
       results2.add(comment1);
       results2.add(comment2);
       results2.add(comment3);
-
-      dao.removeComment(comment1);
-      dao.removeComment(comment2);
-      dao.removeComment(comment3);
-      dao.removeComment(comment4);
-
+      
       dao.addComment(comment1);
       dao.addComment(comment2);
       dao.addComment(comment3);

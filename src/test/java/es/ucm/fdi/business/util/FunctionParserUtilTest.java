@@ -29,7 +29,7 @@ public class FunctionParserUtilTest {
 	        System.out.println("First test, evaluating functions at x = " + value);
 	        for (int i = 0; i < fs.length; ++i) {
 	            String aux = fs[i];
-	            AbstractFunction f = FunctionParserUtils.parse(aux, vars);
+	            AbstractFunction f = FunctionParser.parse(aux, vars);
 	            vars.setVariable("x", value);
 	            System.out.println("Input: " + fs[i] + " | Parsed function: " + f
 	                    + " | Result = " + f.evaluate(vars));
@@ -39,7 +39,7 @@ public class FunctionParserUtilTest {
 	                + " , y = " + value2 + ", z = " + value3);
 	        for (int i = 0; i < fs_vv.length; ++i) {
 	            String aux = fs_vv[i];
-	            AbstractFunction f = FunctionParserUtils.parse(aux, vars2);
+	            AbstractFunction f = FunctionParser.parse(aux, vars2);
 	            vars2.setVariable("x", value);
 	            vars2.setVariable("y", value2);
 	            vars2.setVariable("z", value3);
@@ -62,7 +62,7 @@ public class FunctionParserUtilTest {
 	     System.out.println(sb.toString());
 	     for(int i = 0; i < fs.length; ++i){
 	    	 String aux = fs[i];
-             AbstractFunction f = FunctionParserUtils.parse(aux, vars);
+             AbstractFunction f = FunctionParser.parse(aux, vars);
              vars.setVariable("x", value);
              StringBuilder check = new StringBuilder("Input: ");
              check.append(fs[i]).append(" | Parsed function: ").append(f).append(" | Result = ")

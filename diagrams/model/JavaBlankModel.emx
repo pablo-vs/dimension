@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--xtools2_universal_type_manager-->
-<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Plataforma de modelado de Rational (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
 <?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.uml.msl.model" version="7.0.0"><feature description="" name="com.ibm.xtools.ruml.feature" url="" version="7.0.0"/></signature>?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Default="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2" xmlns:JavaTransformation50="http:///schemas/JavaTransformation50/_znHmkE3YEd-tPpJR7OP4Bg/34" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.3/Umlnotation" xsi:schemaLocation="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2 pathmap://UML2_MSL_PROFILES/Default.epx#_fNwoAAqoEd6-N_NOT9vsCA?Default/Default? http:///schemas/JavaTransformation50/_znHmkE3YEd-tPpJR7OP4Bg/34 pathmap://TRANSFORM_ANNOTATION_PROFILES/JavaTransformProfile.epx#_znahgE3YEd-tPpJR7OP4Bg?JavaTransformation5.0/JavaTransformation50?">
   <uml:Model xmi:id="_VFlaMDl8Eei7y9jAWNCkBg" name="UMLModel">
@@ -5992,9 +5992,7 @@
       <ownedAttribute xmi:id="__h67llqEEeifx59JR3HbGA" name="transformationStrategy">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=TransformationStrategy%5Bjcu%5Ename=TransformationStrategy.java%5Bjpack%5Ename=es.ucm.fdi.business.workspace.transformations%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="__h67l1qEEeifx59JR3HbGA" name="user">
-        <type xmi:type="uml:Actor" href="../../bin/diagrams/model/JavaBlankModel.emx#_4ysSgFkbEeikEa9RLVinvQ?UMLModel/User?"/>
-      </ownedAttribute>
+      <ownedAttribute xmi:id="__h67l1qEEeifx59JR3HbGA" name="user"/>
       <ownedAttribute xmi:id="__h67mFqEEeifx59JR3HbGA" name="visualization">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=Visualization%5Bjcu%5Ename=Visualization.java%5Bjpack%5Ename=es.ucm.fdi.business.workspace%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>

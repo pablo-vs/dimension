@@ -2027,8 +2027,8 @@
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_w8WL61kcEeiG6todgUME4A" covered="_w8Ma4lkcEeiG6todgUME4A" event="_w8WMH1kcEeiG6todgUME4A" message="_w8WMGVkcEeiG6todgUME4A"/>
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_w8WMD1kcEeiG6todgUME4A" covered="_w8Ma4lkcEeiG6todgUME4A" event="_w8WMHFkcEeiG6todgUME4A" message="_w8WMEVkcEeiG6todgUME4A"/>
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_w8WMEFkcEeiG6todgUME4A" covered="_w8Ma4VkcEeiG6todgUME4A" event="_w8WMHVkcEeiG6todgUME4A" message="_w8WMEVkcEeiG6todgUME4A"/>
-        <message xmi:id="_w8WMEVkcEeiG6todgUME4A" name="addComment" messageSort="reply" receiveEvent="_w8WMEFkcEeiG6todgUME4A" sendEvent="_w8WMD1kcEeiG6todgUME4A" connector="_w8WMJFkcEeiG6todgUME4A"/>
-        <message xmi:id="_w8WMFVkcEeiG6todgUME4A" name="addComment" receiveEvent="_w8WL5VkcEeiG6todgUME4A" sendEvent="_w8WL5FkcEeiG6todgUME4A" connector="_w8WMJFkcEeiG6todgUME4A"/>
+        <message xmi:id="_w8WMEVkcEeiG6todgUME4A" name="\Sin especificar\" messageSort="reply" receiveEvent="_w8WMEFkcEeiG6todgUME4A" sendEvent="_w8WMD1kcEeiG6todgUME4A" connector="_w8WMJFkcEeiG6todgUME4A"/>
+        <message xmi:id="_w8WMFVkcEeiG6todgUME4A" name="\Sin especificar\" receiveEvent="_w8WL5VkcEeiG6todgUME4A" sendEvent="_w8WL5FkcEeiG6todgUME4A" connector="_w8WMJFkcEeiG6todgUME4A"/>
         <message xmi:id="_w8WMF1kcEeiG6todgUME4A" name="findSharedProject" receiveEvent="_w8WL6FkcEeiG6todgUME4A" sendEvent="_w8WL51kcEeiG6todgUME4A" connector="_w8WMLVkcEeiG6todgUME4A"/>
         <message xmi:id="_w8WMGVkcEeiG6todgUME4A" name="findSharedProject" messageSort="reply" receiveEvent="_w8WL61kcEeiG6todgUME4A" sendEvent="_w8WL6lkcEeiG6todgUME4A" connector="_w8WMLVkcEeiG6todgUME4A"/>
         <message xmi:id="_c4d2UFwbEeilSZichbObmg" name="addComment" messageSort="reply" receiveEvent="_c4coRVwbEeilSZichbObmg" sendEvent="_c4coRFwbEeilSZichbObmg" connector="_w8WMJ1kcEeiG6todgUME4A"/>
@@ -6003,7 +6003,7 @@
     <packagedElement xmi:type="uml:Collaboration" xmi:id="_2i4zEFkbEeikEa9RLVinvQ" name="Collaboration1">
       <ownedBehavior xmi:type="uml:Interaction" xmi:id="_2i6oQFkbEeikEa9RLVinvQ" name="Interaction1">
         <eAnnotations xmi:id="_2i72YFkbEeikEa9RLVinvQ" source="uml2.diagrams">
-          <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_2i72YVkbEeikEa9RLVinvQ" type="Sequence" element="_2i6oQFkbEeikEa9RLVinvQ" name="CompartirProyecto" measurementUnit="Himetric">
+          <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_2i72YVkbEeikEa9RLVinvQ" type="Sequence" element="_2i6oQFkbEeikEa9RLVinvQ" name="ShareProject" measurementUnit="Himetric">
             <children xmi:type="umlnotation:UMLShape" xmi:id="_2i72YlkbEeikEa9RLVinvQ" element="_2i6oQFkbEeikEa9RLVinvQ" fontName="Cantarell" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
               <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_2i72Y1kbEeikEa9RLVinvQ" type="interaction_compartment">
                 <children xmi:type="umlnotation:UMLShape" xmi:id="_5mBz8FkbEeikEa9RLVinvQ" element="_5llvEFkbEeikEa9RLVinvQ" fontName="Cantarell" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">

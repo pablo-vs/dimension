@@ -3,22 +3,18 @@
  */
 package es.ucm.fdi.integration.project;
 
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectOutputStream;
 import java.sql.JDBCType;
 import java.sql.SQLException;
 
-import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import es.ucm.fdi.integration.data.DAOSQLImp;
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
@@ -39,7 +35,7 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
 	
 	public ProjectDAOSQLImp(String user) {
 		super(TABLE, COLUMNS, COLUMN_TYPES);
-		this.user = user + ":";
+		this.user = user;
 	}
 	
 	/**
@@ -118,7 +114,7 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
     public List<ProjectDTO> getProjects() {
         List<ProjectDTO> result;
         try {
-            result = getAllRecords();
+            result = findByValue(1, user);
         } catch (SQLException e) {
             throw new DAOErrorException("Error while reading all projects.\n"
                     + e.getMessage(), e);
@@ -131,7 +127,10 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
         try {
             List<Object> data = new ArrayList<>();
             ByteArrayOutputStream str = new ByteArrayOutputStream();
-            JAXBContext.newInstance().createMarshaller().marshal(proj, str);
+            JAXBContext.newInstance("es.ucm.fdi.business.workspace.project:"
+            		+ "es.ucm.fdi.business.workspace.function.types.binary:"
+            		+ "es.ucm.fdi.business.workspace.function.types.unary"
+            		).createMarshaller().marshal(proj, str);
             
             data.add(nameToID(proj.getID()));
             data.add(user);
@@ -152,12 +151,15 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
                     + data.size() + " given");
         }
         if (!(data.get(0) instanceof String && (data.get(1) == null || data.get(1) instanceof String)
-	      && data.get(2) instanceof String && data.get(3) instanceof InputStream)) {
+	      && data.get(2) instanceof String && data.get(3) instanceof String)) {
             throw new IllegalArgumentException("Invalid data type");
         }
         
         try {
-			return (ProjectDTO) JAXBContext.newInstance().createUnmarshaller().unmarshal((InputStream)data.get(3));
+			return (ProjectDTO) JAXBContext.newInstance("es.ucm.fdi.business.workspace.project:"
+            		+ "es.ucm.fdi.business.workspace.function.types.binary:"
+            		+ "es.ucm.fdi.business.workspace.function.types.unary"
+            		).createUnmarshaller().unmarshal(new ByteArrayInputStream(((String)data.get(3)).getBytes()));
 		} catch (JAXBException e) {
 			throw new DAOErrorException("Could not unmarshal project.\n" + e.getMessage(), e);
 		}

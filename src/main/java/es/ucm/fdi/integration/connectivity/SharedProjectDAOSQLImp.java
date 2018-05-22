@@ -32,7 +32,7 @@ public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implemen
 
     private static final int REQUIRED_LENGTH = 3;
 
-    private static final String TABLE = "projects";
+    private static final String TABLE = "sharedprojects";
 
     private static final String[] COLUMNS = {"id", "name", "data"};
 

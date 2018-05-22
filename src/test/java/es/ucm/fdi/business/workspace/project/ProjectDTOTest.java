@@ -176,10 +176,10 @@ public class ProjectDTOTest {
     	marsh.marshal(project, str1);
     	marsh.marshal(project2, str2);
     	marsh.marshal(project3, str3);
-    	
+    	/*
     	marsh.marshal(project, System.out);
     	marsh.marshal(project2, System.out);
-    	marsh.marshal(project3, System.out);
+    	marsh.marshal(project3, System.out);*/
     	
     	assertEquals("Unmarshaled project 1 not equal to origin", project, 
     			unmarsh.unmarshal(new ByteArrayInputStream(str1.toByteArray())));

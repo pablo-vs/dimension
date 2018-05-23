@@ -20,6 +20,7 @@ import es.ucm.fdi.business.network.messages.client.RequestLogin;
 import es.ucm.fdi.business.users.UserDTO;
 import es.ucm.fdi.business.users.UserManagerAS;
 import es.ucm.fdi.business.users.UserType;
+import es.ucm.fdi.business.util.HashGenerator;
 import es.ucm.fdi.integration.users.UserDAO;
 import es.ucm.fdi.integration.users.UserDAOHashTableImp;
 import java.time.Instant;
@@ -37,6 +38,7 @@ import static org.junit.Assert.*;
 public class LoginProtocolTest {
 
     private LoginProtocol protocolObject;
+    private HashGenerator hashgen = new HashGenerator();
 
     /**
      * Creates a login protocol object for a database contanining users.
@@ -47,12 +49,9 @@ public class LoginProtocolTest {
         UserDAO db = new UserDAOHashTableImp();
         // create the protocol to manage the database
         UserManagerAS manager = UserManagerAS.getManager(db);
-        manager.addNewUser(new UserDTO("user1", "James", "eda3eda", Date.from(Instant.now()),
-                "jamesEDA@is.es", "600323421", "NULL", "Python programmer", UserType.USER,
-                null));
-        manager.addNewUser(new UserDTO("user2", "Charles", "cr#sd", Date.from(Instant.now()),
-                "charleston@is.es", "9482039341", "NULL", "Java programmer", UserType.ADMIN,
-                null));
+        if (!manager.existsUser("James")) {
+            manager.addNewUser(new UserDTO("James", hashgen.hash("eda3eda".toCharArray())));
+        }
         protocolObject = new LoginProtocol(manager);
 
     }
@@ -113,12 +112,11 @@ public class LoginProtocolTest {
      * an existing user but with an incorrect password.
      */
     @Test
-
     public void testApplyIncorrectPassword() {
         System.out.println("apply with package with incorrect password");
         RequestLogin msg = new RequestLogin();
         msg.username = "James";
-        msg.password = "asdf1234";
+        msg.password = "eda35ed3a";
         try {
             if (protocolObject.apply(msg)) {
                 fail("LoginProtocol should return false for an incorrect password!");

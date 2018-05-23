@@ -1,99 +1,107 @@
-/*
-  This file is part of Dimension.
-  Dimension is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  Dimension is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  You should have received a copy of the GNU General Public License
-  along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
- */
-package es.ucm.fdi.business.network.server;
+package es.ucm.fdi.business.network.testing;
 
-import es.ucm.fdi.business.exceptions.network.UnrecognizablePackageException;
+import es.ucm.fdi.business.network.messages.client.RequestLogin;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.PrintWriter;
-import java.net.Socket;
-
+import java.io.ObjectOutputStream;
+import javax.net.SocketFactory;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 /**
- * ClientThread represents a thread of a client handled by the server. The class
- * is built using a socket from which it will creates its own output and input
- * streams. It also contains a reference to the server in order to call
- * notification methods just in case of receiving packages such as logout which
- * needs the server to erase the user from the users list. A Client thread is
- * capable of handling the connection with the client, from the welcome to the
- * logout, listening to packages being sent by a certain user connected to the
- * server.
- *
- * @see Socket
- * @see Server
+ * Client created for the sake of testing the Server. The client is incomplete 
+ * and should not be used as a full-working client.
  * @author Arturo Acuaviva
  */
-public class ClientThread implements Runnable {
+public class ClientExample {
 
-    /**
-     * Client socket which provides the streams for input/output
-     */
-    protected final Socket clientSocket;
-    /**
-     * Clients identification number
-     */
-    private final int id;
-    /**
-     * Stream for input data received from the client
-     */
-    private final ObjectInputStream streamInput;
-    /**
-     * Streams for output data to send information to the client
-     */
-    private final PrintWriter streamOutput;
-    /**
-     * Reference to the server
-     */
-    private final Server server;
+    private ObjectInputStream sInput;		// to read from the socket
+    private ObjectOutputStream sOutput;		// to write on the socket
+    private SSLSocket socket;					// socket object
+    private final String server;
+    private final String username;	// server and username
+    private final int port;
 
-    /**
-     * Class Constructor. It receives the identification of the client, a socket
-     * assigned by the server to listen from the client and a reference of the server.
-     * @param id client identification
-     * @param clientSocket socket listening from the client
-     * @param server reference to the main server
-     * @throws IOException 
-     */
-    ClientThread(int id, Socket clientSocket, Server server) throws IOException {
+    ClientExample(String server, int port, String username) {
         this.server = server;
-        this.id = id;
-        this.clientSocket = clientSocket;
-        streamInput = new ObjectInputStream(clientSocket.getInputStream());
-        streamOutput = new PrintWriter(clientSocket.getOutputStream());
+        this.port = port;
+        this.username = username;
     }
 
-    @Override
-    public void run() {
-        // sd
+    public boolean start() {
+        // try to connect to the server
+        try {
+             SocketFactory socketFactory = SSLSocketFactory.getDefault();
+            socket = (SSLSocket) socketFactory.createSocket(server, port);
+        } // exception handler if it failed
+        catch (IOException ec) {
+            display("Error connectiong to server:" + ec);
+            return false;
+        }
+
+        String msg = "Connection accepted " + socket.getInetAddress() + ":" + socket.getPort();
+        display(msg);
+
+        /* Creating both Data Stream */
+        try {
+            sOutput = new ObjectOutputStream(socket.getOutputStream());
+            sOutput.flush();
+            sInput = new ObjectInputStream(socket.getInputStream());
+            display("INPUT/OUTPUT created");
+        } catch (IOException eIO) {
+            display("Exception creating new Input/output Streams: " + eIO);
+            return false;
+        }
+        
+        // creates the Thread to listen from the server 
+         new ListenFromServer().start();
+       
+        return true;
+    }
+
+    private void display(String msg) {
+
+        System.out.println("CLIENTE: " + msg);
+
+    }
+    
+    public void close(){
+        disconnect();
+    }
+
+    private void disconnect() {
+        try {
+            if (sInput != null) {
+                sInput.close();
+            }
+        } catch (IOException e) {
+        }
+        try {
+            if (sOutput != null) {
+                sOutput.close();
+            }
+        } catch (IOException e) {
+        }
+        try {
+            if (socket != null) {
+                socket.close();
+            }
+        } catch (IOException e) {
+        }
 
     }
 
-    public boolean welcomeClient() throws UnrecognizablePackageException {
-        return false;
-    }
+    private class ListenFromServer extends Thread {
 
-    private String waitMessage() throws UnrecognizablePackageException {
-        return null;
-    }
-
-    public void close() throws IOException {
-        //    streamOutput.print(new ServerMessages(ServerMessages.LOG_OUT));
-        streamInput.close();
-        streamOutput.close();
-        clientSocket.close();
-    }
-
-    public int getID() {
-        return id;
+        public void run() {
+            while (true) {
+                try {
+                  // System.out.println("Trying to send a message");
+                  sOutput.writeObject(new RequestLogin());
+                } catch (Exception e) {
+                    display("*** Server has closed the connection: " + e + "***");
+                    break;
+                } 
+            }
+        }
     }
 }

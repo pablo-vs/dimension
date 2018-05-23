@@ -18,7 +18,6 @@ import org.junit.Test;
 import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import es.ucm.fdi.business.workspace.project.WorkAS;
-import es.ucm.fdi.integration.connectivity.SharedProjectDAOSQLImp;
 import es.ucm.fdi.business.connectivity.SharedProjectDTO;
 import es.ucm.fdi.business.connectivity.SharedProjectDTOOpenProjectImp;
 
@@ -58,11 +57,6 @@ public class SharedProjectDAOSQLImpTest {
         dao.addSharedProject(shared2);
         dao.addSharedProject(shared3);
 
-        ArrayList<SharedProjectDTO> res = new ArrayList<>(dao.getSharedProjects());
-        //assertEquals("1
-        System.err.println(res.get(0).getSharedID());
-        System.err.println(res.get(1).getSharedID());
-        System.err.println(res.get(2).getSharedID());
         assertEquals("Invalid sharedProject search results", results1,
                 dao.findByName("exponential"));
         assertEquals("The sharedProjects cannot be obtained", results2,

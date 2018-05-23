@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.connectivity;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Represents a comment in a project.
@@ -35,7 +35,7 @@ public class CommentDTO {
      * @param author
      * @param proj
      * @param text Text
-     * @param date
+     * @param date2
      */
     public CommentDTO(String author, String proj, String text, Date date) {
         this.author = author;

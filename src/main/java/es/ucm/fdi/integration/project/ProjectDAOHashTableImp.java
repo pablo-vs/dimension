@@ -30,11 +30,13 @@ public class ProjectDAOHashTableImp implements ProjectDAO {
      * Database
      */
     private MemoryDB<ProjectDTO> db = new MemoryDB<>();
+    private final String user;
 
     /**
      * Class constructor.
      */
-    public ProjectDAOHashTableImp() {
+    public ProjectDAOHashTableImp(String user) {
+        this.user = user;
     }
 
     @Override

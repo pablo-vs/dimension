@@ -13,6 +13,9 @@
  */
 package es.ucm.fdi.business.workspace;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+
 import es.ucm.fdi.business.exceptions.NoMatchDimensionException;
 import java.util.List;
 import java.util.ArrayList;
@@ -24,7 +27,8 @@ import java.util.Iterator;
  * @author Brian Leiva
  * @author Arturo Acuaviva
  */
-public class Visualization implements ComponentComposite {
+@XmlRootElement
+public class Visualization {
 
     /**
      * All graphs will have been shrinking to the third dimension, projected
@@ -37,7 +41,8 @@ public class Visualization implements ComponentComposite {
     /**
      * List of graphs
      */
-    private ArrayList<ComponentComposite> graphsAvailable = new ArrayList<>();
+    @XmlElement
+    private ArrayList<Graph> graphsAvailable = new ArrayList<>();
 
     /**
      * Empty class constructor.
@@ -50,65 +55,35 @@ public class Visualization implements ComponentComposite {
      *
      * @param graphics
      */
-    public Visualization(List<ComponentComposite> graphics) {
+    public Visualization(List<Graph> graphics) {
         this.graphsAvailable = new ArrayList<>(graphics);
     }
 
-    /**
-     * Add a new ComponentComposite to the list of elements that a Visualization
-     * object contains. Typically in Visualization the elements added will be
-     * graphs.
-     *
-     * @param component new ComponentComposite element in the inner list.
-     */
-    @Override
-    public void add(ComponentComposite component) {
-        graphsAvailable.add(component);
-    }
-
-    /**
-     * Deletes a ComponentComposite that a Visualization object contains.
-     * Typically in Visualization this elements will be graphs.
-     *
-     * @param component which will be removed
-     */
-    @Override
-    public void delete(ComponentComposite component) {
-        if (!graphsAvailable.remove(component)) {
-            throw new IllegalArgumentException("The element was"
-                    + "not in the list " + graphsAvailable.getClass().getName());
-        }
-    }
-
-    /**
-     * Removes all the elements in the range. All ComponentComposites are
-     * deleted.
-     */
-    @Override
-    public void deleteAll() {
-        graphsAvailable.removeAll(graphsAvailable);
-    }
-
-    /**
-     * Returns an operator over the list of ComponentComposite that a
-     * Visualization object contains. Typically in Visualization this elements
-     * will be graphs.
-     *
-     * @return listIterator over the elements of the visualization
-     */
-    @Override
-    public Iterator getCompositeIterator() {
+    public Iterator<Graph> getGraphIterator() {
         return graphsAvailable.listIterator();
     }
 
     /**
-     * Returns a graph in the position specified
+     * Add a new ComponentComposite to the list of elements that a Visualization
+     * object contains. In Visualization the elements added will be graphs.
      *
-     * @param graphIndex
-     * @return
+     * @param component new ComponentComposite element in the inner list.
      */
-    public ComponentComposite elementAt(int graphIndex) {
-        return graphsAvailable.get(graphIndex);
+    public void add(Graph g) {
+        graphsAvailable.add(g);
+    }
+
+    /**
+     * Deletes a ComponentComposite that a Visualization object contains. In
+     * Visualization this elements will be graphs.
+     *
+     * @param component which will be removed
+     */
+    public void delete(Graph g) {
+        if (!graphsAvailable.remove(g)) {
+            throw new IllegalArgumentException("Could not delete graph:"
+                    + " The element was not in the list.");
+        }
     }
 
     /**
@@ -127,7 +102,7 @@ public class Visualization implements ComponentComposite {
      */
     public static Graph projectGraph(Graph graph, int dimX, int dimY, int dimZ, double[] hp) throws NoMatchDimensionException {
         Graph graphAux = new Graph(DEFAULT_DIMENSION);
-        Iterator it = graph.getCompositeIterator();
+        Iterator it = graph.getIteratorRange();
         while (it.hasNext()) {
             Vertex v = (Vertex) it.next();
             int j = 0, cont = 0;
@@ -149,7 +124,7 @@ public class Visualization implements ComponentComposite {
                 newV.set(0, v.at(dimX));
                 newV.set(1, v.at(dimY));
                 newV.set(2, v.at(dimZ));
-                graphAux.add(newV);
+                graphAux.addRange(newV);
             }
         }
         return graphAux;

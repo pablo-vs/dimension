@@ -13,6 +13,8 @@
  */
 package es.ucm.fdi.business.connectivity;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 
 /**
@@ -27,7 +29,12 @@ public abstract class SharedProjectDTO extends ProjectDTO {
     /**
      * Project id
      */
+    @XmlElement
     private final String sharedID;
+
+    public SharedProjectDTO() {
+        sharedID = "";
+    }
 
     /**
      * Class constructor specifying id and author name.

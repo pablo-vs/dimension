@@ -142,11 +142,12 @@ public abstract class DAOSQLImp<T> {
                 stmt.setObject(1, value/*, columnJDBCType[col]*/);
             }
             ResultSet rs = stmt.executeQuery();
-            rs.first();
-            while (!rs.isAfterLast()) {
-                T obj = build(readData(rs));
-                results.add(obj);
-                rs.next();
+            if (rs.first()) {
+                while (!rs.isAfterLast()) {
+                    T obj = build(readData(rs));
+                    results.add(obj);
+                    rs.next();
+                }
             }
         } catch (IllegalArgumentException | SQLException e) {
             throw new SQLException("Could not retrieve results from table:\n"

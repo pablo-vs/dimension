@@ -14,6 +14,8 @@
 
 package es.ucm.fdi.business.network.messages.client;
 
+import java.io.Serializable;
+
 /**
  * A RequestImage object represents a package received from the client. This class
  * extends from ClientMessage and adds a new field function containing the string
@@ -21,7 +23,7 @@ package es.ucm.fdi.business.network.messages.client;
  * @see ClientMessage
  * @author Arturo Acuaviva
  */
-public class RequestImage extends ClientMessage{
+public class RequestImage extends ClientMessage implements Serializable {
     
     /**
      * A description of the function to be drawn up

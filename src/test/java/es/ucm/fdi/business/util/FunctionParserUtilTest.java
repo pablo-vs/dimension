@@ -11,7 +11,7 @@ import org.junit.Before;
 /**
  * Tests the functionality of the parser method for the functions.
  *
- * @author Eloy Mósig, Inmaculada Pérez, Arturo Acuaviva
+ * @author Eloy Mósig, Inmaculada Pérez
  * @see FunctionParserUtil
  */
 public class FunctionParserUtilTest {

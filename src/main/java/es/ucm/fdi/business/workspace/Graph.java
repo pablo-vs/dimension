@@ -18,6 +18,8 @@ import javax.xml.bind.annotation.XmlElement;
 
 import es.ucm.fdi.business.exceptions.NoMatchDimensionException;	
 import es.ucm.fdi.business.util.MultiTreeMap;
+
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
@@ -206,6 +208,15 @@ public class Graph {
     public void add(AbstractFunction func) {
         functionList.add(func);
     }
+    
+    public void paint(Graphics2D g) {
+    	if(dimension == 2) {
+    		
+    	} else {
+    		throw new UnsupportedOperationException("Cannot project graphs of higher dimensions");
+    	}
+    }
+    
    //Not in the final code
     public double evaluate(double x) {
     	VariablesList v = new VariablesList(1);

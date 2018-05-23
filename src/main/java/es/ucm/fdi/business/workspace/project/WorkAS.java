@@ -17,6 +17,8 @@ import es.ucm.fdi.business.workspace.Graph;
 import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 import es.ucm.fdi.business.workspace.transformations.TransformationStrategy;
+
+import java.awt.image.BufferedImage;
 import java.util.Iterator;
 import java.util.List;
 
@@ -105,6 +107,14 @@ public class WorkAS {
         while (it.hasNext()) {
             transformation.apply((Graph) it.next());
         }
+    }
+    
+    /**
+     * 
+     */
+    public BufferedImage paint(Visualization view) {
+    	
+		return null;
     }
 
 }

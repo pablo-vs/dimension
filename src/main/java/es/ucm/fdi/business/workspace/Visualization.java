@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import es.ucm.fdi.business.exceptions.NoMatchDimensionException;	
 import java.util.List;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -132,4 +133,10 @@ public class Visualization {
         return graphAux;
     }
 
+    public void paint(Graphics2D g) {
+    	for(Graph graph : graphsAvailable) {
+    		//(new DrawableAxis(0.005, 1500, 1080, 720, projectGraph(graph, )).paint(g);
+    	}
+    }
+    
 }

@@ -1,4 +1,4 @@
-package es.ucm.fdi.business.workspace.view;
+package es.ucm.fdi.business.workspace;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace;
 
-import javax.xml.bind.annotation.XmlRootElement;	
+import javax.xml.bind.annotation.XmlRootElement;		
 import javax.xml.bind.annotation.XmlElement;
 
 import es.ucm.fdi.business.exceptions.NoMatchDimensionException;	
@@ -21,6 +21,8 @@ import es.ucm.fdi.business.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
+import es.ucm.fdi.business.workspace.function.types.VariablesList;
+
 import java.util.Iterator;
 import java.util.ListIterator;
 

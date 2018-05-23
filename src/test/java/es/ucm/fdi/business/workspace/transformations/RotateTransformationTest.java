@@ -38,7 +38,7 @@ public class RotateTransformationTest {
     @Before
     public void setUp() {
         noRotation = new RotateTransformation(0, 0, 0);
-        rotation = new RotateTransformation(1, 10, 1);
+        rotation = new RotateTransformation(0, Math.PI, 0);
     }
 
     /**
@@ -75,7 +75,7 @@ public class RotateTransformationTest {
         Iterator it = testGraph.getIteratorRange();
 
         while (it.hasNext()) {
-            System.out.print(it.next() + " ");
+            System.out.print("(" + it.next() + ") ");
         }
         System.out.println();
 
@@ -85,7 +85,7 @@ public class RotateTransformationTest {
         it = testGraph.getIteratorRange();
 
         while (it.hasNext()) {
-            System.out.print(it.next() + " ");
+            System.out.print("(" + it.next() + ") ");
         }
         System.out.println();
 
@@ -93,7 +93,7 @@ public class RotateTransformationTest {
         System.out.println("AfterModification:");
         it = testGraph.getIteratorRange();
         while (it.hasNext()) {
-            System.out.print(it.next() + " ");
+            System.out.print("(" + it.next() + ") ");
         }
         System.out.println();
 

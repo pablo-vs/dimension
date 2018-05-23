@@ -84,10 +84,10 @@ public class RotateTransformation extends TransformationStrategy {
         iterator = g.getIteratorRange();
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
-            double y = v.at(1), z = v.at(2), dist;
+            double y = v.at(1), z = v.at(2), a = Math.atan((z - centerZ) / (y - centerY)), dist;
             dist = Math.sqrt(Math.pow(y - centerY, 2) + Math.pow(z - centerZ, 2));
-            v.set(1, y + dist * Math.cos(d));
-            v.set(2, z + dist * Math.sin(d));
+            v.set(1, centerY + dist * Math.cos(a + d));
+            v.set(2, centerZ + dist * Math.sin(a + d));
         }
     }
 
@@ -125,10 +125,10 @@ public class RotateTransformation extends TransformationStrategy {
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
 
-            double x = v.at(0), z = v.at(2), dist;
+            double x = v.at(0), z = v.at(2), a = Math.atan((x - centerX) / (z - centerZ)), dist;
             dist = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(z - centerZ, 2));
-            v.set(0, x + dist * Math.sin(d));
-            v.set(2, z + dist * Math.cos(d));
+            v.set(0, centerX + dist * Math.sin(a + d));
+            v.set(2, centerZ + dist * Math.cos(a + d));
         }
     }
 
@@ -163,10 +163,10 @@ public class RotateTransformation extends TransformationStrategy {
         double centerX = (maxX + minX) / 2, centerY = (maxY + minY) / 2;
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
-            double x = v.at(0), y = v.at(1), dist;
+            double x = v.at(0), y = v.at(1), a = Math.atan((y - centerY) / (x - centerX)), dist;
             dist = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
-            v.set(0, x + dist * Math.cos(d));
-            v.set(1, y + dist * Math.sin(d));
+            v.set(0, centerX + dist * Math.cos(a + d));
+            v.set(1, centerY + dist * Math.sin(a + d));
         }
     }
 }

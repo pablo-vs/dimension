@@ -89,7 +89,7 @@ public class WorkAS {
      */
     public static void transformVisualization(Visualization view,
             TransformationStrategy transformation) {
-        Iterator it = view.getCompositeIterator();
+        Iterator it = view.getGraphIterator();
         while (it.hasNext()) {
             transformation.apply((Graph) it.next());
         }

@@ -13,6 +13,8 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import es.ucm.fdi.business.util.FunctionParser;
 import java.util.regex.Pattern;
 
@@ -25,8 +27,13 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  *
  * @author Inmaculada Pérez
  */
+@XmlRootElement
 public class CosineFunction extends UnaryFunction {
 
+	public CosineFunction() {
+		this(new ConstantFunction(), new VariablesList());
+	}
+	
     /**
      * Class constructor specifying functionBO and variables list.
      *

@@ -13,9 +13,13 @@
  */
 package es.ucm.fdi.business.workspace.project;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
+
 import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 
@@ -24,13 +28,18 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  *
  * @author Eduardo Amaya, Javier Galiana, Inmaculada Pérez
  */
+@XmlRootElement
 public class ProjectDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private ArrayList<Visualization> views = new ArrayList<>();
     private ArrayList<AbstractFunction> functions = new ArrayList<>();
-    private final String ID;
+    private String ID;
 
+    public ProjectDTO() {
+    	ID = "default";
+    }
+    
     /**
      * Class constructor specifying ID.
      *
@@ -72,6 +81,7 @@ public class ProjectDTO implements Serializable {
      *
      * @return the ID of the project
      */
+    @XmlElement
     public String getID() {
         return ID;
     }
@@ -80,6 +90,7 @@ public class ProjectDTO implements Serializable {
      *
      * @return the list of visualization object of the project
      */
+    @XmlElement
     public List<Visualization> getViews() {
         return views;
     }
@@ -88,10 +99,19 @@ public class ProjectDTO implements Serializable {
      *
      * @return the different functions
      */
+    @XmlElement
     public List<AbstractFunction> getFunctions() {
         return functions;
     }
 
+    /**
+     * Sets the ID
+     * @param newID New ID;
+     */
+    public void setID(String newID) {
+    	ID = newID;
+    }
+    
     /**
      * Sets a new list of functions.
      *
@@ -108,6 +128,11 @@ public class ProjectDTO implements Serializable {
      */
     public void setViews(List<Visualization> views) {
         this.views = new ArrayList<>(views);
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+    	return (other instanceof ProjectDTO) && ((ProjectDTO)other).ID.equals(ID);
     }
 
 }

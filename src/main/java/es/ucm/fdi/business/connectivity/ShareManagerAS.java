@@ -13,10 +13,10 @@
  */
 package es.ucm.fdi.business.connectivity;
 
+import java.util.Date;		
 import java.util.List;
 import java.util.ArrayList;
 import java.security.AccessControlException;
-import java.sql.Date;
 
 import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business.workspace.project.ProjectManagerAS;
@@ -38,8 +38,6 @@ public class ShareManagerAS {
     // Singleton pattern
 
     private static ShareManagerAS instance;
-    private final ProjectManagerAS localProjMan = ProjectManagerAS
-            .getManager(new ProjectDAOHashTableImp());
     private final UserManagerAS userMan = UserManagerAS
             .getManager(new UserDAOHashTableImp());
     private final SharedProjectDAO projectDB;
@@ -149,13 +147,13 @@ public class ShareManagerAS {
      * @param comment
      */
     public void addComment(String projID, SessionDTO session,
-            String comment, Date date) {
+            String comment) {
         SharedProjectDTO project = projectDB.findSharedProject(projID);
         if (project != null) {
             if (userMan.authenticate(session.getUser(), session)) {
                 if (project.hasReadAccess(session.getUser())) {
                     commentDB.addComment(new CommentDTO(session.getUser(),
-                            projID, comment, date));
+                            projID, comment, new Date()));
                 } else {
                     throw new AccessControlException("User "
                             + session.getUser() + " cannot add a comment in "
@@ -178,9 +176,11 @@ public class ShareManagerAS {
     public void importProject(SharedProjectDTO proj, SessionDTO session)
             throws NotFoundException, AccessControlException {
 
+    	
         if (userMan.authenticate(session.getUser(), session)) {
             if (proj.hasReadAccess(session.getUser())) {
-                localProjMan.newProject(new ProjectDTO(proj));
+            	ProjectManagerAS projMan = new ProjectManagerAS(session.getUser());
+                projMan.newProject(new ProjectDTO(proj), session);
             } else {
                 throw new AccessControlException("User " + session.getUser()
                         + " cannot modify " + proj.getID());

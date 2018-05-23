@@ -13,16 +13,24 @@
  */
 package es.ucm.fdi.business.workspace.function.types;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+
 /**
  * Representa una variable de una función
  *
  * @author Javier Navalón
  */
+@XmlRootElement
 public class VariableDTO {
 
     private final String name;
     private double value = 0;
 
+	public VariableDTO() {
+		this("x");
+	}
+	
     /**
      * Class constructor specifying name and value of the variable.
      *
@@ -56,6 +64,7 @@ public class VariableDTO {
      *
      * @return the value of the variable
      */
+    @XmlElement
     public double getValue() {
         return value;
     }
@@ -64,6 +73,7 @@ public class VariableDTO {
      *
      * @return the value's name.
      */
+    @XmlElement
     public String getName() {
         return name;
     }

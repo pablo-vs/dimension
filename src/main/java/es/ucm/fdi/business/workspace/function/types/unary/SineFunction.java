@@ -27,6 +27,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  */
 public class SineFunction extends UnaryFunction {
 
+	public SineFunction() {
+		this(new ConstantFunction(), new VariablesList());
+	}
+	
     /**
      * Class constructor specifying functionBO and variables list.
      *

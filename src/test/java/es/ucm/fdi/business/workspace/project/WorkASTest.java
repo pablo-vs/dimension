@@ -44,7 +44,6 @@ public class WorkASTest {
     public void workASTest() {
 
         ProjectDTO exponencial = new ProjectDTO("exponentialex");
-        ProjectManagerAS projMan = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
         WorkAS proj = new WorkAS(exponencial);
 
         List<Graph> g = new ArrayList<>();
@@ -59,9 +58,5 @@ public class WorkASTest {
 
         assertEquals("VisualizationBOs have not been added to the project", true,
                 proj.getProject().getViews().contains(views));
-
-        projMan.saveChanges(proj.getProject());
-
-        assertEquals("Project was not saved!", exponencial, projMan.openProject("exponentialex"));
     }
 }

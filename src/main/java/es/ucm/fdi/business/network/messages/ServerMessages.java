@@ -17,25 +17,52 @@ import es.ucm.fdi.business.exceptions.network.PackagesDefaultMessagesException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Properties;
 
 /**
- * 
+ * This class defines a package send by the server to the clients. A package
+ * has its own type (an integer id). A Server message also contains a message
+ * with the information requested. 
  * @author Arturo Acuaviva 
  */
-public class ServerMessages {
-    
+public class ServerMessages  implements Serializable {
+    /**
+     * Message type for welcoming
+     */
     public static final int WELCOME = 0;
+    /**
+     * Message type for logging-in
+     */
     public static final int LOG_IN = 1;
+    /**
+     * Message type for logging-out
+     */
     public static final int LOG_OUT = 2;
+    /**
+     * Message type for registering
+     */
     public static final int REGISTER = 3;
-    
+    /**
+     * Type of message package
+     */
     private final int type;
+    /**
+     * Message sent from the server
+     */
     private final String msg;
+    /**
+     * Properties to manage default text from the server
+     */
     private Properties properties = new Properties();
 
+    /**
+     * Class constructor specifying the type of package message which is created. 
+     * @param type
+     * @throws PackagesDefaultMessagesException 
+     */
     public ServerMessages(int type) throws PackagesDefaultMessagesException{
         try {
             URL resource = ServerMessages.class.getClassLoader()
@@ -72,19 +99,36 @@ public class ServerMessages {
         }
     }
     
+    /**
+     * Class constructor specifying the package type and the message. 
+     * @param type
+     * @param msg 
+     */
     public ServerMessages(int type, String msg){
         this.type = type;
         this.msg = msg;
     }
     
+    /**
+     * Getter method. 
+     * @return the type of the package message
+     */
     public int getType(){
         return type;
     }
     
+    /**
+     * Getter method.
+     * @return the message in the package
+     */
     public String getMessage(){
         return msg;
     }
     
+    /**
+     * Describes a package.
+     * @return a package string description
+     */
     @Override
     public String toString(){
         return "[" + type + "][" + msg+"]";

@@ -32,7 +32,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -44,11 +46,11 @@ import static org.junit.Assert.*;
  */
 public class ProjectManagerASTest {
 
-	char [] passwd = {'1','2','3','4'};
-	UserManagerAS userMan;
-	SessionDTO session;
-    ProjectDAO newProject;
-    ProjectManagerAS manager;
+	static char [] passwd = {'1','2','3','4'};
+	static UserManagerAS userMan;
+	static SessionDTO session;
+	static ProjectDAO newProject;
+	static ProjectManagerAS manager;
 
     public ProjectManagerASTest() {
     }
@@ -57,14 +59,14 @@ public class ProjectManagerASTest {
      * Setting up the test class. We create a not empty project containing
      * projects with ids prj1 and prj2
      */
-    @Before
-    public void setUp() {
-        newProject = new ProjectDAOHashTableImp("pepe");
-        manager = new ProjectManagerAS(newProject, "pepe");
+    @BeforeClass
+    public static void setUp() {
+        newProject = new ProjectDAOHashTableImp("marta");
+        manager = new ProjectManagerAS(newProject, "marta");
         userMan = UserManagerAS.getManager(new UserDAOHashTableImp());
-        UserDTO pepe = new UserDTO("pepe", (new HashGenerator()).hash(passwd));
-        userMan.addNewUser(pepe);
-        session = userMan.login("pepe", null);
+        UserDTO marta = new UserDTO("marta", (new HashGenerator()).hash(passwd));
+        userMan.addNewUser(marta);
+        session = userMan.login("marta", "1234");
     }
 
     /**
@@ -155,7 +157,7 @@ public class ProjectManagerASTest {
      */
     @Test
     public void projectManagementTest() {
-        ProjectManagerAS projectMgr = new ProjectManagerAS(new ProjectDAOHashTableImp("pepe"), "pepe");
+        ProjectManagerAS projectMgr = new ProjectManagerAS(new ProjectDAOHashTableImp("marta"), "marta");
         ProjectDTO polinomios = new ProjectDTO("polinomios43");
         ProjectDTO raices = new ProjectDTO("ra|||");
         projectMgr.newProject(polinomios, session);
@@ -212,9 +214,9 @@ public class ProjectManagerASTest {
         }
     }
 
-    @After
-    public void clear() throws SQLException {
-    	userMan.removeUser("pepe", session);
+    @AfterClass
+    public static void clear() throws SQLException {
+    	userMan.removeUser("marta", session);
     	userMan.logout(session);
     	(new UserDAOSQLImp()).clear();
     	(new ProjectDAOSQLImp("")).clear();

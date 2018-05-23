@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.Socket;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.KeyManagementException;
@@ -35,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.net.ServerSocketFactory;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -44,23 +46,24 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
 /**
- * Implementation of a <code>Server</code>. A <code>Server</code> is a runnable object
- * which allows multiple connections from clients. The server listens from each 
- * clients and multiple operations are allow such as: login, register, logout, 
- * generate image from function... All of these options are received as a 
- * package request from a client; each package is processed and then an appropiate protocol
- * is applied according to the type of request that has been made. The server
- * keeps a list of all clients that are currently connected to the server. Each
- * client is managed through each own <code>ClientThread</code>. The sockets
- * are handled in an SSL context which is created using the appropiated certificates.
- * The encryption algorithm used for the SSL connections is RSA and its implementation
- * relies on the <code>SSLSocketServer</code> methods. 
- * Also, it is remarkable that the idGenerator creates a new id for each new client. Due to
- * the variable type (int), its range is limitated to the range of an int. What's more,
- * once the limit is reached the server will start over giving negative id values, and 
- * if many users are still connected during a long time, id collision could happen. 
- * This is really unlike though, since the range of connections the project is supposed to
- * handle does not overcome thousand of connections simultaneously.
+ * Implementation of a <code>Server</code>. A <code>Server</code> is a runnable
+ * object which allows multiple connections from clients. The server listens
+ * from each clients and multiple operations are allow such as: login, register,
+ * logout, generate image from function... All of these options are received as
+ * a package request from a client; each package is processed and then an
+ * appropiate protocol is applied according to the type of request that has been
+ * made. The server keeps a list of all clients that are currently connected to
+ * the server. Each client is managed through each own
+ * <code>ClientThread</code>. The sockets are handled in an SSL context which is
+ * created using the appropiated certificates. The encryption algorithm used for
+ * the SSL connections is RSA and its implementation relies on the
+ * <code>SSLSocketServer</code> methods. Also, it is remarkable that the
+ * idGenerator creates a new id for each new client. Due to the variable type
+ * (int), its range is limitated to the range of an int. What's more, once the
+ * limit is reached the server will start over giving negative id values, and if
+ * many users are still connected during a long time, id collision could happen.
+ * This is really unlike though, since the range of connections the project is
+ * supposed to handle does not overcome thousand of connections simultaneously.
  *
  * @author Arturo Acuaviva
  */
@@ -223,18 +226,17 @@ public class Server implements Runnable {
      */
     private void initializeServer() {
 
-        // Initializes SSL by setting the certificates location
+       //  Initializes SSL by setting the certificates location
         try {
             initializeSSLContext();
         } catch (ServerSSLException e) {
             throw new RuntimeException("Cannot configurate SSL context", e);
         }
-        // SSL server socket creation
+       //  SSL server socket creation
         try {
             SSLServerSocketFactory ssf = context.getServerSocketFactory();
             serverSocket = (SSLServerSocket) ssf.createServerSocket(PORT);
-            serverSocket.setNeedClientAuth(false);
-
+            serverSocket.setNeedClientAuth(false); 
         } catch (IOException e) {
             throw new RuntimeException("Cannot open port " + PORT, e);
         }
@@ -246,11 +248,15 @@ public class Server implements Runnable {
      *
      * @param msg
      */
-    private void displayMessage(String msg) {
+    protected void displayMessage(String msg) {
         System.out.println("[" + dataTimeFormat.format(new Date()) + "] " + msg);
     }
 
     /**
+     * Runs the server. It creates a new Socket listening from the port
+     * indicated, after that each new client which tries to connect to the
+     * server is added to the list an a new <code>ClientThread</code> is
+     * assigned to.
      *
      * @throws RuntimeException
      */
@@ -305,28 +311,33 @@ public class Server implements Runnable {
         // stops main loop
         stopsRunning = true;
         // Closing the server socket
-        try {
-            this.serverSocket.close();
-            displayMessage("Server is closing!");
-        } catch (IOException e) {
-            throw new RuntimeException("Error while closing server", e);
-        }
-
-        // Closing streams opened by clients
-        clientsListeners.values().forEach((ClientThread client) -> {
+        if (serverSocket != null) {
             try {
-                client.close();
+
+                this.serverSocket.close();
+                displayMessage("Server is closing!");
+
             } catch (IOException e) {
-                throw new RuntimeException("Error while closing client with id " + client.getID(), e);
+                throw new RuntimeException("Error while closing server", e);
             }
 
-        });
+            // Closing streams opened by clients
+            clientsListeners.values().forEach((ClientThread client) -> {
+                try {
+                    client.close();
+                } catch (IOException e) {
+                    throw new RuntimeException("Error while closing client with id " + client.getID(), e);
+                }
+
+            });
+        }
     }
 
     /**
-     * Provides a way of registering a logging out from a client. A client
-     * could call this method by indicating its thread and therefore it will
-     * be removed from the list of listening clients. 
+     * Provides a way of registering a logging out from a client. A client could
+     * call this method by indicating its thread and therefore it will be
+     * removed from the list of listening clients.
+     *
      * @param client to be removed
      * @throws IOException thrown whenever closing sockets connection fails
      */

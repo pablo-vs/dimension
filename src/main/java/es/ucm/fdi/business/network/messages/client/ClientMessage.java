@@ -13,6 +13,8 @@
  */
 package es.ucm.fdi.business.network.messages.client;
 
+import java.io.Serializable;
+
 /**
  * Abstract package received from a client. A ClientMessage defines a package
  * that a client sends, the type of the message is an integer value. A message
@@ -21,7 +23,7 @@ package es.ucm.fdi.business.network.messages.client;
  *
  * @author Arturo Acuaviva
  */
-public abstract class ClientMessage {
+public abstract class ClientMessage implements Serializable  {
 
     /**
      * Type requesting login package to the server

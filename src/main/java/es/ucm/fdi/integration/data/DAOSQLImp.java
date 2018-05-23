@@ -10,7 +10,7 @@
   GNU General Public License for more details.
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package es.ucm.fdi.integration.data;
 
 import java.time.ZonedDateTime;
@@ -64,8 +64,8 @@ public abstract class DAOSQLImp<T> {
         }
         sb.append(")");
         try (PreparedStatement stmt = SQLDataSource.getStatement("INSERT INTO "
-								 + table + " VALUES " + sb.toString());
-	     Connection con = stmt.getConnection();) {
+                + table + " VALUES " + sb.toString());
+                Connection con = stmt.getConnection();) {
             for (int i = 0; i < data.size(); ++i) {
                 stmt.setObject(i + 1, data.get(i)/*, columnJDBCType[i]*/);
             }
@@ -83,8 +83,8 @@ public abstract class DAOSQLImp<T> {
      */
     public void deleteRecord(String id) throws SQLException {
         try (PreparedStatement stmt = SQLDataSource.getStatement("DELETE FROM "
-								 + table + " WHERE " + columns[0] + " = ?");
-	     Connection con = stmt.getConnection();) {
+                + table + " WHERE " + columns[0] + " = ?");
+                Connection con = stmt.getConnection();) {
             stmt.setString(1, id);
             stmt.execute();
         } catch (SQLException e) {
@@ -106,8 +106,8 @@ public abstract class DAOSQLImp<T> {
             sb.append(", ").append(columns[i]).append(" = ?");
         }
         try (PreparedStatement stmt = SQLDataSource.getStatement("UPDATE "
-								 + table + " SET " + sb.toString() + " WHERE " + columns[0] + " = ?");
-	     Connection con = stmt.getConnection();) {
+                + table + " SET " + sb.toString() + " WHERE " + columns[0] + " = ?");
+                Connection con = stmt.getConnection();) {
             for (int i = 0; i < data.size(); ++i) {
                 stmt.setObject(i + 1, data.get(i)/*, columnJDBCType[i]*/);
             }
@@ -133,11 +133,11 @@ public abstract class DAOSQLImp<T> {
             query.append("SELECT * FROM ").append(table);
         } else {
             query.append("SELECT * FROM ").append(table).append(" WHERE ")
-		.append(columns[column]).append(" = ?");
+                    .append(columns[column]).append(" = ?");
         }
         ArrayList<T> results = new ArrayList<>();
         try (PreparedStatement stmt = SQLDataSource.getStatement(query.toString());
-	     Connection con = stmt.getConnection();) {
+                Connection con = stmt.getConnection();) {
             if (value != null) {
                 stmt.setObject(1, value/*, columnJDBCType[col]*/);
             }
@@ -150,7 +150,7 @@ public abstract class DAOSQLImp<T> {
             }
         } catch (IllegalArgumentException | SQLException e) {
             throw new SQLException("Could not retrieve results from table:\n"
-				   + e.getMessage(), e);
+                    + e.getMessage(), e);
         }
         return results;
     }
@@ -174,28 +174,28 @@ public abstract class DAOSQLImp<T> {
         List<Object> data = new ArrayList<>();
         for (int i = 1; i <= columns.length; ++i) {
             switch (columnJDBCType[i - 1]) {
-	    case VARCHAR: {
-		data.add(rs.getString(i));
-		break;
-	    }
-	    case INTEGER: {
-		data.add(rs.getInt(i));
-		break;
-	    }
-	    case DATE: {
-		data.add(rs.getDate(i));
-		break;
-	    }
-	    case TIMESTAMP: {
-		data.add(ZonedDateTime.ofInstant(rs.getTimestamp(i).toInstant(), ZoneId.of("UTC")));
-		break;
-	    }
-	    case BLOB: {
-		data.add(rs.getBinaryStream(i));
-		break;
-	    }
-	    default:
-		data.add(null);
+                case VARCHAR: {
+                    data.add(rs.getString(i));
+                    break;
+                }
+                case INTEGER: {
+                    data.add(rs.getInt(i));
+                    break;
+                }
+                case DATE: {
+                    data.add(rs.getDate(i));
+                    break;
+                }
+                case TIMESTAMP: {
+                    data.add(ZonedDateTime.ofInstant(rs.getTimestamp(i).toInstant(), ZoneId.of("UTC")));
+                    break;
+                }
+                case BLOB: {
+                    data.add(rs.getBinaryStream(i));
+                    break;
+                }
+                default:
+                    data.add(null);
             }
         }
 
@@ -204,12 +204,12 @@ public abstract class DAOSQLImp<T> {
 
     public void clear() throws SQLException {
         try (PreparedStatement stmt = SQLDataSource.getStatement("DELETE FROM "
-								 + table);
-	     Connection con = stmt.getConnection();) {
+                + table);
+                Connection con = stmt.getConnection();) {
             stmt.execute();
         } catch (IllegalArgumentException | SQLException e) {
             throw new SQLException("Could not clear table " + table
-				   + ":\n" + e.getMessage(), e);
+                    + ":\n" + e.getMessage(), e);
         }
     }
 

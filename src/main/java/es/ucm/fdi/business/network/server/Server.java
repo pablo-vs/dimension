@@ -226,17 +226,17 @@ public class Server implements Runnable {
      */
     private void initializeServer() {
 
-       //  Initializes SSL by setting the certificates location
+        //  Initializes SSL by setting the certificates location
         try {
             initializeSSLContext();
         } catch (ServerSSLException e) {
             throw new RuntimeException("Cannot configurate SSL context", e);
         }
-       //  SSL server socket creation
+        //  SSL server socket creation
         try {
             SSLServerSocketFactory ssf = context.getServerSocketFactory();
             serverSocket = (SSLServerSocket) ssf.createServerSocket(PORT);
-            serverSocket.setNeedClientAuth(false); 
+            serverSocket.setNeedClientAuth(false);
         } catch (IOException e) {
             throw new RuntimeException("Cannot open port " + PORT, e);
         }

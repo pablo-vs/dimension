@@ -18,6 +18,7 @@ import es.ucm.fdi.business.util.MultiTreeMap;
 import java.util.ArrayList;
 import java.util.List;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
+import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import java.util.Iterator;
 import java.util.ListIterator;
 
@@ -236,10 +237,11 @@ public class Graph implements ComponentComposite {
     public ComponentComposite elementAt(int index) {
         return functionList.get(index);
     }
-   //Not in the final code
+    //Not in the final code
+
     public double evaluate(double x) {
-    	VariablesList v = new VariablesList(1);
-    	v.setVariable("x_0", x);
-    	return (double)((AbstractFunction)functionList.get(0)).evaluate(v);
+        VariablesList v = new VariablesList(1);
+        v.setVariable("x_0", x);
+        return (double) ((AbstractFunction) functionList.get(0)).evaluate(v);
     }
 }

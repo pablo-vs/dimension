@@ -14,10 +14,12 @@
 package es.ucm.fdi.business.exceptions.network;
 
 /**
- * This exception is thrown whenever any exception is caught in any protocol class.
- * Protocol classes deal with the managing of information received from packages, 
- * any exception could occur while working with the data. For more information
- * @see es.ucm.fdi.business.network.server.protocol.Protocol 
+ * This exception is thrown whenever any exception is caught in any protocol
+ * class. Protocol classes deal with the managing of information received from
+ * packages, any exception could occur while working with the data. For more
+ * information
+ *
+ * @see es.ucm.fdi.business.network.server.protocol.Protocol
  * @author Arturo Acuaviva Huertos
  */
 public class ProtocolException extends Exception {

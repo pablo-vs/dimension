@@ -15,7 +15,8 @@ package es.ucm.fdi.business.exceptions.network;
 
 /**
  * This exception is thrown whenever an error occurred while reading a package.
- * The exception is thrown so as to warm about a not valid package received. 
+ * The exception is thrown so as to warm about a not valid package received.
+ *
  * @author Arturo Acuaviva Huertos
  */
 public class UnrecognizablePackageException extends Exception {

@@ -11,31 +11,32 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package es.ucm.fdi.business.network.messages.client;
 
 import java.io.Serializable;
 
 /**
- * A RequestImage object represents a package received from the client. This class
- * extends from ClientMessage and adds a new field function containing the string
- * describing the function provided by the client. 
+ * A RequestImage object represents a package received from the client. This
+ * class extends from ClientMessage and adds a new field function containing the
+ * string describing the function provided by the client.
+ *
  * @see ClientMessage
  * @author Arturo Acuaviva
  */
 public class RequestImage extends ClientMessage implements Serializable {
-    
+
     /**
      * A description of the function to be drawn up
      */
     public String function;
-    
+
     /**
-     * Class constructor. A RequestImage constructor calls the super class 
-     * constructor using REQUEST_IMAGE type as an argument. 
+     * Class constructor. A RequestImage constructor calls the super class
+     * constructor using REQUEST_IMAGE type as an argument.
+     *
      * @see ClientMessage
      */
-    public RequestImage(){
+    public RequestImage() {
         super(ClientMessage.REQUEST_IMAGE);
     }
 }

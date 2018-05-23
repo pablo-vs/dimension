@@ -31,8 +31,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 /**
- * JUnit test for WorkAS class.
- * Añado test para transformVisualization()
+ * JUnit test for WorkAS class. Añado test para transformVisualization()
  *
  * @see WorkAS
  * @author Javier Galiana
@@ -54,7 +53,7 @@ public class WorkASTest {
         Visualization views = new Visualization();
 
         proj.addVisualizationBO(views);
-        
+
         proj.transformVisualization(views, new ScaleTransformation(2, 3, 4));
 
         assertEquals("VisualizationBOs have not been added to the project", true,

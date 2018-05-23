@@ -88,27 +88,27 @@ public class ClientThread implements Runnable {
                 switch (message.getType()) {
                     case ClientMessage.REQUEST_LOGIN: {
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " a REQUEST_LOGIN");
+                                + " with client.id=" + getID() + " a REQUEST_LOGIN");
                         break;
                     }
                     case ClientMessage.REQUEST_REGISTER: {
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " a REQUEST_REGISTER");
+                                + " with client.id=" + getID() + " a REQUEST_REGISTER");
                         break;
                     }
                     case ClientMessage.REQUEST_LOGOUT: {
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " a REQUEST_LOGOUT");
+                                + " with client.id=" + getID() + " a REQUEST_LOGOUT");
                         break;
                     }
                     case ClientMessage.REQUEST_IMAGE: {
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " a REQUEST_IMAGE");
+                                + " with client.id=" + getID() + " a REQUEST_IMAGE");
                         break;
                     }
                     default:
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " an unidentifiable CLIENT_MESSAGE");
+                                + " with client.id=" + getID() + " an unidentifiable CLIENT_MESSAGE");
                         break;
                 }
             } catch (IOException | ClassNotFoundException ex) {

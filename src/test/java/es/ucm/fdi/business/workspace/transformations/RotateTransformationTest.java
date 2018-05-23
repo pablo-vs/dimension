@@ -31,26 +31,27 @@ import org.junit.Test;
  * @author Arturo Acuaviva
  */
 public class RotateTransformationTest {
-    
+
     RotateTransformation noRotation, rotation;
-    
+
     public RotateTransformationTest() {
     }
-   
+
     @Before
     public void setUp() {
         noRotation = new RotateTransformation(1, 1, 1);
         rotation = new RotateTransformation(1, 10, 1);
     }
-    
+
     /**
      * Test of apply method, of class RotateTransformation.
+     *
      * @throws es.ucm.fdi.business.exceptions.NoMatchDimensionException
      */
     @Test
     public void testApply() throws NoMatchDimensionException {
         System.out.println("apply");
-         double[] dom_ini = {
+        double[] dom_ini = {
             0.0, -1.0, 0.0
         };
         double[] dom_fin = {
@@ -58,18 +59,18 @@ public class RotateTransformationTest {
         };
 
         Graph testGraph = new Graph(3);
-        
+
         // The function to test is going to be f(x,y,z) = x+y+z
-         String[] varNames = {"x", "y", "z"};
+        String[] varNames = {"x", "y", "z"};
         VariablesList vars = new VariablesList(varNames);
         AbstractFunction function = FunctionParser.parse("x + y + z", vars);
         System.out.println(function.toString());
         testGraph.add(function);
         testGraph.generate(dom_ini, dom_fin, 2);
-        
+
         System.out.println("Previous:");
         Iterator it = testGraph.getIteratorRange();
-         /*
+        /*
 
 	  THIS IS WAY TOO VERBOSE, IS IT REALLY NECESSARY??
 
@@ -78,15 +79,12 @@ public class RotateTransformationTest {
         }
         System.out.println();
 
-	*/
-        
-        
+         */
 
-	//THIS FAILS
-	noRotation.apply(testGraph);
+        //THIS FAILS
+        noRotation.apply(testGraph);
 
-
-	System.out.println("AfterNoModification:");
+        System.out.println("AfterNoModification:");
         it = testGraph.getIteratorRange();
         /*
 
@@ -97,9 +95,9 @@ public class RotateTransformationTest {
         }
         System.out.println();
 
-	*/
-        
-        /*
+         */
+
+ /*
         rotation.apply(testGraph);
          System.out.println("AfterModification:");
         it = testGraph.getIteratorRange();
@@ -107,7 +105,7 @@ public class RotateTransformationTest {
             System.out.print(it.next() + " ");
         }
         System.out.println();
-        */
+         */
     }
-    
+
 }

@@ -43,7 +43,7 @@ public class CommentDAOSQLImp extends DAOSQLImp<CommentDTO> implements CommentDA
     public CommentDAOSQLImp() {
         super(TABLE, COLUMNS, COLUMN_TYPES);
     }
-    
+
     @Override
     public void addComment(CommentDTO comment) throws DAOErrorException {
         try {

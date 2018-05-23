@@ -7,9 +7,11 @@ import java.io.ObjectOutputStream;
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
+
 /**
- * Client created for the sake of testing the Server. The client is incomplete 
+ * Client created for the sake of testing the Server. The client is incomplete
  * and should not be used as a full-working client.
+ *
  * @author Arturo Acuaviva
  */
 public class ClientExample {
@@ -30,7 +32,7 @@ public class ClientExample {
     public boolean start() {
         // try to connect to the server
         try {
-             SocketFactory socketFactory = SSLSocketFactory.getDefault();
+            SocketFactory socketFactory = SSLSocketFactory.getDefault();
             socket = (SSLSocket) socketFactory.createSocket(server, port);
         } // exception handler if it failed
         catch (IOException ec) {
@@ -51,10 +53,10 @@ public class ClientExample {
             display("Exception creating new Input/output Streams: " + eIO);
             return false;
         }
-        
+
         // creates the Thread to listen from the server 
-         new ListenFromServer().start();
-       
+        new ListenFromServer().start();
+
         return true;
     }
 
@@ -63,8 +65,8 @@ public class ClientExample {
         System.out.println("CLIENTE: " + msg);
 
     }
-    
-    public void close(){
+
+    public void close() {
         disconnect();
     }
 
@@ -95,12 +97,12 @@ public class ClientExample {
         public void run() {
             while (true) {
                 try {
-                  // System.out.println("Trying to send a message");
-                  sOutput.writeObject(new RequestLogin());
+                    // System.out.println("Trying to send a message");
+                    sOutput.writeObject(new RequestLogin());
                 } catch (Exception e) {
                     display("*** Server has closed the connection: " + e + "***");
                     break;
-                } 
+                }
             }
         }
     }

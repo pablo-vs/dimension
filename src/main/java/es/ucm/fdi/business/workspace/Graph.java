@@ -204,4 +204,10 @@ public class Graph {
     public void add(AbstractFunction func) {
         functionList.add(func);
     }
+   //Not in the final code
+    public double evaluate(double x) {
+    	VariablesList v = new VariablesList(1);
+    	v.setVariable("x_0", x);
+    	return (double)((AbstractFunction)functionList.get(0)).evaluate(v);
+    }
 }

@@ -1,5 +1,6 @@
 package es.ucm.fdi.business.network.testing;
 
+import es.ucm.fdi.business.network.messages.client.RequestLogin;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -42,15 +43,17 @@ public class ClientExample {
 
         /* Creating both Data Stream */
         try {
-       //     sInput = new ObjectInputStream(socket.getInputStream());
-       //     sOutput = new ObjectOutputStream(socket.getOutputStream());
-        } catch (Exception eIO) {
+            sOutput = new ObjectOutputStream(socket.getOutputStream());
+            sOutput.flush();
+            sInput = new ObjectInputStream(socket.getInputStream());
+            display("INPUT/OUTPUT created");
+        } catch (IOException eIO) {
             display("Exception creating new Input/output Streams: " + eIO);
             return false;
         }
         
         // creates the Thread to listen from the server 
-    //    new ListenFromServer().start();
+         new ListenFromServer().start();
        
         return true;
     }
@@ -87,17 +90,13 @@ public class ClientExample {
 
     }
 
-    class ListenFromServer extends Thread {
+    private class ListenFromServer extends Thread {
 
         public void run() {
             while (true) {
                 try {
-                   
-                    // read the message form the input datastream
-               //     String msg = (String) sInput.readObject();
-                    // print the message
-                    System.out.println("SD");
-                    System.out.print("> ");
+                  // System.out.println("Trying to send a message");
+                  sOutput.writeObject(new RequestLogin());
                 } catch (Exception e) {
                     display("*** Server has closed the connection: " + e + "***");
                     break;

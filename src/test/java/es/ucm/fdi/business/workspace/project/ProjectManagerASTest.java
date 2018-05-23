@@ -13,14 +13,25 @@
  */
 package es.ucm.fdi.business.workspace.project;
 
+import es.ucm.fdi.business.users.SessionDTO;
+import es.ucm.fdi.business.users.UserDTO;
+import es.ucm.fdi.business.users.UserManagerAS;
+import es.ucm.fdi.business.util.HashGenerator;
 import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import es.ucm.fdi.business.workspace.function.types.unary.ConstantFunction;
 import es.ucm.fdi.integration.project.ProjectDAO;
 import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
+import es.ucm.fdi.integration.project.ProjectDAOSQLImp;
+import es.ucm.fdi.integration.users.UserDAOHashTableImp;
+import es.ucm.fdi.integration.users.UserDAOSQLImp;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,6 +44,9 @@ import static org.junit.Assert.*;
  */
 public class ProjectManagerASTest {
 
+	char [] passwd = {'1','2','3','4'};
+	UserManagerAS userMan;
+	SessionDTO session;
     ProjectDAO newProject;
     ProjectManagerAS manager;
 
@@ -46,9 +60,11 @@ public class ProjectManagerASTest {
     @Before
     public void setUp() {
         newProject = new ProjectDAOHashTableImp("pepe");
-        newProject.addProject(new ProjectDTO("prj1"));
-        newProject.addProject(new ProjectDTO("prj2"));
         manager = new ProjectManagerAS(newProject, "pepe");
+        userMan = UserManagerAS.getManager(new UserDAOHashTableImp());
+        UserDTO pepe = new UserDTO("pepe", (new HashGenerator()).hash(passwd));
+        userMan.addNewUser(pepe);
+        session = userMan.login("pepe", null);
     }
 
     /**
@@ -56,11 +72,10 @@ public class ProjectManagerASTest {
      */
     @Test
     public void testNewProjectAndRemoveProject() {
-        System.out.println("newProject | removeProject");
         // Adding new projects
-        manager.newProject(new ProjectDTO("test1"));
-        manager.newProject(new ProjectDTO("test2"));
-        manager.newProject(new ProjectDTO("test3"));
+        manager.newProject(new ProjectDTO("test1"), session);
+        manager.newProject(new ProjectDTO("test2"), session);
+        manager.newProject(new ProjectDTO("test3"), session);
         // Checking whether or not they were created
         assertTrue("The project was correctly added",
                 manager.getDao().containsProject("test1"));
@@ -69,9 +84,9 @@ public class ProjectManagerASTest {
         assertTrue("The project was correctly added",
                 manager.getDao().containsProject("test3"));
         // Removing new projects
-        manager.removeProject("test1");
-        manager.removeProject("test2");
-        manager.removeProject("test3");
+        manager.removeProject("test1", session);
+        manager.removeProject("test2", session);
+        manager.removeProject("test3", session);
         // Check if they were removed
         assertFalse("The project was correctly removed",
                 manager.getDao().containsProject("test1"));
@@ -89,20 +104,20 @@ public class ProjectManagerASTest {
     public void testOpenProject() {
         System.out.println("openProject");
         // Adding new projects
-        manager.newProject(new ProjectDTO("test1"));
-        manager.newProject(new ProjectDTO("test2"));
-        manager.newProject(new ProjectDTO("test3"));
+        manager.newProject(new ProjectDTO("test1"), session);
+        manager.newProject(new ProjectDTO("test2"), session);
+        manager.newProject(new ProjectDTO("test3"), session);
         //Opening test1, test2 and test3
         assertEquals("Project opened correctly",
-                manager.openProject("test1").getID(), "test1");
+                manager.openProject("test1", session).getID(), "test1");
         assertEquals("Project opened correctly",
-                manager.openProject("test2").getID(), "test2");
+                manager.openProject("test2", session).getID(), "test2");
         assertEquals("Project opened correctly",
-                manager.openProject("test3").getID(), "test3");
+                manager.openProject("test3", session).getID(), "test3");
         // Removing new projects
-        manager.removeProject("test1");
-        manager.removeProject("test2");
-        manager.removeProject("test3");
+        manager.removeProject("test1", session);
+        manager.removeProject("test2", session);
+        manager.removeProject("test3", session);
     }
 
     /**
@@ -125,12 +140,12 @@ public class ProjectManagerASTest {
         prj1.setViews(visualizationList);
         prj1.setFunctions(functionList);
         // Changes saved
-        manager.saveChanges(prj1);
+        manager.modifyProject(prj1, session);
         // Check if changes were correctly saved
         assertTrue("Views changes correctly saved",
-                manager.openProject("prj1").getViews().equals(visualizationList));
+                manager.openProject("prj1", session).getViews().equals(visualizationList));
         assertTrue("Function list changes correctly saved",
-                manager.openProject("prj1").getFunctions().equals(functionList));
+                manager.openProject("prj1", session).getFunctions().equals(functionList));
 
     }
 
@@ -143,15 +158,15 @@ public class ProjectManagerASTest {
         ProjectManagerAS projectMgr = new ProjectManagerAS(new ProjectDAOHashTableImp("pepe"), "pepe");
         ProjectDTO polinomios = new ProjectDTO("polinomios43");
         ProjectDTO raices = new ProjectDTO("ra|||");
-        projectMgr.newProject(polinomios);
+        projectMgr.newProject(polinomios, session);
         try {
-            projectMgr.newProject(raices);
+            projectMgr.newProject(raices, session);
             fail("Illegal character in project name!");
         } catch (IllegalArgumentException e) {
             // OK
         }
         try {
-            projectMgr.removeProject("ra|||");
+            projectMgr.removeProject("ra|||", session);
             fail("Deleted non-existing project!");
         } catch (IllegalArgumentException e) {
             // OK
@@ -160,24 +175,24 @@ public class ProjectManagerASTest {
         List<AbstractFunction> funcs = new ArrayList<>();
         polinomios.setFunctions(funcs);
 
-        projectMgr.saveChanges(polinomios);
+        projectMgr.modifyProject(polinomios, session);
 
-        polinomios = projectMgr.openProject("polinomios43");
+        polinomios = projectMgr.openProject("polinomios43", session);
         if (polinomios.getFunctions() == null) {
             fail("Changes not being saved!");
         }
 
-        projectMgr.removeProject("polinomios43");
+        projectMgr.removeProject("polinomios43", session);
 
         try {
-            projectMgr.openProject("polinomios43");
+            projectMgr.openProject("polinomios43", session);
             fail("Opening non-existing project!");
         } catch (IllegalArgumentException e) {
             // OK
         }
 
         try {
-            projectMgr.removeProject("polinomios43");
+            projectMgr.removeProject("polinomios43", session);
             fail("Removing non-existing project!");
         } catch (IllegalArgumentException e) {
             // OK
@@ -185,16 +200,23 @@ public class ProjectManagerASTest {
 
         ProjectDTO trigonometricas = new ProjectDTO("trig");
         try {
-            projectMgr.saveChanges(trigonometricas);
+            projectMgr.modifyProject(trigonometricas, session);
         } catch (IllegalArgumentException e) {
             fail("If saved project doesn't exist must create a new one");
         }
 
         try {
-            trigonometricas = projectMgr.openProject("trig");
+            trigonometricas = projectMgr.openProject("trig", session);
         } catch (IllegalArgumentException e) {
             fail("If saved project doesn't exist must create a new one");
         }
     }
 
+    @After
+    public void clear() throws SQLException {
+    	userMan.removeUser("pepe", session);
+    	userMan.logout(session);
+    	(new UserDAOSQLImp()).clear();
+    	(new ProjectDAOSQLImp("")).clear();
+    }
 }

@@ -13,20 +13,25 @@
  */
 package es.ucm.fdi.business.connectivity;
 
-import es.ucm.fdi.integration.connectivity.AuthorshipDAOHashTableImp;
+import es.ucm.fdi.integration.connectivity.AuthorshipDAOHashTableImp;	
 import es.ucm.fdi.integration.connectivity.SharedProjectDAOHashTableImp;
+import es.ucm.fdi.integration.connectivity.SharedProjectDAOSQLImp;
+import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
+import es.ucm.fdi.integration.project.ProjectDAOSQLImp;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
-import es.ucm.fdi.business.workspace.project.ProjectManagerAS;
 import es.ucm.fdi.business.users.SessionDTO;
 import es.ucm.fdi.integration.users.UserDAOHashTableImp;
+import es.ucm.fdi.integration.users.UserDAOSQLImp;
 import es.ucm.fdi.business.users.UserManagerAS;
 import es.ucm.fdi.business.users.UserDTO;
 import es.ucm.fdi.business.util.HashGenerator;
@@ -81,8 +86,7 @@ public class ShareManagerTest {
 
         //test the rejection of unauthorised accesses
         try {
-            shareMgr.importProject(shareMgr.findProjectByName("lineales", juanSession).get(0), juanSession,
-            		new ProjectManagerAS("juan"));
+            shareMgr.importProject(shareMgr.findProjectByName("lineales", juanSession).get(0), juanSession);
             fail("Unauthorised access");
         } catch (Exception e) {
             //correcto
@@ -105,15 +109,22 @@ public class ShareManagerTest {
         //test the permission of legitimate accesses
 
         shareMgr.modifySharedProject(shareMgr.findProjectByName("lineales", session).get(0), session);
-        shareMgr.importProject(shareMgr.findProjectByName("lineales", session).get(0), session, new ProjectManagerAS("juan"));
+        shareMgr.importProject(shareMgr.findProjectByName("lineales", session).get(0), session);
         shareMgr.modifySharedProject(shareMgr.findProjectByName("lineales", luis).get(0), luis);
-        shareMgr.importProject(shareMgr.findProjectByName("cuadraticas", juanSession).get(0), juanSession,
-        	new ProjectManagerAS("juan"));
+        shareMgr.importProject(shareMgr.findProjectByName("cuadraticas", juanSession).get(0), juanSession);
         List<SharedProjectDTO> found = shareMgr.findProjectByAuthor("pepe", session);
         for (SharedProjectDTO f : found) {
             shareMgr.modifySharedProject(f, session);
         }
 
+        
+    }
+    
+    @After
+    public void clear() throws SQLException {
+    	(new ProjectDAOSQLImp("")).clear();
+    	(new SharedProjectDAOSQLImp()).clear();
+    	(new UserDAOSQLImp()).clear();
     }
 
 }

@@ -1,17 +1,13 @@
 package es.ucm.fdi.integration.project;
 
-import org.junit.Test;
-
-import es.ucm.fdi.business.connectivity.SharedProjectDTO;
-import es.ucm.fdi.business.connectivity.SharedProjectDTOOpenProjectImp;
-import es.ucm.fdi.business.workspace.Visualization;
-import es.ucm.fdi.business.workspace.project.ProjectDTO;
-import es.ucm.fdi.business.workspace.project.WorkAS;
-import es.ucm.fdi.integration.connectivity.SharedProjectDAOSQLImp;
-
+import org.junit.Test;	
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+
+import es.ucm.fdi.business.workspace.Visualization;
+import es.ucm.fdi.business.workspace.project.ProjectDTO;
+import es.ucm.fdi.business.workspace.project.WorkAS;
 
 public class ProjectDAOSQLImpTest {
 	
@@ -49,7 +45,7 @@ public class ProjectDAOSQLImpTest {
 		dao1.modifyProject(exp);
 
 		assertEquals("The Project found is not the expected", exp,
-			     dao1.findProject("exponencial"));
+			     dao1.findProject("exponential"));
 
 		dao1.removeProject(exp.getID());
 		dao1.removeProject(log.getID());

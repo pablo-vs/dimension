@@ -13,10 +13,9 @@
  */
 package es.ucm.fdi.business.workspace.function;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlRootElement;	
 import javax.xml.bind.annotation.XmlElement;
 
-import es.ucm.fdi.business.workspace.ComponentComposite;	
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import java.util.Iterator;
 
@@ -30,12 +29,14 @@ import java.util.Iterator;
  * {@link #evaluate(es.ucm.fdi.workspace.function.types.VariablesList) evaluate}
  * which calculates the value of the function given a
  * {@link es.ucm.fdi.business.workspace.function.types.VariablesList VariablesList}.
- * s
+ * 
  *
  * @author Javier Navalón, Arturo Acuaviva
  */
-public abstract class AbstractFunction implements ComponentComposite {
+public abstract class AbstractFunction {
 
+	//Composite pattern: abstract component
+	
     protected VariablesList variables;
 
     /**
@@ -75,64 +76,6 @@ public abstract class AbstractFunction implements ComponentComposite {
      */
     @Override
     public abstract String toString();
-
-    /**
-     * A leaf ComponentComposite cannot contain more objects. This method should
-     * not be implemented by a leaf in composite pattern.
-     *
-     * @param component
-     */
-    @Override
-    public void add(ComponentComposite component) {
-        throw new UnsupportedOperationException("Not supported by leaf component"
-                + " composite objects.");
-    }
-
-    /**
-     * A leaf ComponentComposite cannot contain more objects. This method should
-     * not be implemented by a leaf in composite pattern.
-     *
-     * @param component
-     */
-    @Override
-    public void delete(ComponentComposite component) {
-        throw new UnsupportedOperationException("Not supported by leaf component"
-                + " composite objects.");
-    }
-
-    /**
-     * A leaf ComponentComposite cannot contain more objects. This method should
-     * not be implemented by a leaf in composite pattern.
-     */
-    @Override
-    public void deleteAll() {
-        throw new UnsupportedOperationException("Not supported by leaf component"
-                + " composite objects.");
-    }
-
-    /**
-     * A leaf ComponentComposite cannot contain objects. This method should not
-     * be implemented by a leaf in composite pattern.
-     *
-     * @return
-     */
-    @Override
-    public Iterator getCompositeIterator() {
-        throw new UnsupportedOperationException("Not supported by leaf component"
-                + " composite objects.");
-    }
-
-    /**
-     * A leaf ComponentComposite cannot contain objects. This method should not
-     * be implemented by a leaf in composite pattern.
-     *
-     * @return
-     */
-    @Override
-    public ComponentComposite elementAt(int index) {
-        throw new UnsupportedOperationException("Not supported by leaf component"
-                + " composite objects.");
-    }
 
     /**
      * Contains the specific parser for each function.

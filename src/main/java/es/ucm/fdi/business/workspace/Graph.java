@@ -33,7 +33,7 @@ import java.util.ListIterator;
  * @author Eloy Mósig
  */
 @XmlRootElement
-public class Graph/* implements ComponentComposite*/ {
+public class Graph {
 
     /**
      *
@@ -61,7 +61,7 @@ public class Graph/* implements ComponentComposite*/ {
      * functions.
      */
 	@XmlElement
-    private final List</*ComponentComposite*/AbstractFunction> functionList = new ArrayList<>();
+    private final List<AbstractFunction> functionList = new ArrayList<>();
 
     /**
      * Tree map with domain values.
@@ -69,6 +69,7 @@ public class Graph/* implements ComponentComposite*/ {
 	@XmlElement
     private final MultiTreeMap<Integer, Integer> object
             = new MultiTreeMap<>((a, b) -> a - b);
+	
     /**
      * Resolution of the graph, it indicates the factor used to calculate the
      * length of the
@@ -203,54 +204,4 @@ public class Graph/* implements ComponentComposite*/ {
     public void add(AbstractFunction func) {
         functionList.add(func);
     }
-   /* @Override
-    public void add(ComponentComposite component) {
-        functionList.add(component);
-    }
-
-    /**
-     * Deletes a ComponentComposite that a Graph object contains. Typically in
-     * Graph this elements will be vertex.
-     *
-     * @param component which will be removed
-     */
-   /* @Override
-    public void delete(ComponentComposite component) {
-        if (!functionList.remove(component)) {
-            throw new IllegalArgumentException("The component to be removed in "
-                    + "the graph was not in the range");
-        }
-    }
-
-    /**
-     * Removes all the elements in the range. All ComponentComposites are
-     * deleted.
-     */
-   /* @Override
-    public void deleteAll() {
-        functionList.removeAll(functionList);
-    }
-
-    /**
-     * Returns an operator over the list of ComponentComposite that a Graph
-     * object contains. Typically in Graph this elements will be functions.
-     *
-     * @return listIterator over the elements of the graph
-     */
-  /*  @Override
-    public Iterator getCompositeIterator() {
-        return functionList.listIterator();
-    }
-
-    /**
-     * Returns the element at the given position index. Typically it will be a
-     * function.
-     *
-     * @param index
-     * @return
-     */
-  /*  @Override
-    public ComponentComposite elementAt(int index) {
-        return functionList.get(index);
-    }*/
 }

@@ -173,12 +173,14 @@ public class ShareManagerAS {
      * @param proj The project to import.
      * @param session The session to validate this operation.
      */
-    public void importProject(SharedProjectDTO proj, SessionDTO session, ProjectManagerAS projMan)
+    public void importProject(SharedProjectDTO proj, SessionDTO session)
             throws NotFoundException, AccessControlException {
 
+    	
         if (userMan.authenticate(session.getUser(), session)) {
             if (proj.hasReadAccess(session.getUser())) {
-                projMan.newProject(new ProjectDTO(proj));
+            	ProjectManagerAS projMan = new ProjectManagerAS(session.getUser());
+                projMan.newProject(new ProjectDTO(proj), session);
             } else {
                 throw new AccessControlException("User " + session.getUser()
                         + " cannot modify " + proj.getID());

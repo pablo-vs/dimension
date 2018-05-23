@@ -3,7 +3,7 @@
  */
 package es.ucm.fdi.integration.project;
 
-import java.util.ArrayList;
+import java.util.ArrayList;	
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -135,7 +135,7 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
             data.add(nameToID(proj.getID()));
             data.add(user);
             data.add(proj.getID());
-            data.add(str.toByteArray());
+            data.add(str.toString());
             
 
             return data;

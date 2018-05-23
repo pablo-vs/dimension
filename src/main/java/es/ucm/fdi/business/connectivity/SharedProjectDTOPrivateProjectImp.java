@@ -13,7 +13,10 @@
  */
 package es.ucm.fdi.business.connectivity;
 
-import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;	
+import javax.xml.bind.annotation.XmlElement;
+
+import java.util.ArrayList;	
 import java.util.List;
 
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
@@ -24,17 +27,24 @@ import es.ucm.fdi.business.workspace.project.ProjectDTO;
  *
  * @author Javier Galiana
  */
+@XmlRootElement
 public class SharedProjectDTOPrivateProjectImp extends SharedProjectDTO {
 
     /**
      * List of authors
      */
+	@XmlElement
     private List<String> authors;
     /**
      * List of viewers
      */
+	@XmlElement
     private List<String> viewers;
 
+	public SharedProjectDTOPrivateProjectImp() {
+		super();
+	}
+	
     /**
      * Class constructor specifying id, project and list of authors and viewers.
      *

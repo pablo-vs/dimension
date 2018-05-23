@@ -14,6 +14,8 @@
 
 package es.ucm.fdi.business.network.messages.client;
 
+import java.io.Serializable;
+
 /**
  * A RequestLogin object represents a package received from the client. The class
  * extends from ClientMessage and it adds two fields containing the password
@@ -21,7 +23,7 @@ package es.ucm.fdi.business.network.messages.client;
  * @see ClientMessage
  * @author Arturo Acuaviva
  */
-public class RequestLogin extends ClientMessage{
+public class RequestLogin extends ClientMessage implements Serializable {
     /**
      * Username of the user requesting access
      */

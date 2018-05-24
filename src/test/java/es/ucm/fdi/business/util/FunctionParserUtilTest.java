@@ -50,17 +50,14 @@ public class FunctionParserUtilTest {
             "ln(e^10)", "ln(e^((x*1)+ln(e^5)))", "ln(0+e)+1"};
         functions2 = new String[]{"x+y+z", "x^(3*y-3*z+4)",
             "cos(PI*(tan(x+y+z*y-x*z+y)+y^(1)))"};
-
-        functions2 = new String[]{"x+y+z", "x^(3*y-3*z+4)",
-            "cos(PI*(tan(x+y+z*y-x*z+y)+y^(1)))"};
         functions3 = new String[]{"3", "5*x", "cosec(x)", "cotan((PI*x)/2)", "secan(x - 1)",
             "tan(x - 1)", "2^(2*x)"};
         correctResultFunctions1 = new double[]{5, 20, 20, 5, 76, 25, 79, 4, 1,
             0.08215400811873169, 10, 10, 2};
         correctResultFunctions2 = new double[]{10, 5, 1};
-        correctResultFunctions3 = new double[]{3, 5, 1 / Math.sin(Math.toRadians(1)),
-            1 / Math.tan(Math.toRadians(Math.PI / 2)), 1 / Math.cos(Math.toRadians(0)),
-            Math.tan(Math.toRadians(0)), 4};
+        correctResultFunctions3 = new double[]{3, 25, 1 / Math.sin(Math.toRadians(5)),
+            1 / Math.tan(Math.toRadians(Math.PI * 5/ 2)), 1 / Math.cos(Math.toRadians(4)),
+            Math.tan(Math.toRadians(4)), Math.pow(2, 10)};
 
         variablesList1 = new VariablesList(variablesNames1);
         variablesList2 = new VariablesList(variablesNames2);
@@ -100,7 +97,7 @@ public class FunctionParserUtilTest {
 
     @Test
     public void functionParserTest3() {
-        System.out.println("Evaluating functions at x = " + valueX);
+        System.out.println("Third test, evaluating functions at x = " + valueX);
         for (int i = 0; i < functions3.length; ++i) {
             AbstractFunction f = FunctionParser.parse(functions3[i], variablesList1);
             variablesList1.setVariable("x", valueX);

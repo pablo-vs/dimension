@@ -14,6 +14,8 @@
 package es.ucm.fdi.business.workspace;
 
 import es.ucm.fdi.business.exceptions.NoMatchDimensionException;
+import es.ucm.fdi.business.util.Matrix;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -92,7 +94,15 @@ public class Vertex implements Iterable<Double>, Cloneable {
         this.cmps = null;
     }
 
-    /**
+    public Vertex(double[] comps, double[] comps2) {
+		this.dim = comps.length + comps2.length;
+		this.cmps = new double[dim];
+		int i = 0;
+		for(;i < comps.length; ++i) cmps[i] = comps[i];
+		for(;i < dim; ++i) cmps[i] = comps2[i-comps.length];
+	}
+
+	/**
      * Accessor method to get the value in the vertex at position n
      *
      * @param n n-position in the vertex N dimensional
@@ -261,6 +271,94 @@ public class Vertex implements Iterable<Double>, Cloneable {
      */
     public double[] getComps() {
         return cmps == null ? null : cmps.clone();
+    }
+    
+    /**
+     * Computes the substraction of another vertex from this one.
+     * @param other The Vertex to substract.
+     * @return The resulting Vertex.
+     * @throws NoMatchDimensionException 
+     */
+    public Vertex substract(Vertex other) throws NoMatchDimensionException {
+    	if(this.dim == other.dim) {
+	    	Vertex result = new Vertex(dim);
+	    	for(int i = 0; i < dim; ++i) {
+	    		result.cmps[i] = cmps[i]-other.cmps[i];
+	    	}
+	    	return result;
+    	} else {
+    		throw new NoMatchDimensionException("Cannot substract vertices of different dimension");
+    	}
+    }
+    
+    /**
+     * Computes the dot product of another vertex from this one.
+     * @param other The Vertex to multiply.
+     * @return The resulting product.
+     * @throws NoMatchDimensionException 
+     */
+    public double dotProduct(Vertex other) throws NoMatchDimensionException {
+    	if(other.dim == dim) {
+	    	double prod = 0;
+	    	for(int i = 0; i < dim; ++i) {
+	    		prod += cmps[i]*other.cmps[i];
+	    	}
+	    	return prod;
+    	} else {
+    		throw new NoMatchDimensionException("Cannot multiply vertices of different dimension");
+    	}
+    }
+    
+    /**
+     * Computes the cross product of a set of vertices.
+     * @param other The Vertices to multiply.
+     * @return The resulting product.
+     * @throws NoMatchDimensionException 
+     */
+    public static Vertex cross(Vertex ... others) throws NoMatchDimensionException {
+		int dim = others[0].dim;
+		if(dim != others.length+1) {
+			throw new NoMatchDimensionException("Dim-1 vertices are needed for the product");
+		}
+		Vertex result = new Vertex(dim);
+		Matrix determ = new Matrix(dim);
+		for(int i = 1; i < dim; ++i) {
+			determ.getValues()[i] = others[i-1].cmps.clone();
+		}
+		for(int i = 0; i < dim; ++i) {
+			result.cmps[i] = Math.pow(-1, i)*Matrix.determinant(new Matrix(dim-1, determ.getValues(), 0, i));
+		}
+		return result;
+	}
+    
+    /**
+     * Checks if this Vertex is orthogonal to the given one (their dot
+     * product is zero with the given precision).
+     * @param other The Vertex to check.
+     * @param precision The precision of the operation.
+     * @return True if both are orthogonal up to the given precision.
+     * @throws NoMatchDimensionException 
+     */
+    public boolean isOrthogonalTo(Vertex other, double precision) throws NoMatchDimensionException {
+    	if(precision <= 0) {
+    		throw new IllegalArgumentException("Precision must be positive!");
+    	}
+    	double prod = dotProduct(other);
+    	return prod < precision && prod > -precision;
+    }
+    
+    public void normalize() {
+    	double mod;
+		try {
+			mod = distanceFromOrigin();
+			for(int i = 0; i < dim; ++i) {
+	    		cmps[i] /= mod;
+	    	}
+		} catch (NoMatchDimensionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
 
     /**

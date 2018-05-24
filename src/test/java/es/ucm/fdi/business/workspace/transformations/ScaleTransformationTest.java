@@ -57,7 +57,7 @@ public class ScaleTransformationTest {
   @Test
   public void testApply() throws NoMatchDimensionException {
   	setUp();
-  	System.out.println("apply");
+  	//System.out.println("apply");
     double[] dom_ini = { 0.0, -1.0, 0.0 };
     double[] dom_fin = { 3.0, 2.0, 3.0 };
 
@@ -67,44 +67,44 @@ public class ScaleTransformationTest {
 	String[] varNames = {"x", "y", "z"};
 	VariablesList vars = new VariablesList(varNames);
 	AbstractFunction function1 = FunctionParser.parse("x + y + z", vars);
-	System.out.println(function1.toString());
+	//System.out.println(function1.toString());
 	testGraph.add(function1);
 	AbstractFunction function2 = FunctionParser.parse("y", vars);
-	System.out.println(function2.toString());
+	//System.out.println(function2.toString());
 	testGraph.add(function2);
 	AbstractFunction function3 = FunctionParser.parse("x + z", vars);
-	System.out.println(function3.toString());
+	//System.out.println(function3.toString());
 	testGraph.add(function3);
 	testGraph.generate(dom_ini, dom_fin, 2);
 	
-	System.out.println("Previous:");
-	Iterator it = testGraph.getIteratorRange();
+	//System.out.println("Previous:");
+	Iterator it = testGraph.getRangeIterator();
 	List<Vertex> range1 = new ArrayList<>();
 	List<Vertex> range2 = new ArrayList<>();
 	while(it.hasNext()) {
 		Vertex v = (Vertex) it.next();
-        System.out.print("(" + v + ") ");
+        //System.out.print("(" + v + ") ");
 	    range1.add(v);
 	}
 	noScale.apply(testGraph);
-  	System.out.println();
-    System.out.println("AfterNoModification:");
-	it = testGraph.getIteratorRange();
+  //	System.out.println();
+    //System.out.println("AfterNoModification:");
+	it = testGraph.getRangeIterator();
 	while(it.hasNext()) {
 		Vertex v = (Vertex) it.next();
-        System.out.print("(" + v + ") ");
+        //System.out.print("(" + v + ") ");
 	    range2.add(v);
 	}
 	assertEquals("Invalid range results", range1, range2);
 	
   	scale.apply(testGraph);
-  	System.out.println();
-  	System.out.println("AfterModification:");
-    it = testGraph.getIteratorRange();
-    while (it.hasNext()) {
+  	//System.out.println();
+  	//System.out.println("AfterModification:");
+    it = testGraph.getRangeIterator();
+    /*while (it.hasNext()) {
         System.out.print("(" + it.next() + ") ");
     }
     System.out.println();
-
+*/
   }
 }

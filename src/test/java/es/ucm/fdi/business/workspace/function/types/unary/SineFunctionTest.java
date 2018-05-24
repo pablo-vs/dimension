@@ -49,7 +49,7 @@ public class SineFunctionTest {
         SineFunction instance = new SineFunction(FunctionParser
                 .parse("x + y/4 - 5*z", vars), vars);
         int[] varsValues = {2, 3, 4};
-        assertEquals(Math.sin(Math.toRadians(2 + (3 / 4) - 20)),
+        assertEquals(Math.sin(2 + ((double) 3 / 4) - 20),
                 instance.evaluate(new VariablesList(varsValues, varNames)), 0.1);
     }
 

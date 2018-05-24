@@ -48,7 +48,7 @@ public class SineFunction extends UnaryFunction {
 
     @Override
     public double evaluate(VariablesList vars) {
-        return Math.sin(Math.toRadians(function.evaluate(vars)));
+        return Math.sin(function.evaluate(vars));
     }
 
     public static class Parser extends UnaryFunction.Parser {

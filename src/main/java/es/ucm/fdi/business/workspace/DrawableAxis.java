@@ -22,19 +22,12 @@ public class DrawableAxis extends JPanel {
 		this.gr=g;
 	}
 	public void paint(Graphics g) {
-		drawAxis(g);
+		//drawAxis(g);
 		drawGraph(g);
 	}
 	public void drawGraph(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		GeneralPath path = new GeneralPath();
-		int i=0;
-		path.moveTo(0, y/2);
-		while (i<x) {
-			path.lineTo((i), (y/2-gr.evaluate((i-x/2)*XScale)*YScale));
-			i++;
-		}
-		g2.draw(path);
+		gr.paint(g2, x/2, y/2, XScale);
 	}
 	public void drawAxis(Graphics g) {
 		g.drawLine(0,  y/2, x, y/2);

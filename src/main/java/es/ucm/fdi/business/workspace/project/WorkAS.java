@@ -14,6 +14,7 @@
 package es.ucm.fdi.business.workspace.project;
 
 import es.ucm.fdi.business.workspace.Graph;
+import es.ucm.fdi.business.workspace.Vertex;
 import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 import es.ucm.fdi.business.workspace.transformations.TransformationStrategy;
@@ -112,9 +113,8 @@ public class WorkAS {
     /**
      * 
      */
-    public BufferedImage paint(Visualization view) {
-    	
-		return null;
+    public List<BufferedImage> paint(Visualization view, int height, int width, int res, List<List<Vertex>> params, List<Double> scales) {
+    	return view.paint(height, width, res, params, scales);
     }
 
 }

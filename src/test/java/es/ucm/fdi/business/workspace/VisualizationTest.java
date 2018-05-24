@@ -18,9 +18,16 @@ import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import static org.junit.Assert.assertEquals;
@@ -88,7 +95,7 @@ public class VisualizationTest {
 		int counter = 0;
 
 		Graph newGraph = Visualization.projectGraph(graph, 1, 3, 4, hp);
-		Iterator newIt = newGraph.getIteratorRange();
+		Iterator newIt = newGraph.getRangeIterator();
 
 		while (newIt.hasNext()) {
 			Vertex v = (Vertex) newIt.next();
@@ -103,7 +110,6 @@ public class VisualizationTest {
 	 */
 	@Test
 	public void testCompositeInterface() {
-		System.out.println("CompositeInterface: add | delete | getCompositeIterator" + " | deleteAll");
 
 		// We previosly added these vertexes in the setUp method
 		Vertex[] listOfVertex = { new Vertex(n1), new Vertex(n2), new Vertex(n3), new Vertex(n4), new Vertex(n5),
@@ -111,7 +117,7 @@ public class VisualizationTest {
 				new Vertex(n12) };
 
 		// Iterator testing
-		Iterator it = graph.getIteratorRange();
+		Iterator it = graph.getRangeIterator();
 		int counter = 0;
 		while (it.hasNext()) {
 			if (counter >= 12) {
@@ -135,7 +141,6 @@ public class VisualizationTest {
 	private static class FGraph extends JFrame {
 
 		public FGraph() {
-			System.out.println("Estamos vivos 2");
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					InitGUI();
@@ -144,23 +149,47 @@ public class VisualizationTest {
 		}
 
 		public void InitGUI() {
-			Graph g = new Graph(2);
-			AbstractFunction f = FunctionParser.parse("sin(1/(x_0^2))", new VariablesList(1));
+			Graph g = new Graph(1);
+			String [] var = {"x", "y"};
+			AbstractFunction f = FunctionParser.parse("y^2 + (x^3)/20", new VariablesList(var));
 			g.add(f);
-			DrawableAxis ax = new DrawableAxis(0.0001, 200, 1080, 720, g);
-			this.add(ax);
+			Visualization view = new Visualization();
+			double [] ini = {-3, -3}, end = {5, 3};
+			try {
+				int res = 2;
+				double scale = 60;
+				List<Double> scales = new ArrayList<>();
+				scales.add(scale);
+				g.generate(ini, end, res);
+				view.add(g, Color.CYAN);
+				Vertex from = new Vertex(-8, -2, 5),
+						to = new Vertex(3, 0, -1),
+						lat = new Vertex(0, 0.5, 0),
+						up = new Vertex(0, 0, 1);
+				List<List<Vertex>> params = new ArrayList<>();
+				List<Vertex> p1 = new ArrayList<>();
+				p1.add(from);
+				p1.add(to);
+				p1.add(lat);
+				p1.add(up);
+				params.add(p1);
+				List<BufferedImage> result = view.paint(1080, 720, res, params, scales);
+				this.add(new JLabel(new ImageIcon(result.get(0))));
+				this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+			} catch (NoMatchDimensionException e) {
+				e.printStackTrace();
+			}
+			
 			repaint();
 			revalidate();
 			setSize(1080, 720);
 			setVisible(true);
-			System.out.println("Estamos vivos 3");
 		}
 
 	}
 
 
 	public static void main(String [] args) {
-		System.out.println("Estamos vivos");
 		FGraph f = new FGraph();
 	}
 

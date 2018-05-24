@@ -120,14 +120,9 @@ public class RotateTransformation extends TransformationStrategy {
                 minZ = n2;
             }
         }
-<<<<<<< HEAD
+
         double centerX = (maxX + minX) / 2, centerZ = (maxZ + minZ) / 2;
         iterator = g.getRangeIterator();
-
-=======
-        iterator = g.getIteratorRange();
-        double centerX = (maxX + minX) / 2, centerZ = (maxZ + minZ) / 2;
->>>>>>> 83f3ee3bfe5670b02b370eb9f2df235b278df8cd
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             double x = v.at(0), z = v.at(2), a = Math.atan((x - centerX) / (z - centerZ)), dist;
@@ -144,17 +139,10 @@ public class RotateTransformation extends TransformationStrategy {
      * @param g the graph which will be rotated
      * @param d
      */
-<<<<<<< HEAD
-    private static void rotatZ(Graph g, double d) {
+    private static void rotateZ(Graph g, double d) {
         double minX = ((Vertex) g.getRangeIterator().next()).at(0), maxX = minX,
                 minY = ((Vertex) g.getRangeIterator().next()).at(1), maxY = minY;
         ListIterator iterator = g.getRangeIterator();
-=======
-    private static void rotateZ(Graph g, double d) {
-        double minX = ((Vertex) g.getIteratorRange().next()).at(0), maxX = minX,
-                minY = ((Vertex) g.getIteratorRange().next()).at(1), maxY = minY;
-        ListIterator iterator = g.getIteratorRange();
->>>>>>> 83f3ee3bfe5670b02b370eb9f2df235b278df8cd
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -173,7 +161,7 @@ public class RotateTransformation extends TransformationStrategy {
                 minY = n2;
             }
         }
-        iterator = g.getIteratorRange();
+        iterator = g.getRangeIterator();
         double centerX = (maxX + minX) / 2, centerY = (maxY + minY) / 2;
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();

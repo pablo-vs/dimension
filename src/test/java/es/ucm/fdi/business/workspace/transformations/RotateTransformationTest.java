@@ -64,38 +64,38 @@ public class RotateTransformationTest {
         AbstractFunction functionY = FunctionParser.parse("y", vars);
         AbstractFunction functionZ = FunctionParser.parse("z", vars);
         
-        System.out.println(functionX.toString() + " + " + functionY.toString() + 
-                " + " + functionZ.toString());
+       // System.out.println(functionX.toString() + " + " + functionY.toString() + 
+       //         " + " + functionZ.toString());
         testGraph.add(functionX);
         testGraph.add(functionY);
         testGraph.add(functionZ);
         testGraph.generate(dom_ini, dom_fin, 2);
 
-        System.out.println("Previous:");
-        Iterator it = testGraph.getIteratorRange();
+        //System.out.println("Previous:");
+        Iterator it = testGraph.getRangeIterator();
 
-        while (it.hasNext()) {
+        /*while (it.hasNext()) {
             System.out.print("(" + it.next() + ") ");
         }
-        System.out.println();
+        System.out.println();*/
 
-        //THIS FAILS
+        
         noRotation.apply(testGraph);
-        System.out.println("AfterNoModification:");
-        it = testGraph.getIteratorRange();
-
+        //System.out.println("AfterNoModification:");
+        it = testGraph.getRangeIterator();
+/*
         while (it.hasNext()) {
             System.out.print("(" + it.next() + ") ");
         }
-        System.out.println();
+        System.out.println();*/
 
         rotation.apply(testGraph);
-        System.out.println("AfterModification:");
-        it = testGraph.getIteratorRange();
-        while (it.hasNext()) {
+        //System.out.println("AfterModification:");
+        it = testGraph.getRangeIterator();
+        /*while (it.hasNext()) {
             System.out.print("(" + it.next() + ") ");
         }
-        System.out.println();
+        System.out.println();*/
 
     }
 

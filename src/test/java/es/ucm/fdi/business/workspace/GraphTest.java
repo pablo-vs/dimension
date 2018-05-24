@@ -62,11 +62,13 @@ public class GraphTest {
         };
 
         System.out.println("Graph generation: generate | getGrid");
+        testGraph.add(new IdentityFunction("x_0", new VariablesList(2/*3*/)));
+        testGraph.add(new IdentityFunction("x_1", new VariablesList(2/*3*/)));
         testGraph.add(new IdentityFunction("x_1", new VariablesList(2/*3*/)));
         testGraph.generate(dom_ini, dom_fin, 0);
-        Iterator<Vertex> it = testGraph.getDomainIterator();
+        /*Iterator<Vertex> it = testGraph.getDomainIterator();
         Iterator<Vertex> it2 = testGraph.getRangeIterator();
-        while(it.hasNext()) {
+        /*while(it.hasNext()) {
         	System.out.print(it.next());
         	System.out.print(" ");
         	System.out.println(it2.next());

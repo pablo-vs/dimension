@@ -23,6 +23,7 @@ import es.ucm.fdi.business.util.MultiTreeMap;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
@@ -47,7 +48,7 @@ public class Graph {
 	 * the graph.
 	 */
 	@XmlElement
-	private final int rangeDim;
+	private int rangeDim = 0;
 
 	/**
 	 *
@@ -55,7 +56,7 @@ public class Graph {
 	 * by the graph.
 	 */
 	@XmlElement
-	private int domainDim;
+	private int domainDim = 0;
 	
 	@XmlElement
 	private List<Double> axis_length = new ArrayList<>();
@@ -179,6 +180,9 @@ public class Graph {
 	 * @throws NoMatchDimensionException
 	 */
 	public void generate(double[] dom_ini, double[] dom_fin, int resolution) throws NoMatchDimensionException {
+		if(rangeDim != functionList.size()) {
+			throw new NoMatchDimensionException("There are undefined range dimensions");
+		}
 		this.resolution = resolution;
 		getGrid(dom_ini, dom_fin);
 		for(int i = 0; i < rangeDim; ++i) {
@@ -259,6 +263,9 @@ public class Graph {
 	 */
 	public void add(AbstractFunction func) {
 		functionList.add(func);
+		if(rangeDim < functionList.size()) {
+			++rangeDim;
+		}
 	}
 
 	public void paint(Graphics2D g, double x0, double y0, double scale) {

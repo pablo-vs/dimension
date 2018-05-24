@@ -53,7 +53,7 @@ public class FunctionParserUtilTest {
         functions3 = new String[]{"3", "5*x", "cosec(x)", "cotan((PI*x)/2)", "secan(x - 1)",
             "tan(x - 1)", "2^(2*x)"};
         correctResultFunctions1 = new double[]{5, 20, 20, 5, 76, 25, 79, 4, 1,
-            0.08215400811873169, 10, 10, 2};
+            -1.0, 10, 10, 2};
         correctResultFunctions2 = new double[]{10, 5, 1};
         correctResultFunctions3 = new double[]{3, 25, 1 / Math.sin(Math.toRadians(5)),
             1 / Math.tan(Math.toRadians(Math.PI * 5/ 2)), 1 / Math.cos(Math.toRadians(4)),

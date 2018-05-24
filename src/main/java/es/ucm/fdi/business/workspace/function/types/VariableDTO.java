@@ -27,10 +27,10 @@ public class VariableDTO {
     private final String name;
     private double value = 0;
 
-	public VariableDTO() {
-		this("x");
-	}
-	
+    public VariableDTO() {
+        this("x");
+    }
+
     /**
      * Class constructor specifying name and value of the variable.
      *

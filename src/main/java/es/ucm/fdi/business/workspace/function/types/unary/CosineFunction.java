@@ -30,10 +30,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
 @XmlRootElement
 public class CosineFunction extends UnaryFunction {
 
-	public CosineFunction() {
-		this(new ConstantFunction(), new VariablesList());
-	}
-	
+    public CosineFunction() {
+        this(new ConstantFunction(), new VariablesList());
+    }
+
     /**
      * Class constructor specifying functionBO and variables list.
      *

@@ -11,35 +11,37 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package es.ucm.fdi.business.network.messages.client;
 
 import java.io.Serializable;
 
 /**
- * A RequestLogin object represents a package received from the client. The class
- * extends from ClientMessage and it adds two fields containing the password
- * and the username of the user requesting access to the server. 
+ * A RequestLogin object represents a package received from the client. The
+ * class extends from ClientMessage and it adds two fields containing the
+ * password and the username of the user requesting access to the server.
+ *
  * @see ClientMessage
  * @author Arturo Acuaviva
  */
 public class RequestLogin extends ClientMessage implements Serializable {
+
     /**
      * Username of the user requesting access
      */
     public String username;
-     /**
+    /**
      * Password of the user requesting access
      */
     public String password;
-    
-   /**
-     * Class constructor. A RequestLogin constructor calls the super class 
-     * constructor using REQUEST_LOGIN type as an argument. 
+
+    /**
+     * Class constructor. A RequestLogin constructor calls the super class
+     * constructor using REQUEST_LOGIN type as an argument.
+     *
      * @see ClientMessage
      */
-    public RequestLogin(){
+    public RequestLogin() {
         super(ClientMessage.REQUEST_LOGIN);
     }
-    
+
 }

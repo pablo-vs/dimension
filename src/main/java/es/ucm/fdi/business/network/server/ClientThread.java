@@ -80,6 +80,13 @@ public class ClientThread implements Runnable {
         // streamInput = new ObjectInputStream(clientSocket.getInputStream());
     }
 
+    /**
+     * Not finished yet. A run method for the client thread is supposed to handle the 
+     * clients connection. The implementation of a full-working server is far from 
+     * the objectives and goals of the subjects "Ingenieria del Software". This method
+     * represents a sketch of what the method would look like or how it would be
+     * structured when it is implementated. 
+     */
     @Override
     public void run() {
         while (keepListening) {
@@ -118,13 +125,24 @@ public class ClientThread implements Runnable {
         }
     }
 
+    /**
+     * Tries to close all streams channels. 
+     * @throws IOException 
+     */
     public void close() throws IOException {
         //    streamOutput.print(new ServerMessages(ServerMessages.LOG_OUT));
-        streamInput.close();
-        streamOutput.close();
-        clientSocket.close();
+        if(streamInput != null)
+            streamInput.close();
+        if(streamOutput != null)
+            streamOutput.close();
+        if(clientSocket != null)
+            clientSocket.close();
     }
-
+    
+    /**
+     * Getter method.
+     * @return the id of the client thread
+     */
     public int getID() {
         return id;
     }

@@ -27,7 +27,6 @@ import java.util.List;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 
-import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Map.Entry;
 

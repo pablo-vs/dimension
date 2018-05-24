@@ -30,10 +30,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
 @XmlRootElement
 public class CotangentFunction extends UnaryFunction {
 
-	public CotangentFunction() {
-		this(new ConstantFunction(), new VariablesList());
-	}
-	
+    public CotangentFunction() {
+        this(new ConstantFunction(), new VariablesList());
+    }
+
     /**
      * Class constructor specifying functionBO and variables list.
      *

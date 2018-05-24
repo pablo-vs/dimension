@@ -17,7 +17,7 @@ import java.security.AccessControlException;
 
 import es.ucm.fdi.business.users.SessionDTO;
 import es.ucm.fdi.business.users.UserManagerAS;
-import es.ucm.fdi.integration.project.ProjectDAO;	
+import es.ucm.fdi.integration.project.ProjectDAO;
 import es.ucm.fdi.integration.project.ProjectDAOSQLImp;
 import es.ucm.fdi.integration.users.UserDAOHashTableImp;
 
@@ -28,7 +28,7 @@ import es.ucm.fdi.integration.users.UserDAOHashTableImp;
  */
 public class ProjectManagerAS {
 
-	private final UserManagerAS userMan = UserManagerAS
+    private final UserManagerAS userMan = UserManagerAS
             .getManager(new UserDAOHashTableImp());
     private final ProjectDAO dao;
     private final String user;
@@ -42,7 +42,7 @@ public class ProjectManagerAS {
         this.dao = dao;
         this.user = user;
     }
-    
+
     /**
      * Class constructor specifying user (default DAO SQL).
      *
@@ -66,20 +66,20 @@ public class ProjectManagerAS {
      * @param proj The project to add.
      */
     public void newProject(ProjectDTO proj, SessionDTO session) {
-    	if (userMan.authenticate(user, session)) {
-	        if (validateProjectDetails(proj)) {
-	            if (dao.findProject(proj.getID()) == null) {
-	                dao.addProject(proj);
-	            } else {
-	                throw new IllegalArgumentException("Project " + proj.getID()
-	                        + " already exists");
-	            }
-	        } else {
-	            throw new IllegalArgumentException("Invalid project details");
-	        }
-    	} else {
-    		throw new AccessControlException("Invalid session");
-    	}
+        if (userMan.authenticate(user, session)) {
+            if (validateProjectDetails(proj)) {
+                if (dao.findProject(proj.getID()) == null) {
+                    dao.addProject(proj);
+                } else {
+                    throw new IllegalArgumentException("Project " + proj.getID()
+                            + " already exists");
+                }
+            } else {
+                throw new IllegalArgumentException("Invalid project details");
+            }
+        } else {
+            throw new AccessControlException("Invalid session");
+        }
     }
 
     /**
@@ -88,15 +88,15 @@ public class ProjectManagerAS {
      * @param id The id of the project to be deleted.
      */
     public void removeProject(String id, SessionDTO session) {
-    	if (userMan.authenticate(user, session)) {
-	        if (dao.findProject(id) != null) {
-	            dao.removeProject(id);
-	        } else {
-	            throw new IllegalArgumentException("Project " + id + " does not exist");
-	        }
-    	} else {
-    		throw new AccessControlException("Invalid session");
-    	}
+        if (userMan.authenticate(user, session)) {
+            if (dao.findProject(id) != null) {
+                dao.removeProject(id);
+            } else {
+                throw new IllegalArgumentException("Project " + id + " does not exist");
+            }
+        } else {
+            throw new AccessControlException("Invalid session");
+        }
     }
 
     /**
@@ -106,15 +106,15 @@ public class ProjectManagerAS {
      * @return the project.
      */
     public ProjectDTO openProject(String id, SessionDTO session) {
-    	if (userMan.authenticate(user, session)) {
-	        ProjectDTO proj = dao.findProject(id);
-	        if (proj == null) {
-	            throw new IllegalArgumentException("Project " + id + " does not exist");
-	        }
-	        return proj;
-    	} else {
-    		throw new AccessControlException("Invalid session");
-    	}
+        if (userMan.authenticate(user, session)) {
+            ProjectDTO proj = dao.findProject(id);
+            if (proj == null) {
+                throw new IllegalArgumentException("Project " + id + " does not exist");
+            }
+            return proj;
+        } else {
+            throw new AccessControlException("Invalid session");
+        }
     }
 
     /**
@@ -123,15 +123,15 @@ public class ProjectManagerAS {
      * @param proj Project
      */
     public void modifyProject(ProjectDTO proj, SessionDTO session) {
-    	if (userMan.authenticate(user, session)) {
-	        if (dao.containsProject(proj.getID())) {
-	            dao.modifyProject(proj);
-	        } else {
-	            newProject(proj, session);
-	        }
-    	} else {
-    		throw new AccessControlException("Invalid session");
-    	}
+        if (userMan.authenticate(user, session)) {
+            if (dao.containsProject(proj.getID())) {
+                dao.modifyProject(proj);
+            } else {
+                newProject(proj, session);
+            }
+        } else {
+            throw new AccessControlException("Invalid session");
+        }
     }
 
     /**

@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.project;
 
-import javax.xml.bind.annotation.XmlRootElement;	
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
 
 import java.util.List;
@@ -37,9 +37,9 @@ public class ProjectDTO implements Serializable {
     private String ID;
 
     public ProjectDTO() {
-    	ID = "default";
+        ID = "default";
     }
-    
+
     /**
      * Class constructor specifying ID.
      *
@@ -106,12 +106,13 @@ public class ProjectDTO implements Serializable {
 
     /**
      * Sets the ID
+     *
      * @param newID New ID;
      */
     public void setID(String newID) {
-    	ID = newID;
+        ID = newID;
     }
-    
+
     /**
      * Sets a new list of functions.
      *
@@ -129,10 +130,10 @@ public class ProjectDTO implements Serializable {
     public void setViews(List<Visualization> views) {
         this.views = new ArrayList<>(views);
     }
-    
+
     @Override
     public boolean equals(Object other) {
-    	return (other instanceof ProjectDTO) && ((ProjectDTO)other).ID.equals(ID);
+        return (other instanceof ProjectDTO) && ((ProjectDTO) other).ID.equals(ID);
     }
 
 }

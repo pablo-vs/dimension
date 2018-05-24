@@ -12,11 +12,11 @@
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.workspace;
-	
-import javax.xml.bind.annotation.XmlRootElement;	
+
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
 
-import es.ucm.fdi.business.exceptions.NoMatchDimensionException;	
+import es.ucm.fdi.business.exceptions.NoMatchDimensionException;
 import java.util.List;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -71,11 +71,10 @@ public class Visualization {
     public Iterator<Graph> getGraphIterator() {
         return graphsAvailable.listIterator();
     }
-    
+
     /**
      * Add a new ComponentComposite to the list of elements that a Visualization
-     * object contains. In Visualization the elements added will be
-     * graphs.
+     * object contains. In Visualization the elements added will be graphs.
      *
      * @param component new ComponentComposite element in the inner list.
      */
@@ -97,18 +96,17 @@ public class Visualization {
     }
 
     /**
-     * Deletes a ComponentComposite that a Visualization object contains.
-     * In Visualization this elements will be graphs.
+     * Deletes a ComponentComposite that a Visualization object contains. In
+     * Visualization this elements will be graphs.
      *
      * @param component which will be removed
      */
     public void delete(Graph g) {
         if (!graphsAvailable.remove(g)) {
             throw new IllegalArgumentException("Could not delete graph:"
-            		+ " The element was not in the list.");
+                    + " The element was not in the list.");
         }
     }
-
 
     /**
      * Given a certain graph the method projectGraph returns its projection into

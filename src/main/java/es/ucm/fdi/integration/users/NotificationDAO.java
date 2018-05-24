@@ -40,7 +40,8 @@ public interface NotificationDAO {
     public void removeNotification(NotificationDTO notif);
 
     /**
-     * If there is a notification with the given identifier, changes its details.
+     * If there is a notification with the given identifier, changes its
+     * details.
      *
      * @param notif A TO containing the new account details.
      */

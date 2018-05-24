@@ -152,7 +152,7 @@ public class UserManagerAS {
     public void notifyUser(NotificationDAO notifications, UserDTO user, SessionDTO session, String notification, Date date) throws AccessControlException, IllegalArgumentException {
         if (authenticate(user.getID(), session)) {
             if (validateAccountDetails(user)) {
-            	notifications.addNotification(new NotificationDTO(user.getID(), notification, date));
+                notifications.addNotification(new NotificationDTO(user.getID(), notification, date));
             }
         } else {
             throw new AccessControlException("Invalid session");

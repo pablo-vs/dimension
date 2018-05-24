@@ -15,36 +15,44 @@ package es.ucm.fdi.business.network.protocol;
 
 import es.ucm.fdi.business.exceptions.network.ProtocolException;
 import es.ucm.fdi.business.network.messages.client.ClientMessage;
+import es.ucm.fdi.business.users.SessionDTO;
 import es.ucm.fdi.business.workspace.project.WorkAS;
 
 /**
- * VisualizationProtocol provides a way of dealing with a visualization request
- * from a clinet. Given a WorkAS (Application Service) a VisualizationProtocol
- * can be invoked using the apply method and providing a ClientMessage. If the
- * ClientMessage matches the type of a request visualization package and it is
- * correctly filled up, the protocol is applied using the application service.
- * If the visualization can be created, a true statement is returned and the
- * view is generated for the user requesting the visualization.
+ * ModifyFunctionProtocol provides a way of dealing with function modification
+ * request from a client. Given a WorkAS (Application Service) a
+ * ModifyFunctionProtocol tries to parse a received message. If the message is
+ * MODIFY_FUNCTION type, then the Protocol is applied by checking if the session
+ * is on and if the user sent a valid modification. In case these statements are
+ * valid, the protocol returns true if they don't instead a false statement is
+ * returned.
  *
  * @see WorkAS
  * @see Protocol
  * @author Arturo Acuaviva
  */
-public class VisualizationProtocol implements Protocol {
+public class ModifyFunctionProtocol implements Protocol {
 
     /**
-     * Application Service to manage views in the project
+     * Application Service to manage the functions in the system.
      */
     private final WorkAS manager;
 
     /**
-     * Class constructor. A VisualizationProtocol receives an Application
-     * Service to manage the working set of the user.
-     *
-     * @param manager
+     * Session from the user who logged in
      */
-    public VisualizationProtocol(WorkAS manager) {
+    private final SessionDTO session;
+
+    /**
+     * Class constructor. A ModifyFunctionProtocol is built by providing a
+     * WorkAS and an active session.
+     *
+     * @param manager the Application Service the protocol will apply
+     * @param session
+     */
+    public ModifyFunctionProtocol(WorkAS manager, SessionDTO session) {
         this.manager = manager;
+        this.session = session;
     }
 
     /**
@@ -56,7 +64,7 @@ public class VisualizationProtocol implements Protocol {
      */
     @Override
     public boolean apply(ClientMessage msg) throws ProtocolException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

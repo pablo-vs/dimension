@@ -15,36 +15,43 @@ package es.ucm.fdi.business.network.protocol;
 
 import es.ucm.fdi.business.exceptions.network.ProtocolException;
 import es.ucm.fdi.business.network.messages.client.ClientMessage;
-import es.ucm.fdi.business.workspace.project.WorkAS;
+import es.ucm.fdi.business.users.SessionDTO;
+import es.ucm.fdi.business.users.UserManagerAS;
 
 /**
- * VisualizationProtocol provides a way of dealing with a visualization request
- * from a clinet. Given a WorkAS (Application Service) a VisualizationProtocol
- * can be invoked using the apply method and providing a ClientMessage. If the
- * ClientMessage matches the type of a request visualization package and it is
- * correctly filled up, the protocol is applied using the application service.
- * If the visualization can be created, a true statement is returned and the
- * view is generated for the user requesting the visualization.
+ * EditProfileProtocol provides a way of dealing with profile editing request
+ * from a client. Given a UserManagerAS (Application Service) a
+ * EditProfileProtocol tries to parse a received message. If the message is
+ * EDIT_PROFILE type, then the Protocol is applied by checking if the session is
+ * on and the filled up valid fields correctly. In case these statements are
+ * true the protocol returns true, if they don't instead false is returned.
  *
- * @see WorkAS
+ * @see UserManagerAS
  * @see Protocol
  * @author Arturo Acuaviva
  */
-public class VisualizationProtocol implements Protocol {
+public class EditProfileProtocol implements Protocol {
 
     /**
-     * Application Service to manage views in the project
+     * Application Service to manage profiles of the users in the system.
      */
-    private final WorkAS manager;
+    private final UserManagerAS manager;
 
     /**
-     * Class constructor. A VisualizationProtocol receives an Application
-     * Service to manage the working set of the user.
+     * Session from the user who logged in
+     */
+    private final SessionDTO session;
+
+    /**
+     * Class constructor. A EditProfileProtocol is built by providing a
+     * UserManagerAS.
      *
-     * @param manager
+     * @param manager the Application Service the protocol will apply
+     * @param session
      */
-    public VisualizationProtocol(WorkAS manager) {
+    public EditProfileProtocol(UserManagerAS manager, SessionDTO session) {
         this.manager = manager;
+        this.session = session;
     }
 
     /**
@@ -56,7 +63,7 @@ public class VisualizationProtocol implements Protocol {
      */
     @Override
     public boolean apply(ClientMessage msg) throws ProtocolException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

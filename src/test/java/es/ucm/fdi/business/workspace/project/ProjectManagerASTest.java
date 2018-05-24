@@ -46,11 +46,11 @@ import static org.junit.Assert.*;
  */
 public class ProjectManagerASTest {
 
-	static char [] passwd = {'1','2','3','4'};
-	static UserManagerAS userMan;
-	static SessionDTO session;
-	static ProjectDAO newProject;
-	static ProjectManagerAS manager;
+    static char[] passwd = {'1', '2', '3', '4'};
+    static UserManagerAS userMan;
+    static SessionDTO session;
+    static ProjectDAO newProject;
+    static ProjectManagerAS manager;
 
     public ProjectManagerASTest() {
     }
@@ -216,9 +216,9 @@ public class ProjectManagerASTest {
 
     @AfterClass
     public static void clear() throws SQLException {
-    	userMan.removeUser("marta", session);
-    	userMan.logout(session);
-    	(new UserDAOSQLImp()).clear();
-    	(new ProjectDAOSQLImp("")).clear();
+        userMan.removeUser("marta", session);
+        userMan.logout(session);
+        (new UserDAOSQLImp()).clear();
+        (new ProjectDAOSQLImp("")).clear();
     }
 }

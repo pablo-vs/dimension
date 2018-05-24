@@ -27,10 +27,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  */
 public class LnFunction extends UnaryFunction {
 
-	public LnFunction() {
-		this(new ConstantFunction(), new VariablesList());
-	}
-	
+    public LnFunction() {
+        this(new ConstantFunction(), new VariablesList());
+    }
+
     /**
      * Class constructor specifying functionBO and variables list.
      *

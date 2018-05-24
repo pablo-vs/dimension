@@ -18,7 +18,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import es.ucm.fdi.business.workspace.Visualization;	
+import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import es.ucm.fdi.business.workspace.function.types.unary.ConstantFunction;
@@ -162,33 +162,34 @@ public class ProjectDTOTest {
 
     /**
      * Test XML marshalling and unmarshalling.
-     * @throws JAXBException 
+     *
+     * @throws JAXBException
      */
     @Test
     public void xmlTest() throws JAXBException {
-    	JAXBContext context = JAXBContext.newInstance("es.ucm.fdi.business.workspace.project:es.ucm.fdi.business.workspace.function.types.binary:es.ucm.fdi.business.workspace.function.types.unary");
-    	Marshaller marsh = context.createMarshaller();
-    	Unmarshaller unmarsh = context.createUnmarshaller();
-    	ByteArrayOutputStream str1 = new ByteArrayOutputStream(),
-    			str2 = new ByteArrayOutputStream(),
-    			str3 = new ByteArrayOutputStream();
-    	
-    	marsh.marshal(project, str1);
-    	marsh.marshal(project2, str2);
-    	marsh.marshal(project3, str3);
-    	/*
+        JAXBContext context = JAXBContext.newInstance("es.ucm.fdi.business.workspace.project:es.ucm.fdi.business.workspace.function.types.binary:es.ucm.fdi.business.workspace.function.types.unary");
+        Marshaller marsh = context.createMarshaller();
+        Unmarshaller unmarsh = context.createUnmarshaller();
+        ByteArrayOutputStream str1 = new ByteArrayOutputStream(),
+                str2 = new ByteArrayOutputStream(),
+                str3 = new ByteArrayOutputStream();
+
+        marsh.marshal(project, str1);
+        marsh.marshal(project2, str2);
+        marsh.marshal(project3, str3);
+        /*
     	marsh.marshal(project, System.out);
     	marsh.marshal(project2, System.out);
     	marsh.marshal(project3, System.out);*/
-    	
-    	assertEquals("Unmarshaled project 1 not equal to origin", project, 
-    			unmarsh.unmarshal(new ByteArrayInputStream(str1.toByteArray())));
-    	assertEquals("Unmarshaled project 2 not equal to origin", project2, 
-    			unmarsh.unmarshal(new ByteArrayInputStream(str2.toByteArray())));
-    	assertEquals("Unmarshaled project 3 not equal to origin", project3, 
-    			unmarsh.unmarshal(new ByteArrayInputStream(str3.toByteArray())));
-    	
-    	assertNotEquals(project, new ByteArrayInputStream(str2.toByteArray()));
-    	assertNotEquals(project, new ByteArrayInputStream(str3.toByteArray()));
+
+        assertEquals("Unmarshaled project 1 not equal to origin", project,
+                unmarsh.unmarshal(new ByteArrayInputStream(str1.toByteArray())));
+        assertEquals("Unmarshaled project 2 not equal to origin", project2,
+                unmarsh.unmarshal(new ByteArrayInputStream(str2.toByteArray())));
+        assertEquals("Unmarshaled project 3 not equal to origin", project3,
+                unmarsh.unmarshal(new ByteArrayInputStream(str3.toByteArray())));
+
+        assertNotEquals(project, new ByteArrayInputStream(str2.toByteArray()));
+        assertNotEquals(project, new ByteArrayInputStream(str3.toByteArray()));
     }
 }

@@ -27,13 +27,13 @@ import java.util.Iterator;
 @XmlRootElement
 public class VariablesList {
 
-	@XmlElement
+    @XmlElement
     private TreeMap<String, VariableDTO> varsMap;
 
-	public VariablesList() {
-		this(1);
-	}
-	
+    public VariablesList() {
+        this(1);
+    }
+
     /**
      * Class constructor specifying another list of variables.
      *

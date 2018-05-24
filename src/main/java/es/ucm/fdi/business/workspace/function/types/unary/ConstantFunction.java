@@ -31,13 +31,13 @@ import es.ucm.fdi.business.util.FunctionParser;
 @XmlRootElement
 public class ConstantFunction extends UnaryFunction {
 
-	@XmlElement
+    @XmlElement
     private final double num;
 
-	public ConstantFunction() {
-		this(0, new VariablesList());
-	}
-	
+    public ConstantFunction() {
+        this(0, new VariablesList());
+    }
+
     /**
      * Class constructor specifying number and variables list.
      *

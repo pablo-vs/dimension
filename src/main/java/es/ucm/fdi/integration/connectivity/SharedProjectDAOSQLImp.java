@@ -125,30 +125,30 @@ public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implemen
             throw new IllegalArgumentException("Invalid data type");
         }
         try {
-			return (SharedProjectDTO) JAXBContext.newInstance("es.ucm.fdi.business.connectivity:"
-	        		+ "es.ucm.fdi.business.workspace.project:"
-            		+ "es.ucm.fdi.business.workspace.function.types.binary:"
-            		+ "es.ucm.fdi.business.workspace.function.types.unary"
-            		).createUnmarshaller().unmarshal(new ByteArrayInputStream(((String)data.get(2)).getBytes()));
-		} catch (JAXBException e) {
-			throw new DAOErrorException("Could not unmarshal project.\n" + e.getMessage(), e);
-		}
+            return (SharedProjectDTO) JAXBContext.newInstance("es.ucm.fdi.business.connectivity:"
+                    + "es.ucm.fdi.business.workspace.project:"
+                    + "es.ucm.fdi.business.workspace.function.types.binary:"
+                    + "es.ucm.fdi.business.workspace.function.types.unary"
+            ).createUnmarshaller().unmarshal(new ByteArrayInputStream(((String) data.get(2)).getBytes()));
+        } catch (JAXBException e) {
+            throw new DAOErrorException("Could not unmarshal project.\n" + e.getMessage(), e);
+        }
     }
 
     @Override
     public List<Object> getData(SharedProjectDTO obj) {
         ArrayList<Object> data = new ArrayList<Object>();
         try {
-	        ByteArrayOutputStream str = new ByteArrayOutputStream();
-	        JAXBContext.newInstance("es.ucm.fdi.business.connectivity:"
-	        		+ "es.ucm.fdi.business.workspace.project:"
-	        		+ "es.ucm.fdi.business.workspace.function.types.binary:"
-	        		+ "es.ucm.fdi.business.workspace.function.types.unary"
-	        		).createMarshaller().marshal(obj, str);
-	        
-	        data.add(obj.getSharedID());
-	        data.add(obj.getID());
-	        data.add(str.toString());
+            ByteArrayOutputStream str = new ByteArrayOutputStream();
+            JAXBContext.newInstance("es.ucm.fdi.business.connectivity:"
+                    + "es.ucm.fdi.business.workspace.project:"
+                    + "es.ucm.fdi.business.workspace.function.types.binary:"
+                    + "es.ucm.fdi.business.workspace.function.types.unary"
+            ).createMarshaller().marshal(obj, str);
+
+            data.add(obj.getSharedID());
+            data.add(obj.getID());
+            data.add(str.toString());
         } catch (JAXBException e) {
             throw new DAOErrorException("Could not marshall project.\n" + e.getMessage(), e);
         }

@@ -1,9 +1,9 @@
 /**
- * 
+ *
  */
 package es.ucm.fdi.integration.project;
 
-import java.util.ArrayList;	
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -25,20 +25,19 @@ import es.ucm.fdi.integration.exceptions.DAOErrorException;
  */
 public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDAO {
 
-	
-	private static final String TABLE = "projects";
-	private static final String [] COLUMNS = {"id", "user", "name", "data"};
-	private static final JDBCType [] COLUMN_TYPES = {JDBCType.VARCHAR, JDBCType.VARCHAR,
-		JDBCType.VARCHAR, JDBCType.VARCHAR};
-	private static final int REQUIRED_LENGTH = 4;
-	private final String user;
-	
-	public ProjectDAOSQLImp(String user) {
-		super(TABLE, COLUMNS, COLUMN_TYPES);
-		this.user = user;
-	}
-	
-	/**
+    private static final String TABLE = "projects";
+    private static final String[] COLUMNS = {"id", "user", "name", "data"};
+    private static final JDBCType[] COLUMN_TYPES = {JDBCType.VARCHAR, JDBCType.VARCHAR,
+        JDBCType.VARCHAR, JDBCType.VARCHAR};
+    private static final int REQUIRED_LENGTH = 4;
+    private final String user;
+
+    public ProjectDAOSQLImp(String user) {
+        super(TABLE, COLUMNS, COLUMN_TYPES);
+        this.user = user;
+    }
+
+    /**
      * Adds a new project to the database.
      *
      * @param project The new project as a ProjectDTO.
@@ -128,15 +127,14 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
             List<Object> data = new ArrayList<>();
             ByteArrayOutputStream str = new ByteArrayOutputStream();
             JAXBContext.newInstance("es.ucm.fdi.business.workspace.project:"
-            		+ "es.ucm.fdi.business.workspace.function.types.binary:"
-            		+ "es.ucm.fdi.business.workspace.function.types.unary"
-            		).createMarshaller().marshal(proj, str);
-            
+                    + "es.ucm.fdi.business.workspace.function.types.binary:"
+                    + "es.ucm.fdi.business.workspace.function.types.unary"
+            ).createMarshaller().marshal(proj, str);
+
             data.add(nameToID(proj.getID()));
             data.add(user);
             data.add(proj.getID());
             data.add(str.toString());
-            
 
             return data;
         } catch (JAXBException e) {
@@ -151,28 +149,28 @@ public class ProjectDAOSQLImp extends DAOSQLImp<ProjectDTO> implements ProjectDA
                     + data.size() + " given");
         }
         if (!(data.get(0) instanceof String && (data.get(1) == null || data.get(1) instanceof String)
-	      && data.get(2) instanceof String && data.get(3) instanceof String)) {
+                && data.get(2) instanceof String && data.get(3) instanceof String)) {
             throw new IllegalArgumentException("Invalid data type");
         }
-        
+
         try {
-			return (ProjectDTO) JAXBContext.newInstance("es.ucm.fdi.business.workspace.project:"
-            		+ "es.ucm.fdi.business.workspace.function.types.binary:"
-            		+ "es.ucm.fdi.business.workspace.function.types.unary"
-            		).createUnmarshaller().unmarshal(new ByteArrayInputStream(((String)data.get(3)).getBytes()));
-		} catch (JAXBException e) {
-			throw new DAOErrorException("Could not unmarshal project.\n" + e.getMessage(), e);
-		}
-    }
-    
-    private String nameToID(String name) {
-    	return user+"/"+name;
+            return (ProjectDTO) JAXBContext.newInstance("es.ucm.fdi.business.workspace.project:"
+                    + "es.ucm.fdi.business.workspace.function.types.binary:"
+                    + "es.ucm.fdi.business.workspace.function.types.unary"
+            ).createUnmarshaller().unmarshal(new ByteArrayInputStream(((String) data.get(3)).getBytes()));
+        } catch (JAXBException e) {
+            throw new DAOErrorException("Could not unmarshal project.\n" + e.getMessage(), e);
+        }
     }
 
-	@Override
-	public boolean containsProject(String id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    private String nameToID(String name) {
+        return user + "/" + name;
+    }
+
+    @Override
+    public boolean containsProject(String id) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
 }

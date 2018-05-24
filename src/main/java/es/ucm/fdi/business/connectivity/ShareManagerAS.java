@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.connectivity;
 
-import java.util.Date;		
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 import java.security.AccessControlException;
@@ -176,10 +176,9 @@ public class ShareManagerAS {
     public void importProject(SharedProjectDTO proj, SessionDTO session)
             throws NotFoundException, AccessControlException {
 
-    	
         if (userMan.authenticate(session.getUser(), session)) {
             if (proj.hasReadAccess(session.getUser())) {
-            	ProjectManagerAS projMan = new ProjectManagerAS(session.getUser());
+                ProjectManagerAS projMan = new ProjectManagerAS(session.getUser());
                 projMan.newProject(new ProjectDTO(proj), session);
             } else {
                 throw new AccessControlException("User " + session.getUser()

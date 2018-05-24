@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.connectivity;
 
-import es.ucm.fdi.integration.connectivity.AuthorshipDAOHashTableImp;	
+import es.ucm.fdi.integration.connectivity.AuthorshipDAOHashTableImp;
 import es.ucm.fdi.integration.connectivity.SharedProjectDAOHashTableImp;
 import es.ucm.fdi.integration.connectivity.SharedProjectDAOSQLImp;
 import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
@@ -107,7 +107,6 @@ public class ShareManagerTest {
         SessionDTO luis = userMgr.login("luis", "1234");
 
         //test the permission of legitimate accesses
-
         shareMgr.modifySharedProject(shareMgr.findProjectByName("lineales", session).get(0), session);
         shareMgr.importProject(shareMgr.findProjectByName("lineales", session).get(0), session);
         shareMgr.modifySharedProject(shareMgr.findProjectByName("lineales", luis).get(0), luis);
@@ -117,14 +116,13 @@ public class ShareManagerTest {
             shareMgr.modifySharedProject(f, session);
         }
 
-        
     }
-    
+
     @After
     public void clear() throws SQLException {
-    	(new ProjectDAOSQLImp("")).clear();
-    	(new SharedProjectDAOSQLImp()).clear();
-    	(new UserDAOSQLImp()).clear();
+        (new ProjectDAOSQLImp("")).clear();
+        (new SharedProjectDAOSQLImp()).clear();
+        (new UserDAOSQLImp()).clear();
     }
 
 }

@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.workspace.function;
 
-import javax.xml.bind.annotation.XmlRootElement;	
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
 
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
@@ -29,14 +29,13 @@ import java.util.Iterator;
  * {@link #evaluate(es.ucm.fdi.workspace.function.types.VariablesList) evaluate}
  * which calculates the value of the function given a
  * {@link es.ucm.fdi.business.workspace.function.types.VariablesList VariablesList}.
- * 
+ *
  *
  * @author Javier Navalón, Arturo Acuaviva
  */
 public abstract class AbstractFunction {
 
-	//Composite pattern: abstract component
-	
+    //Composite pattern: abstract component
     protected VariablesList variables;
 
     /**

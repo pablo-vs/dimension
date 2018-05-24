@@ -27,10 +27,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  * @author Inmaculada Pérez, Javier Navalón
  */
 public abstract class BinaryFunction extends AbstractFunction {
-	
-	@XmlElement
+
+    @XmlElement
     protected AbstractFunction function1;
-	@XmlElement
+    @XmlElement
     protected AbstractFunction function2;
 
     /**

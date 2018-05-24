@@ -27,10 +27,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  */
 public class SecantFunction extends UnaryFunction {
 
-	public SecantFunction() {
-		this(new ConstantFunction(), new VariablesList());
-	}
-	
+    public SecantFunction() {
+        this(new ConstantFunction(), new VariablesList());
+    }
+
     /**
      * Class constructor specifying functionBO and variables list.
      *

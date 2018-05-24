@@ -36,7 +36,7 @@ public class ProjectDAOHashTableImp implements ProjectDAO {
      * Class constructor.
      */
     public ProjectDAOHashTableImp(String user) {
-    	this.user = user;
+        this.user = user;
     }
 
     @Override

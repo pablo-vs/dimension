@@ -27,10 +27,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  */
 public class TangentFunction extends UnaryFunction {
 
-	public TangentFunction() {
-		this(new ConstantFunction(), new VariablesList());
-	}
-	
+    public TangentFunction() {
+        this(new ConstantFunction(), new VariablesList());
+    }
+
     /**
      * Class constructor specifying functionBO and variables list.
      *

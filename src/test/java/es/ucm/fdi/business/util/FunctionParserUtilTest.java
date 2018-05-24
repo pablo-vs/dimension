@@ -9,135 +9,103 @@ import es.ucm.fdi.business.workspace.function.types.VariablesList;
 import org.junit.Before;
 
 /**
- * JUnit test for FunctionParser class.
+ * Tests the functionality of the parser method for the functions.
  *
- * @see FunctionParser
- * @author Eloy Mósig
- * @author Arturo Acuaviva
+ * @author Eloy Mósig, Inmaculada Pérez
+ * @see FunctionParserUtil
  */
 public class FunctionParserUtilTest {
 
     /**
-     * List of functions tested at basic test
+     * List of variables' names
      */
-    String[] functionsBasicTest;
+    private String[] variablesNames1 = {"x"};
+    private String[] variablesNames2 = {"x", "y", "z"};
     /**
-     * List of functions tested at basic test
+     * List of variables
      */
-    String[] functionsBasicTest2;
+    private VariablesList variablesList1;
+    private VariablesList variablesList2;
     /**
-     * List of functions tested at extension of other functions test
+     * List of functions to test
      */
-    String[] otherFunctionsTest;
+    private String[] functions1;
+    private String[] functions2;
+    private String[] functions3;
     /**
-     * Correct output for basic test first set of functions
+     * Correct results of the operations
      */
-    double[] correctOutputBasicTest;
+    private double[] correctResultFunctions1;
+    private double[] correctResultFunctions2;
+    private double[] correctResultFunctions3;
     /**
-     * Correct output for basic test second set of functions
+     * Value of the different variables used
      */
-    double[] correctOutputBasicTest2;
-    /**
-     * Correct output for other function test set of functions
-     */
-    double[] correctOutputOtherFunctions;
-    /**
-     * List of variables names used in the functions
-     */
-    String[] varNames = {"x"};
-    /**
-     * List of variables names used in the functions
-     */
-    String[] varNames2 = {"x", "y", "z"};
-    /**
-     * List of variables used in the functions
-     */
-    VariablesList vars;
-    /**
-     * List of variables used in the functions
-     */
-    VariablesList vars2;
+    private int valueX, valueY, valueZ;
 
-    /**
-     * Creates and initializes all the objects to be used at parsing.
-     */
     @Before
-    public void setUp() {
-        //Basic test
-        functionsBasicTest = new String[]{"5", "(3*x) + 5", "3*x + 5", "x", "3*(x^2) + x/5",
+    public void initialize() {
+        functions1 = new String[]{"5", "(3*x) + 5", "3*x + 5", "x", "3*(x^2) + x/5",
             "3*x + 5 + x", "3*x^2+4", "log_(3)(81)", "cos(2*PI)", "sin(3*PI/2)",
             "ln(e^10)", "ln(e^((x*1)+ln(e^5)))", "ln(0+e)+1"};
-
-        correctOutputBasicTest = new double[]{5, 20, 20, 5, 76, 25, 79, 4, 1,
-            0.08215400811873169, 10, 10, 2};
-        functionsBasicTest2 = new String[]{"x+y+z", "x^(3*y-3*z+4)",
+        functions2 = new String[]{"x+y+z", "x^(3*y-3*z+4)",
             "cos(PI*(tan(x+y+z*y-x*z+y)+y^(1)))"};
-        correctOutputBasicTest2 = new double[]{10, 5, 1.0};
-        // Other functions parser test
-        otherFunctionsTest = new String[]{"3", "5*x", "cosec(x)", "cotan((PI*x)/2)", "secan(x - 1)",
+        functions3 = new String[]{"3", "5*x", "cosec(x)", "cotan((PI*x)/2)", "secan(x - 1)",
             "tan(x - 1)", "2^(2*x)"};
-        correctOutputOtherFunctions = new double[]{3, 5, 57.29, 36.46, 1, 0, 4};
+        correctResultFunctions1 = new double[]{5, 20, 20, 5, 76, 25, 79, 4, 1,
+            0.08215400811873169, 10, 10, 2};
+        correctResultFunctions2 = new double[]{10, 5, 1};
+        correctResultFunctions3 = new double[]{3, 25, 1 / Math.sin(Math.toRadians(5)),
+            1 / Math.tan(Math.toRadians(Math.PI * 5/ 2)), 1 / Math.cos(Math.toRadians(4)),
+            Math.tan(Math.toRadians(4)), Math.pow(2, 10)};
 
-        // general variables creation for testing
-        vars = new VariablesList(varNames);
-        vars2 = new VariablesList(varNames2);
+        variablesList1 = new VariablesList(variablesNames1);
+        variablesList2 = new VariablesList(variablesNames2);
+        valueX = 5;
+        valueY = 2;
+        valueZ = 3;
     }
 
-    /**
-     * Test for basic functions. This test checks the functioning of the
-     * identity function, the constant function, the product function, the
-     * substract function, the sum function, the logarithmic function, the
-     * exponential function, the modulo function, the tangent function, the ln
-     * function, the log10 function, the secant function, the sine function, the
-     * cosine function, and, more generally, the binary and unary functions.
-     */
     @Test
-    public void basicParserTest() {
-        int value = 5, value2 = 2, value3 = 3;
-        System.out.println("First test, evaluating functions at x = " + value);
-        for (int i = 0; i < functionsBasicTest.length; ++i) {
-            String aux = functionsBasicTest[i];
-            AbstractFunction f = FunctionParser.parse(aux, vars);
-            vars.setVariable("x", value);
-            System.out.println("Input: " + functionsBasicTest[i] + " | Parsed function: " + f
-                    + " | Result = " + f.evaluate(vars));
-            assertEquals(correctOutputBasicTest[i], f.evaluate(vars), 0.01);
-        }
-        System.out.println("Second test, evaluating functions at x = " + value
-                + " , y = " + value2 + ", z = " + value3);
-        for (int i = 0; i < functionsBasicTest2.length; ++i) {
-            String aux = functionsBasicTest2[i];
-            AbstractFunction f = FunctionParser.parse(aux, vars2);
-            vars2.setVariable("x", value);
-            vars2.setVariable("y", value2);
-            vars2.setVariable("z", value3);
-            System.out.println("Input: " + functionsBasicTest2[i] + " | Parsed function: "
-                    + f + " | Result = " + f.evaluate(vars2));
-            assertEquals(correctOutputBasicTest2[i], f.evaluate(vars2), 0.01);
+    public void functionParserTest1() {
+        System.out.println("First test, evaluating functions at x = " + valueX);
+        for (int i = 0; i < functions1.length; ++i) {
+            String aux = functions1[i];
+            AbstractFunction f = FunctionParser.parse(aux, variablesList1);
+            variablesList1.setVariable("x", valueX);
+            System.out.println("Input: " + functions1[i] + " | Parsed function: " + f
+                    + " | Result = " + f.evaluate(variablesList1));
+            assertEquals(correctResultFunctions1[i], f.evaluate(variablesList1), 0.01);
         }
     }
 
-    /**
-     * Test for functions. This test checks the functioning the identity
-     * function, the constant function, the product function, the cosecant and
-     * cotangent functions, the secan function, the exponential function and the
-     * tangent function.
-     */
     @Test
-    public void otherFuctionsParserTest() {
-        int value = 1;
-        StringBuilder sb = new StringBuilder("Evaluating some other functions at x = ");
-        sb.append(String.valueOf(value));
-        System.out.println(sb.toString());
-        for (int i = 0; i < otherFunctionsTest.length; ++i) {
-            String aux = otherFunctionsTest[i];
-            AbstractFunction f = FunctionParser.parse(aux, vars);
-            vars.setVariable("x", value);
+    public void functionParserTest2() {
+        System.out.println("Second test, evaluating functions at x = " + valueX
+                + " , y = " + valueY + ", z = " + valueZ);
+        for (int i = 0; i < functions2.length; ++i) {
+            String aux = functions2[i];
+            AbstractFunction f = FunctionParser.parse(aux, variablesList2);
+            variablesList2.setVariable("x", valueX);
+            variablesList2.setVariable("y", valueY);
+            variablesList2.setVariable("z", valueZ);
+            System.out.println("Input: " + functions2[i] + " | Parsed function: "
+                    + f + " | Result = " + f.evaluate(variablesList2));
+            assertEquals(correctResultFunctions2[i], f.evaluate(variablesList2), 0.01);
+        }
+    }
+
+    @Test
+    public void functionParserTest3() {
+        System.out.println("Third test, evaluating functions at x = " + valueX);
+        for (int i = 0; i < functions3.length; ++i) {
+            AbstractFunction f = FunctionParser.parse(functions3[i], variablesList1);
+            variablesList1.setVariable("x", valueX);
             StringBuilder check = new StringBuilder("Input: ");
-            check.append(otherFunctionsTest[i]).append(" | Parsed function: ").append(f).append(" | Result = ")
-                    .append(f.evaluate(vars));
+            check.append(functions3[i]).append(" | Parsed function: ").append(f)
+                    .append(" | Result = ").append(f.evaluate(variablesList1));
             System.out.println(check.toString());
-            assertEquals(correctOutputOtherFunctions[i], f.evaluate(vars), 0.01);
+            assertEquals(correctResultFunctions3[i], f.evaluate(variablesList1), 0.01);
         }
     }
 }

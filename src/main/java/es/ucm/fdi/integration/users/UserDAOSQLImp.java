@@ -178,18 +178,18 @@ public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
                     + data.size() + " given");
         }
         if (!(data.get(0) instanceof String && (data.get(1) == null || data.get(1) instanceof String)
-	      && data.get(2) instanceof String
-	      && (data.get(3) == null || data.get(3) instanceof Date)
-	      && (data.get(4) == null || data.get(4) instanceof String)
-	      && (data.get(5) == null || data.get(5) instanceof String)
-	      && (data.get(6) == null || data.get(6) instanceof String)
-	      && (data.get(7) == null || data.get(7) instanceof String)
-	      && data.get(8) instanceof Integer
-	      && (data.get(4) == null || data.get(9) instanceof ZonedDateTime))) {
+                && data.get(2) instanceof String
+                && (data.get(3) == null || data.get(3) instanceof Date)
+                && (data.get(4) == null || data.get(4) instanceof String)
+                && (data.get(5) == null || data.get(5) instanceof String)
+                && (data.get(6) == null || data.get(6) instanceof String)
+                && (data.get(7) == null || data.get(7) instanceof String)
+                && data.get(8) instanceof Integer
+                && (data.get(4) == null || data.get(9) instanceof ZonedDateTime))) {
             throw new IllegalArgumentException("Invalid data type");
         }
 
-	UserType type = UserType.fromInt((Integer) data.get(8));
+        UserType type = UserType.fromInt((Integer) data.get(8));
 
         return new UserDTO((String) data.get(0), (String) data.get(1),
                 (String) data.get(2), (Date) data.get(3), (String) data.get(4),

@@ -29,13 +29,13 @@ import es.ucm.fdi.business.workspace.function.types.VariableDTO;
 @XmlRootElement
 public class IdentityFunction extends UnaryFunction {
 
-	@XmlElement
+    @XmlElement
     private final String variable;
 
-	public IdentityFunction() {
-		this("x_0", new VariablesList());
-	}
-	
+    public IdentityFunction() {
+        this("x_0", new VariablesList());
+    }
+
     /**
      * Class constructor specifying variable and variables list.
      *

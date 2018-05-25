@@ -92,25 +92,27 @@ public class TwitterManager {
     public void updateStatus(String message) throws TwitterException {
         updatesStatus.addLast(twitter.updateStatus(message));
     }
-    
+
     /**
-     * Destroys the last status made by the user. 
-     * @throws TwitterException 
+     * Destroys the last status made by the user.
+     *
+     * @throws TwitterException
      */
-    public void deleteLastStatus() throws TwitterException{
-        if(!updatesStatus.isEmpty()){
-              twitter.destroyStatus(updatesStatus.pollLast().getId());
+    public void deleteLastStatus() throws TwitterException {
+        if (!updatesStatus.isEmpty()) {
+            twitter.destroyStatus(updatesStatus.pollLast().getId());
         }
     }
-    
+
     /**
      * Destroys all the status added during the managing process.
-     * @throws TwitterException 
+     *
+     * @throws TwitterException
      */
-    public void deleteAllStatus() throws TwitterException{
-        while(!updatesStatus.isEmpty()){
-              twitter.destroyStatus(updatesStatus.pollLast().getId());
+    public void deleteAllStatus() throws TwitterException {
+        while (!updatesStatus.isEmpty()) {
+            twitter.destroyStatus(updatesStatus.pollLast().getId());
         }
     }
-    
+
 }

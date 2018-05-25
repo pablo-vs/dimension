@@ -69,6 +69,18 @@ public class UserDTO implements Serializable {
         this.ID = ID;
         this.password = password;
     }
+    /**
+     * Class constructor specifying id, password and type
+     *
+     * @param ID Identifier
+     * @param password Password
+     * @param type Type
+     */
+    public UserDTO(String ID, String password, UserType type) {
+    	this.ID = ID;
+    	this.password = password;
+    	this.type = type;
+    }
 
     /**
      * Class constructor specifying more fields.

@@ -134,14 +134,5 @@ public class NotifySanctionUCTest {
         }
         newSession = manager.login(NEW_USER_ID, NEW_USER_PASSWORD);
     }
-
-    /**
-     * Testing the functionality of sanctioning a user
-     */
-    @Test
-    public void sanctionUser() {
-        ZonedDateTime now = ZonedDateTime.now();
-        manager.banUser(user, adminSession, now, "you are banned");
-        assertEquals(now, user.getBanTime());
-    }
+	
 }

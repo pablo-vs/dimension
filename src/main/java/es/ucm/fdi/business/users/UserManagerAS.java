@@ -48,15 +48,15 @@ public class UserManagerAS {
     /**
      * User data access object
      */
-    private UserDAO dao;
+    private final UserDAO dao;
     /**
      * Hash generator
      */
-    private HashGenerator hashgen = new HashGenerator();
+    private final HashGenerator hashgen = new HashGenerator();
     /**
      * Current active sessions
      */
-    private HashMap<String, SessionDTO> activeSessions = new HashMap<>();
+    private final HashMap<String, SessionDTO> activeSessions = new HashMap<>();
 
     /**
      * Class constructor specifying user DAO
@@ -292,7 +292,7 @@ public class UserManagerAS {
         while (st.hasMoreTokens()) {
             lastToken = st.nextToken();
         }
-
+        
         return matchFound && lastToken.length() >= 2
                 && email.length() - 1 != lastToken.length(); // validate the country code
     }
@@ -315,7 +315,7 @@ public class UserManagerAS {
      * @return wether the word is valid
      */
     private static boolean validString(String word) {
-        return word != null && word.matches("[a-zA-Z1-9_]+");
+        return word != null && word.matches("[a-zA-Z1-9_ ]+");
     }
 
     /**
@@ -357,16 +357,31 @@ public class UserManagerAS {
      * @return if the account has been validated
      */
     private boolean validateAccountDetails(UserDTO user) {
-        if (validString(user.getID())
-                && HashGenerator.checkFormat(user.getPassword())
-                && (user.getName() == null || validString(user.getName()))
-                && (user.getDescription() == null || validString(user.getDescription()))
-                && (user.getEmail() == null || validEmail(user.getEmail()))
-                && (user.getTelephone() == null || validInt(user.getTelephone()))
-                && (user.getPicture() == null || validUrl(user.getPicture()))) {
-            return true;
+        if(!validString(user.getID())){
+            throw new IllegalArgumentException("Invalid user ID provided: " + user.getID());
         }
-        throw new IllegalArgumentException("");
+        if(!HashGenerator.checkFormat(user.getPassword())){
+            throw new IllegalArgumentException("Invalid user password provided");
+        }
+        if(!(user.getName() == null || validString(user.getName()))){
+             throw new IllegalArgumentException("Invalid user password provided");
+        }
+        if(!(user.getDescription() == null || validString(user.getDescription()))){
+             throw new IllegalArgumentException("Invalid user description provided: " +
+                     user.getDescription());
+        }
+        if(!(user.getEmail() == null || validEmail(user.getEmail()))){
+            throw new IllegalArgumentException("Invalid user email provided: " +
+                    user.getEmail());
+        }
+        if(!(user.getTelephone() == null || validInt(user.getTelephone()))){
+            throw new IllegalArgumentException("Invalid user telephone provided: " +
+                    user.getTelephone());
+        }
+        if(!(user.getPicture() == null || validUrl(user.getPicture()))){
+            throw new IllegalArgumentException("Invalid user picture provided: " +
+                    user.getPicture());
+        }
+        return true;
     }
-
 }

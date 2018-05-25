@@ -14,15 +14,16 @@
 package es.ucm.fdi.integration.connectivity;
 
 import es.ucm.fdi.business.connectivity.SharedProjectDTO;
+
 import java.sql.JDBCType;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 
 import es.ucm.fdi.integration.data.DAOSQLImp;
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
@@ -32,12 +33,12 @@ public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implemen
 
     private static final int REQUIRED_LENGTH = 3;
 
-    private static final String TABLE = "projects";
+    private static final String TABLE = "sharedprojects";
 
     private static final String[] COLUMNS = {"id", "name", "data"};
 
     private static final JDBCType[] COLUMN_TYPES = {JDBCType.VARCHAR, JDBCType.VARCHAR,
-        JDBCType.BLOB};
+        JDBCType.VARCHAR};
 
     public SharedProjectDAOSQLImp() {
         super(TABLE, COLUMNS, COLUMN_TYPES);
@@ -120,27 +121,36 @@ public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implemen
                     + data.size() + " given");
         }
         if (!(data.get(0) instanceof String && data.get(1) instanceof String
-                && data.get(2) instanceof InputStream)) {
+                && data.get(2) instanceof String)) {
             throw new IllegalArgumentException("Invalid data type");
         }
-        try (ObjectInputStream str = new ObjectInputStream((InputStream) data.get(2))) {
-            return (SharedProjectDTO) str.readObject();
-        } catch (ClassNotFoundException | IOException e) {
-            throw new IllegalArgumentException("Could not read project from binary data");
+        try {
+            return (SharedProjectDTO) JAXBContext.newInstance("es.ucm.fdi.business.connectivity:"
+                    + "es.ucm.fdi.business.workspace.project:"
+                    + "es.ucm.fdi.business.workspace.function.types.binary:"
+                    + "es.ucm.fdi.business.workspace.function.types.unary"
+            ).createUnmarshaller().unmarshal(new ByteArrayInputStream(((String) data.get(2)).getBytes()));
+        } catch (JAXBException e) {
+            throw new DAOErrorException("Could not unmarshal project.\n" + e.getMessage(), e);
         }
     }
 
     @Override
     public List<Object> getData(SharedProjectDTO obj) {
         ArrayList<Object> data = new ArrayList<Object>();
-        data.add(obj.getSharedID());
-        data.add(obj.getID());
-        try (ByteArrayOutputStream str = new ByteArrayOutputStream();
-                ObjectOutputStream oStr = new ObjectOutputStream(str);) {
-            oStr.writeObject(obj);
-            data.add(str.toByteArray());
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Could not write project to binary stream");
+        try {
+            ByteArrayOutputStream str = new ByteArrayOutputStream();
+            JAXBContext.newInstance("es.ucm.fdi.business.connectivity:"
+                    + "es.ucm.fdi.business.workspace.project:"
+                    + "es.ucm.fdi.business.workspace.function.types.binary:"
+                    + "es.ucm.fdi.business.workspace.function.types.unary"
+            ).createMarshaller().marshal(obj, str);
+
+            data.add(obj.getSharedID());
+            data.add(obj.getID());
+            data.add(str.toString());
+        } catch (JAXBException e) {
+            throw new DAOErrorException("Could not marshall project.\n" + e.getMessage(), e);
         }
         return data;
     }

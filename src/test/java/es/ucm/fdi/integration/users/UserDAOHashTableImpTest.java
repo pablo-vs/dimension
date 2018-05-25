@@ -55,7 +55,7 @@ public class UserDAOHashTableImpTest {
         assertEquals("The Users cannot be loaded", results1, dao.getUsers());
 
         ZonedDateTime newBanTime = ZonedDateTime.of(2018, 12,
-						    9, 8, 37, 28, 824, ZoneId.of("UTC"));
+                9, 8, 37, 28, 824, ZoneId.of("UTC"));
         user1.setBanTime(newBanTime);
 
         dao.modifyUser(user1);

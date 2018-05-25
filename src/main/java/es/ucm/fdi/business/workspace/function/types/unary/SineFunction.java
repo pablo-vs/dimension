@@ -27,6 +27,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  */
 public class SineFunction extends UnaryFunction {
 
+    public SineFunction() {
+        this(new ConstantFunction(), new VariablesList());
+    }
+
     /**
      * Class constructor specifying functionBO and variables list.
      *
@@ -44,7 +48,7 @@ public class SineFunction extends UnaryFunction {
 
     @Override
     public double evaluate(VariablesList vars) {
-        return Math.sin(Math.toRadians(function.evaluate(vars)));
+        return Math.sin(function.evaluate(vars));
     }
 
     public static class Parser extends UnaryFunction.Parser {

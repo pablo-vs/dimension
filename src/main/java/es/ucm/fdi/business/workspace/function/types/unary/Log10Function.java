@@ -27,6 +27,10 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  */
 public class Log10Function extends UnaryFunction {
 
+    public Log10Function() {
+        this(new ConstantFunction(), new VariablesList());
+    }
+
     /**
      * Class constructor specifying functionBO and variables list.
      *

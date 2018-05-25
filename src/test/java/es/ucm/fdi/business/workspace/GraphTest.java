@@ -55,15 +55,25 @@ public class GraphTest {
     @Test
     public void testGenerateAndGrid() throws NoMatchDimensionException {
         double[] dom_ini = {
-            0.0, -1.0, 0.0
+            0.0, -1.0/*, 0.0*/
         };
         double[] dom_fin = {
-            3.0, 2.0, 3.0
+            3.0, 2.0/*, 3.0*/
         };
 
         System.out.println("Graph generation: generate | getGrid");
-        testGraph.add(new IdentityFunction("x_1", new VariablesList(3)));
-        testGraph.generate(dom_ini, dom_fin, 2);
+        testGraph.add(new IdentityFunction("x_0", new VariablesList(2/*3*/)));
+        testGraph.add(new IdentityFunction("x_1", new VariablesList(2/*3*/)));
+        testGraph.add(new IdentityFunction("x_1", new VariablesList(2/*3*/)));
+        testGraph.generate(dom_ini, dom_fin, 0);
+        /*Iterator<Vertex> it = testGraph.getDomainIterator();
+        Iterator<Vertex> it2 = testGraph.getRangeIterator();
+        /*while(it.hasNext()) {
+        	System.out.print(it.next());
+        	System.out.print(" ");
+        	System.out.println(it2.next());
+        }
+        		
         /* Checking the output produced
         Iterator it = testGraph.getCompositeIterator();
 	  while (it.hasNext()) {
@@ -78,9 +88,9 @@ public class GraphTest {
     @Test
     public void testGetDimension() {
         System.out.println("getDimension");
-        assertEquals(3, testGraph.getDimension(), 0);
-        assertEquals(2, new Graph(2).getDimension(), 0);
-        assertEquals(0, new Graph(0).getDimension(), 0);
+        assertEquals(3, testGraph.getRangeDimension(), 0);
+        assertEquals(2, new Graph(2).getRangeDimension(), 0);
+        assertEquals(0, new Graph(0).getRangeDimension(), 0);
     }
 
     /**
@@ -100,20 +110,20 @@ public class GraphTest {
             new Vertex(), new Vertex(), new Vertex(),
             new Vertex(), new Vertex(), new Vertex(),
             new Vertex(), new Vertex(), v12};
-        testGraph.add(v1);
-        testGraph.add(new Vertex());
-        testGraph.add(new Vertex());
-        testGraph.add(new Vertex());
-        testGraph.add(new Vertex());
-        testGraph.add(new Vertex());
-        testGraph.add(new Vertex());
-        testGraph.add(new Vertex());
-        testGraph.add(new Vertex());
-        testGraph.add(new Vertex());
-        testGraph.add(new Vertex());
-        testGraph.add(v12);
+        testGraph.addRange(v1);
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(new Vertex());
+        testGraph.addRange(v12);
         // Iterator testing
-        Iterator it = testGraph.getCompositeIterator();
+        Iterator it = testGraph.getRangeIterator();
         int counter = 0;
         while (it.hasNext()) {
             if (counter >= 12) {
@@ -123,8 +133,8 @@ public class GraphTest {
             counter++;
         }
         // test erase method
-        testGraph.deleteAll();
-        assertFalse("No elements in the graph", testGraph.getCompositeIterator().hasNext());
+        //testGraph.deleteAll();
+        //assertFalse("No elements in the graph", testGraph.getIteratorRange().hasNext());
     }
 
 }

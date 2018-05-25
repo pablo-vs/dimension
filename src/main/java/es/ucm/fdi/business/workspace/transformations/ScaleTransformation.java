@@ -56,9 +56,9 @@ public class ScaleTransformation extends TransformationStrategy {
      * @param d quantify indicating the amount which will be shrunk
      */
     private static void shrinkX(Graph g, double d) {
-        double min = ((Vertex) g.getIteratorRange().next()).at(0), max = min;
+        double min = ((Vertex) g.getRangeIterator().next()).at(0), max = min;
 
-        ListIterator iterator = g.getIteratorRange();
+        ListIterator iterator = g.getRangeIterator();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -74,7 +74,7 @@ public class ScaleTransformation extends TransformationStrategy {
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             v.set(0,
-                    ((v.at(0) - min) / d) + newMin);
+            		Math.round((((v.at(0) - min) / d) + newMin) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
     }
 
@@ -85,9 +85,9 @@ public class ScaleTransformation extends TransformationStrategy {
      * @param d quantify indicating the amount which will be shrunk
      */
     private static void shrinkY(Graph g, double d) {
-        double min = ((Vertex) g.getIteratorRange().next()).at(1), max = min;
+        double min = ((Vertex) g.getRangeIterator().next()).at(1), max = min;
 
-        ListIterator iterator = g.getIteratorRange();
+        ListIterator iterator = g.getRangeIterator();
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             double n = v.at(1);
@@ -98,11 +98,12 @@ public class ScaleTransformation extends TransformationStrategy {
                 min = n;
             }
         }
-        double newMin = (max * (d - 1) + min * (d + 1) / 2 * d);
+        double newMin = ((max + min) / 2 - (max - min) / (2 * d));
+        iterator = g.getRangeIterator();
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             v.set(1,
-                    ((v.at(1) - min) / d) + newMin);
+            		Math.round((((v.at(1) - min) / d) + newMin) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
     }
 
@@ -114,9 +115,9 @@ public class ScaleTransformation extends TransformationStrategy {
      */
     private static void shrinkZ(Graph g, double d) {
 
-        double min = ((Vertex) g.getIteratorRange().next()).at(2), max = min;
+        double min = ((Vertex) g.getRangeIterator().next()).at(2), max = min;
 
-        ListIterator iterator = g.getIteratorRange();
+        ListIterator iterator = g.getRangeIterator();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -132,7 +133,7 @@ public class ScaleTransformation extends TransformationStrategy {
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             v.set(2,
-                    ((v.at(2) - min) / d) + newMin);
+            		Math.round((((v.at(2) - min) / d) + newMin) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
     }
 }

@@ -47,7 +47,7 @@ public class RotateTransformation extends TransformationStrategy {
     public void apply(Graph g) {
         rotateX(g, x);
         rotateY(g, y);
-        rotatZ(g, z);
+        rotateZ(g, z);
     }
 
     /**
@@ -58,10 +58,10 @@ public class RotateTransformation extends TransformationStrategy {
      */
     private static void rotateX(Graph g, double d) {
 
-        double minY = ((Vertex) g.getIteratorRange().next()).at(1), maxY = minY,
-                minZ = ((Vertex) g.getIteratorRange().next()).at(2), maxZ = minZ;
+        double minY = ((Vertex) g.getRangeIterator().next()).at(1), maxY = minY,
+                minZ = ((Vertex) g.getRangeIterator().next()).at(2), maxZ = minZ;
 
-        ListIterator iterator = g.getIteratorRange();
+        ListIterator iterator = g.getRangeIterator();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -81,13 +81,14 @@ public class RotateTransformation extends TransformationStrategy {
         }
 
         double centerY = (maxY + minY) / 2, centerZ = (maxZ + minZ) / 2;
-        iterator = g.getIteratorRange();
+        iterator = g.getRangeIterator();
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
-            double y = v.at(1), z = v.at(2), dist;
+            double y = v.at(1), z = v.at(2), a = Math.atan((z - centerZ) / (y - centerY)), dist;
             dist = Math.sqrt(Math.pow(y - centerY, 2) + Math.pow(z - centerZ, 2));
-            v.set(1, y + dist * Math.cos(d));
-            v.set(2, z + dist * Math.sin(d));
+            if (y < centerY) a += Math.PI;
+            v.set(1, Math.round((centerY + dist * Math.cos(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
+            v.set(2, Math.round((centerZ + dist * Math.sin(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
     }
 
@@ -99,9 +100,9 @@ public class RotateTransformation extends TransformationStrategy {
      */
     private static void rotateY(Graph g, double d) {
 
-        double minX = ((Vertex) g.getIteratorRange().next()).at(0), maxX = minX,
-                minZ = ((Vertex) g.getIteratorRange().next()).at(2), maxZ = minZ;
-        ListIterator iterator = g.getIteratorRange();
+        double minX = ((Vertex) g.getRangeIterator().next()).at(0), maxX = minX,
+                minZ = ((Vertex) g.getRangeIterator().next()).at(2), maxZ = minZ;
+        ListIterator iterator = g.getRangeIterator();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -119,16 +120,16 @@ public class RotateTransformation extends TransformationStrategy {
                 minZ = n2;
             }
         }
-        double centerX = (maxX + minX) / 2, centerZ = (maxZ + minZ) / 2;
-        iterator = g.getIteratorRange();
 
+        double centerX = (maxX + minX) / 2, centerZ = (maxZ + minZ) / 2;
+        iterator = g.getRangeIterator();
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
-
-            double x = v.at(0), z = v.at(2), dist;
+            double x = v.at(0), z = v.at(2), a = Math.atan((x - centerX) / (z - centerZ)), dist;
             dist = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(z - centerZ, 2));
-            v.set(0, x + dist * Math.sin(d));
-            v.set(2, z + dist * Math.cos(d));
+            if (z < centerZ) a += Math.PI;
+            v.set(0, Math.round((centerX + dist * Math.sin(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
+            v.set(2, Math.round((centerZ + dist * Math.cos(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
     }
 
@@ -138,10 +139,10 @@ public class RotateTransformation extends TransformationStrategy {
      * @param g the graph which will be rotated
      * @param d
      */
-    private static void rotatZ(Graph g, double d) {
-        double minX = ((Vertex) g.getIteratorRange().next()).at(0), maxX = minX,
-                minY = ((Vertex) g.getIteratorRange().next()).at(1), maxY = minY;
-        ListIterator iterator = g.getIteratorRange();
+    private static void rotateZ(Graph g, double d) {
+        double minX = ((Vertex) g.getRangeIterator().next()).at(0), maxX = minX,
+                minY = ((Vertex) g.getRangeIterator().next()).at(1), maxY = minY;
+        ListIterator iterator = g.getRangeIterator();
 
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
@@ -160,13 +161,15 @@ public class RotateTransformation extends TransformationStrategy {
                 minY = n2;
             }
         }
+        iterator = g.getRangeIterator();
         double centerX = (maxX + minX) / 2, centerY = (maxY + minY) / 2;
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
-            double x = v.at(0), y = v.at(1), dist;
+            double x = v.at(0), y = v.at(1), a = Math.atan((y - centerY) / (x - centerX)), dist;
             dist = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
-            v.set(0, x + dist * Math.cos(d));
-            v.set(1, y + dist * Math.sin(d));
+            if (x < centerX) a += Math.PI;
+            v.set(0, Math.round((centerX + dist * Math.cos(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
+            v.set(1, Math.round((centerY + dist * Math.sin(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
     }
 }

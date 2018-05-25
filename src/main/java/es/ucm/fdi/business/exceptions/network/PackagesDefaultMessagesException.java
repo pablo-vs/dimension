@@ -7,7 +7,8 @@ package es.ucm.fdi.business.exceptions.network;
 
 /**
  * This exception is thrown when a ServerMessage with a default message is built
- * but no default package message file is available. 
+ * but no default package message file is available.
+ *
  * @author Arturo Acuaviva Huertos
  */
 public class PackagesDefaultMessagesException extends Exception {

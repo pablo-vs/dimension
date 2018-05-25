@@ -14,8 +14,9 @@
 package es.ucm.fdi.business.exceptions.network;
 
 /**
- * This exception is thrown whenever an error occurred while setting up the 
- * server SSL configuration system. 
+ * This exception is thrown whenever an error occurred while setting up the
+ * server SSL configuration system.
+ *
  * @author Arturo Acuaviva Huertos
  */
 public class ServerSSLException extends Exception {

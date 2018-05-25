@@ -31,8 +31,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 /**
- * JUnit test for WorkAS class.
- * Añado test para transformVisualization()
+ * JUnit test for WorkAS class. Añado test para transformVisualization()
  *
  * @see WorkAS
  * @author Javier Galiana
@@ -44,7 +43,6 @@ public class WorkASTest {
     public void workASTest() {
 
         ProjectDTO exponencial = new ProjectDTO("exponentialex");
-        ProjectManagerAS projMan = ProjectManagerAS.getManager(new ProjectDAOHashTableImp());
         WorkAS proj = new WorkAS(exponencial);
 
         List<Graph> g = new ArrayList<>();
@@ -54,14 +52,10 @@ public class WorkASTest {
         Visualization views = new Visualization();
 
         proj.addVisualizationBO(views);
-        
+
         proj.transformVisualization(views, new ScaleTransformation(2, 3, 4));
 
         assertEquals("VisualizationBOs have not been added to the project", true,
                 proj.getProject().getViews().contains(views));
-
-        projMan.saveChanges(proj.getProject());
-
-        assertEquals("Project was not saved!", exponencial, projMan.openProject("exponentialex"));
     }
 }

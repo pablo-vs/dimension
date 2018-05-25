@@ -13,6 +13,8 @@
  */
 package es.ucm.fdi.business.workspace.function.types.binary;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.regex.Pattern;
 
 import es.ucm.fdi.business.workspace.function.types.BinaryFunction;
@@ -24,6 +26,7 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  *
  * @author Inmaculada Pérez, Javier Navalón
  */
+@XmlRootElement
 public class SumFunction extends BinaryFunction {
 
     /**

@@ -23,12 +23,14 @@ import java.net.URL;
 import java.util.Properties;
 
 /**
- * This class defines a package send by the server to the clients. A package
- * has its own type (an integer id). A Server message also contains a message
- * with the information requested. 
- * @author Arturo Acuaviva 
+ * This class defines a package send by the server to the clients. A package has
+ * its own type (an integer id). A Server message also contains a message with
+ * the information requested.
+ *
+ * @author Arturo Acuaviva
  */
-public class ServerMessages  implements Serializable {
+public class ServerMessages implements Serializable {
+
     /**
      * Message type for welcoming
      */
@@ -59,37 +61,39 @@ public class ServerMessages  implements Serializable {
     private Properties properties = new Properties();
 
     /**
-     * Class constructor specifying the type of package message which is created. 
+     * Class constructor specifying the type of package message which is
+     * created.
+     *
      * @param type
-     * @throws PackagesDefaultMessagesException 
+     * @throws PackagesDefaultMessagesException
      */
-    public ServerMessages(int type) throws PackagesDefaultMessagesException{
+    public ServerMessages(int type) throws PackagesDefaultMessagesException {
         try {
             URL resource = ServerMessages.class.getClassLoader()
-                    .getResource("properties/en.servermessages.properties");     
+                    .getResource("properties/en.servermessages.properties");
             File file = new File(resource.toURI());
             FileInputStream fileInput = new FileInputStream(file);
             properties.load(fileInput);
             fileInput.close();
         } catch (IOException | URISyntaxException ex) {
             throw new PackagesDefaultMessagesException(
-                    "Error while loading server message type:" + type ,ex);
+                    "Error while loading server message type:" + type, ex);
         }
         this.type = type;
-        switch(type){
-            case WELCOME:{
+        switch (type) {
+            case WELCOME: {
                 this.msg = properties.getProperty("welcome");
-                  break;
+                break;
             }
-            case LOG_IN:{
+            case LOG_IN: {
                 this.msg = properties.getProperty("log_in");
-                 break;
+                break;
             }
-            case LOG_OUT:{
-                  this.msg = properties.getProperty("log_out");
-                  break;
+            case LOG_OUT: {
+                this.msg = properties.getProperty("log_out");
+                break;
             }
-            case REGISTER:{
+            case REGISTER: {
                 this.msg = properties.getProperty("register");
                 break;
             }
@@ -98,39 +102,43 @@ public class ServerMessages  implements Serializable {
                 break;
         }
     }
-    
+
     /**
-     * Class constructor specifying the package type and the message. 
+     * Class constructor specifying the package type and the message.
+     *
      * @param type
-     * @param msg 
+     * @param msg
      */
-    public ServerMessages(int type, String msg){
+    public ServerMessages(int type, String msg) {
         this.type = type;
         this.msg = msg;
     }
-    
-    /**
-     * Getter method. 
-     * @return the type of the package message
-     */
-    public int getType(){
-        return type;
-    }
-    
+
     /**
      * Getter method.
+     *
+     * @return the type of the package message
+     */
+    public int getType() {
+        return type;
+    }
+
+    /**
+     * Getter method.
+     *
      * @return the message in the package
      */
-    public String getMessage(){
+    public String getMessage() {
         return msg;
     }
-    
+
     /**
      * Describes a package.
+     *
      * @return a package string description
      */
     @Override
-    public String toString(){
-        return "[" + type + "][" + msg+"]";
+    public String toString() {
+        return "[" + type + "][" + msg + "]";
     }
 }

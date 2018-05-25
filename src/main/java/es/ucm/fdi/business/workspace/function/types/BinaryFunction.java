@@ -13,6 +13,8 @@
  */
 package es.ucm.fdi.business.workspace.function.types;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import es.ucm.fdi.business.util.FunctionParser;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -26,7 +28,9 @@ import es.ucm.fdi.business.workspace.function.AbstractFunction;
  */
 public abstract class BinaryFunction extends AbstractFunction {
 
+    @XmlElement
     protected AbstractFunction function1;
+    @XmlElement
     protected AbstractFunction function2;
 
     /**

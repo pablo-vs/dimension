@@ -23,7 +23,7 @@ import java.io.Serializable;
  *
  * @author Arturo Acuaviva
  */
-public abstract class ClientMessage implements Serializable  {
+public abstract class ClientMessage implements Serializable {
 
     /**
      * Type requesting login package to the server

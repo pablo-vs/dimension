@@ -13,6 +13,8 @@
  */
 package es.ucm.fdi.business.workspace.function.types.unary;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.regex.Pattern;
 
 import es.ucm.fdi.business.workspace.function.types.UnaryFunction;
@@ -24,9 +26,15 @@ import es.ucm.fdi.business.workspace.function.types.VariableDTO;
  *
  * @author Javier Navalón
  */
+@XmlRootElement
 public class IdentityFunction extends UnaryFunction {
 
+    @XmlElement
     private final String variable;
+
+    public IdentityFunction() {
+        this("x_0", new VariablesList());
+    }
 
     /**
      * Class constructor specifying variable and variables list.

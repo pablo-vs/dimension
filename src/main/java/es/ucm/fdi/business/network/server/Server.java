@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.Socket;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.KeyManagementException;
@@ -36,7 +35,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.net.ServerSocketFactory;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -226,17 +224,17 @@ public class Server implements Runnable {
      */
     private void initializeServer() {
 
-       //  Initializes SSL by setting the certificates location
+        //  Initializes SSL by setting the certificates location
         try {
             initializeSSLContext();
         } catch (ServerSSLException e) {
             throw new RuntimeException("Cannot configurate SSL context", e);
         }
-       //  SSL server socket creation
+        //  SSL server socket creation
         try {
             SSLServerSocketFactory ssf = context.getServerSocketFactory();
             serverSocket = (SSLServerSocket) ssf.createServerSocket(PORT);
-            serverSocket.setNeedClientAuth(false); 
+            serverSocket.setNeedClientAuth(false);
         } catch (IOException e) {
             throw new RuntimeException("Cannot open port " + PORT, e);
         }
@@ -315,7 +313,8 @@ public class Server implements Runnable {
             try {
 
                 this.serverSocket.close();
-                displayMessage("Server is closing!");
+                serverSocket = null;
+                displayMessage("Server notifies clients the shutdown!");
 
             } catch (IOException e) {
                 throw new RuntimeException("Error while closing server", e);

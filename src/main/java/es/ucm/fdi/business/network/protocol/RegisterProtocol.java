@@ -19,42 +19,44 @@ import es.ucm.fdi.business.users.UserManagerAS;
 
 /**
  * RegisterProtocol provides a way of dealing with register request packages
- * sent by a client. Given a UserManagerAS, RegisterProtocol tries to parse
- * the ClientMessage received by checking if the package contains the fields
+ * sent by a client. Given a UserManagerAS, RegisterProtocol tries to parse the
+ * ClientMessage received by checking if the package contains the fields
  * required to register a new user in the system. If the package is incorrectly
- * created or does not match a request register package type, a ProtocolException
- * is thrown. If the register proccess is carried out correctly because a correct
- * package was provided, the method apply should return a true statement. If the
- * register proccess cannot be carried out due to incorrect fields filling, the
- * method apply return a false statement. 
+ * created or does not match a request register package type, a
+ * ProtocolException is thrown. If the register proccess is carried out
+ * correctly because a correct package was provided, the method apply should
+ * return a true statement. If the register proccess cannot be carried out due
+ * to incorrect fields filling, the method apply return a false statement.
+ *
  * @author Arturacu
  */
 public final class RegisterProtocol implements Protocol {
 
-
     /**
-     * Application Service to manage the users in the system. 
+     * Application Service to manage the users in the system.
      */
     private final UserManagerAS manager;
 
     /**
-     * Class constructor. A RegisterProtocol needs an Application Service to manage
-     * the users in the system. 
-     * @param manager 
+     * Class constructor. A RegisterProtocol needs an Application Service to
+     * manage the users in the system.
+     *
+     * @param manager
      */
-    public RegisterProtocol(UserManagerAS manager){
+    public RegisterProtocol(UserManagerAS manager) {
         this.manager = manager;
     }
-    
+
     /**
      * Not implemented yet.
+     *
      * @param msg
      * @return
-     * @throws ProtocolException 
+     * @throws ProtocolException
      */
     @Override
     public boolean apply(ClientMessage msg) throws ProtocolException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

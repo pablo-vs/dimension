@@ -122,8 +122,8 @@ public class UserDTO implements Serializable {
             UserType type, ZonedDateTime banTime, String twitterAccessToken, String twitterAccessTokenSecret)
             throws ParseException {
         this(ID, name, password, date, email, telephone, picture, description, type,
-	     banTime);
-	 twitterAccess = new AccessToken(twitterAccessToken, twitterAccessTokenSecret);
+                banTime);
+        twitterAccess = new AccessToken(twitterAccessToken, twitterAccessTokenSecret);
     }
 
     /**
@@ -239,7 +239,7 @@ public class UserDTO implements Serializable {
 
     @Override
     public boolean equals(Object other) {
-	return (other instanceof UserDTO) && ((UserDTO)other).ID.equals(ID);
+        return (other instanceof UserDTO) && ((UserDTO) other).ID.equals(ID);
     }
-    
+
 }

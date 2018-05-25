@@ -18,16 +18,17 @@ import es.ucm.fdi.business.network.messages.client.ClientMessage;
 import es.ucm.fdi.business.workspace.project.WorkAS;
 
 /**
- * VisualizationProtocol provides a way of dealing with a visualization
- * request from a clinet. Given a WorkAS (Application Service) a VisualizationProtocol
+ * VisualizationProtocol provides a way of dealing with a visualization request
+ * from a clinet. Given a WorkAS (Application Service) a VisualizationProtocol
  * can be invoked using the apply method and providing a ClientMessage. If the
- * ClientMessage matches the type of a request visualization package and it is 
+ * ClientMessage matches the type of a request visualization package and it is
  * correctly filled up, the protocol is applied using the application service.
  * If the visualization can be created, a true statement is returned and the
- * view is generated for the user requesting the visualization. 
+ * view is generated for the user requesting the visualization.
+ *
  * @see WorkAS
- * @see Protocol 
- * @author Arturo Acuaviva 
+ * @see Protocol
+ * @author Arturo Acuaviva
  */
 public class VisualizationProtocol implements Protocol {
 
@@ -35,25 +36,27 @@ public class VisualizationProtocol implements Protocol {
      * Application Service to manage views in the project
      */
     private final WorkAS manager;
-    
+
     /**
      * Class constructor. A VisualizationProtocol receives an Application
-     * Service to manage the working set of the user. 
-     * @param manager 
+     * Service to manage the working set of the user.
+     *
+     * @param manager
      */
-    public VisualizationProtocol(WorkAS manager){
+    public VisualizationProtocol(WorkAS manager) {
         this.manager = manager;
     }
-    
+
     /**
-     * Not implemented yet. 
+     * Not implemented yet.
+     *
      * @param msg
      * @return
-     * @throws ProtocolException 
+     * @throws ProtocolException
      */
     @Override
     public boolean apply(ClientMessage msg) throws ProtocolException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

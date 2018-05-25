@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--xtools2_universal_type_manager-->
-<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Plataforma de modelado de Rational (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
 <?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.uml.msl.model" version="7.0.0"><feature description="" name="com.ibm.xtools.ruml.feature" url="" version="7.0.0"/></signature>?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Default="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2" xmlns:JavaTransformation50="http:///schemas/JavaTransformation50/_znHmkE3YEd-tPpJR7OP4Bg/34" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.3/Umlnotation" xsi:schemaLocation="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2 pathmap://UML2_MSL_PROFILES/Default.epx#_fNwoAAqoEd6-N_NOT9vsCA?Default/Default? http:///schemas/JavaTransformation50/_znHmkE3YEd-tPpJR7OP4Bg/34 pathmap://TRANSFORM_ANNOTATION_PROFILES/JavaTransformProfile.epx#_znahgE3YEd-tPpJR7OP4Bg?JavaTransformation5.0/JavaTransformation50?">
   <uml:Model xmi:id="_VFlaMDl8Eei7y9jAWNCkBg" name="UMLModel">
@@ -27364,7 +27364,7 @@
       <operation href="mmi:///#jmethod%5Ename=authenticate%5Esign=(QString;QSessionDTO;)Z%5Bjsrctype%5Ename=UserManagerAS%5Bjcu%5Ename=UserManagerAS.java%5Bjpack%5Ename=es.ucm.fdi.business.users%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D%5D$uml.Operation"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Collaboration" xmi:id="_Dqz2IFkdEeiG6todgUME4A" name="Collaboration2">
-      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_Dqz2IVkdEeiG6todgUME4A" name="Interaction1">
+      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_Dqz2IVkdEeiG6todgUME4A" name="EditProfile">
         <eAnnotations xmi:id="_Dqz2IlkdEeiG6todgUME4A" source="uml2.diagrams">
           <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_Dqz2I1kdEeiG6todgUME4A" type="Sequence" element="_Dqz2IVkdEeiG6todgUME4A" name="EditProfileSequenceDiagram" measurementUnit="Himetric">
             <children xmi:type="umlnotation:UMLShape" xmi:id="_Dqz2JFkdEeiG6todgUME4A" element="_Dqz2IVkdEeiG6todgUME4A" fontName="Segoe UI" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
@@ -27722,14 +27722,14 @@
       <ownedAttribute xmi:id="_7i6egF6ZEei8qMeAnxYqeQ" name="server">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=Server%5Bjcu%5Ename=Server.java%5Bjpack%5Ename=es.ucm.fdi.business.network.server%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZCAPQGBGEeia2oJYZKaS4g" name="Copiar_1_userDAO">
+      <ownedAttribute xmi:id="_ZCAPQGBGEeia2oJYZKaS4g" name="userDAO">
         <type xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=UserDAO%5Bjcu%5Ename=UserDAO.java%5Bjpack%5Ename=es.ucm.fdi.integration.users%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Interface"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZCAPQWBGEeia2oJYZKaS4g" name="Copiar_1_server">
+      <ownedAttribute xmi:id="_ZCAPQWBGEeia2oJYZKaS4g" name="server">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=Server%5Bjcu%5Ename=Server.java%5Bjpack%5Ename=es.ucm.fdi.business.network.server%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZCA2UGBGEeia2oJYZKaS4g" name="Copiar_1_User"/>
-      <ownedAttribute xmi:id="_ZCA2UWBGEeia2oJYZKaS4g" name="Copiar_1_userManagerAS">
+      <ownedAttribute xmi:id="_ZCA2UGBGEeia2oJYZKaS4g" name="User"/>
+      <ownedAttribute xmi:id="_ZCA2UWBGEeia2oJYZKaS4g" name="userManagerAS">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=UserManagerAS%5Bjcu%5Ename=UserManagerAS.java%5Bjpack%5Ename=es.ucm.fdi.business.users%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
     </packagedElement>
@@ -27758,9 +27758,9 @@
       <operation href="mmi:///#jmethod%5Ename=findSharedProject%5Esign=(QString;)QSharedProjectDTO;%5Bjsrctype%5Ename=SharedProjectDAO%5Bjcu%5Ename=SharedProjectDAO.java%5Bjpack%5Ename=es.ucm.fdi.integration.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D%5D$uml.Operation"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Collaboration" xmi:id="_nbJicFkcEeiG6todgUME4A" name="Collaboration1">
-      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_nbTTcFkcEeiG6todgUME4A" name="Interaction1">
+      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_nbTTcFkcEeiG6todgUME4A" name="Comment">
         <eAnnotations xmi:id="_nbTTcVkcEeiG6todgUME4A" source="uml2.diagrams">
-          <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_nbTTclkcEeiG6todgUME4A" type="Sequence" element="_nbTTcFkcEeiG6todgUME4A" name="ComentProjectSequenceDiagram" measurementUnit="Himetric">
+          <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_nbTTclkcEeiG6todgUME4A" type="Sequence" element="_nbTTcFkcEeiG6todgUME4A" name="CommentProjectSequenceDiagram" measurementUnit="Himetric">
             <children xmi:type="umlnotation:UMLShape" xmi:id="_nbTTc1kcEeiG6todgUME4A" element="_nbTTcFkcEeiG6todgUME4A" fontName="Segoe UI" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
               <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_nbTTdFkcEeiG6todgUME4A" type="interaction_compartment">
                 <eAnnotations xmi:id="_sOG7IFkcEeiG6todgUME4A" source="Himetric"/>
@@ -27777,7 +27777,7 @@
                   <styles xmi:type="notation:TextStyle" xmi:id="_nJRE42BGEeia2oJYZKaS4g"/>
                   <styles xmi:type="notation:LineTypeStyle" xmi:id="_nJRE5GBGEeia2oJYZKaS4g"/>
                   <element xsi:nil="true"/>
-                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nJRE5WBGEeia2oJYZKaS4g" x="-448" y="75557" width="55770" height="4126"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nJRE5WBGEeia2oJYZKaS4g" x="4436" y="33185" width="55770" height="4126"/>
                 </children>
                 <children xmi:type="umlnotation:UMLShape" xmi:id="_nJRE5mBGEeia2oJYZKaS4g" element="_nFqXQWBGEeia2oJYZKaS4g" fontName="Segoe UI" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
                   <eAnnotations xmi:id="_nJRE52BGEeia2oJYZKaS4g" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
@@ -27813,7 +27813,7 @@
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_nJRr-mBGEeia2oJYZKaS4g" type="Stereotype"/>
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_nJRr-2BGEeia2oJYZKaS4g" type="Name"/>
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_nJRr_GBGEeia2oJYZKaS4g" type="Parent"/>
-                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nJRr_WBGEeia2oJYZKaS4g" x="2241" y="449" width="6401" height="28336"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nJRr_WBGEeia2oJYZKaS4g" x="2165" y="53" width="6401" height="28336"/>
                 </children>
                 <children xmi:type="umlnotation:UMLShape" xmi:id="_nJRr_mBGEeia2oJYZKaS4g" element="_nFrlYGBGEeia2oJYZKaS4g" fontName="Segoe UI" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
                   <eAnnotations xmi:id="_nJRr_2BGEeia2oJYZKaS4g" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
@@ -27949,7 +27949,7 @@
                 </children>
               </children>
               <children xmi:type="notation:BasicDecorationNode" xmi:id="_nbTTdVkcEeiG6todgUME4A" type="Name"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nbTTdlkcEeiG6todgUME4A" width="55025" height="79362"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nbTTdlkcEeiG6todgUME4A" width="67391" height="43366"/>
             </children>
             <edges xmi:type="umlnotation:UMLConnector" xmi:id="_nJThKWBGEeia2oJYZKaS4g" element="_nJOBk2BGEeia2oJYZKaS4g" source="_nJSTAGBGEeia2oJYZKaS4g" target="_nJRE5mBGEeia2oJYZKaS4g" fontName="Segoe UI" fontHeight="8" lineColor="8421504" lineWidth="1" showStereotype="Text">
               <children xmi:type="notation:DecorationNode" xmi:id="_nJThKmBGEeia2oJYZKaS4g" type="MessageNameLabel">
@@ -28133,8 +28133,8 @@
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nFszg2BGEeia2oJYZKaS4g" covered="_nFqXQGBGEeia2oJYZKaS4g" message="_nJOBk2BGEeia2oJYZKaS4g"/>
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nFtakGBGEeia2oJYZKaS4g" covered="_nFqXQWBGEeia2oJYZKaS4g" message="_nJOBk2BGEeia2oJYZKaS4g"/>
         <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_nFtakWBGEeia2oJYZKaS4g" covered="_nFqXQWBGEeia2oJYZKaS4g" start="_nFtakGBGEeia2oJYZKaS4g" finish="_nJMzcGBGEeia2oJYZKaS4g"/>
-        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nIlvcGBGEeia2oJYZKaS4g" covered="_nFqXQWBGEeia2oJYZKaS4g" event="_nJOooGBGEeia2oJYZKaS4g" message="_nJNagGBGEeia2oJYZKaS4g"/>
-        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nIpZ0GBGEeia2oJYZKaS4g" covered="_nFq-UGBGEeia2oJYZKaS4g" event="_nJPPsGBGEeia2oJYZKaS4g" message="_nJNagGBGEeia2oJYZKaS4g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nIlvcGBGEeia2oJYZKaS4g" covered="_nFqXQWBGEeia2oJYZKaS4g" event="_w8WMHFkcEeiG6todgUME4A" message="_nJNagGBGEeia2oJYZKaS4g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nIpZ0GBGEeia2oJYZKaS4g" covered="_nFq-UGBGEeia2oJYZKaS4g" event="_w8WMHVkcEeiG6todgUME4A" message="_nJNagGBGEeia2oJYZKaS4g"/>
         <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_nIpZ0WBGEeia2oJYZKaS4g" covered="_nFq-UGBGEeia2oJYZKaS4g" start="_nIpZ0GBGEeia2oJYZKaS4g" finish="_nJJwIGBGEeia2oJYZKaS4g"/>
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nJDpgGBGEeia2oJYZKaS4g" covered="_nFq-UGBGEeia2oJYZKaS4g" event="_w8WMHlkcEeiG6todgUME4A" message="_nJNag2BGEeia2oJYZKaS4g"/>
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nJEQkGBGEeia2oJYZKaS4g" covered="_nFq-UWBGEeia2oJYZKaS4g" event="_w8WMH1kcEeiG6todgUME4A" message="_nJNag2BGEeia2oJYZKaS4g"/>
@@ -28210,8 +28210,8 @@
             </guard>
           </operand>
         </fragment>
-        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nJJwIGBGEeia2oJYZKaS4g" covered="_nFq-UGBGEeia2oJYZKaS4g" event="_nJOooGBGEeia2oJYZKaS4g" message="_nJOBkWBGEeia2oJYZKaS4g"/>
-        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nJMMYGBGEeia2oJYZKaS4g" covered="_nFqXQWBGEeia2oJYZKaS4g" event="_nJPPsGBGEeia2oJYZKaS4g" message="_nJOBkWBGEeia2oJYZKaS4g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nJJwIGBGEeia2oJYZKaS4g" covered="_nFq-UGBGEeia2oJYZKaS4g" event="_w8WMHFkcEeiG6todgUME4A" message="_nJOBkWBGEeia2oJYZKaS4g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nJMMYGBGEeia2oJYZKaS4g" covered="_nFqXQWBGEeia2oJYZKaS4g" event="_w8WMHVkcEeiG6todgUME4A" message="_nJOBkWBGEeia2oJYZKaS4g"/>
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nJMzcGBGEeia2oJYZKaS4g" covered="_nFqXQWBGEeia2oJYZKaS4g" message="_nJNagWBGEeia2oJYZKaS4g"/>
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nJMzcWBGEeia2oJYZKaS4g" covered="_nFqXQGBGEeia2oJYZKaS4g" message="_nJNagWBGEeia2oJYZKaS4g"/>
         <message xmi:id="_nJMzcmBGEeia2oJYZKaS4g" name="addComment" receiveEvent="_nJGs52BGEeia2oJYZKaS4g" sendEvent="_nJGs5mBGEeia2oJYZKaS4g" connector="_nJPPsWBGEeia2oJYZKaS4g"/>
@@ -28247,22 +28247,22 @@
       <ownedAttribute xmi:id="_fbys8VkhEeiG6todgUME4A" name="userManagerAS">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=UserManagerAS%5Bjcu%5Ename=UserManagerAS.java%5Bjpack%5Ename=es.ucm.fdi.business.users%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_nFrlYmBGEeia2oJYZKaS4g" name="Copiar_1_Property2">
+      <ownedAttribute xmi:id="_nFrlYmBGEeia2oJYZKaS4g" name="sharedProjectDAO">
         <type xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=SharedProjectDAO%5Bjcu%5Ename=SharedProjectDAO.java%5Bjpack%5Ename=es.ucm.fdi.integration.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Interface"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_nFsMcGBGEeia2oJYZKaS4g" name="userManagerAS2">
+      <ownedAttribute xmi:id="_nFsMcGBGEeia2oJYZKaS4g" name="userManagerAS">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=UserManagerAS%5Bjcu%5Ename=UserManagerAS.java%5Bjpack%5Ename=es.ucm.fdi.business.users%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_nFsMcWBGEeia2oJYZKaS4g" name="Copiar_1_Property4">
+      <ownedAttribute xmi:id="_nFsMcWBGEeia2oJYZKaS4g" name="CommentDAO">
         <type xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=CommentDAO%5Bjcu%5Ename=CommentDAO.java%5Bjpack%5Ename=es.ucm.fdi.integration.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Interface"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_nFsMcmBGEeia2oJYZKaS4g" name="Copiar_1_Property1">
+      <ownedAttribute xmi:id="_nFsMcmBGEeia2oJYZKaS4g" name="shareManagerAS">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=ShareManagerAS%5Bjcu%5Ename=ShareManagerAS.java%5Bjpack%5Ename=es.ucm.fdi.business.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_nFszgGBGEeia2oJYZKaS4g" name="Copiar_1_User">
+      <ownedAttribute xmi:id="_nFszgGBGEeia2oJYZKaS4g" name="User">
         <type xmi:type="uml:Actor" href="platform:/resource/JavGal/diagrams/model/JavaBlankModel.emx#_4ysSgFkbEeikEa9RLVinvQ?UMLModel/User?"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_nFszgWBGEeia2oJYZKaS4g" name="Copiar_1_Property3">
+      <ownedAttribute xmi:id="_nFszgWBGEeia2oJYZKaS4g" name="SharedProjectDTO">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=SharedProjectDTO%5Bjcu%5Ename=SharedProjectDTO.java%5Bjpack%5Ename=es.ucm.fdi.business.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_nFszgmBGEeia2oJYZKaS4g" name="Server"/>
@@ -32209,7 +32209,7 @@
       </edge>
     </packagedElement>
     <packagedElement xmi:type="uml:Collaboration" xmi:id="_2i4zEFkbEeikEa9RLVinvQ" name="Collaboration1">
-      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_2i6oQFkbEeikEa9RLVinvQ" name="Interaction1">
+      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_2i6oQFkbEeikEa9RLVinvQ" name="ShareProject">
         <eAnnotations xmi:id="_2i72YFkbEeikEa9RLVinvQ" source="uml2.diagrams">
           <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_2i72YVkbEeikEa9RLVinvQ" type="Sequence" element="_2i6oQFkbEeikEa9RLVinvQ" name="ShareProject" measurementUnit="Himetric">
             <children xmi:type="umlnotation:UMLShape" xmi:id="_2i72YlkbEeikEa9RLVinvQ" element="_2i6oQFkbEeikEa9RLVinvQ" fontName="Cantarell" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
@@ -32283,7 +32283,7 @@
                     <layoutConstraint xmi:type="notation:Size" xmi:id="_2CKy8GBGEeia2oJYZKaS4g" width="1320" height="1320"/>
                   </children>
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_2CKy8WBGEeia2oJYZKaS4g" type="Stereotype"/>
-                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2CKy8mBGEeia2oJYZKaS4g" x="-238" y="734" width="52416" height="12650"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2CKy8mBGEeia2oJYZKaS4g" x="4066" y="1657" width="52416" height="13596"/>
                 </children>
                 <children xmi:type="umlnotation:UMLShape" xmi:id="_2CLZ4GBGEeia2oJYZKaS4g" element="_2B9-gWBGEeia2oJYZKaS4g" fontName="Cantarell" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
                   <eAnnotations xmi:id="_2CLZ4WBGEeia2oJYZKaS4g" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
@@ -32319,7 +32319,7 @@
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_2CLZ-GBGEeia2oJYZKaS4g" type="Stereotype"/>
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_2CLZ-WBGEeia2oJYZKaS4g" type="Name"/>
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_2CLZ-mBGEeia2oJYZKaS4g" type="Parent"/>
-                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2CLZ-2BGEeia2oJYZKaS4g" x="-36658" y="317" width="6798" height="9525"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2CLZ-2BGEeia2oJYZKaS4g" x="-150" y="7577" width="6798" height="3228"/>
                 </children>
               </children>
               <children xmi:type="notation:BasicDecorationNode" xmi:id="_2i72ZFkbEeikEa9RLVinvQ" type="Name"/>
@@ -32606,22 +32606,22 @@
       <ownedAttribute xmi:id="_Nj-94VkhEeikEa9RLVinvQ" name="authorshipDTO">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=AuthorshipDTO%5Bjcu%5Ename=AuthorshipDTO.java%5Bjpack%5Ename=es.ucm.fdi.business.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_2B-lkGBGEeia2oJYZKaS4g" name="Copiar_1_authorshipDAO">
+      <ownedAttribute xmi:id="_2B-lkGBGEeia2oJYZKaS4g" name="authorshipDAO">
         <type xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=AuthorshipDAO%5Bjcu%5Ename=AuthorshipDAO.java%5Bjpack%5Ename=es.ucm.fdi.integration.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Interface"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_2B-lkWBGEeia2oJYZKaS4g" name="Copiar_1_user">
+      <ownedAttribute xmi:id="_2B-lkWBGEeia2oJYZKaS4g" name="User">
         <type xmi:type="uml:Actor" href="platform:/resource/JavGal/diagrams/model/JavaBlankModel.emx#_4ysSgFkbEeikEa9RLVinvQ?UMLModel/User?"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_2B-lkmBGEeia2oJYZKaS4g" name="Copiar_1_sharedProjectDTOOpenProjectImp">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=SharedProjectDTOOpenProjectImp%5Bjcu%5Ename=SharedProjectDTOOpenProjectImp.java%5Bjpack%5Ename=es.ucm.fdi.business.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_2B-lk2BGEeia2oJYZKaS4g" name="Copiar_1_shareManagerAS4">
+      <ownedAttribute xmi:id="_2B-lk2BGEeia2oJYZKaS4g" name="shareManagerAS">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=ShareManagerAS%5Bjcu%5Ename=ShareManagerAS.java%5Bjpack%5Ename=es.ucm.fdi.business.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_2B_MoGBGEeia2oJYZKaS4g" name="Copiar_1_userManagerAS">
+      <ownedAttribute xmi:id="_2B_MoGBGEeia2oJYZKaS4g" name="userManagerAS">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=UserManagerAS%5Bjcu%5Ename=UserManagerAS.java%5Bjpack%5Ename=es.ucm.fdi.business.users%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_2B_MoWBGEeia2oJYZKaS4g" name="Copiar_1_sharedProjectDAO2">
+      <ownedAttribute xmi:id="_2B_MoWBGEeia2oJYZKaS4g" name="sharedProjectDAO">
         <type xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=SharedProjectDAO%5Bjcu%5Ename=SharedProjectDAO.java%5Bjpack%5Ename=es.ucm.fdi.integration.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Interface"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_2B_MomBGEeia2oJYZKaS4g" name="Copiar_1_authorshipDTO">
@@ -33381,7 +33381,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:ExecutionEvent" xmi:id="_4iSvoFqHEeifx59JR3HbGA" name="ExecutionEvent1"/>
     <packagedElement xmi:type="uml:Collaboration" xmi:id="_8vgq8F6NEei8qMeAnxYqeQ" name="Collaboration4">
-      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_8wEroF6NEei8qMeAnxYqeQ" name="Interaction1">
+      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_8wEroF6NEei8qMeAnxYqeQ" name="SearchProject">
         <eAnnotations xmi:id="_8wdtMF6NEei8qMeAnxYqeQ" source="uml2.diagrams">
           <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_8wdtMV6NEei8qMeAnxYqeQ" type="Sequence" element="_8wEroF6NEei8qMeAnxYqeQ" name="SearchProject" measurementUnit="Himetric">
             <children xmi:type="umlnotation:UMLShape" xmi:id="_8wdtMl6NEei8qMeAnxYqeQ" element="_8wEroF6NEei8qMeAnxYqeQ" fontName="Segoe UI" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
@@ -34213,7 +34213,7 @@
         <message xmi:id="_bfnPMV6bEei8qMeAnxYqeQ" name="authenticate" receiveEvent="_bfdeMV6bEei8qMeAnxYqeQ" sendEvent="_bfdeMF6bEei8qMeAnxYqeQ" connector="_Pgc6EF6REei8qMeAnxYqeQ"/>
         <message xmi:id="_bfnPMl6bEei8qMeAnxYqeQ" name="hasReadAccess" receiveEvent="_bflaBF6bEei8qMeAnxYqeQ" sendEvent="_bflaA16bEei8qMeAnxYqeQ" connector="_75Sl4V6TEei8qMeAnxYqeQ"/>
       </ownedBehavior>
-      <ownedAttribute xmi:id="_xSdjYF6OEei8qMeAnxYqeQ" name="User:"/>
+      <ownedAttribute xmi:id="_xSdjYF6OEei8qMeAnxYqeQ" name="User"/>
       <ownedAttribute xmi:id="_gorRMV6PEei8qMeAnxYqeQ" name="userManagerAS">
         <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=UserManagerAS%5Bjcu%5Ename=UserManagerAS.java%5Bjpack%5Ename=es.ucm.fdi.business.users%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D$uml.Class"/>
       </ownedAttribute>
@@ -34273,7 +34273,7 @@
       <operation href="mmi:///#jmethod%5Ename=createSharedProjectID%5Esign=(QString;QList%3CQString;%3E;)QString;%5Bjsrctype%5Ename=ShareManagerAS%5Bjcu%5Ename=ShareManagerAS.java%5Bjpack%5Ename=es.ucm.fdi.business.connectivity%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=dimension%5D%5D%5D%5D%5D$uml.Operation"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Collaboration" xmi:id="_2y9VMGAHEeiOXo2wfPjbog" name="Collaboration5">
-      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_2zpRsGAHEeiOXo2wfPjbog" name="Interaction1">
+      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_2zpRsGAHEeiOXo2wfPjbog" name="Sanction/Notify">
         <eAnnotations xmi:id="_2ztjIGAHEeiOXo2wfPjbog" source="uml2.diagrams">
           <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_2ztjIWAHEeiOXo2wfPjbog" type="Sequence" element="_2zpRsGAHEeiOXo2wfPjbog" name="Sanction/Notify" measurementUnit="Himetric">
             <children xmi:type="umlnotation:UMLShape" xmi:id="_2ztjImAHEeiOXo2wfPjbog" element="_2zpRsGAHEeiOXo2wfPjbog" fontName="Cantarell" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
@@ -34836,7 +34836,7 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Collaboration" xmi:id="_NyvmsGA0EeiAxYwcXcjo2w" name="Collaboration6">
-      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_Nyxb4GA0EeiAxYwcXcjo2w" name="Interaction1">
+      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_Nyxb4GA0EeiAxYwcXcjo2w" name="VisualizeFunction">
         <eAnnotations xmi:id="_Nyz4IGA0EeiAxYwcXcjo2w" source="uml2.diagrams">
           <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_Nyz4IWA0EeiAxYwcXcjo2w" type="Sequence" element="_Nyxb4GA0EeiAxYwcXcjo2w" name="VisualizeFunction" measurementUnit="Himetric">
             <children xmi:type="umlnotation:UMLShape" xmi:id="_Nyz4ImA0EeiAxYwcXcjo2w" element="_Nyxb4GA0EeiAxYwcXcjo2w" fontName="Cantarell" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
@@ -35578,7 +35578,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:DestructionEvent" xmi:id="_2CHvg2BGEeia2oJYZKaS4g" name="DestructionEvent1"/>
     <packagedElement xmi:type="uml:CreationEvent" xmi:id="_2CIWkGBGEeia2oJYZKaS4g" name="CreationEvent1"/>
-    <packagedElement xmi:type="uml:Activity" xmi:id="_7L664GBGEeia2oJYZKaS4g" name="Activity1">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_7L664GBGEeia2oJYZKaS4g" name="EditProfile">
       <eAnnotations xmi:id="_7MAacGBGEeia2oJYZKaS4g" source="uml2.diagrams">
         <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_7MAacWBGEeia2oJYZKaS4g" type="Activity" element="_7L664GBGEeia2oJYZKaS4g" name="EditProfile" measurementUnit="Himetric">
           <children xmi:type="umlnotation:UMLFrame" xmi:id="_7MAacmBGEeia2oJYZKaS4g" type="Activity Frame" element="_7L664GBGEeia2oJYZKaS4g" fontName="Cantarell" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
@@ -35859,7 +35859,7 @@
         <weight xmi:type="uml:LiteralInteger" xmi:id="_8GdQlGBGEeia2oJYZKaS4g" value="1"/>
       </edge>
     </packagedElement>
-    <packagedElement xmi:type="uml:Activity" xmi:id="_kKUyEGBHEeia2oJYZKaS4g" name="Activity2">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_kKUyEGBHEeia2oJYZKaS4g" name="Sanction/Notify">
       <eAnnotations xmi:id="_kKWnQGBHEeia2oJYZKaS4g" source="uml2.diagrams">
         <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_kKWnQWBHEeia2oJYZKaS4g" type="Activity" element="_kKUyEGBHEeia2oJYZKaS4g" name="Sanction/Notify" measurementUnit="Himetric">
           <children xmi:type="umlnotation:UMLFrame" xmi:id="_kKWnQmBHEeia2oJYZKaS4g" type="Activity Frame" element="_kKUyEGBHEeia2oJYZKaS4g" fontName="Cantarell" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">

@@ -13,28 +13,36 @@
  */
 package es.ucm.fdi.usecases;
 
-import es.ucm.fdi.business.exceptions.DuplicatedIDException;
+import es.ucm.fdi.business.network.operations.twitter.TwitterManager;
 import es.ucm.fdi.business.users.SessionDTO;
 import es.ucm.fdi.business.users.UserDTO;
 import es.ucm.fdi.business.users.UserManagerAS;
+import es.ucm.fdi.business.users.UserType;
 import es.ucm.fdi.business.util.HashGenerator;
 import es.ucm.fdi.integration.users.UserDAOHashTableImp;
+import java.text.ParseException;
+import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import twitter4j.TwitterException;
 
 /**
- * Use case test: registering a new user in the system. This test could be taken
- * as an integration test using a UserManagerAS. More information on how
- * UserManagerAS handles the registration process can be found on UserManagerAS
- * test class:
+ * Use case test: tweeting a message from the user. This test could be taken as
+ * an integration test using a TwitterAS. More information on how TwitterManager
+ * handles the twitter interaction can be found on TwitterAS class. More tests
+ * on the class are available on TwitterManagerTest
  *
- * @see UserManagerASTest
+ * @see TwitterManagerTest
+ * @see TwitterManager
+ *
  * @author Arturo Acuaviva
  */
-public class RegisterUCTest {
+public class TwitterUCTest {
 
     /**
      * Database to be used during the tests
@@ -48,7 +56,6 @@ public class RegisterUCTest {
      * Hash generator for passwords creation
      */
     private HashGenerator hashgen;
-
     /**
      * User test id
      */
@@ -58,19 +65,21 @@ public class RegisterUCTest {
      */
     private final static String USER_PASSWORD = "1234";
     /**
-     * New user test id
+     * Twitter Manager used for use case testing
      */
-    private final static String NEW_USER_ID = "James";
+    private TwitterManager twitterManager;
     /**
-     * New user test password
+     * User access token for testing. The token was previously calculated for
+     * the account @dimensionapp
      */
-    private final static String NEW_USER_PASSWORD = "lemon1234";
+    private final static String USER_ACCESS_TOKEN = "991590712000081920-Oti7vSJgP1ScuksjZ6xpmvU7f1c71QR";
     /**
-     * Non valid id
+     * User access token secret for testing. The token secret was previously
+     * calculated for the account @dimensionapp
      */
-    private final static String NON_VALID_ID = "4sad@#·";
+    private final static String USER_ACCESS_TOKEN_SECRET = "LemCxfr8noVmeJaxlFMyon1tnl9QGdYvO6v7WfSlWx053";
 
-    public RegisterUCTest() {
+    public TwitterUCTest() {
     }
 
     @BeforeClass
@@ -86,71 +95,66 @@ public class RegisterUCTest {
     }
 
     /**
-     * Initializes all the values to be used during the tests.
+     * Initializes all the components for the testing.
      */
     @Before
     public void setUp() {
         database = new UserDAOHashTableImp();
         hashgen = new HashGenerator();
-        database.addUser(new UserDTO(USER_ID,
-                hashgen.hash(USER_PASSWORD.toCharArray())));
+        try {
+            database.addUser(new UserDTO(USER_ID, null,
+                    hashgen.hash(USER_PASSWORD.toCharArray()), null, null, null,
+                    null, null, UserType.USER, null, USER_ACCESS_TOKEN,
+                    USER_ACCESS_TOKEN_SECRET));
+        } catch (ParseException ex) {
+            fail("Valid user created should not fail at parsing");
+        }
         manager = UserManagerAS.getManager(database);
     }
 
     /**
-     * Test the use case when the user is registered correctly.
+     * Deletes all the changes made during the testing.
      */
-    @Test
-    public void testUseCaseRegisteringCorrectly() {
-        System.out.println("Use case registering (valid user logging)");
-        UserDTO newUser = new UserDTO(NEW_USER_ID,
-                hashgen.hash(NEW_USER_PASSWORD.toCharArray()));
+    @After
+    public void tearDown() {
         try {
-            manager.addNewUser(newUser);
-        } catch (IllegalArgumentException | DuplicatedIDException ex) {
-            fail("No expected exception thrown!");
+            twitterManager.deleteAllStatus();
+        } catch (TwitterException ex) {
         }
-        assertTrue("The new user has been added to the db", manager.existsUser(NEW_USER_ID));
-        
-        //Remove added users
-        SessionDTO session = manager.login(NEW_USER_ID, NEW_USER_PASSWORD);
-        manager.removeUser(NEW_USER_ID, session);
-        manager.logout(session);
     }
 
     /**
-     * Test the use case when the user is registered incorrectly. For more
-     * details on testing the registration process check the UserManagerAS test
-     * class.
-     *
-     * @see UserManagerASTest
+     * Tests the use case tweeting. An user tries to tweet a message portraying
+     * the description of their new function.
      */
     @Test
-    public void testUseCaseRegisteringIncorrectly() {
-        System.out.println("Use case registering (non-valid user logging: user already exists)");
-        UserDTO newUser = new UserDTO(USER_ID,
-                hashgen.hash(USER_PASSWORD.toCharArray()));
+    public void testTwitterUC() {
+        System.out.println("Twitter use case test");
+        // We login in the system
+        SessionDTO userTwitting = manager.login(USER_ID, USER_PASSWORD);
+        // We obtain the user information from the database
+        UserDTO userInformation = manager.getUserInformation(userTwitting.getUser(), userTwitting);
+        // The user must have access to twitter
+        assertTrue("The user should have twitter access!", userInformation.hasTwitterAccess());
+        // A TwitterManager is created from the user information
+        twitterManager = new TwitterManager(userInformation.getTwitterAccess());
         try {
-            manager.addNewUser(newUser);
-            fail("A new user equals to the new one already exists!");
-        } catch (IllegalArgumentException ex) {
-            fail("The new user details are valid!");
-        } catch (DuplicatedIDException ex) {
-            // Expected exception caught...
+            // A new tweet is sent from the user account
+            twitterManager.updateStatus("I'm enjoying dimension right now!");
+        } catch (TwitterException ex) {
+            fail("No exception should be thrown when updating the status!");
         }
 
-        System.out.println("Use case registering (non-valid user logging: user incorrectly set up)");
-        UserDTO newInvalidUser = new UserDTO(NON_VALID_ID,
-                hashgen.hash(USER_PASSWORD.toCharArray()));
+        assertTrue("There was a new status added!", twitterManager.hasPublishedStatus());
+
         try {
-            manager.addNewUser(newInvalidUser);
-            fail("A new non-valid user has been added to the system!");
-        } catch (IllegalArgumentException ex) {
-            // Expected exception caught...
-        } catch (DuplicatedIDException ex) {
-            fail("There are no users with this id in the system!");
+            // The user removes all the status added
+            twitterManager.deleteAllStatus();
+        } catch (TwitterException ex) {
+            fail("There was a problem removing the status added!");
         }
-        assertFalse("The user was not created", manager.existsUser(NON_VALID_ID));
+
+        assertFalse("The status were not removed!", twitterManager.hasPublishedStatus());
     }
 
 }

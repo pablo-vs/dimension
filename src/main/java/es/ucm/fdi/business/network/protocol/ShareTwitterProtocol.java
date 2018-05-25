@@ -15,18 +15,18 @@ package es.ucm.fdi.business.network.protocol;
 
 import es.ucm.fdi.business.exceptions.network.ProtocolException;
 import es.ucm.fdi.business.network.messages.client.ClientMessage;
-import es.ucm.fdi.business.network.operations.twitter.TwitterAS;
+import es.ucm.fdi.business.network.operations.twitter.TwitterManager;
 import es.ucm.fdi.business.users.SessionDTO;
 
 /**
  * ShareTwitterProtocol provides a way of dealing with tweeting request from a
- * client. Given a TwitterAS (Application Service) a ShareTwitterProtocol tries
- * to parse a received message. If the message is SHARE_TWITTER type, then the
- * Protocol is applied by checking if the session is on and the user has an
- * active twitter account In case these match the protocol returns true, if they
- * don't instead a false statement is returned.
+ * client. Given a TwitterManager a ShareTwitterProtocol tries to parse a
+ * received message. If the message is SHARE_TWITTER type, then the Protocol is
+ * applied by checking if the session is on and the user has an active twitter
+ * account In case these match the protocol returns true, if they don't instead
+ * a false statement is returned.
  *
- * @see TwitterAS
+ * @see TwitterManager
  * @see Protocol
  * @author Arturo Acuaviva
  */
@@ -35,7 +35,7 @@ public class ShareTwitterProtocol implements Protocol {
     /**
      * Application Service to manage the twitter accounts in the system.
      */
-    private final TwitterAS manager;
+    private final TwitterManager manager;
 
     /**
      * Session from the user who logged in
@@ -46,10 +46,10 @@ public class ShareTwitterProtocol implements Protocol {
      * Class constructor. A ShareTwitterProtocol is built by providing a
      * TwitterAS and an active session.
      *
-     * @param manager the Application Service the protocol will apply
+     * @param manager the TwitterManager for the user
      * @param session
      */
-    public ShareTwitterProtocol(TwitterAS manager, SessionDTO session) {
+    public ShareTwitterProtocol(TwitterManager manager, SessionDTO session) {
         this.manager = manager;
         this.session = session;
     }

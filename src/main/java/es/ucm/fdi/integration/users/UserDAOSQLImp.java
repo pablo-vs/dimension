@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.integration.users;
 
-import es.ucm.fdi.business.users.UserType;
+import es.ucm.fdi.business.users.UserType;	
 import es.ucm.fdi.business.users.UserDTO;
 import java.sql.SQLException;
 import java.sql.JDBCType;
@@ -21,9 +21,6 @@ import java.sql.JDBCType;
 import java.util.Date;
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
 
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
 import es.ucm.fdi.data.DAOSQLImp;
@@ -141,29 +138,19 @@ public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
 
     @Override
     public List<Object> getData(UserDTO u) {
-        try {
-            ByteArrayOutputStream str = new ByteArrayOutputStream();
-            ObjectOutputStream ostr = new ObjectOutputStream(str);
-            ostr.writeObject(u.getTwitterAccess());
-            String twitterAccess = str.toString("UTF-8");
+        List<Object> data = new ArrayList<>();
+        data.add(u.getID());
+        data.add(u.getName());
+        data.add(u.getPassword());
+        data.add(u.getDate());
+        data.add(u.getEmail());
+        data.add(u.getTelephone());
+        data.add(u.getPicture());
+        data.add(u.getDescription());
+        data.add(u.getType());
+        data.add(u.getBanTime() == null ? null : u.getBanTime().toInstant());
 
-            List<Object> data = new ArrayList<>();
-            data.add(u.getID());
-            data.add(u.getName());
-            data.add(u.getPassword());
-            data.add(u.getDate());
-            data.add(u.getEmail());
-            data.add(u.getTelephone());
-            data.add(u.getPicture());
-            data.add(u.getDescription());
-            data.add(u.getType());
-            data.add(u.getBanTime() == null ? null : u.getBanTime().toInstant());
-
-            return data;
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Could not serialize AccessToken for user "
-                    + u.getID());
-        }
+        return data;
     }
 
     @Override
@@ -190,11 +177,6 @@ public class UserDAOSQLImp extends DAOSQLImp<UserDTO> implements UserDAO {
                 (String) data.get(2), (Date) data.get(3), (String) data.get(4),
                 (String) data.get(5), (String) data.get(6), (String) data.get(7),
                 type, (ZonedDateTime) data.get(9));
-    }
-
-    @Override
-    public void banUser(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

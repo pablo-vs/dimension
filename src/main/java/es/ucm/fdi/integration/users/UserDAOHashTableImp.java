@@ -71,8 +71,4 @@ public class UserDAOHashTableImp implements UserDAO {
         return lista;
     }
 
-    @Override
-    public void banUser(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

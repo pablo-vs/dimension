@@ -14,9 +14,11 @@
 package es.ucm.fdi.business.users;
 
 import es.ucm.fdi.business.exceptions.DuplicatedIDException;
+import es.ucm.fdi.integration.users.NotificationDAOHashTableImp;
 import es.ucm.fdi.integration.users.UserDAO;
 import es.ucm.fdi.integration.users.UserDAOHashTableImp;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.security.AccessControlException;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -36,15 +38,17 @@ public class UserManagerASTest {
     /**
      * Database to be used during the tests
      */
-    UserDAOHashTableImp database;
+    static UserDAOHashTableImp database;
     /**
      * User manager Application Service
      */
-    UserManagerAS manager;
+    static UserManagerAS manager;
     /**
      * Hash generator for passwords creation
      */
-    HashGenerator hashgen;
+    static HashGenerator hashgen;
+    
+    static SessionDTO adminSession;
 
     public UserManagerASTest() {
     }
@@ -64,18 +68,21 @@ public class UserManagerASTest {
     /**
      * Initializes all the values to be used during the tests.
      */
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         database = new UserDAOHashTableImp();
         database.addUser(new UserDTO("removing", "physics1234"));
-        manager = UserManagerAS.getManager(database);
+        
         hashgen = new HashGenerator();
-        database.addUser(new UserDTO("us1", "Zucker", hashgen.hash("1234".toCharArray()),
+        manager = UserManagerAS.getManager(database);
+        manager.addNewUser(new UserDTO("us1", "Zucker", hashgen.hash("1234".toCharArray()),
                 null, null, null, null, null, UserType.ADMIN, null));
-        database.addUser(new UserDTO("normalUser", "Jackie", hashgen.hash("1234".toCharArray()),
+        
+        manager.addNewUser(new UserDTO("normalUser", "Jackie", hashgen.hash("1234".toCharArray()),
                 null, null, null, null, null, UserType.USER, null));
-        database.addUser(new UserDTO("removeItself", "Suicide", hashgen.hash("1234".toCharArray()),
+        manager.addNewUser(new UserDTO("removeItself", "Suicide", hashgen.hash("1234".toCharArray()),
                 null, null, null, null, null, UserType.USER, null));
+        adminSession = manager.login("us1", "1234");
     }
 
     /**
@@ -87,7 +94,7 @@ public class UserManagerASTest {
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
         userMgr.addNewUser(new UserDTO("Ash", hashgen.hash("1234".toCharArray())));
         userMgr.addNewUser(new UserDTO("Tim", hashgen.hash("4321".toCharArray())));
-        SessionDTO peterSession = userMgr.login("Ash", "1234");
+        SessionDTO ashSession = userMgr.login("Ash", "1234");
         SessionDTO timSession = userMgr.login("Tim", "4321");
         try {
             userMgr.removeUser("Ash", timSession);
@@ -96,14 +103,17 @@ public class UserManagerASTest {
             //System.out.println("Authentication works");
         }
 
-        userMgr.removeUser("Ash", peterSession);
-        userMgr.logout(peterSession);
+        userMgr.removeUser("Ash", ashSession);
+        userMgr.logout(ashSession);
         try {
-            peterSession = userMgr.login("Ash", "1234");
+            ashSession = userMgr.login("Ash", "1234");
             fail("Logged in to nonexistent account!");
         } catch (NotFoundException e) {
             // OK
         }
+        
+        userMgr.removeUser("Tim", timSession);
+        userMgr.logout(timSession);
     }
 
     /**
@@ -125,6 +135,7 @@ public class UserManagerASTest {
         }
         SessionDTO sesion = new SessionDTO("Peter", ZonedDateTime.now());
         assertFalse(userMgr.validateSession(sesion));
+        userMgr.removeUser("Peter", adminSession);
     }
 
     /**
@@ -144,7 +155,7 @@ public class UserManagerASTest {
         } catch (DuplicatedIDException ex) {
             fail("The user was correctly set up but duplicated id exception was thrown!");
         }
-
+        manager.removeUser("user1", adminSession);
     }
 
     /**
@@ -291,6 +302,7 @@ public class UserManagerASTest {
         System.out.println("Register existing user");
         UserDTO newUser = new UserDTO("user1", "Nicky", hashgen.hash("physics12aa".toCharArray()),
                 null, null, null, null, null, UserType.USER, null);
+        manager.addNewUser(newUser);
         try {
             manager.addNewUser(newUser);
             fail("The user was already registered in the system!");
@@ -317,22 +329,6 @@ public class UserManagerASTest {
             fail("An admin should have remove permissions!");
         }
 
-    }
-
-    /**
-     * Test for removing users. It tries to remove an user being an admin.
-     */
-    @Test
-    public void testRemovingExistingUser() {
-        System.out.println("Admin removing user");
-        SessionDTO adminSession = manager.login("us1", "1234");
-        try {
-            manager.removeUser("removing", adminSession);
-        } catch (NotFoundException ex) {
-            fail("The user does exist!");
-        } catch (AccessControlException ex) {
-            fail("An admin should have remove permissions!");
-        }
     }
 
     /**
@@ -368,6 +364,28 @@ public class UserManagerASTest {
         }
     }
     
+    /**
+     * Test for notification system
+     */
+    @Test
+    public void notifyTest() {
+    	UserDTO tim = new UserDTO("Tim", hashgen.hash("4321".toCharArray()));
+    	NotificationDAOHashTableImp notif = new NotificationDAOHashTableImp();
+    	
+		manager.addNewUser(new UserDTO("Ash", hashgen.hash("1234".toCharArray())));
+        manager.addNewUser(tim);
+        SessionDTO ashSession = manager.login("Ash", "1234");
+        SessionDTO timSession = manager.login("Tim", "4321");
+        
+        manager.notifyUser(notif, tim, ashSession, "Hello world!");
+        assertEquals("Notification different from expected", new NotificationDTO("Tim", "Hello world!", new Date()).getNotification(), 
+        		manager.getNotifications(notif, timSession).get(0).getNotification());
+        
+        manager.removeUser("Ash", ashSession);
+        manager.removeUser("Tim", timSession);
+        manager.logout(ashSession);
+        manager.logout(timSession);
+    }
     
 
 }

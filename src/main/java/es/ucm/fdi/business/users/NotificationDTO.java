@@ -13,8 +13,7 @@ along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.business.users;
 
-import java.sql.Date;
-import java.util.Objects;
+import java.util.Date;
 
 /**
  * Represents a notification to a user
@@ -97,12 +96,7 @@ public class NotificationDTO {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.user);
-        hash = 67 * hash + Objects.hashCode(this.notification);
-        hash = 67 * hash + Objects.hashCode(this.date);
-        hash = 67 * hash + Objects.hashCode(this.id);
-        return hash;
+        return id.hashCode();
     }
 
 }

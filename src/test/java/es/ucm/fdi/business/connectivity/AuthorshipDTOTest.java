@@ -13,9 +13,8 @@
  */
 package es.ucm.fdi.business.connectivity;
 
-import org.junit.Test;
+import org.junit.Test;	
 
-import es.ucm.fdi.business.users.FriendshipDTO;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -33,13 +32,12 @@ public class AuthorshipDTOTest {
                 "continuousFunction");
         AuthorshipDTO relationShip2 = new AuthorshipDTO("Jack",
                 "discontinuousFunction");
-        FriendshipDTO friendship = new FriendshipDTO("Tim", "Jack");
 
         assertEquals("These objects do not have the same ID!", false,
                 relationShip.equals(relationShip2));
 
         assertEquals("These objects are not from the same class!", false,
-                relationShip.equals(friendship));
+                relationShip.equals(""));
 
     }
 }

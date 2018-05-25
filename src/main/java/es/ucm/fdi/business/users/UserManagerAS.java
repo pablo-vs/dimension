@@ -13,11 +13,11 @@
  */
 package es.ucm.fdi.business.users;
 
-import java.time.ZonedDateTime;
+import java.time.ZonedDateTime;	
 import java.util.HashMap;
 import java.util.List;
 import java.security.AccessControlException;
-import java.sql.Date;
+import java.util.Date;
 
 import es.ucm.fdi.business.util.HashGenerator;
 import es.ucm.fdi.business.connectivity.CommentDTO;
@@ -25,6 +25,7 @@ import es.ucm.fdi.integration.connectivity.CommentDAO;
 import es.ucm.fdi.business.exceptions.DuplicatedIDException;
 import es.ucm.fdi.business.exceptions.NotFoundException;
 import es.ucm.fdi.integration.users.NotificationDAO;
+import es.ucm.fdi.integration.users.NotificationDAOSQLImp;
 import es.ucm.fdi.integration.users.UserDAO;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -127,10 +128,14 @@ public class UserManagerAS {
      */
     public void banUser(UserDTO user, SessionDTO session, ZonedDateTime banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
         if (!banTime.isAfter(ZonedDateTime.now())) {
-            if (authenticate(user.getID(), session)) {
-                if (validateAccountDetails(user)) {
-                    dao.banUser(user.getID());
-                }
+            if (authenticate(session.getUser(), session)) {
+            	UserDTO banner = dao.findUser(session.getID());
+            	if(banner.getType() == UserType.ADMIN) {
+            		modifyUser(user, session);
+            		notifyUser(new NotificationDAOSQLImp(), user, session, banNotification);
+            	} else {
+            		throw new AccessControlException("Restricted operation");
+            	}
             } else {
                 throw new AccessControlException("Invalid session");
             }
@@ -146,13 +151,25 @@ public class UserManagerAS {
      * @param user The new account details.
      * @param session The session from which to perform the action.
      * @param notification The notification which is sent to the user.
-     * @param date The date when the notification is sent.
      */
-    public void notifyUser(NotificationDAO notifications, UserDTO user, SessionDTO session, String notification, Date date) throws AccessControlException, IllegalArgumentException {
-        if (authenticate(user.getID(), session)) {
-            if (validateAccountDetails(user)) {
-                notifications.addNotification(new NotificationDTO(user.getID(), notification, date));
-            }
+    public void notifyUser(NotificationDAO notifications, UserDTO user, SessionDTO session, String notification) throws AccessControlException, IllegalArgumentException {
+        if (authenticate(session.getUser(), session)) {
+            notifications.addNotification(new NotificationDTO(user.getID(), notification, new Date()));
+        } else {
+            throw new AccessControlException("Invalid session");
+        }
+    }
+    
+    /**
+     * Sends a notification to a user. This requires an active session.
+     *
+     * @param notifications Notifications data access object.
+     * @param session The session from which to perform the action.
+     * @return A list of notifications.
+     */
+    public List<NotificationDTO> getNotifications(NotificationDAO notifications, SessionDTO session) throws AccessControlException, IllegalArgumentException {
+        if (authenticate(session.getUser(), session)) {
+           return notifications.findByUser(session.getUser());
         } else {
             throw new AccessControlException("Invalid session");
         }

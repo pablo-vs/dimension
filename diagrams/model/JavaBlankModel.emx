@@ -5923,9 +5923,9 @@
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_LS6-kDmCEei7y9jAWNCkBg" name="PrimitiveTypes"/>
-    <packagedElement xmi:type="uml:Activity" xmi:id="_k7A2YE33Eeisn8dgQBFxwA" name="Activity1">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_k7A2YE33Eeisn8dgQBFxwA" name="Donate">
       <eAnnotations xmi:id="_k7CEgE33Eeisn8dgQBFxwA" source="uml2.diagrams" references="_k7CEgU33Eeisn8dgQBFxwA">
-        <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_k7CEgU33Eeisn8dgQBFxwA" type="Activity" element="_k7A2YE33Eeisn8dgQBFxwA" name="Donar" measurementUnit="Himetric">
+        <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_k7CEgU33Eeisn8dgQBFxwA" type="Activity" element="_k7A2YE33Eeisn8dgQBFxwA" name="Donate" measurementUnit="Himetric">
           <children xmi:type="umlnotation:UMLFrame" xmi:id="_k7CEgk33Eeisn8dgQBFxwA" type="Activity Frame" element="_k7A2YE33Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
             <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_k7CEg033Eeisn8dgQBFxwA" type="ActivityCompartment">
               <children xmi:type="umlnotation:UMLShape" xmi:id="_oMAQkE34Eeisn8dgQBFxwA" element="_oMBewU34Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="15912618" transparency="0" lineColor="15912618" lineWidth="1" showStereotype="Label">
@@ -5938,7 +5938,7 @@
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_oMAQlk34Eeisn8dgQBFxwA" type="Parent"/>
                   <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMAQl034Eeisn8dgQBFxwA" x="254" y="-403"/>
                 </children>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMAQmE34Eeisn8dgQBFxwA" x="2370" y="655"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMAQmE34Eeisn8dgQBFxwA" x="2086" y="607"/>
               </children>
               <children xmi:type="umlnotation:UMLShape" xmi:id="_oMAQmU34Eeisn8dgQBFxwA" element="_oMCFwE34Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
                 <children xmi:type="notation:DecorationNode" xmi:id="_oMAQmk34Eeisn8dgQBFxwA" type="ImageCompartment">
@@ -5957,7 +5957,7 @@
                 <children xmi:type="notation:BasicDecorationNode" xmi:id="_oMAQpE34Eeisn8dgQBFxwA" type="Stereotype"/>
                 <children xmi:type="notation:BasicDecorationNode" xmi:id="_oMAQpU34Eeisn8dgQBFxwA" type="Name"/>
                 <children xmi:type="notation:BasicDecorationNode" xmi:id="_oMAQpk34Eeisn8dgQBFxwA" type="Parent"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMAQp034Eeisn8dgQBFxwA" x="6307" y="2560"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMAQp034Eeisn8dgQBFxwA" x="6307" y="2560" width="3966"/>
               </children>
               <children xmi:type="umlnotation:UMLShape" xmi:id="_oMA3oE34Eeisn8dgQBFxwA" element="_oMCFwk34Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
                 <children xmi:type="notation:DecorationNode" xmi:id="_oMA3oU34Eeisn8dgQBFxwA" type="ImageCompartment">
@@ -5989,7 +5989,7 @@
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_oMA3tk34Eeisn8dgQBFxwA" type="Parent"/>
                   <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMA3t034Eeisn8dgQBFxwA" y="-170"/>
                 </children>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMA3uE34Eeisn8dgQBFxwA" x="16848" y="4719"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMA3uE34Eeisn8dgQBFxwA" x="17266" y="4699"/>
               </children>
               <children xmi:type="umlnotation:UMLShape" xmi:id="_oMBesE34Eeisn8dgQBFxwA" element="_oMCs0034Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" transparency="0" lineColor="15912618" lineWidth="1" showStereotype="Label">
                 <children xmi:type="notation:DecorationNode" xmi:id="_oMBesU34Eeisn8dgQBFxwA" type="ImageCompartment">
@@ -6001,7 +6001,7 @@
                   <children xmi:type="notation:BasicDecorationNode" xmi:id="_oMBetk34Eeisn8dgQBFxwA" type="Parent"/>
                   <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMBet034Eeisn8dgQBFxwA" y="-170"/>
                 </children>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMBeuE34Eeisn8dgQBFxwA" x="17610" y="5735"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMBeuE34Eeisn8dgQBFxwA" x="17901" y="5682"/>
               </children>
               <children xmi:type="umlnotation:UMLShape" xmi:id="_oMBeuU34Eeisn8dgQBFxwA" element="_oMDT4E34Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
                 <children xmi:type="notation:DecorationNode" xmi:id="_oMBeuk34Eeisn8dgQBFxwA" type="ImageCompartment">
@@ -6011,7 +6011,7 @@
                 <children xmi:type="notation:BasicDecorationNode" xmi:id="_oMBevU34Eeisn8dgQBFxwA" type="InPartitions"/>
                 <children xmi:type="notation:BasicDecorationNode" xmi:id="_oMBevk34Eeisn8dgQBFxwA" type="Name"/>
                 <children xmi:type="notation:BasicDecorationNode" xmi:id="_oMBev034Eeisn8dgQBFxwA" type="Parent"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMBewE34Eeisn8dgQBFxwA" x="13165" y="782"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oMBewE34Eeisn8dgQBFxwA" x="14626" y="739"/>
               </children>
             </children>
             <children xmi:type="notation:BasicDecorationNode" xmi:id="_k7CEhE33Eeisn8dgQBFxwA" type="Name"/>
@@ -6094,16 +6094,16 @@
           </edges>
         </contents>
       </eAnnotations>
-      <node xmi:type="uml:InitialNode" xmi:id="_oMBewU34Eeisn8dgQBFxwA" name="Usuario selecciona botón de donar" outgoing="_pwnd8E34Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_oMCFwE34Eeisn8dgQBFxwA" name="Se abre la página web Dimension" outgoing="_qq6jAE34Eeisn8dgQBFxwA" incoming="_pwnd8E34Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:DecisionNode" xmi:id="_oMCFwU34Eeisn8dgQBFxwA" name="Usuario selecciona Donar" outgoing="_ro_74E34Eeisn8dgQBFxwA _s3AAEE34Eeisn8dgQBFxwA" incoming="_qq6jAE34Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_oMCFwk34Eeisn8dgQBFxwA" name="Se le enlaza a PayPal" outgoing="_utdLYE34Eeisn8dgQBFxwA" incoming="_ro_74E34Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_oMCs0E34Eeisn8dgQBFxwA" name="Se le redirige a la aplicación" outgoing="_voDLYE34Eeisn8dgQBFxwA" incoming="_s3AAEE34Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_oMBewU34Eeisn8dgQBFxwA" name="User presses 'Donate' button" outgoing="_pwnd8E34Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_oMCFwE34Eeisn8dgQBFxwA" name="Dimension web is opened" outgoing="_qq6jAE34Eeisn8dgQBFxwA" incoming="_pwnd8E34Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_oMCFwU34Eeisn8dgQBFxwA" name="User clicks on 'Donate'" outgoing="_ro_74E34Eeisn8dgQBFxwA _s3AAEE34Eeisn8dgQBFxwA" incoming="_qq6jAE34Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_oMCFwk34Eeisn8dgQBFxwA" name="User is joint to Paypal" outgoing="_utdLYE34Eeisn8dgQBFxwA" incoming="_ro_74E34Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_oMCs0E34Eeisn8dgQBFxwA" name="User is redirect to Dimension" outgoing="_voDLYE34Eeisn8dgQBFxwA" incoming="_s3AAEE34Eeisn8dgQBFxwA"/>
       <node xmi:type="uml:JoinNode" xmi:id="_oMCs0U34Eeisn8dgQBFxwA" outgoing="_w876sE34Eeisn8dgQBFxwA" incoming="_voDLYE34Eeisn8dgQBFxwA _waAMwE34Eeisn8dgQBFxwA">
         <joinSpec xmi:type="uml:OpaqueExpression" xmi:id="_oMCs0k34Eeisn8dgQBFxwA"/>
       </node>
       <node xmi:type="uml:ActivityFinalNode" xmi:id="_oMCs0034Eeisn8dgQBFxwA" incoming="_w876sE34Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_oMDT4E34Eeisn8dgQBFxwA" name="PayPal redirige a la aplicación" outgoing="_waAMwE34Eeisn8dgQBFxwA" incoming="_utdLYE34Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_oMDT4E34Eeisn8dgQBFxwA" name="User is redirected to Paypal" outgoing="_waAMwE34Eeisn8dgQBFxwA" incoming="_utdLYE34Eeisn8dgQBFxwA"/>
       <edge xmi:type="uml:ControlFlow" xmi:id="_pwnd8E34Eeisn8dgQBFxwA" source="_oMBewU34Eeisn8dgQBFxwA" target="_oMCFwE34Eeisn8dgQBFxwA">
         <guard xmi:type="uml:OpaqueExpression" xmi:id="_pwnd8U34Eeisn8dgQBFxwA">
           <language></language>
@@ -6118,7 +6118,7 @@
         </guard>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_qq7KEE34Eeisn8dgQBFxwA" value="1"/>
       </edge>
-      <edge xmi:type="uml:ControlFlow" xmi:id="_ro_74E34Eeisn8dgQBFxwA" name="Sí" source="_oMCFwU34Eeisn8dgQBFxwA" target="_oMCFwk34Eeisn8dgQBFxwA">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_ro_74E34Eeisn8dgQBFxwA" name="Yes" source="_oMCFwU34Eeisn8dgQBFxwA" target="_oMCFwk34Eeisn8dgQBFxwA">
         <guard xmi:type="uml:OpaqueExpression" xmi:id="_rpAi8E34Eeisn8dgQBFxwA">
           <language></language>
           <body></body>
@@ -6161,9 +6161,9 @@
         <weight xmi:type="uml:LiteralInteger" xmi:id="_w88hwE34Eeisn8dgQBFxwA" value="1"/>
       </edge>
     </packagedElement>
-    <packagedElement xmi:type="uml:Activity" xmi:id="_JXzHEE35Eeisn8dgQBFxwA" name="Activity2">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_JXzHEE35Eeisn8dgQBFxwA" name="Login">
       <eAnnotations xmi:id="_JXzuIE35Eeisn8dgQBFxwA" source="uml2.diagrams">
-        <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_JX0VME35Eeisn8dgQBFxwA" type="Activity" element="_JXzHEE35Eeisn8dgQBFxwA" name="Iniciar Sesión" measurementUnit="Himetric">
+        <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_JX0VME35Eeisn8dgQBFxwA" type="Activity" element="_JXzHEE35Eeisn8dgQBFxwA" name="Login" measurementUnit="Himetric">
           <children xmi:type="umlnotation:UMLFrame" xmi:id="_JX0VMU35Eeisn8dgQBFxwA" type="Activity Frame" element="_JXzHEE35Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
             <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_JX0VMk35Eeisn8dgQBFxwA" type="ActivityCompartment">
               <children xmi:type="umlnotation:UMLShape" xmi:id="_M6LBoE35Eeisn8dgQBFxwA" element="_M6JMcE35Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="15912618" transparency="0" lineColor="15912618" lineWidth="1" showStereotype="Label">
@@ -6286,7 +6286,7 @@
                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wIPccU36Eeisn8dgQBFxwA" x="5208" y="1084"/>
                   </children>
                 </children>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_avjnoU36Eeisn8dgQBFxwA" x="2160" y="5147" width="13352" height="4338"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_avjnoU36Eeisn8dgQBFxwA" x="2160" y="5147" width="13352" height="4840"/>
               </children>
               <children xmi:type="umlnotation:UMLShape" xmi:id="_20stYE36Eeisn8dgQBFxwA" element="_20qRIE36Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" transparency="0" lineColor="15912618" lineWidth="1" showStereotype="Label">
                 <children xmi:type="notation:DecorationNode" xmi:id="_20tUcE36Eeisn8dgQBFxwA" type="ImageCompartment">
@@ -6345,7 +6345,7 @@
             <children xmi:type="notation:DecorationNode" xmi:id="_WlieQE36Eeisn8dgQBFxwA" type="ActivityEdgeLabelCompartment">
               <children xmi:type="notation:BasicDecorationNode" xmi:id="_WlieQk36Eeisn8dgQBFxwA" type="Stereotype"/>
               <children xmi:type="notation:BasicDecorationNode" xmi:id="_WljFUE36Eeisn8dgQBFxwA" type="ActivityEdgeLabel"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WlieQU36Eeisn8dgQBFxwA" y="-149"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WlieQU36Eeisn8dgQBFxwA" x="285" y="-187"/>
             </children>
             <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Wlh3MU36Eeisn8dgQBFxwA" points="[0, 25, 3, -56]$[-1, 99, 2, 18]"/>
             <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WllhkE36Eeisn8dgQBFxwA" id="bottom"/>
@@ -6404,12 +6404,12 @@
           </edges>
         </contents>
       </eAnnotations>
-      <node xmi:type="uml:InitialNode" xmi:id="_M6JMcE35Eeisn8dgQBFxwA" name="El usuario selecciona iniciar sesión" outgoing="_e80HsE35Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_R_eukE35Eeisn8dgQBFxwA" name="Se le pide que introduzca sus datos" outgoing="_fqGrgE35Eeisn8dgQBFxwA" incoming="_e80HsE35Eeisn8dgQBFxwA _jF-8gE35Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_WkKasE35Eeisn8dgQBFxwA" name="Se validan sus datos" outgoing="_gLKxME35Eeisn8dgQBFxwA" incoming="_fqGrgE35Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:DecisionNode" xmi:id="_Y3sjkE35Eeisn8dgQBFxwA" name="Los datos son válidos" outgoing="_jF-8gE35Eeisn8dgQBFxwA _WleM0E36Eeisn8dgQBFxwA" incoming="_gLKxME35Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_Tp-FAE36Eeisn8dgQBFxwA" name="Se inicia la sesión" outgoing="_0ga9oE36Eeisn8dgQBFxwA __UN3YE36Eeisn8dgQBFxwA" incoming="_WleM0E36Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:StructuredActivityNode" xmi:id="_avhLYE36Eeisn8dgQBFxwA" name="Cerrar cesión" incoming="_0ga9oE36Eeisn8dgQBFxwA">
+      <node xmi:type="uml:InitialNode" xmi:id="_M6JMcE35Eeisn8dgQBFxwA" name="The user selects 'Login'" outgoing="_e80HsE35Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_R_eukE35Eeisn8dgQBFxwA" name="Their datas are requested" outgoing="_fqGrgE35Eeisn8dgQBFxwA" incoming="_e80HsE35Eeisn8dgQBFxwA _jF-8gE35Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_WkKasE35Eeisn8dgQBFxwA" name="Their datas are validated" outgoing="_gLKxME35Eeisn8dgQBFxwA" incoming="_fqGrgE35Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_Y3sjkE35Eeisn8dgQBFxwA" name="Datas are valid" outgoing="_jF-8gE35Eeisn8dgQBFxwA _WleM0E36Eeisn8dgQBFxwA" incoming="_gLKxME35Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_Tp-FAE36Eeisn8dgQBFxwA" name="Login account" outgoing="_0ga9oE36Eeisn8dgQBFxwA __UN3YE36Eeisn8dgQBFxwA" incoming="_WleM0E36Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:StructuredActivityNode" xmi:id="_avhLYE36Eeisn8dgQBFxwA" name="Logout" incoming="_0ga9oE36Eeisn8dgQBFxwA">
         <edge xmi:type="uml:ControlFlow" xmi:id="_lti_ME36Eeisn8dgQBFxwA" source="_h5v9cE36Eeisn8dgQBFxwA" target="_juWuoE36Eeisn8dgQBFxwA">
           <guard xmi:type="uml:OpaqueExpression" xmi:id="_lti_MU36Eeisn8dgQBFxwA">
             <language></language>
@@ -6438,10 +6438,10 @@
           </guard>
           <weight xmi:type="uml:LiteralInteger" xmi:id="_zQfm0U36Eeisn8dgQBFxwA" value="1"/>
         </edge>
-        <node xmi:type="uml:InitialNode" xmi:id="_cK7ZcE36Eeisn8dgQBFxwA" name="El usuario selecciona cerrar sesión" outgoing="_x2o38E36Eeisn8dgQBFxwA"/>
-        <node xmi:type="uml:OpaqueAction" xmi:id="_h5v9cE36Eeisn8dgQBFxwA" name="Se cierra la cesión" outgoing="_lti_ME36Eeisn8dgQBFxwA" incoming="_zQe_wE36Eeisn8dgQBFxwA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_cK7ZcE36Eeisn8dgQBFxwA" name="The user selects 'Logout'" outgoing="_x2o38E36Eeisn8dgQBFxwA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_h5v9cE36Eeisn8dgQBFxwA" name="Logout" outgoing="_lti_ME36Eeisn8dgQBFxwA" incoming="_zQe_wE36Eeisn8dgQBFxwA"/>
         <node xmi:type="uml:ActivityFinalNode" xmi:id="_juWuoE36Eeisn8dgQBFxwA" incoming="_lti_ME36Eeisn8dgQBFxwA"/>
-        <node xmi:type="uml:InitialNode" xmi:id="_m_z4UE36Eeisn8dgQBFxwA" name="El usuario ha superado el tiempo límite de inactividad" outgoing="_yqD48E36Eeisn8dgQBFxwA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_m_z4UE36Eeisn8dgQBFxwA" name="The user has exceeded the wait time" outgoing="_yqD48E36Eeisn8dgQBFxwA"/>
         <node xmi:type="uml:JoinNode" xmi:id="_wIOOUE36Eeisn8dgQBFxwA" outgoing="_zQe_wE36Eeisn8dgQBFxwA" incoming="_x2o38E36Eeisn8dgQBFxwA _yqD48E36Eeisn8dgQBFxwA">
           <joinSpec xmi:type="uml:OpaqueExpression" xmi:id="_wIO1YE36Eeisn8dgQBFxwA"/>
         </node>
@@ -6475,7 +6475,7 @@
         </guard>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_jF_jkE35Eeisn8dgQBFxwA" value="1"/>
       </edge>
-      <edge xmi:type="uml:ControlFlow" xmi:id="_WleM0E36Eeisn8dgQBFxwA" name="Sí" source="_Y3sjkE35Eeisn8dgQBFxwA" target="_Tp-FAE36Eeisn8dgQBFxwA">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_WleM0E36Eeisn8dgQBFxwA" name="Yes" source="_Y3sjkE35Eeisn8dgQBFxwA" target="_Tp-FAE36Eeisn8dgQBFxwA">
         <guard xmi:type="uml:OpaqueExpression" xmi:id="_WleM0U36Eeisn8dgQBFxwA">
           <language></language>
           <body></body>
@@ -6489,7 +6489,7 @@
         </guard>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_0gbksU36Eeisn8dgQBFxwA" value="1"/>
       </edge>
-      <edge xmi:type="uml:ControlFlow" xmi:id="__UN3YE36Eeisn8dgQBFxwA" name="&lt;&lt;Cerrar cesión>>" source="_Tp-FAE36Eeisn8dgQBFxwA" target="_20qRIE36Eeisn8dgQBFxwA">
+      <edge xmi:type="uml:ControlFlow" xmi:id="__UN3YE36Eeisn8dgQBFxwA" name="&lt;&lt;Logout>>" source="_Tp-FAE36Eeisn8dgQBFxwA" target="_20qRIE36Eeisn8dgQBFxwA">
         <guard xmi:type="uml:OpaqueExpression" xmi:id="__UN3YU36Eeisn8dgQBFxwA">
           <language></language>
           <body></body>

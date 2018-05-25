@@ -129,8 +129,9 @@ public class UserManagerAS {
     public void banUser(UserDTO user, SessionDTO session, ZonedDateTime banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
         if (!banTime.isAfter(ZonedDateTime.now())) {
             if (authenticate(session.getUser(), session)) {
-            	UserDTO banner = dao.findUser(session.getID());
+            	UserDTO banner = dao.findUser(session.getUser());
             	if(banner.getType() == UserType.ADMIN) {
+            		user.setBanTime(banTime);
             		modifyUser(user, session);
             		notifyUser(new NotificationDAOSQLImp(), user, session, banNotification);
             	} else {

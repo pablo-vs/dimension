@@ -6497,9 +6497,9 @@
         <weight xmi:type="uml:LiteralInteger" xmi:id="__UN3Yk36Eeisn8dgQBFxwA" value="1"/>
       </edge>
     </packagedElement>
-    <packagedElement xmi:type="uml:Activity" xmi:id="_2AIncE37Eeisn8dgQBFxwA" name="Activity3">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_2AIncE37Eeisn8dgQBFxwA" name="ShareProject">
       <eAnnotations xmi:id="_2AJOgE37Eeisn8dgQBFxwA" source="uml2.diagrams">
-        <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_2AJOgU37Eeisn8dgQBFxwA" type="Activity" element="_2AIncE37Eeisn8dgQBFxwA" name="Compartir Proyecto" measurementUnit="Himetric">
+        <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_2AJOgU37Eeisn8dgQBFxwA" type="Activity" element="_2AIncE37Eeisn8dgQBFxwA" name="ShareProject" measurementUnit="Himetric">
           <children xmi:type="umlnotation:UMLFrame" xmi:id="_2AJOgk37Eeisn8dgQBFxwA" type="Activity Frame" element="_2AIncE37Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
             <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_2AJOg037Eeisn8dgQBFxwA" type="ActivityCompartment">
               <children xmi:type="umlnotation:UMLShape" xmi:id="_52WEAE37Eeisn8dgQBFxwA" element="_52U14E37Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="15912618" transparency="0" lineColor="15912618" lineWidth="1" showStereotype="Label">
@@ -6531,7 +6531,7 @@
                 <children xmi:type="notation:BasicDecorationNode" xmi:id="_K2Vk0k39Eeisn8dgQBFxwA" type="Stereotype"/>
                 <children xmi:type="notation:BasicDecorationNode" xmi:id="_K2Vk0039Eeisn8dgQBFxwA" type="Name"/>
                 <children xmi:type="notation:BasicDecorationNode" xmi:id="_K2Vk1E39Eeisn8dgQBFxwA" type="Parent"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_K2U9wU39Eeisn8dgQBFxwA" x="5102" y="4660"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_K2U9wU39Eeisn8dgQBFxwA" x="4858" y="4660" width="5633"/>
               </children>
               <children xmi:type="umlnotation:UMLShape" xmi:id="_Nu_M8E39Eeisn8dgQBFxwA" element="_Nu9-0E39Eeisn8dgQBFxwA" fontName="Segoe UI" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
                 <children xmi:type="notation:DecorationNode" xmi:id="_Nu_M8k39Eeisn8dgQBFxwA" type="ImageCompartment">
@@ -6644,12 +6644,12 @@
           </edges>
         </contents>
       </eAnnotations>
-      <node xmi:type="uml:InitialNode" xmi:id="_52U14E37Eeisn8dgQBFxwA" name="El usuario selecciona compartir proyecto" outgoing="_C-9Y4E39Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_C-35UE39Eeisn8dgQBFxwA" name="Se le pide nombre del proyecto, descripción y datos básicos" outgoing="_K2ZPME39Eeisn8dgQBFxwA" incoming="_C-9Y4E39Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:DecisionNode" xmi:id="_K2TvoE39Eeisn8dgQBFxwA" name="Elige entre público o privado" outgoing="_Tc8OQE39Eeisn8dgQBFxwA _dWnpIE39Eeisn8dgQBFxwA" incoming="_K2ZPME39Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_Nu9-0E39Eeisn8dgQBFxwA" name="Se pide la lista de autores y se publica" outgoing="_p5X_EE39Eeisn8dgQBFxwA" incoming="_Tc8OQE39Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_WdgcQE39Eeisn8dgQBFxwA" name="Se pide la lista de usuarios con acceso y de autores y se publica, enviando una notificación a estos usuarios" outgoing="_kD1vEE39Eeisn8dgQBFxwA" incoming="_dWnpIE39Eeisn8dgQBFxwA"/>
-      <node xmi:type="uml:JoinNode" xmi:id="_kDvBYE39Eeisn8dgQBFxwA" name="Regreso a vista de proyecto" outgoing="_rye1wE39Eeisn8dgQBFxwA" incoming="_kD1vEE39Eeisn8dgQBFxwA _p5X_EE39Eeisn8dgQBFxwA">
+      <node xmi:type="uml:InitialNode" xmi:id="_52U14E37Eeisn8dgQBFxwA" name="The user selects 'Share project'" outgoing="_C-9Y4E39Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_C-35UE39Eeisn8dgQBFxwA" name="Project name, description and basic data are requested to the user" outgoing="_K2ZPME39Eeisn8dgQBFxwA" incoming="_C-9Y4E39Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_K2TvoE39Eeisn8dgQBFxwA" name="Choose between public and private" outgoing="_Tc8OQE39Eeisn8dgQBFxwA _dWnpIE39Eeisn8dgQBFxwA" incoming="_K2ZPME39Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_Nu9-0E39Eeisn8dgQBFxwA" name="Author list is requested and the project is published" outgoing="_p5X_EE39Eeisn8dgQBFxwA" incoming="_Tc8OQE39Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_WdgcQE39Eeisn8dgQBFxwA" name="User with access list and author list are requested. The project is published and those people are notified." outgoing="_kD1vEE39Eeisn8dgQBFxwA" incoming="_dWnpIE39Eeisn8dgQBFxwA"/>
+      <node xmi:type="uml:JoinNode" xmi:id="_kDvBYE39Eeisn8dgQBFxwA" name="Back to project" outgoing="_rye1wE39Eeisn8dgQBFxwA" incoming="_kD1vEE39Eeisn8dgQBFxwA _p5X_EE39Eeisn8dgQBFxwA">
         <joinSpec xmi:type="uml:OpaqueExpression" xmi:id="_kDvBYU39Eeisn8dgQBFxwA"/>
       </node>
       <node xmi:type="uml:ActivityFinalNode" xmi:id="_ryYvIE39Eeisn8dgQBFxwA" incoming="_rye1wE39Eeisn8dgQBFxwA"/>
@@ -6667,14 +6667,14 @@
         </guard>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_K2Z2QE39Eeisn8dgQBFxwA" value="1"/>
       </edge>
-      <edge xmi:type="uml:ControlFlow" xmi:id="_Tc8OQE39Eeisn8dgQBFxwA" name="Público" source="_K2TvoE39Eeisn8dgQBFxwA" target="_Nu9-0E39Eeisn8dgQBFxwA">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Tc8OQE39Eeisn8dgQBFxwA" name="Public" source="_K2TvoE39Eeisn8dgQBFxwA" target="_Nu9-0E39Eeisn8dgQBFxwA">
         <guard xmi:type="uml:OpaqueExpression" xmi:id="_Tc8OQU39Eeisn8dgQBFxwA">
           <language></language>
           <body></body>
         </guard>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_Tc8OQk39Eeisn8dgQBFxwA" value="1"/>
       </edge>
-      <edge xmi:type="uml:ControlFlow" xmi:id="_dWnpIE39Eeisn8dgQBFxwA" name="Privado" source="_K2TvoE39Eeisn8dgQBFxwA" target="_WdgcQE39Eeisn8dgQBFxwA">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_dWnpIE39Eeisn8dgQBFxwA" name="Private" source="_K2TvoE39Eeisn8dgQBFxwA" target="_WdgcQE39Eeisn8dgQBFxwA">
         <guard xmi:type="uml:OpaqueExpression" xmi:id="_dWnpIU39Eeisn8dgQBFxwA">
           <language></language>
           <body></body>
@@ -6703,9 +6703,9 @@
         <weight xmi:type="uml:LiteralInteger" xmi:id="_rye1wk39Eeisn8dgQBFxwA" value="1"/>
       </edge>
     </packagedElement>
-    <packagedElement xmi:type="uml:Activity" xmi:id="_NTB-sE-HEeiTY84mk6SvZQ" name="Activity4">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_NTB-sE-HEeiTY84mk6SvZQ" name="Comment">
       <eAnnotations xmi:id="_NTn0kE-HEeiTY84mk6SvZQ" source="uml2.diagrams">
-        <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_NTn0kU-HEeiTY84mk6SvZQ" type="Activity" element="_NTB-sE-HEeiTY84mk6SvZQ" name="Añadir un comentario" measurementUnit="Himetric">
+        <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_NTn0kU-HEeiTY84mk6SvZQ" type="Activity" element="_NTB-sE-HEeiTY84mk6SvZQ" name="Comment" measurementUnit="Himetric">
           <children xmi:type="umlnotation:UMLFrame" xmi:id="_NTn0kk-HEeiTY84mk6SvZQ" type="Activity Frame" element="_NTB-sE-HEeiTY84mk6SvZQ" fontName="Segoe UI" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
             <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_NTn0k0-HEeiTY84mk6SvZQ" type="ActivityCompartment">
               <children xmi:type="umlnotation:UMLShape" xmi:id="_VfBvwU-HEeiTY84mk6SvZQ" element="_VfBvyk-HEeiTY84mk6SvZQ" fontName="Segoe UI" fontHeight="8" fillColor="15912618" transparency="0" lineColor="15912618" lineWidth="1" showStereotype="Label">
@@ -6785,9 +6785,9 @@
           </edges>
         </contents>
       </eAnnotations>
-      <node xmi:type="uml:InitialNode" xmi:id="_VfBvyk-HEeiTY84mk6SvZQ" name="El usuario selecciona añadir un comentario a un determinado proyecto" outgoing="_jh838E-HEeiTY84mk6SvZQ"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_iQRNoE-HEeiTY84mk6SvZQ" name="Se pide al usuario que introduzca un comentario" outgoing="_0YAc0E-MEeiTY84mk6SvZQ" incoming="_jh838E-HEeiTY84mk6SvZQ"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_xScaEE-MEeiTY84mk6SvZQ" name="Se añade el comentario a la base de datos" outgoing="_6_nC8E-MEeiTY84mk6SvZQ" incoming="_0YAc0E-MEeiTY84mk6SvZQ"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_VfBvyk-HEeiTY84mk6SvZQ" name="The user chooses to comment an existing project" outgoing="_jh838E-HEeiTY84mk6SvZQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_iQRNoE-HEeiTY84mk6SvZQ" name="A comment is requested to the user" outgoing="_0YAc0E-MEeiTY84mk6SvZQ" incoming="_jh838E-HEeiTY84mk6SvZQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_xScaEE-MEeiTY84mk6SvZQ" name="The comment is added to the database" outgoing="_6_nC8E-MEeiTY84mk6SvZQ" incoming="_0YAc0E-MEeiTY84mk6SvZQ"/>
       <node xmi:type="uml:ActivityFinalNode" xmi:id="_5Z1_AE-MEeiTY84mk6SvZQ" incoming="_6_nC8E-MEeiTY84mk6SvZQ"/>
       <edge xmi:type="uml:ControlFlow" xmi:id="_jh838E-HEeiTY84mk6SvZQ" source="_VfBvyk-HEeiTY84mk6SvZQ" target="_iQRNoE-HEeiTY84mk6SvZQ">
         <guard xmi:type="uml:OpaqueExpression" xmi:id="_jiGB4E-HEeiTY84mk6SvZQ">

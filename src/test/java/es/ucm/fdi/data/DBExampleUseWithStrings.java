@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     	
  */
-package es.ucm.fdi;
+package es.ucm.fdi.data;
 
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import es.ucm.fdi.data.MemoryDB;

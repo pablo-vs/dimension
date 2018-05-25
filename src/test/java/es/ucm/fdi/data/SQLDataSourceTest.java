@@ -1,4 +1,4 @@
-package es.ucm.fdi.integration.data;
+package es.ucm.fdi.data;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

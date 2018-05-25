@@ -85,8 +85,8 @@ public class ShareManagerTest {
      */
     @Test
     public void shareImportTest() {
-    	
-    	//Share
+
+        //Share
         try {
             shareManager.shareOpenProject(PROJECT_1, authors, kateSession);
         } catch (AccessControlException e) {
@@ -97,18 +97,17 @@ public class ShareManagerTest {
         } catch (AccessControlException e) {
             fail(e.getMessage());
         }
-        
+
         ProjectManagerAS projMan = new ProjectManagerAS("john");
         ProjectManagerAS projMan2 = new ProjectManagerAS("nate");
-        
+
         //Import
         shareManager.importProject(shareManager.findProjectByName("linear", johnSession).get(0), johnSession);
         assertTrue("Incorrect imported project", PROJECT_1.equals(projMan.openProject("linear", johnSession)));
-        
+
         shareManager.importProject(shareManager.findProjectByName("quadratic", nateSession).get(0), nateSession);
         assertTrue("Incorrect imported project", PROJECT_2.equals(projMan2.openProject("quadratic", nateSession)));
-        
-        
+
         //Illegal access
         try {
             shareManager.modifySharedProject(shareManager.findProjectByName("linear", johnSession).get(0), johnSession);
@@ -116,7 +115,7 @@ public class ShareManagerTest {
         } catch (AccessControlException e) {
             // OK
         }
-        
+
         projMan.removeProject("linear", johnSession);
         projMan2.removeProject("quadratic", nateSession);
     }
@@ -126,33 +125,32 @@ public class ShareManagerTest {
      */
     @Test
     public void findTest() {
-    	shareManager.shareOpenProject(PROJECT_1, authors, kateSession);
-    	shareManager.sharePrivateProject(PROJECT_2, authors, authors, kateSession);
-    	
+        shareManager.shareOpenProject(PROJECT_1, authors, kateSession);
+        shareManager.sharePrivateProject(PROJECT_2, authors, authors, kateSession);
+
         assertTrue(PROJECT_1.equals(shareManager.findProjectByName("linear", williamSession).get(0)));
-        
+
         assertTrue(PROJECT_1.equals(shareManager.findProjectByAuthor("kate", williamSession).get(0)));
         assertTrue(PROJECT_2.equals(shareManager.findProjectByAuthor("kate", williamSession).get(1)));
-        
+
         assertTrue("Found private projects!", shareManager.findProjectByName("quadratic", johnSession).isEmpty());
-        
+
         List<SharedProjectDTO> found = shareManager.findProjectByAuthor("kate", kateSession);
         found.forEach((f) -> {
             shareManager.modifySharedProject(f, kateSession);
         });
-        
-        
+
     }
 
     @AfterClass
     public static void clear() throws SQLException {
-    	shareManager.removeProject("linear", kateSession);
+        shareManager.removeProject("linear", kateSession);
         shareManager.removeProject("quadratic", kateSession);
-    	
-    	userManager.removeUser("kate", kateSession);
-    	userManager.removeUser("john", johnSession);
-    	userManager.removeUser("nate", nateSession);
-    	userManager.removeUser("william", williamSession);
+
+        userManager.removeUser("kate", kateSession);
+        userManager.removeUser("john", johnSession);
+        userManager.removeUser("nate", nateSession);
+        userManager.removeUser("william", williamSession);
         userManager.logout(kateSession);
         userManager.logout(johnSession);
         userManager.logout(nateSession);

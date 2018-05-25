@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.business.users;
 
-import java.time.ZonedDateTime;	
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.security.AccessControlException;
@@ -129,13 +129,13 @@ public class UserManagerAS {
     public void banUser(UserDTO user, SessionDTO session, ZonedDateTime banTime, String banNotification) throws AccessControlException, IllegalArgumentException {
         if (!banTime.isAfter(ZonedDateTime.now())) {
             if (authenticate(session.getUser(), session)) {
-            	UserDTO banner = dao.findUser(session.getID());
-            	if(banner.getType() == UserType.ADMIN) {
-            		modifyUser(user, session);
-            		notifyUser(new NotificationDAOSQLImp(), user, session, banNotification);
-            	} else {
-            		throw new AccessControlException("Restricted operation");
-            	}
+                UserDTO banner = dao.findUser(session.getID());
+                if (banner.getType() == UserType.ADMIN) {
+                    modifyUser(user, session);
+                    notifyUser(new NotificationDAOSQLImp(), user, session, banNotification);
+                } else {
+                    throw new AccessControlException("Restricted operation");
+                }
             } else {
                 throw new AccessControlException("Invalid session");
             }
@@ -159,7 +159,7 @@ public class UserManagerAS {
             throw new AccessControlException("Invalid session");
         }
     }
-    
+
     /**
      * Sends a notification to a user. This requires an active session.
      *
@@ -169,7 +169,7 @@ public class UserManagerAS {
      */
     public List<NotificationDTO> getNotifications(NotificationDAO notifications, SessionDTO session) throws AccessControlException, IllegalArgumentException {
         if (authenticate(session.getUser(), session)) {
-           return notifications.findByUser(session.getUser());
+            return notifications.findByUser(session.getUser());
         } else {
             throw new AccessControlException("Invalid session");
         }
@@ -186,7 +186,7 @@ public class UserManagerAS {
         if (authenticate(user.getID(), session)) {
             try {
                 if (validateAccountDetails(user)) {
-                    if(user.getType() != dao.findUser(user.getID()).getType()){
+                    if (user.getType() != dao.findUser(user.getID()).getType()) {
                         throw new IllegalArgumentException("The type of user "
                                 + "cannot be modified!");
                     }
@@ -313,7 +313,7 @@ public class UserManagerAS {
         while (st.hasMoreTokens()) {
             lastToken = st.nextToken();
         }
-        
+
         return matchFound && lastToken.length() >= 2
                 && email.length() - 1 != lastToken.length(); // validate the country code
     }
@@ -378,34 +378,34 @@ public class UserManagerAS {
      * @return if the account has been validated
      */
     private boolean validateAccountDetails(UserDTO user) {
-        if(!validString(user.getID())){
+        if (!validString(user.getID())) {
             throw new IllegalArgumentException("Invalid user ID provided: " + user.getID());
         }
-        if(!HashGenerator.checkFormat(user.getPassword())){
+        if (!HashGenerator.checkFormat(user.getPassword())) {
             throw new IllegalArgumentException("Invalid user password provided");
         }
-        if(!(user.getName() == null || validString(user.getName()))){
-             throw new IllegalArgumentException("Invalid user password provided");
+        if (!(user.getName() == null || validString(user.getName()))) {
+            throw new IllegalArgumentException("Invalid user password provided");
         }
-        if(!(user.getDescription() == null || validString(user.getDescription()))){
-             throw new IllegalArgumentException("Invalid user description provided: " +
-                     user.getDescription());
+        if (!(user.getDescription() == null || validString(user.getDescription()))) {
+            throw new IllegalArgumentException("Invalid user description provided: "
+                    + user.getDescription());
         }
-        if(!(user.getEmail() == null || validEmail(user.getEmail()))){
-            throw new IllegalArgumentException("Invalid user email provided: " +
-                    user.getEmail());
+        if (!(user.getEmail() == null || validEmail(user.getEmail()))) {
+            throw new IllegalArgumentException("Invalid user email provided: "
+                    + user.getEmail());
         }
-        if(!(user.getTelephone() == null || validInt(user.getTelephone()))){
-            throw new IllegalArgumentException("Invalid user telephone provided: " +
-                    user.getTelephone());
+        if (!(user.getTelephone() == null || validInt(user.getTelephone()))) {
+            throw new IllegalArgumentException("Invalid user telephone provided: "
+                    + user.getTelephone());
         }
-        if(!(user.getPicture() == null || validUrl(user.getPicture()))){
-            throw new IllegalArgumentException("Invalid user picture provided: " +
-                    user.getPicture());
+        if (!(user.getPicture() == null || validUrl(user.getPicture()))) {
+            throw new IllegalArgumentException("Invalid user picture provided: "
+                    + user.getPicture());
         }
         return true;
     }
-  
+
     /**
      * Returns the information from an specified user given its id.
      *

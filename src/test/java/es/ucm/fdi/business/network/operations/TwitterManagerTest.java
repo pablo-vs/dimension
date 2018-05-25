@@ -96,7 +96,7 @@ public class TwitterManagerTest {
         } catch (TwitterException ex) {
             fail("The new status couldn't be erased!");
         }
-         assertFalse("New status have been removed!", manager.hasPublishedStatus());
+        assertFalse("New status have been removed!", manager.hasPublishedStatus());
     }
 
 }

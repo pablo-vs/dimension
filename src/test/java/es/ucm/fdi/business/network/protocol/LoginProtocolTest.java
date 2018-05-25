@@ -57,11 +57,11 @@ public class LoginProtocolTest {
         protocolObject = new LoginProtocol(manager);
         session = manager.login("James", "eda3eda");
     }
-    
+
     @AfterClass
     public static void clear() {
-    	manager.removeUser("James", session);
-    	manager.logout(session);
+        manager.removeUser("James", session);
+        manager.logout(session);
     }
 
     /**

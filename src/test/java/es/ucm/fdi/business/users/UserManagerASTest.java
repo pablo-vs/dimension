@@ -47,7 +47,7 @@ public class UserManagerASTest {
      * Hash generator for passwords creation
      */
     static HashGenerator hashgen;
-    
+
     static SessionDTO adminSession;
 
     public UserManagerASTest() {
@@ -72,22 +72,22 @@ public class UserManagerASTest {
     public static void setUp() {
         database = new UserDAOHashTableImp();
         database.addUser(new UserDTO("removing", "physics1234"));
-        
+
         hashgen = new HashGenerator();
         manager = UserManagerAS.getManager(database);
         manager.addNewUser(new UserDTO("us1", "Zucker", hashgen.hash("1234".toCharArray()),
                 null, null, null, null, null, UserType.ADMIN, null));
-        
+
         manager.addNewUser(new UserDTO("normalUser", "Jackie", hashgen.hash("1234".toCharArray()),
                 null, null, null, null, null, UserType.USER, null));
         manager.addNewUser(new UserDTO("removeItself", "Suicide", hashgen.hash("1234".toCharArray()),
                 null, null, null, null, null, UserType.USER, null));
         adminSession = manager.login("us1", "1234");
     }
-    
+
     @AfterClass
     public static void clear() {
-    	manager.removeUser("us1", adminSession);
+        manager.removeUser("us1", adminSession);
     }
 
     /**
@@ -116,7 +116,7 @@ public class UserManagerASTest {
         } catch (NotFoundException e) {
             // OK
         }
-        
+
         userMgr.removeUser("Tim", timSession);
         userMgr.logout(timSession);
     }
@@ -368,29 +368,28 @@ public class UserManagerASTest {
             fail("An user should have remove permissions over themselves!");
         }
     }
-    
+
     /**
      * Test for notification system
      */
     @Test
     public void notifyTest() {
-    	UserDTO tim = new UserDTO("Tim", hashgen.hash("4321".toCharArray()));
-    	NotificationDAOHashTableImp notif = new NotificationDAOHashTableImp();
-    	
-		manager.addNewUser(new UserDTO("Ash", hashgen.hash("1234".toCharArray())));
+        UserDTO tim = new UserDTO("Tim", hashgen.hash("4321".toCharArray()));
+        NotificationDAOHashTableImp notif = new NotificationDAOHashTableImp();
+
+        manager.addNewUser(new UserDTO("Ash", hashgen.hash("1234".toCharArray())));
         manager.addNewUser(tim);
         SessionDTO ashSession = manager.login("Ash", "1234");
         SessionDTO timSession = manager.login("Tim", "4321");
-        
+
         manager.notifyUser(notif, tim, ashSession, "Hello world!");
-        assertEquals("Notification different from expected", new NotificationDTO("Tim", "Hello world!", new Date()).getNotification(), 
-        		manager.getNotifications(notif, timSession).get(0).getNotification());
-        
+        assertEquals("Notification different from expected", new NotificationDTO("Tim", "Hello world!", new Date()).getNotification(),
+                manager.getNotifications(notif, timSession).get(0).getNotification());
+
         manager.removeUser("Ash", ashSession);
         manager.removeUser("Tim", timSession);
         manager.logout(ashSession);
         manager.logout(timSession);
     }
-    
 
 }

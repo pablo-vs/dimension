@@ -13,7 +13,6 @@
  */
 package es.ucm.fdi.usecases;
 
-import es.ucm.fdi.business.exceptions.DuplicatedIDException;
 import es.ucm.fdi.business.exceptions.NotFoundException;
 import es.ucm.fdi.business.users.SessionDTO;
 import es.ucm.fdi.business.users.UserDTO;
@@ -21,7 +20,6 @@ import es.ucm.fdi.business.users.UserManagerAS;
 import es.ucm.fdi.business.util.HashGenerator;
 import es.ucm.fdi.integration.users.UserDAOHashTableImp;
 import java.security.AccessControlException;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -32,10 +30,11 @@ import static org.junit.Assert.*;
  * UserManagerAS handles the registration process can be found on UserManagerAS
  * test class:
  *
- * @see UserManagerAS
+ * @see UserManagerASTest
  * @author Inmaculada Pérez
  */
 public class LoginUCTest {
+
     private static final String USERNAME = "Mathew";
     private static final String PASSWORD = "1234";
     private UserDAOHashTableImp database;
@@ -44,9 +43,9 @@ public class LoginUCTest {
     private static final String INVALID_USERNAME = "James";
     private static final String INVALID_PASSWORD = "lemon1234";
     private UserDTO user;
-    
+
     @Before
-    public void initialize(){
+    public void initialize() {
         database = new UserDAOHashTableImp();
         hashGenerator = new HashGenerator();
         user = new UserDTO(USERNAME,
@@ -54,10 +53,10 @@ public class LoginUCTest {
         database.addUser(user);
         manager = UserManagerAS.getManager(database);
     }
-    
+
     @Test
-    public void correctLoginUCTest(){
-        System.out.println("Use case valid login test");  
+    public void correctLoginUCTest() {
+        System.out.println("Use case valid login test");
         SessionDTO session = null;
         try {
             session = manager.login(USERNAME, PASSWORD);
@@ -66,10 +65,10 @@ public class LoginUCTest {
         }
         assertTrue("The new user has not correctly logged in", manager.validateSession(session));
     }
-    
+
     @Test
-    public void incorrectLoginUCTest(){
-        System.out.println("Use case invalid login test");  
+    public void incorrectLoginUCTest() {
+        System.out.println("Use case invalid login test");
         SessionDTO session = null;
         try {
             session = manager.login(INVALID_USERNAME, INVALID_PASSWORD);
@@ -77,6 +76,6 @@ public class LoginUCTest {
         } catch (NotFoundException | AccessControlException ex) {
             // Expected
         }
-        assertEquals("The new user has correctly logged in", null, session); 
+        assertEquals("The new user has correctly logged in", null, session);
     }
 }

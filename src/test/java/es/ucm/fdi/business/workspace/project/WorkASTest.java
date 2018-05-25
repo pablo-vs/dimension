@@ -19,9 +19,9 @@ import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.transformations.ScaleTransformation;
 
 import java.util.List;
-import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -29,8 +29,7 @@ import org.junit.Test;
  * JUnit test for WorkAS class. Añado test para transformVisualization()
  *
  * @see WorkAS
- * @author Javier Galiana
- * @author Eloy Mósig
+ * @author Javier Galiana, Eloy Mósig
  */
 public class WorkASTest {
 
@@ -50,7 +49,7 @@ public class WorkASTest {
 
         proj.transformVisualization(views, new ScaleTransformation(2, 3, 4));
 
-        assertEquals("VisualizationBOs have not been added to the project", true,
+        assertTrue("VisualizationBOs have not been added to the project",
                 proj.getProject().getViews().contains(views));
     }
 }

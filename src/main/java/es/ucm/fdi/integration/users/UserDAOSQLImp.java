@@ -13,7 +13,7 @@
  */
 package es.ucm.fdi.integration.users;
 
-import es.ucm.fdi.business.users.UserType;	
+import es.ucm.fdi.business.users.UserType;
 import es.ucm.fdi.business.users.UserDTO;
 import java.sql.SQLException;
 import java.sql.JDBCType;

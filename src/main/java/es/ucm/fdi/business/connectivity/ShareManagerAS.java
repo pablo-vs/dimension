@@ -113,28 +113,28 @@ public class ShareManagerAS {
     /**
      * Deletes a Shared Project.
      *
-     * @param proj The project to delete.
+     * @param id The project to delete.
      * @param session The session to validate this operation.
      */
     public void removeProject(String id, SessionDTO session)
             throws AccessControlException {
 
         if (userMan.authenticate(session.getUser(), session)) {
-        	SharedProjectDTO proj = projectDB.findSharedProject(id);
-            if(proj != null) {
-            	if(proj.hasWriteAccess(session.getUser())) {
-            		projectDB.removeSharedProject(proj.getSharedID());
-	            } else {
-	                throw new AccessControlException("User "
-	                        + session.getUser() + " cannot modify "
-	                        + proj.getID());
-	            }
+            SharedProjectDTO proj = projectDB.findSharedProject(id);
+            if (proj != null) {
+                if (proj.hasWriteAccess(session.getUser())) {
+                    projectDB.removeSharedProject(proj.getSharedID());
+                } else {
+                    throw new AccessControlException("User "
+                            + session.getUser() + " cannot modify "
+                            + proj.getID());
+                }
             }
         } else {
             throw new AccessControlException("Invalid session");
         }
     }
-    
+
     /**
      * Modifies a shared project.
      *

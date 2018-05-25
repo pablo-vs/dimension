@@ -69,6 +69,7 @@ public class UserDTO implements Serializable {
         this.ID = ID;
         this.password = password;
     }
+
     /**
      * Class constructor specifying id, password and type
      *
@@ -77,9 +78,9 @@ public class UserDTO implements Serializable {
      * @param type Type
      */
     public UserDTO(String ID, String password, UserType type) {
-    	this.ID = ID;
-    	this.password = password;
-    	this.type = type;
+        this.ID = ID;
+        this.password = password;
+        this.type = type;
     }
 
     /**

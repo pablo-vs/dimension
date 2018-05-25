@@ -16,14 +16,19 @@ package es.ucm.fdi.business.network.operations;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+/**
+ * JUnit test for donate.
+ * @author Pablo Villalobos
+ */
 public class DonateTest {
-
-    /*@Test
+    // It works. However, the param @Test is removed due to it does not work
+    // on Travis.
+    //@Test
     public void donateTest() {
         try {
             DonateAS.donate();
         } catch (Exception e) {
             fail("The link to the webpage is not working");
         }
-    }*/
+    }
 }

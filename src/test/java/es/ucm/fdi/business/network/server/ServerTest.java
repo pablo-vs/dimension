@@ -29,7 +29,7 @@ public class ServerTest {
     /**
      * Server object to be tested
      */
-    Server serverTest;
+    private Server serverTest;
     /**
      * The port where the server starts listening
      */
@@ -66,7 +66,7 @@ public class ServerTest {
             Thread.sleep(500);
             // Stops the server
             serverTest.stop();
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             fail("The server was correctly set up!");
         }
 

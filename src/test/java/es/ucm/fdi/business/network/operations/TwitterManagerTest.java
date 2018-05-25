@@ -32,11 +32,11 @@ public class TwitterManagerTest {
     /**
      * Access Token.
      */
-    AccessToken userAccess;
+    private AccessToken userAccess;
     /**
      * TwitterManager for testing
      */
-    TwitterManager manager;
+    private TwitterManager manager;
 
     public TwitterManagerTest() {
         userAccess = new AccessToken(USER_ACCESS_TOKEN, USER_ACCESS_TOKEN_SECRET);

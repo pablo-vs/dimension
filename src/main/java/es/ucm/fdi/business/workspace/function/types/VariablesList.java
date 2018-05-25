@@ -126,7 +126,6 @@ public class VariablesList {
     }
 
     /**
-     * Devuelve el valor de la variable indicada.
      *
      * @param variable
      * @return the value of the given variable

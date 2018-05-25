@@ -45,19 +45,19 @@ public class ClientThreadTest {
     /**
      * Server socket
      */
-    ServerSocket serverSocket = null;
+    private ServerSocket serverSocket = null;
     /**
      * Client socket
      */
-    Socket clientSocket = null;
+    private Socket clientSocket = null;
     /**
      * Example of a server created ad hoc
      */
-    Server testServer = new Server();
+    private Server testServer = new Server();
     /**
      * ClientThread to be tested
      */
-    ClientThread client;
+    private ClientThread client;
 
     /**
      * Sets up the server. The server starts to listen from the port indicated.

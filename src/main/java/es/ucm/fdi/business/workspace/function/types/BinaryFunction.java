@@ -13,7 +13,6 @@
  */
 package es.ucm.fdi.business.workspace.function.types;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
 import es.ucm.fdi.business.util.FunctionParser;
 import java.util.regex.Pattern;

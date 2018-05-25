@@ -25,7 +25,6 @@ import static org.junit.Assert.*;
 import es.ucm.fdi.business.util.HashGenerator;
 import es.ucm.fdi.business.exceptions.NotFoundException;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 
 /**
@@ -38,17 +37,17 @@ public class UserManagerASTest {
     /**
      * Database to be used during the tests
      */
-    static UserDAOHashTableImp database;
+    private static UserDAOHashTableImp database;
     /**
      * User manager Application Service
      */
-    static UserManagerAS manager;
+    private static UserManagerAS manager;
     /**
      * Hash generator for passwords creation
      */
-    static HashGenerator hashgen;
+    private static HashGenerator hashgen;
 
-    static SessionDTO adminSession;
+    private static SessionDTO adminSession;
 
     public UserManagerASTest() {
     }

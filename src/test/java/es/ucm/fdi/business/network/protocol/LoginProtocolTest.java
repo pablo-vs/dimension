@@ -23,12 +23,10 @@ import es.ucm.fdi.business.users.UserManagerAS;
 import es.ucm.fdi.business.util.HashGenerator;
 import es.ucm.fdi.integration.users.UserDAO;
 import es.ucm.fdi.integration.users.UserDAOHashTableImp;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.AfterClass;
 
 /**

@@ -13,6 +13,9 @@
  */
 package es.ucm.fdi.business.network.operations.twitter;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -26,7 +29,7 @@ import twitter4j.auth.AccessToken;
  *
  * @author Arturo Acuaviva, Inmaculada Pérez, Javier Galiana
  */
-public class TwitterAS {
+public class TwitterManager {
 
     /**
      * Twitter interface
@@ -41,26 +44,24 @@ public class TwitterAS {
      * The consumer key identifies which application is making the twitter
      * request.
      */
-    private String consumerKey;
+    private final String consumerKey = "zloMLWgfUKOCdEzZG1MsR8CPn";
     /**
      * API password that is used to authenticate with the authentication server
      * that authenticates the API.
      */
-    private String consumerSecret;
+    private final String consumerSecret = "d8KqXiETwULE3fkO7ef7MZCWEobtDXlARXVuZ1yFRLC9bqTvHU";
+    /**
+     * An stack storing all the status updates using the manager.
+     */
+    private final Deque<Status> updatesStatus = new ArrayDeque<>();
 
     /**
-     * Creates a TwitterService object from a given AccessToken and the
-     * consumerKey and consumerSecret of the application.
+     * Creates a TwitterService object from a given AccessToken.
      *
      * @param twitterAccess
-     * @param consumerKey
-     * @param consumerSecret
      */
-    public TwitterAS(AccessToken twitterAccess, String consumerKey,
-            String consumerSecret) {
+    public TwitterManager(AccessToken twitterAccess) {
         this.twitterAccess = twitterAccess;
-        this.consumerKey = consumerKey;
-        this.consumerSecret = consumerSecret;
         try {
             registerAccess();
         } catch (IllegalStateException e) {
@@ -89,7 +90,27 @@ public class TwitterAS {
      * status cannot be updated
      */
     public void updateStatus(String message) throws TwitterException {
-        twitter.updateStatus(message);
+        updatesStatus.addLast(twitter.updateStatus(message));
     }
-
+    
+    /**
+     * Destroys the last status made by the user. 
+     * @throws TwitterException 
+     */
+    public void deleteLastStatus() throws TwitterException{
+        if(!updatesStatus.isEmpty()){
+              twitter.destroyStatus(updatesStatus.pollLast().getId());
+        }
+    }
+    
+    /**
+     * Destroys all the status added during the managing process.
+     * @throws TwitterException 
+     */
+    public void deleteAllStatus() throws TwitterException{
+        while(!updatesStatus.isEmpty()){
+              twitter.destroyStatus(updatesStatus.pollLast().getId());
+        }
+    }
+    
 }

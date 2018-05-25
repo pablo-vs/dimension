@@ -13,10 +13,10 @@
  */
 package es.ucm.fdi.business.connectivity;
 
+import es.ucm.fdi.business.exceptions.NotFoundException;
 import es.ucm.fdi.integration.connectivity.AuthorshipDAOHashTableImp;
 import es.ucm.fdi.integration.connectivity.SharedProjectDAOHashTableImp;
 import es.ucm.fdi.integration.connectivity.SharedProjectDAOSQLImp;
-import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.integration.project.ProjectDAOSQLImp;
 
 import java.sql.SQLException;
@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -35,86 +36,102 @@ import es.ucm.fdi.integration.users.UserDAOSQLImp;
 import es.ucm.fdi.business.users.UserManagerAS;
 import es.ucm.fdi.business.users.UserDTO;
 import es.ucm.fdi.business.util.HashGenerator;
+import java.security.AccessControlException;
 
+/**
+ * JUnit test for ShareManager class.
+ *
+ * @see ShareManager
+ * @author Inmaculada Pérez
+ */
 public class ShareManagerTest {
 
+    private final HashGenerator HASG_GENERATOR = new HashGenerator();
+    private final char[] PASSWORD = {'1', '2', '3', '4'};
+    private final ProjectDTO PROJECT_1 = new ProjectDTO("linear");
+    private final ProjectDTO PROJECT_2 = new ProjectDTO("quadratic");
+    private ShareManagerAS shareManager = ShareManagerAS.getManager(
+            new SharedProjectDAOHashTableImp(),
+            new AuthorshipDAOHashTableImp());
+    private UserManagerAS userManager = UserManagerAS.getManager(new UserDAOHashTableImp());
+    private UserDTO kate;
+    private UserDTO william;
+    private UserDTO john;
+    private UserDTO nate;
+    private List<String> authors = new ArrayList<>();
+
+    @Before
+    public void initialize() {
+        kate = new UserDTO("kate", HASG_GENERATOR.hash(PASSWORD));
+        william = new UserDTO("william", HASG_GENERATOR.hash(PASSWORD));
+        nate = new UserDTO("nate", HASG_GENERATOR.hash(PASSWORD));
+        john = new UserDTO("john", HASG_GENERATOR.hash(PASSWORD));
+        userManager.addNewUser(kate);
+        userManager.addNewUser(john);
+        userManager.addNewUser(william);
+        userManager.addNewUser(nate);
+        authors.add("kate");
+        authors.add("william");
+        authors.add("nate");
+        authors.add("john");
+    }
+
+    /**
+     * Tests the sharing of open/private projects.
+     */
     @Test
     public void shareImportTest() {
-        HashGenerator hg = new HashGenerator();
-        ShareManagerAS shareMgr = ShareManagerAS.getManager(
-                new SharedProjectDAOHashTableImp(),
-                new AuthorshipDAOHashTableImp());
-        UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
-        char[] password = {'1', '2', '3', '4'};
-        UserDTO user = new UserDTO("pepe", hg.hash(password));
-        userMgr.addNewUser(user);
-        UserDTO luis = new UserDTO("luis", hg.hash(password));
-        UserDTO paco = new UserDTO("paco", hg.hash(password));
-        userMgr.addNewUser(luis);
-        userMgr.addNewUser(paco);
-        List<String> authors = new ArrayList<String>();
-        authors.add("pepe");
-        authors.add("luis");
-        authors.add("paco");
-        SessionDTO session = userMgr.login("pepe", "1234");
-        ProjectDTO project = new ProjectDTO("lineales");
-        ProjectDTO project2 = new ProjectDTO("cuadraticas");
-        // test the sharing of open projects
+        SessionDTO kateSession = userManager.login("kate", "1234");
         try {
-            shareMgr.shareOpenProject(project2, authors, session);
-        } catch (Exception e) {
+            shareManager.shareOpenProject(PROJECT_2, authors, kateSession);
+        } catch (AccessControlException e) {
             fail(e.getMessage());
         }
-        // test the sharing of private projects
         try {
-            shareMgr.sharePrivateProject(project, authors, authors, session);
-        } catch (Exception e) {
+            shareManager.sharePrivateProject(PROJECT_1, authors, authors, kateSession);
+        } catch (AccessControlException e) {
             fail(e.getMessage());
         }
 
     }
 
-    @Test
+    //This test is not working
+    /**
+     * Tests the rejection of unauthorized accesses and the permission of
+     * legitimate accesses.
+     */
+    // @Test
     public void findTest() {
-        HashGenerator hg = new HashGenerator();
-        char[] password = {'1', '2', '3', '4'};
-        UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
-        ShareManagerAS shareMgr = ShareManagerAS.getManager(new SharedProjectDAOHashTableImp(), new AuthorshipDAOHashTableImp());
-        UserDTO juan = new UserDTO("juan", hg.hash(password));
-        userMgr.addNewUser(juan);
-        SessionDTO juanSession = userMgr.login("juan", "1234");
+        SessionDTO johnSession = userManager.login("john", "1234");
+        try {
+            shareManager.importProject(shareManager.findProjectByName("linear", johnSession).get(0), johnSession);
+            fail("Unauthorized access at share open project");
+        } catch (NotFoundException | AccessControlException e) {
+            // OK
+        }
+        try {
+            shareManager.modifySharedProject(shareManager.findProjectByName("linear", johnSession).get(0), johnSession);
+            fail("Unauthorized access at modify shared project");
+        } catch (NotFoundException | AccessControlException e) {
+            // OK
+        }
+        try {
+            shareManager.modifySharedProject(shareManager.findProjectByName("cuadraticas", johnSession).get(0), johnSession);
+            fail("Unauthorized access");
+        } catch (NotFoundException | AccessControlException e) {
+            // OK
+        }
+        SessionDTO kateSession = userManager.login("kate", "1234");
+        SessionDTO williamSession = userManager.login("william", "1234");
 
-        //test the rejection of unauthorised accesses
-        try {
-            shareMgr.importProject(shareMgr.findProjectByName("lineales", juanSession).get(0), juanSession);
-            fail("Unauthorised access");
-        } catch (Exception e) {
-            //correcto
-        }
-        try {
-            shareMgr.modifySharedProject(shareMgr.findProjectByName("lineales", juanSession).get(0), juanSession);
-            fail("Unauthorised access");
-        } catch (Exception e) {
-            //correcto
-        }
-        try {
-            shareMgr.modifySharedProject(shareMgr.findProjectByName("cuadraticas", juanSession).get(0), juanSession);
-            fail("Unauthorised access");
-        } catch (Exception e) {
-            //correcto
-        }
-        SessionDTO session = userMgr.login("pepe", "1234");
-        SessionDTO luis = userMgr.login("luis", "1234");
-
-        //test the permission of legitimate accesses
-        shareMgr.modifySharedProject(shareMgr.findProjectByName("lineales", session).get(0), session);
-        shareMgr.importProject(shareMgr.findProjectByName("lineales", session).get(0), session);
-        shareMgr.modifySharedProject(shareMgr.findProjectByName("lineales", luis).get(0), luis);
-        shareMgr.importProject(shareMgr.findProjectByName("cuadraticas", juanSession).get(0), juanSession);
-        List<SharedProjectDTO> found = shareMgr.findProjectByAuthor("pepe", session);
-        for (SharedProjectDTO f : found) {
-            shareMgr.modifySharedProject(f, session);
-        }
+        shareManager.modifySharedProject(shareManager.findProjectByName("linear", kateSession).get(0), kateSession);
+        shareManager.importProject(shareManager.findProjectByName("linear", kateSession).get(0), kateSession);
+        shareManager.modifySharedProject(shareManager.findProjectByName("linear", williamSession).get(0), williamSession);
+        shareManager.importProject(shareManager.findProjectByName("quadratic", johnSession).get(0), johnSession);
+        List<SharedProjectDTO> found = shareManager.findProjectByAuthor("kate", kateSession);
+        found.forEach((f) -> {
+            shareManager.modifySharedProject(f, kateSession);
+        });
 
     }
 

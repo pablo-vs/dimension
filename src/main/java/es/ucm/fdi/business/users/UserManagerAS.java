@@ -169,6 +169,10 @@ public class UserManagerAS {
         if (authenticate(user.getID(), session)) {
             try {
                 if (validateAccountDetails(user)) {
+                    if(user.getType() != dao.findUser(user.getID()).getType()){
+                        throw new IllegalArgumentException("The type of user "
+                                + "cannot be modified!");
+                    }
                     dao.modifyUser(user);
                 }
             } catch (IllegalArgumentException e) {

@@ -47,7 +47,7 @@ public class CosecantFunctionTest {
         VariablesList vars = new VariablesList(new String[]{"x"});
         CosecantFunction instance = new CosecantFunction(FunctionParser
                 .parse("PI/2", vars), vars);
-        assertEquals(1 / Math.sin(Math.toRadians(Math.PI / 2)), instance.evaluate(vars), 0.1);
+        assertEquals(1 / Math.sin(Math.PI / 2), instance.evaluate(vars), 0.1);
     }
 
 }

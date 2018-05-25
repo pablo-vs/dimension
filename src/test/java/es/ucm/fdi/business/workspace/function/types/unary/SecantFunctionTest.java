@@ -47,7 +47,7 @@ public class SecantFunctionTest {
         VariablesList vars = new VariablesList(new String[]{"x"});
         SecantFunction instance = new SecantFunction(FunctionParser
                 .parse("PI/2", vars), vars);
-        assertEquals(1 / Math.cos(Math.toRadians(Math.PI / 2)), instance.evaluate(vars), 0.1);
+        assertEquals(1 / Math.cos(Math.PI / 2), instance.evaluate(vars), 0.1);
     }
 
 }

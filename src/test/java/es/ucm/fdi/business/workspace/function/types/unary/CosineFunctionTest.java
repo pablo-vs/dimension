@@ -49,7 +49,7 @@ public class CosineFunctionTest {
         CosineFunction instance = new CosineFunction(FunctionParser
                 .parse("2*x + 3*y", vars), vars);
         int[] varsValues = {2, 3};
-        assertEquals(Math.cos(Math.toRadians(5)),
+        assertEquals(Math.cos(13),
                 instance.evaluate(new VariablesList(varsValues, varNames)), 0.1);
     }
 

@@ -67,9 +67,15 @@ public class UserManagerASTest {
     @Before
     public void setUp() {
         database = new UserDAOHashTableImp();
-        database.addUser(new UserDTO("Nick", "physics1234"));
+        database.addUser(new UserDTO("removing", "physics1234"));
         manager = UserManagerAS.getManager(database);
         hashgen = new HashGenerator();
+        database.addUser(new UserDTO("us1", "Zucker", hashgen.hash("1234".toCharArray()),
+                null, null, null, null, null, UserType.ADMIN, null));
+        database.addUser(new UserDTO("normalUser", "Jackie", hashgen.hash("1234".toCharArray()),
+                null, null, null, null, null, UserType.USER, null));
+        database.addUser(new UserDTO("removeItself", "Suicide", hashgen.hash("1234".toCharArray()),
+                null, null, null, null, null, UserType.USER, null));
     }
 
     /**
@@ -79,21 +85,21 @@ public class UserManagerASTest {
     public void testUserManagement() {
         System.out.println("User management");
         UserManagerAS userMgr = UserManagerAS.getManager(new UserDAOHashTableImp());
-        userMgr.addNewUser(new UserDTO("Peter", hashgen.hash("1234".toCharArray())));
+        userMgr.addNewUser(new UserDTO("Ash", hashgen.hash("1234".toCharArray())));
         userMgr.addNewUser(new UserDTO("Tim", hashgen.hash("4321".toCharArray())));
-        SessionDTO peterSession = userMgr.login("Peter", "1234");
+        SessionDTO peterSession = userMgr.login("Ash", "1234");
         SessionDTO timSession = userMgr.login("Tim", "4321");
         try {
-            userMgr.removeUser("Peter", timSession);
+            userMgr.removeUser("Ash", timSession);
             fail("Illegal account access!");
         } catch (AccessControlException e) {
             //System.out.println("Authentication works");
         }
 
-        userMgr.removeUser("Peter", peterSession);
+        userMgr.removeUser("Ash", peterSession);
         userMgr.logout(peterSession);
         try {
-            peterSession = userMgr.login("Peter", "1234");
+            peterSession = userMgr.login("Ash", "1234");
             fail("Logged in to nonexistent account!");
         } catch (NotFoundException e) {
             // OK
@@ -155,7 +161,7 @@ public class UserManagerASTest {
             manager.addNewUser(newUser);
             fail("The user id was not valid!");
         } catch (IllegalArgumentException ex) {
-            // Expected exception caugth...
+            // Expected exception caught...
         } catch (DuplicatedIDException ex) {
             fail("The user id was not valid, it should have failed when checking the id!!");
         }
@@ -175,7 +181,7 @@ public class UserManagerASTest {
             manager.addNewUser(newUser);
             fail("The user name was not valid!");
         } catch (IllegalArgumentException ex) {
-            // Expected exception caugth...
+            // Expected exception caught...
         } catch (DuplicatedIDException ex) {
             fail("The user name was not valid, it should have failed when checking the name!");
         }
@@ -194,7 +200,7 @@ public class UserManagerASTest {
             manager.addNewUser(newUser);
             fail("The user password was not valid!");
         } catch (IllegalArgumentException ex) {
-            // Expected exception caugth...
+            // Expected exception caught...
         } catch (DuplicatedIDException ex) {
             fail("The user password was not valid, it should have failed when checking the password!");
         }
@@ -213,7 +219,7 @@ public class UserManagerASTest {
             manager.addNewUser(newUser);
             fail("The user description was not valid!");
         } catch (IllegalArgumentException ex) {
-            // Expected exception caugth...
+            // Expected exception caught...
         } catch (DuplicatedIDException ex) {
             fail("The user description was not valid, it should have failed when checking the description!");
         }
@@ -232,7 +238,7 @@ public class UserManagerASTest {
             manager.addNewUser(newUser);
             fail("The user email was not valid!");
         } catch (IllegalArgumentException ex) {
-            // Expected exception caugth...
+            // Expected exception caught...
         } catch (DuplicatedIDException ex) {
             fail("The user email was not valid, it should have failed when checking the email!");
         }
@@ -251,7 +257,7 @@ public class UserManagerASTest {
             manager.addNewUser(newUser);
             fail("The user telephone was not valid!");
         } catch (IllegalArgumentException ex) {
-            // Expected exception caugth...
+            // Expected exception caught...
         } catch (DuplicatedIDException ex) {
             fail("The user telephone was not valid, it should have failed when checking the telephone!");
         }
@@ -270,7 +276,7 @@ public class UserManagerASTest {
             manager.addNewUser(newUser);
             fail("The user picture was not valid!");
         } catch (IllegalArgumentException ex) {
-            // Expected exception caugth...
+            // Expected exception caught...
         } catch (DuplicatedIDException ex) {
             fail("The user picture was not valid, it should have failed when checking the picture!");
         }
@@ -291,8 +297,77 @@ public class UserManagerASTest {
         } catch (IllegalArgumentException ex) {
             fail("The user was already registered in the system, not checking process should be going on!");
         } catch (DuplicatedIDException ex) {
-            // Expected exception caugth...
+            // Expected exception caught...
         }
     }
+
+    /**
+     * Test for removing users. It tries to remove non-existing user.
+     */
+    @Test
+    public void testRemovingNonExistingUser() {
+        System.out.println("Removing non existing user");
+        SessionDTO adminSession = manager.login("us1", "1234");
+        try {
+            manager.removeUser("us233", adminSession);
+            fail("Non-existing user trying to be removed!");
+        } catch (NotFoundException ex) {
+            //Expected exception caught
+        } catch (AccessControlException ex) {
+            fail("An admin should have remove permissions!");
+        }
+
+    }
+
+    /**
+     * Test for removing users. It tries to remove an user being an admin.
+     */
+    @Test
+    public void testRemovingExistingUser() {
+        System.out.println("Admin removing user");
+        SessionDTO adminSession = manager.login("us1", "1234");
+        try {
+            manager.removeUser("removing", adminSession);
+        } catch (NotFoundException ex) {
+            fail("The user does exist!");
+        } catch (AccessControlException ex) {
+            fail("An admin should have remove permissions!");
+        }
+    }
+
+    /**
+     * Test for removing users. It tries to remove an user being a normal user.
+     */
+    @Test
+    public void testNormalUserRemoving() {
+        System.out.println("Normal user removing user");
+        SessionDTO normalUserSession = manager.login("normalUser", "1234");
+        try {
+            manager.removeUser("us1", normalUserSession);
+            fail("An user should have no remove permissions!");
+        } catch (NotFoundException ex) {
+            fail("The user does exist!");
+        } catch (AccessControlException ex) {
+            // Expected exception caught
+        }
+    }
+
+    /**
+     * Test for removing users. An user tries to remove itself.
+     */
+    @Test
+    public void testUserRemovingItself() {
+        System.out.println("Normal user removing themselves");
+        SessionDTO normalUserSession = manager.login("removeItself", "1234");
+        try {
+            manager.removeUser("removeItself", normalUserSession);
+        } catch (NotFoundException ex) {
+            fail("The user does exist!");
+        } catch (AccessControlException ex) {
+            fail("An user should have remove permissions over themselves!");
+        }
+    }
+    
+    
 
 }

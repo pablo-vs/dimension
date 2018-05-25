@@ -49,7 +49,7 @@ public class UserManagerAS {
     /**
      * User data access object
      */
-    private final UserDAO dao;
+    private UserDAO dao;
     /**
      * Hash generator
      */
@@ -78,6 +78,11 @@ public class UserManagerAS {
     public static UserManagerAS getManager(UserDAO dao) {
         if (instance == null) {
             instance = new UserManagerAS(dao);
+        }
+        else{
+            if(dao != null){
+                instance.dao = dao;
+            }
         }
         return instance;
     }

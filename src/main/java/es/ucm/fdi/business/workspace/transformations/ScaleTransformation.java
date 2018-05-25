@@ -74,7 +74,7 @@ public class ScaleTransformation extends TransformationStrategy {
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             v.set(0,
-            		Math.round((((v.at(0) - min) / d) + newMin) * Math.pow(10, 2)) / Math.pow(10, 2));
+                    Math.round((((v.at(0) - min) / d) + newMin) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
     }
 
@@ -103,7 +103,7 @@ public class ScaleTransformation extends TransformationStrategy {
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             v.set(1,
-            		Math.round((((v.at(1) - min) / d) + newMin) * Math.pow(10, 2)) / Math.pow(10, 2));
+                    Math.round((((v.at(1) - min) / d) + newMin) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
     }
 
@@ -133,7 +133,7 @@ public class ScaleTransformation extends TransformationStrategy {
         while (iterator.hasNext()) {
             Vertex v = (Vertex) iterator.next();
             v.set(2,
-            		Math.round((((v.at(2) - min) / d) + newMin) * Math.pow(10, 2)) / Math.pow(10, 2));
+                    Math.round((((v.at(2) - min) / d) + newMin) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
     }
 }

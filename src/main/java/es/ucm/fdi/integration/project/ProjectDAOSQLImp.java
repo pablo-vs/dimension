@@ -16,7 +16,7 @@ import java.sql.JDBCType;
 import java.sql.SQLException;
 
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
-import es.ucm.fdi.integration.data.DAOSQLImp;
+import es.ucm.fdi.data.DAOSQLImp;
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
 
 /**

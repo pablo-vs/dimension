@@ -11,7 +11,7 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.integration.data;
+package es.ucm.fdi.data;
 
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
@@ -31,11 +31,11 @@ import java.util.ArrayList;
  */
 public abstract class DAOSQLImp<T> {
 
-    private String table;
+    private final String table;
 
-    private String[] columns;
+    private final String[] columns;
 
-    private JDBCType[] columnJDBCType;
+    private final JDBCType[] columnJDBCType;
 
     /**
      * Class constructor.

@@ -11,7 +11,7 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.integration.data;
+package es.ucm.fdi.data;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -34,7 +34,7 @@ public class SQLDataSource {
     private String db;
 
     private static SQLDataSource instance = null;
-    private BasicDataSource dataSource;
+    private final BasicDataSource dataSource;
 
     /**
      * Class initialization.

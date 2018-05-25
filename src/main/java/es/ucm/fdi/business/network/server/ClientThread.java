@@ -81,11 +81,11 @@ public class ClientThread implements Runnable {
     }
 
     /**
-     * Not finished yet. A run method for the client thread is supposed to handle the 
-     * clients connection. The implementation of a full-working server is far from 
-     * the objectives and goals of the subjects "Ingenieria del Software". This method
-     * represents a sketch of what the method would look like or how it would be
-     * structured when it is implementated. 
+     * Not finished yet. A run method for the client thread is supposed to
+     * handle the clients connection. The implementation of a full-working
+     * server is far from the objectives and goals of the subjects "Ingenieria
+     * del Software". This method represents a sketch of what the method would
+     * look like or how it would be structured when it is implementated.
      */
     @Override
     public void run() {
@@ -95,27 +95,27 @@ public class ClientThread implements Runnable {
                 switch (message.getType()) {
                     case ClientMessage.REQUEST_LOGIN: {
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " a REQUEST_LOGIN");
+                                + " with client.id=" + getID() + " a REQUEST_LOGIN");
                         break;
                     }
                     case ClientMessage.REQUEST_REGISTER: {
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " a REQUEST_REGISTER");
+                                + " with client.id=" + getID() + " a REQUEST_REGISTER");
                         break;
                     }
                     case ClientMessage.REQUEST_LOGOUT: {
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " a REQUEST_LOGOUT");
+                                + " with client.id=" + getID() + " a REQUEST_LOGOUT");
                         break;
                     }
                     case ClientMessage.REQUEST_IMAGE: {
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " a REQUEST_IMAGE");
+                                + " with client.id=" + getID() + " a REQUEST_IMAGE");
                         break;
                     }
                     default:
                         server.displayMessage("Received from " + clientSocket.getLocalAddress()
-                        + " with client.id=" + getID() + " an unidentifiable CLIENT_MESSAGE");
+                                + " with client.id=" + getID() + " an unidentifiable CLIENT_MESSAGE");
                         break;
                 }
             } catch (IOException | ClassNotFoundException ex) {
@@ -126,21 +126,26 @@ public class ClientThread implements Runnable {
     }
 
     /**
-     * Tries to close all streams channels. 
-     * @throws IOException 
+     * Tries to close all streams channels.
+     *
+     * @throws IOException
      */
     public void close() throws IOException {
         //    streamOutput.print(new ServerMessages(ServerMessages.LOG_OUT));
-        if(streamInput != null)
+        if (streamInput != null) {
             streamInput.close();
-        if(streamOutput != null)
+        }
+        if (streamOutput != null) {
             streamOutput.close();
-        if(clientSocket != null)
+        }
+        if (clientSocket != null) {
             clientSocket.close();
+        }
     }
-    
+
     /**
      * Getter method.
+     *
      * @return the id of the client thread
      */
     public int getID() {

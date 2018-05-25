@@ -109,12 +109,12 @@ public class WorkAS {
             transformation.apply((Graph) it.next());
         }
     }
-    
+
     /**
-     * 
+     *
      */
     public List<BufferedImage> paint(Visualization view, int height, int width, int res, List<List<Vertex>> params, List<Double> scales) {
-    	return view.paint(height, width, res, params, scales);
+        return view.paint(height, width, res, params, scales);
     }
 
 }

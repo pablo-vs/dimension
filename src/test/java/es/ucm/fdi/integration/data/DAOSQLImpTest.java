@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import es.ucm.fdi.integration.data.DAOSQLImp;
+import es.ucm.fdi.data.DAOSQLImp;
 
 public class DAOSQLImpTest extends DAOSQLImp<DataType> {
 

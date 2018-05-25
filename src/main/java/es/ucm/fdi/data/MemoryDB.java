@@ -11,7 +11,7 @@
   You should have received a copy of the GNU General Public License
   along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.ucm.fdi.integration.data;
+package es.ucm.fdi.data;
 
 import java.io.OutputStream;
 import java.io.PrintStream;

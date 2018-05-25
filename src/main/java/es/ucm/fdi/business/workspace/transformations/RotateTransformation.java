@@ -86,7 +86,9 @@ public class RotateTransformation extends TransformationStrategy {
             Vertex v = (Vertex) iterator.next();
             double y = v.at(1), z = v.at(2), a = Math.atan((z - centerZ) / (y - centerY)), dist;
             dist = Math.sqrt(Math.pow(y - centerY, 2) + Math.pow(z - centerZ, 2));
-            if (y < centerY) a += Math.PI;
+            if (y < centerY) {
+                a += Math.PI;
+            }
             v.set(1, Math.round((centerY + dist * Math.cos(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
             v.set(2, Math.round((centerZ + dist * Math.sin(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
@@ -127,7 +129,9 @@ public class RotateTransformation extends TransformationStrategy {
             Vertex v = (Vertex) iterator.next();
             double x = v.at(0), z = v.at(2), a = Math.atan((x - centerX) / (z - centerZ)), dist;
             dist = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(z - centerZ, 2));
-            if (z < centerZ) a += Math.PI;
+            if (z < centerZ) {
+                a += Math.PI;
+            }
             v.set(0, Math.round((centerX + dist * Math.sin(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
             v.set(2, Math.round((centerZ + dist * Math.cos(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
         }
@@ -167,7 +171,9 @@ public class RotateTransformation extends TransformationStrategy {
             Vertex v = (Vertex) iterator.next();
             double x = v.at(0), y = v.at(1), a = Math.atan((y - centerY) / (x - centerX)), dist;
             dist = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
-            if (x < centerX) a += Math.PI;
+            if (x < centerX) {
+                a += Math.PI;
+            }
             v.set(0, Math.round((centerX + dist * Math.cos(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
             v.set(1, Math.round((centerY + dist * Math.sin(a + d)) * Math.pow(10, 2)) / Math.pow(10, 2));
         }

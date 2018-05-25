@@ -17,7 +17,7 @@ import es.ucm.fdi.business.connectivity.CommentDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.integration.data.MemoryDB;
+import es.ucm.fdi.data.MemoryDB;
 
 /**
  * CommentDAO implementation using a HashTable-based database.

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import es.ucm.fdi.integration.data.SQLDataSource;
+import es.ucm.fdi.data.SQLDataSource;
 
 public class SQLDataSourceTest {
 

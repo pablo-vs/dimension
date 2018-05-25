@@ -25,7 +25,7 @@ import java.io.ByteArrayOutputStream;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
-import es.ucm.fdi.integration.data.DAOSQLImp;
+import es.ucm.fdi.data.DAOSQLImp;
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
 
 public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implements

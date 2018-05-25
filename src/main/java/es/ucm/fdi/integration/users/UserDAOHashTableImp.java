@@ -17,7 +17,7 @@ import es.ucm.fdi.business.users.UserDTO;
 import java.util.List;
 import java.util.ArrayList;
 
-import es.ucm.fdi.integration.data.MemoryDB;
+import es.ucm.fdi.data.MemoryDB;
 
 /**
  * UserDAO implementation using a HashTable-based database.

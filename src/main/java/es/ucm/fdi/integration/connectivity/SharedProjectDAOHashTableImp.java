@@ -17,7 +17,7 @@ import es.ucm.fdi.business.connectivity.SharedProjectDTO;
 import java.util.List;
 import java.util.ArrayList;
 
-import es.ucm.fdi.integration.data.MemoryDB;
+import es.ucm.fdi.data.MemoryDB;
 
 /**
  * Represents a hashtable that contains the shared projects.

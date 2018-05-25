@@ -17,7 +17,7 @@ import es.ucm.fdi.business.connectivity.AuthorshipDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.integration.data.MemoryDB;
+import es.ucm.fdi.data.MemoryDB;
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
 
 /**

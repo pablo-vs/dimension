@@ -46,13 +46,13 @@ public class Visualization {
      */
     @XmlElement
     private ArrayList<Graph> graphsAvailable = new ArrayList<>();
-    
+
     /**
      * List of colors for each graph
      */
     @XmlElement
     private ArrayList<Color> colors = new ArrayList<>();
-    
+
     /**
      * Empty class constructor.
      */
@@ -79,20 +79,19 @@ public class Visualization {
      * @param component new ComponentComposite element in the inner list.
      */
     public void add(Graph g) {
-    	add(g, Color.BLACK);
+        add(g, Color.BLACK);
     }
-    
+
     /**
      * Add a new ComponentComposite to the list of elements that a Visualization
-     * object contains. In Visualization the elements added will be
-     * graphs.
-     * 
+     * object contains. In Visualization the elements added will be graphs.
+     *
      * @param component new ComponentComposite element in the inner list.
      * @param color Graph color.
      */
     public void add(Graph g, Color color) {
-    	graphsAvailable.add(g);
-    	colors.add(color);
+        graphsAvailable.add(g);
+        colors.add(color);
     }
 
     /**
@@ -153,26 +152,26 @@ public class Visualization {
     }
 
     public List<BufferedImage> paint(int height, int width, int res, List<List<Vertex>> params, List<Double> scales) {
-    	ArrayList<BufferedImage> result = new ArrayList<>();
-    	for(int i = 0; i < graphsAvailable.size(); ++i) {
-    		BufferedImage img = new BufferedImage(height, width, BufferedImage.TYPE_3BYTE_BGR);
-    		List<Vertex> currentParams = params.get(i);
-    		if(currentParams.size() != 4) {
-    			throw new IllegalArgumentException("4 projection parameters are needed for every graph");
-    		}
-    		Graph gr = graphsAvailable.get(i).getCombinedGraph();
-    		gr.drawAxis(res);
-    		try {
-				gr = gr.projectTo2D(currentParams.get(0), currentParams.get(1), currentParams.get(2), currentParams.get(3));
-				Graphics2D graphics = img.createGraphics();
-				graphics.setColor(colors.get(i));
-				gr.paint(graphics, height/2, width/2, scales.get(i));
-				result.add(img);
-			} catch (NoMatchDimensionException e) {
-				throw new IllegalArgumentException("Could not project graph " + i + ".\n" + e.getMessage(), e);
-			}
-    	}
-    	return result;
+        ArrayList<BufferedImage> result = new ArrayList<>();
+        for (int i = 0; i < graphsAvailable.size(); ++i) {
+            BufferedImage img = new BufferedImage(height, width, BufferedImage.TYPE_3BYTE_BGR);
+            List<Vertex> currentParams = params.get(i);
+            if (currentParams.size() != 4) {
+                throw new IllegalArgumentException("4 projection parameters are needed for every graph");
+            }
+            Graph gr = graphsAvailable.get(i).getCombinedGraph();
+            gr.drawAxis(res);
+            try {
+                gr = gr.projectTo2D(currentParams.get(0), currentParams.get(1), currentParams.get(2), currentParams.get(3));
+                Graphics2D graphics = img.createGraphics();
+                graphics.setColor(colors.get(i));
+                gr.paint(graphics, height / 2, width / 2, scales.get(i));
+                result.add(img);
+            } catch (NoMatchDimensionException e) {
+                throw new IllegalArgumentException("Could not project graph " + i + ".\n" + e.getMessage(), e);
+            }
+        }
+        return result;
     }
-    
+
 }

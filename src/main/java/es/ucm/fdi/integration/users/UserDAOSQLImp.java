@@ -31,7 +31,7 @@ import java.io.IOException;
 import twitter4j.auth.AccessToken;
 
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
-import es.ucm.fdi.integration.data.DAOSQLImp;
+import es.ucm.fdi.data.DAOSQLImp;
 import java.util.ArrayList;
 
 /**

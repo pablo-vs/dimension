@@ -18,7 +18,7 @@ import es.ucm.fdi.business.users.NotificationDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.fdi.integration.data.MemoryDB;
+import es.ucm.fdi.data.MemoryDB;
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
 
 /**

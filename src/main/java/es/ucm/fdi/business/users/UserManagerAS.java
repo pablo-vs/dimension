@@ -405,4 +405,23 @@ public class UserManagerAS {
         }
         return true;
     }
+  
+    /**
+     * Returns the information from an specified user given its id.
+     *
+     * @param userID
+     * @param session The session from which to perform the action.
+     * @return
+     */
+    public UserDTO getUserInformation(String userID, SessionDTO session) throws AccessControlException, IllegalArgumentException {
+        if (authenticate(userID, session)) {
+            UserDTO user = dao.findUser(userID);
+            if (user != null) {
+                return user;
+            }
+            throw new IllegalArgumentException("The userID requested does not exists!");
+        } else {
+            throw new AccessControlException("Invalid session");
+        }
+    }
 }

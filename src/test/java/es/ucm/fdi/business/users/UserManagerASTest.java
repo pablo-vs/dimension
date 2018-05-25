@@ -84,6 +84,11 @@ public class UserManagerASTest {
                 null, null, null, null, null, UserType.USER, null));
         adminSession = manager.login("us1", "1234");
     }
+    
+    @AfterClass
+    public static void clear() {
+    	manager.removeUser("us1", adminSession);
+    }
 
     /**
      * UserManagerAS test for operations on user management.

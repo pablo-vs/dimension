@@ -17,14 +17,19 @@ import es.ucm.fdi.business.exceptions.network.ProtocolException;
 import es.ucm.fdi.business.network.messages.client.ClientMessage;
 import es.ucm.fdi.business.network.messages.client.RequestImage;
 import es.ucm.fdi.business.network.messages.client.RequestLogin;
+import es.ucm.fdi.business.users.SessionDTO;
 import es.ucm.fdi.business.users.UserDTO;
 import es.ucm.fdi.business.users.UserManagerAS;
 import es.ucm.fdi.business.util.HashGenerator;
 import es.ucm.fdi.integration.users.UserDAO;
 import es.ucm.fdi.integration.users.UserDAOHashTableImp;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.AfterClass;
 
 /**
  * JUnit test for LoginProtocol class.
@@ -34,23 +39,29 @@ import static org.junit.Assert.*;
  */
 public class LoginProtocolTest {
 
-    private LoginProtocol protocolObject;
-    private HashGenerator hashgen = new HashGenerator();
+    private static LoginProtocol protocolObject;
+    private static HashGenerator hashgen = new HashGenerator();
+    private static UserManagerAS manager;
+    private static SessionDTO session;
 
     /**
      * Creates a login protocol object for a database contanining users.
      */
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         // Create the database
         UserDAO db = new UserDAOHashTableImp();
         // create the protocol to manage the database
-        UserManagerAS manager = UserManagerAS.getManager(db);
-        if (!manager.existsUser("James")) {
-            manager.addNewUser(new UserDTO("James", hashgen.hash("eda3eda".toCharArray())));
-        }
+        manager = UserManagerAS.getManager(db);
+        manager.addNewUser(new UserDTO("James", hashgen.hash("eda3eda".toCharArray())));
         protocolObject = new LoginProtocol(manager);
-
+        session = manager.login("James", "eda3eda");
+    }
+    
+    @AfterClass
+    public static void clear() {
+    	manager.removeUser("James", session);
+    	manager.logout(session);
     }
 
     /**

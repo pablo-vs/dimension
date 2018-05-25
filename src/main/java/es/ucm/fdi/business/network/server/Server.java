@@ -347,4 +347,8 @@ public class Server implements Runnable {
         client.close();
     }
 
+	public void addComment() {
+			return;
+		}
+
 }

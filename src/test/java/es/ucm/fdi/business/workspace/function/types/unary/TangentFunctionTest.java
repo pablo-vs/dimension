@@ -49,7 +49,7 @@ public class TangentFunctionTest {
         TangentFunction instance = new TangentFunction(FunctionParser
                 .parse("x*y", vars), vars);
         int[] varsValues = {8, 6};
-        assertEquals(Math.tan(Math.toRadians(48)),
+        assertEquals(Math.tan(48),
                 instance.evaluate(new VariablesList(varsValues, varNames)), 0.1);
     }
 

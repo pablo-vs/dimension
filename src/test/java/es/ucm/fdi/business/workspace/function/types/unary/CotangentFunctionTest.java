@@ -49,7 +49,7 @@ public class CotangentFunctionTest {
         CotangentFunction instance = new CotangentFunction(FunctionParser
                 .parse("x^2", vars), vars);
         int[] varsValues = {9};
-        assertEquals(1 / Math.tan(Math.toRadians(81)),
+        assertEquals(1 / Math.tan(81),
                 instance.evaluate(new VariablesList(varsValues, varNames)), 0.1);
     }
 

@@ -115,4 +115,12 @@ public class TwitterManager {
         }
     }
 
+    /**
+     * Returns if there was any status added during the managing.
+     *
+     * @return
+     */
+    public boolean hasPublishedStatus() {
+        return !updatesStatus.isEmpty();
+    }
 }

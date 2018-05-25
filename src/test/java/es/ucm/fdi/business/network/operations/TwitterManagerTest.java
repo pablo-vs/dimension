@@ -89,12 +89,14 @@ public class TwitterManagerTest {
         } catch (TwitterException ex) {
             fail("The new status couldn't be added!");
         }
+        assertTrue("New status have been published!", manager.hasPublishedStatus());
         // Deleting all the status added
         try {
             manager.deleteAllStatus();
         } catch (TwitterException ex) {
             fail("The new status couldn't be erased!");
         }
+         assertFalse("New status have been removed!", manager.hasPublishedStatus());
     }
 
 }

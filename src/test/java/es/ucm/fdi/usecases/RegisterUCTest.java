@@ -14,7 +14,6 @@
 package es.ucm.fdi.usecases;
 
 import es.ucm.fdi.business.exceptions.DuplicatedIDException;
-import es.ucm.fdi.business.users.SessionDTO;
 import es.ucm.fdi.business.users.UserDTO;
 import es.ucm.fdi.business.users.UserManagerAS;
 import es.ucm.fdi.business.util.HashGenerator;
@@ -111,11 +110,6 @@ public class RegisterUCTest {
             fail("No expected exception thrown!");
         }
         assertTrue("The new user has been added to the db", manager.existsUser(NEW_USER_ID));
-        
-        //Remove added users
-        SessionDTO session = manager.login(NEW_USER_ID, NEW_USER_PASSWORD);
-        manager.removeUser(NEW_USER_ID, session);
-        manager.logout(session);
     }
 
     /**

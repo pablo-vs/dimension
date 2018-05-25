@@ -14,6 +14,7 @@
 package es.ucm.fdi.business.connectivity;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Represents a comment in a project.
@@ -35,7 +36,7 @@ public class CommentDTO {
      * @param author
      * @param proj
      * @param text Text
-     * @param date2
+     * @param date
      */
     public CommentDTO(String author, String proj, String text, Date date) {
         this.author = author;
@@ -92,6 +93,17 @@ public class CommentDTO {
         } else {
             return id.equals(((CommentDTO) other).getId());
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.author);
+        hash = 97 * hash + Objects.hashCode(this.project);
+        hash = 97 * hash + Objects.hashCode(this.text);
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.date);
+        return hash;
     }
 
 }

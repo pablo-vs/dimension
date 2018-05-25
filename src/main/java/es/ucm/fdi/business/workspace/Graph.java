@@ -257,7 +257,7 @@ public class Graph {
      * Adds a new ComponentComposite to the Graph object. Typically in Graph
      * this elements will be vertex.
      *
-     * @param component which will be added
+     * @param func which will be added
      */
     public void add(AbstractFunction func) {
         functionList.add(func);
@@ -268,9 +268,9 @@ public class Graph {
 
     public void paint(Graphics2D g, double x0, double y0, double scale) {
         if (rangeDim == 2) {
-            for (Entry<Integer, ArrayList<Integer>> connection : object.entrySet()) {
+            object.entrySet().forEach((connection) -> {
                 Vertex ini = range.get(connection.getKey());
-                for (Integer end : connection.getValue()) {
+                connection.getValue().forEach((end) -> {
                     double x1 = x0 + ini.at(0) * scale, y1 = y0 - ini.at(1) * scale,
                             x2 = x0 + range.get(end).at(0) * scale, y2 = y0 - range.get(end).at(1) * scale;
                     if (0 < x1 && x1 < 2 * x0 && 0 < y1 && y1 < 2 * y0 && 0 < x2 && x2 < 2 * x0 && 0 < y2
@@ -280,8 +280,8 @@ public class Graph {
                         path.lineTo(x0 + range.get(end).at(0) * scale, y0 - range.get(end).at(1) * scale);
                         g.draw(path);
                     }
-                }
-            }
+                });
+            });
         } else {
             throw new UnsupportedOperationException("Cannot paint graphs of higher dimensions");
         }
@@ -336,8 +336,7 @@ public class Graph {
                 }
             }
         } catch (NoMatchDimensionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+
         }
     }
 

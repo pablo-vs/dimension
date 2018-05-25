@@ -13,11 +13,9 @@
  */
 package es.ucm.fdi.business.workspace.function;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
 
 import es.ucm.fdi.business.workspace.function.types.VariablesList;
-import java.util.Iterator;
 
 /**
  * Defines an abstract function object. A function should contain a

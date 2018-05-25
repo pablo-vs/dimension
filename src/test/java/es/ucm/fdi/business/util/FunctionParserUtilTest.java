@@ -55,9 +55,9 @@ public class FunctionParserUtilTest {
         correctResultFunctions1 = new double[]{5, 20, 20, 5, 76, 25, 79, 4, 1,
             -1.0, 10, 10, 2};
         correctResultFunctions2 = new double[]{10, 5, 1};
-        correctResultFunctions3 = new double[]{3, 25, 1 / Math.sin(Math.toRadians(5)),
-            1 / Math.tan(Math.toRadians(Math.PI * 5/ 2)), 1 / Math.cos(Math.toRadians(4)),
-            Math.tan(Math.toRadians(4)), Math.pow(2, 10)};
+        correctResultFunctions3 = new double[]{3, 25, 1 / Math.sin(5),
+            1 / Math.tan(Math.PI * 5 / 2), 1 / Math.cos(4),
+            Math.tan(4), Math.pow(2, 10)};
 
         variablesList1 = new VariablesList(variablesNames1);
         variablesList2 = new VariablesList(variablesNames2);

@@ -3,14 +3,12 @@ package es.ucm.fdi.data;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
-import java.sql.PreparedStatement;
 import java.sql.JDBCType;
 import java.sql.SQLException;
+import java.util.Objects;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import es.ucm.fdi.data.DAOSQLImp;
 
 public class DAOSQLImpTest extends DAOSQLImp<DataType> {
 
@@ -25,8 +23,8 @@ public class DAOSQLImpTest extends DAOSQLImp<DataType> {
 
     @Test
     public void addFindRemoveTest() throws SQLException {
-        ArrayList<DataType> results = new ArrayList<DataType>(),
-                results2 = new ArrayList<DataType>();
+        ArrayList<DataType> results = new ArrayList<>(),
+                results2 = new ArrayList<>();
 
         results.add(new DataType("Record1", 1, new Date(1, 1, 1)));
         results.add(new DataType("Record2", 2, new Date(2, 2, 2)));
@@ -52,7 +50,7 @@ public class DAOSQLImpTest extends DAOSQLImp<DataType> {
 
     @Override
     public List<Object> getData(DataType obj) {
-        ArrayList<Object> data = new ArrayList<Object>();
+        ArrayList<Object> data = new ArrayList<>();
         data.add(obj.ID);
         data.add(obj.num);
         data.add(obj.date);
@@ -89,5 +87,14 @@ class DataType {
     public boolean equals(Object other) {
         return other instanceof DataType && ((DataType) other).ID.equals(ID)
                 && ((DataType) other).num == num && ((DataType) other).date.equals(date);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.ID);
+        hash = 47 * hash + this.num;
+        hash = 47 * hash + Objects.hashCode(this.date);
+        return hash;
     }
 }

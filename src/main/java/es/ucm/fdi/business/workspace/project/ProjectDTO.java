@@ -22,6 +22,7 @@ import java.io.Serializable;
 
 import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
+import java.util.Objects;
 
 /**
  * Contains the data of a project.
@@ -134,6 +135,15 @@ public class ProjectDTO implements Serializable {
     @Override
     public boolean equals(Object other) {
         return (other instanceof ProjectDTO) && ((ProjectDTO) other).ID.equals(ID);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.views);
+        hash = 97 * hash + Objects.hashCode(this.functions);
+        hash = 97 * hash + Objects.hashCode(this.ID);
+        return hash;
     }
 
 }

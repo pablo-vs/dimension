@@ -44,7 +44,7 @@ public class FriendshipDTO {
 
     /**
      *
-     * @return the secondo user
+     * @return the second user
      */
     public String getSecondUser() {
         return user2;

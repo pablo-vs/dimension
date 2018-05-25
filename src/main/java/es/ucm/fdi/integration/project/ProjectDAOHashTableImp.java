@@ -33,7 +33,9 @@ public class ProjectDAOHashTableImp implements ProjectDAO {
     private final String user;
 
     /**
-     * Class constructor.
+     * Class constructor specifying user
+     *
+     * @param user
      */
     public ProjectDAOHashTableImp(String user) {
         this.user = user;

@@ -17,6 +17,7 @@ import java.util.Date;
 import java.time.ZonedDateTime;
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.Objects;
 import twitter4j.auth.AccessToken;
 
 /**
@@ -82,7 +83,6 @@ public class UserDTO implements Serializable {
      * @param description
      * @param type
      * @param banTime
-     * @param twitterAccess
      */
     public UserDTO(String ID, String name, String password, Date date,
             String email, String telephone, String picture, String description,
@@ -240,6 +240,23 @@ public class UserDTO implements Serializable {
     @Override
     public boolean equals(Object other) {
         return (other instanceof UserDTO) && ((UserDTO) other).ID.equals(ID);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.ID);
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + Objects.hashCode(this.password);
+        hash = 59 * hash + Objects.hashCode(this.date);
+        hash = 59 * hash + Objects.hashCode(this.email);
+        hash = 59 * hash + Objects.hashCode(this.telephone);
+        hash = 59 * hash + Objects.hashCode(this.picture);
+        hash = 59 * hash + Objects.hashCode(this.description);
+        hash = 59 * hash + Objects.hashCode(this.type);
+        hash = 59 * hash + Objects.hashCode(this.banTime);
+        hash = 59 * hash + Objects.hashCode(this.twitterAccess);
+        return hash;
     }
 
 }

@@ -13,11 +13,8 @@
  */
 package es.ucm.fdi.integration.users;
 
-import es.ucm.fdi.integration.users.UserDAOHashTableImp;
 import es.ucm.fdi.business.users.UserDTO;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;

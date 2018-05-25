@@ -3,7 +3,7 @@ package es.ucm.fdi.business.util;
 import es.ucm.fdi.business.exceptions.NoMatchDimensionException;
 import es.ucm.fdi.business.workspace.Vertex;
 
-public class Matrix {
+public final class Matrix {
 
     private final int dim;
     private double[][] values;
@@ -21,6 +21,11 @@ public class Matrix {
     }
 
     //Matriz con las coordenadas de los vectores dados
+    /**
+     * Class constructor specifying
+     *
+     * @param vecs
+     */
     public Matrix(Vertex... vecs) {
         this.dim = vecs[0].getDimension();
         setValues(new double[dim][dim]);
@@ -29,7 +34,15 @@ public class Matrix {
         }
     }
 
-    //Matriz resultante de excluir la fila exclI y la columna exclJ de los valores dados
+    /**
+     * Class constructor excluding row exclI and column exclJ from the given
+     * values.
+     *
+     * @param dim
+     * @param values
+     * @param exclI
+     * @param exclJ
+     */
     public Matrix(int dim, double[][] values, int exclI, int exclJ) {
         int auxi = 0, auxj;
         this.dim = dim;
@@ -48,7 +61,12 @@ public class Matrix {
         }
     }
 
-    //Producto por un vector (por la derecha)
+    /**
+     *
+     * @param vec
+     * @return the right-product of a matrix with a vector
+     * @throws NoMatchDimensionException
+     */
     public Vertex multiply(Vertex vec) throws NoMatchDimensionException {
         Vertex result = new Vertex(dim);
         for (int i = 0; i < dim; ++i) {
@@ -60,7 +78,12 @@ public class Matrix {
         return result;
     }
 
-    //Producto por una matriz (por la derecha)
+    /**
+     *
+     * @param other
+     * @return the result of right-multiplying this matrix with the one given
+     * @throws NoMatchDimensionException
+     */
     public Matrix multiply(Matrix other) throws NoMatchDimensionException {
         double[][] result = new double[dim][dim];
         for (int row = 0; row < dim; row++) {
@@ -74,7 +97,11 @@ public class Matrix {
         return new Matrix(dim, result);
     }
 
-    //Determinante
+    /**
+     *
+     * @param m
+     * @return the determinant of the matrix
+     */
     public static double determinant(Matrix m) {
         double result = 0;
         if (m.dim == 1) {
@@ -90,7 +117,11 @@ public class Matrix {
         return result;
     }
 
-    //Transponer
+    /**
+     *
+     * @return matrix transposed
+     * @throws NoMatchDimensionException
+     */
     public Matrix transpose() throws NoMatchDimensionException {
         Matrix result = new Matrix(dim);
         for (int i = 0; i < dim; ++i) {
@@ -101,6 +132,11 @@ public class Matrix {
         return result;
     }
 
+    /**
+     *
+     * @return the inverse of our matrix
+     * @throws NoMatchDimensionException
+     */
     public Matrix inverse() throws NoMatchDimensionException {
         Matrix result = new Matrix(dim);
         double det = determinant(this);
@@ -141,10 +177,20 @@ public class Matrix {
         }
     }
 
+    /**
+     *
+     * @return the values of the matrix
+     */
     public double[][] getValues() {
         return values;
     }
 
+    /**
+     *
+     * @param row
+     * @param col
+     * @return the value of the element of the matrix at position (row, column)
+     */
     public double at(int row, int col) {
         if (0 > row || row >= values.length || 0 > col || col >= values[0].length) {
             throw new IllegalArgumentException("Out of bounds");
@@ -153,6 +199,11 @@ public class Matrix {
         }
     }
 
+    /**
+     * Sets the values of the matrix.
+     *
+     * @param values
+     */
     public void setValues(double[][] values) {
         this.values = values;
     }

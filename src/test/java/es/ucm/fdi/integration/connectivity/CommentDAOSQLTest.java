@@ -13,12 +13,10 @@ along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
  */
 package es.ucm.fdi.integration.connectivity;
 
-import es.ucm.fdi.integration.connectivity.CommentDAOSQLImp;
 import es.ucm.fdi.business.connectivity.CommentDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.sql.Date;
 
 import org.junit.Test;

@@ -20,9 +20,10 @@ import java.util.regex.Matcher;
 
 import es.ucm.fdi.business.util.FunctionParser;
 import es.ucm.fdi.business.workspace.function.AbstractFunction;
-import java.util.Iterator;
 
 /**
+ * Represents a unary function.
+ *
  * @author Inmaculada Pérez, Javier Navalon
  */
 public abstract class UnaryFunction extends AbstractFunction {

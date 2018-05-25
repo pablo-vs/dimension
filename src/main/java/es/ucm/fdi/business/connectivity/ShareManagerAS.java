@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.security.AccessControlException;
 
-import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
 import es.ucm.fdi.business.workspace.project.ProjectManagerAS;
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import es.ucm.fdi.business.users.SessionDTO;

@@ -28,7 +28,7 @@ public interface NotificationDAO {
     /**
      * Adds a new notification to the database.
      *
-     * @param user The new notification.
+     * @param notif The new notification.
      */
     public void addNotification(NotificationDTO notif);
 

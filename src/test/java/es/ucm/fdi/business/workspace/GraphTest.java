@@ -20,7 +20,6 @@ import es.ucm.fdi.business.workspace.function.types.unary.IdentityFunction;
 import java.util.ArrayList;
 import java.util.Iterator;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,11 +54,9 @@ public class GraphTest {
     @Test
     public void testGenerateAndGrid() throws NoMatchDimensionException {
         double[] dom_ini = {
-            0.0, -1.0/*, 0.0*/
-        };
+            0.0, -1.0/*, 0.0*/};
         double[] dom_fin = {
-            3.0, 2.0/*, 3.0*/
-        };
+            3.0, 2.0/*, 3.0*/};
 
         System.out.println("Graph generation: generate | getGrid");
         testGraph.add(new IdentityFunction("x_0", new VariablesList(2/*3*/)));

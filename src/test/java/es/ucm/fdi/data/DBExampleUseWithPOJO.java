@@ -20,7 +20,6 @@ package es.ucm.fdi.data;
 
 import java.io.Serializable;
 
-import es.ucm.fdi.data.MemoryDB;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

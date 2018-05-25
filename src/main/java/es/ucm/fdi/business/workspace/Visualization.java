@@ -27,8 +27,7 @@ import java.util.Iterator;
 /**
  * Represents the view of a function.
  *
- * @author Brian Leiva
- * @author Arturo Acuaviva
+ * @author Brian Leiva, Arturo Acuaviva
  */
 @XmlRootElement
 public class Visualization {
@@ -73,10 +72,10 @@ public class Visualization {
     }
 
     /**
-     * Add a new ComponentComposite to the list of elements that a Visualization
-     * object contains. In Visualization the elements added will be graphs.
+     * Add a new Graph to the list of elements that a Visualization object
+     * contains. In Visualization the elements added will be graphs.
      *
-     * @param component new ComponentComposite element in the inner list.
+     * @param g new Graph element in the inner list.
      */
     public void add(Graph g) {
         add(g, Color.BLACK);
@@ -86,7 +85,7 @@ public class Visualization {
      * Add a new ComponentComposite to the list of elements that a Visualization
      * object contains. In Visualization the elements added will be graphs.
      *
-     * @param component new ComponentComposite element in the inner list.
+     * @param g new Graph element in the inner list.
      * @param color Graph color.
      */
     public void add(Graph g, Color color) {
@@ -95,10 +94,10 @@ public class Visualization {
     }
 
     /**
-     * Deletes a ComponentComposite that a Visualization object contains. In
-     * Visualization this elements will be graphs.
+     * Deletes a Graph that a Visualization object contains. In Visualization
+     * this elements will be graphs.
      *
-     * @param component which will be removed
+     * @param g which will be removed
      */
     public void delete(Graph g) {
         if (!graphsAvailable.remove(g)) {

@@ -42,24 +42,24 @@ public class ProjectDTOTest {
     /**
      * Project object test with no list
      */
-    ProjectDTO project;
+    private ProjectDTO project;
     /**
      * Project object test filled up with one list
      */
-    ProjectDTO project2;
+    private ProjectDTO project2;
     /**
      * Project object test filled up with two lists
      */
-    ProjectDTO project3;
+    private ProjectDTO project3;
 
     /**
      * Non-empty AbstractFunction list used for testing
      */
-    List<AbstractFunction> functionList = new ArrayList<>();
+    private List<AbstractFunction> functionList = new ArrayList<>();
     /**
      * Non-empty Visualization list used for testing
      */
-    List<Visualization> visualizationList = new ArrayList<>();
+    private List<Visualization> visualizationList = new ArrayList<>();
 
     public ProjectDTOTest() {
     }

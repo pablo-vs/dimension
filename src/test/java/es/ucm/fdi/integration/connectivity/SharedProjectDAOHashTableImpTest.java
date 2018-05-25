@@ -18,7 +18,6 @@ import org.junit.Test;
 import es.ucm.fdi.business.workspace.Visualization;
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
 import es.ucm.fdi.business.workspace.project.WorkAS;
-import es.ucm.fdi.integration.connectivity.SharedProjectDAOHashTableImp;
 import es.ucm.fdi.business.connectivity.SharedProjectDTO;
 import es.ucm.fdi.business.connectivity.SharedProjectDTOOpenProjectImp;
 

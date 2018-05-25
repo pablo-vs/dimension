@@ -20,15 +20,10 @@ import java.sql.JDBCType;
 
 import java.util.Date;
 import java.time.ZonedDateTime;
-import java.time.ZoneId;
 import java.util.List;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ObjectInputStream;
 import java.io.IOException;
-
-import twitter4j.auth.AccessToken;
 
 import es.ucm.fdi.integration.exceptions.DAOErrorException;
 import es.ucm.fdi.data.DAOSQLImp;

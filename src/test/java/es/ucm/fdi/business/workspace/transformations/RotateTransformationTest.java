@@ -63,9 +63,9 @@ public class RotateTransformationTest {
         AbstractFunction functionX = FunctionParser.parse("x", vars);
         AbstractFunction functionY = FunctionParser.parse("y", vars);
         AbstractFunction functionZ = FunctionParser.parse("z", vars);
-        
-       // System.out.println(functionX.toString() + " + " + functionY.toString() + 
-       //         " + " + functionZ.toString());
+
+        // System.out.println(functionX.toString() + " + " + functionY.toString() + 
+        //         " + " + functionZ.toString());
         testGraph.add(functionX);
         testGraph.add(functionY);
         testGraph.add(functionZ);
@@ -78,12 +78,10 @@ public class RotateTransformationTest {
             System.out.print("(" + it.next() + ") ");
         }
         System.out.println();*/
-
-        
         noRotation.apply(testGraph);
         //System.out.println("AfterNoModification:");
         it = testGraph.getRangeIterator();
-/*
+        /*
         while (it.hasNext()) {
             System.out.print("(" + it.next() + ") ");
         }

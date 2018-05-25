@@ -16,7 +16,6 @@ package es.ucm.fdi.integration.connectivity;
 import org.junit.Test;
 
 import es.ucm.fdi.business.connectivity.CommentDTO;
-import es.ucm.fdi.integration.connectivity.CommentDAOHashTableImp;
 
 import java.sql.Date;
 import java.util.ArrayList;

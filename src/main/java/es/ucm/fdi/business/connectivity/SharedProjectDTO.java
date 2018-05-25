@@ -16,6 +16,7 @@ package es.ucm.fdi.business.connectivity;
 import javax.xml.bind.annotation.XmlElement;
 
 import es.ucm.fdi.business.workspace.project.ProjectDTO;
+import java.util.Objects;
 
 /**
  * Represents a shared project by an author.
@@ -89,5 +90,12 @@ public abstract class SharedProjectDTO extends ProjectDTO {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.sharedID);
+        return hash;
     }
 }

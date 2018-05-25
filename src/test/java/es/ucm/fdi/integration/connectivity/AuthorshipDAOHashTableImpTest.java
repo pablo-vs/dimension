@@ -13,7 +13,6 @@
  */
 package es.ucm.fdi.integration.connectivity;
 
-import es.ucm.fdi.integration.connectivity.AuthorshipDAOHashTableImp;
 import es.ucm.fdi.business.connectivity.AuthorshipDTO;
 import java.util.ArrayList;
 

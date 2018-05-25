@@ -1,10 +1,10 @@
 package es.ucm.fdi.integration.users;
 
-import es.ucm.fdi.integration.users.UserDAOSQLImp;
 import es.ucm.fdi.business.users.NotificationDTO;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -26,7 +26,8 @@ public class NotificationDAOSQLImpTest {
         NotificationDTO notif2 = new NotificationDTO("pepe", "Has creado 10 proyectos", new Date(18, 3, 12));
         NotificationDTO notif3 = new NotificationDTO("marta", "Has colaborado en tu primer proyecto", new Date(18, 4, 20));
         NotificationDTO notif4 = new NotificationDTO("paco", "Ya no estas baneado", new Date(18, 5, 18));
-        ArrayList<NotificationDTO> results1 = new ArrayList<>(), results2 = new ArrayList<>();
+        List<NotificationDTO> results1 = new ArrayList<>();
+        List<NotificationDTO> results2 = new ArrayList<>();
 
         results1.add(notif1);
         results2.add(notif2);

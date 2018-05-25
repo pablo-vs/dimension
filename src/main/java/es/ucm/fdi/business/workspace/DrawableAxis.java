@@ -5,9 +5,6 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import es.ucm.fdi.business.workspace.Graph;
-import java.awt.geom.GeneralPath;
-
 public class DrawableAxis extends JPanel {
 
     private double XScale, YScale;
@@ -24,8 +21,8 @@ public class DrawableAxis extends JPanel {
         this.gr = g;
     }
 
+    @Override
     public void paint(Graphics g) {
-        //drawAxis(g);
         drawGraph(g);
     }
 

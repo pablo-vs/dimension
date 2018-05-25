@@ -318,7 +318,7 @@ public class Vertex implements Iterable<Double>, Cloneable {
     /**
      * Computes the cross product of a set of vertices.
      *
-     * @param other The Vertices to multiply.
+     * @param others The Vertices to multiply.
      * @return The resulting product.
      * @throws NoMatchDimensionException
      */
@@ -363,8 +363,6 @@ public class Vertex implements Iterable<Double>, Cloneable {
                 cmps[i] /= mod;
             }
         } catch (NoMatchDimensionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
 
     }

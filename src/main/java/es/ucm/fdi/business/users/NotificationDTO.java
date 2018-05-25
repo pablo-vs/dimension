@@ -14,6 +14,7 @@ along with Dimension.  If not, see <http://www.gnu.org/licenses/>.
 package es.ucm.fdi.business.users;
 
 import java.sql.Date;
+import java.util.Objects;
 
 /**
  * Represents a notification to a user
@@ -40,10 +41,11 @@ public class NotificationDTO {
     private final String id;
 
     /**
-     * Class constructor specifying both users.
+     * Class constructor specifying user, notification and date.
      *
-     * @param user User
-     * @param notification Notification text
+     * @param user
+     * @param notification
+     * @param date
      */
     public NotificationDTO(String user, String notification, Date date) {
         this.user = user;
@@ -91,6 +93,16 @@ public class NotificationDTO {
         } else {
             return id.equals(((NotificationDTO) other).getId());
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.user);
+        hash = 67 * hash + Objects.hashCode(this.notification);
+        hash = 67 * hash + Objects.hashCode(this.date);
+        hash = 67 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
 }

@@ -112,6 +112,13 @@ public class WorkAS {
 
     /**
      *
+     * @param view
+     * @param height
+     * @param width
+     * @param res
+     * @param params
+     * @param scales
+     * @return the list of buffered image to paint the function
      */
     public List<BufferedImage> paint(Visualization view, int height, int width, int res, List<List<Vertex>> params, List<Double> scales) {
         return view.paint(height, width, res, params, scales);

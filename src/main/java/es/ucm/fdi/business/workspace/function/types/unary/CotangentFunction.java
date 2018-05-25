@@ -14,7 +14,6 @@
 package es.ucm.fdi.business.workspace.function.types.unary;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlElement;
 import es.ucm.fdi.business.util.FunctionParser;
 import java.util.regex.Pattern;
 
@@ -51,7 +50,7 @@ public class CotangentFunction extends UnaryFunction {
 
     @Override
     public double evaluate(VariablesList vars) {
-        return 1 / Math.tan(Math.toRadians(function.evaluate(vars)));
+        return 1 / Math.tan(function.evaluate(vars));
     }
 
     public static class Parser extends UnaryFunction.Parser {

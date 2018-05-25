@@ -137,7 +137,7 @@ public class SharedProjectDAOSQLImp extends DAOSQLImp<SharedProjectDTO> implemen
 
     @Override
     public List<Object> getData(SharedProjectDTO obj) {
-        ArrayList<Object> data = new ArrayList<Object>();
+        List<Object> data = new ArrayList<>();
         try {
             ByteArrayOutputStream str = new ByteArrayOutputStream();
             JAXBContext.newInstance("es.ucm.fdi.business.connectivity:"

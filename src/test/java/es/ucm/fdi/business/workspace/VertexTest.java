@@ -32,29 +32,29 @@ public class VertexTest {
     /**
      * Null vertex with dimension 0 and no cmps
      */
-    Vertex vertexNull = new Vertex();
+    private Vertex vertexNull = new Vertex();
     /**
      * Empty 3D Vertex, it will be set at the origin (0,0,0)
      */
-    Vertex vertex3Dempty;
+    private Vertex vertex3Dempty;
     /**
      * Non-empty 3D Vertex
      */
-    Vertex vertex3D;
+    private Vertex vertex3D;
     /**
      * Non-empty 3D Vertex equals to the first 3D vertex created
      */
-    Vertex vertex3Dequal;
+    private Vertex vertex3Dequal;
 
     /**
      * Empty 4D vertex
      */
-    Vertex vertex4Dempty;
+    private Vertex vertex4Dempty;
 
     /**
      * List of points for a 3D vertex
      */
-    double[] cmps = {2.0, 3.0, 5.0};
+    private double[] cmps = {2.0, 3.0, 5.0};
 
     public VertexTest() {
     }

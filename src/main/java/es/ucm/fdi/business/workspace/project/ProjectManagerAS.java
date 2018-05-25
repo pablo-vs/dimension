@@ -37,6 +37,7 @@ public class ProjectManagerAS {
      * Class constructor specifying DAO project and user.
      *
      * @param dao
+     * @param user
      */
     public ProjectManagerAS(ProjectDAO dao, String user) {
         this.dao = dao;
@@ -46,7 +47,7 @@ public class ProjectManagerAS {
     /**
      * Class constructor specifying user (default DAO SQL).
      *
-     * @param dao
+     * @param user
      */
     public ProjectManagerAS(String user) {
         this(new ProjectDAOSQLImp(user), user);
@@ -64,6 +65,7 @@ public class ProjectManagerAS {
      * Adds a new project to the database.
      *
      * @param proj The project to add.
+     * @param session
      */
     public void newProject(ProjectDTO proj, SessionDTO session) {
         if (userMan.authenticate(user, session)) {
@@ -86,6 +88,7 @@ public class ProjectManagerAS {
      * Removes a project from the database.
      *
      * @param id The id of the project to be deleted.
+     * @param session
      */
     public void removeProject(String id, SessionDTO session) {
         if (userMan.authenticate(user, session)) {
@@ -103,6 +106,7 @@ public class ProjectManagerAS {
      * Opens a project from the database.
      *
      * @param id The id of the project to be opened.
+     * @param session
      * @return the project.
      */
     public ProjectDTO openProject(String id, SessionDTO session) {
@@ -121,6 +125,7 @@ public class ProjectManagerAS {
      * Saves the different modifications of the project.
      *
      * @param proj Project
+     * @param session
      */
     public void modifyProject(ProjectDTO proj, SessionDTO session) {
         if (userMan.authenticate(user, session)) {

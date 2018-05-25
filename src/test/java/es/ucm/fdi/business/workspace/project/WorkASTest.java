@@ -16,12 +16,7 @@ package es.ucm.fdi.business.workspace.project;
 
 import es.ucm.fdi.business.workspace.Graph;
 import es.ucm.fdi.business.workspace.Visualization;
-import es.ucm.fdi.integration.project.ProjectDAOHashTableImp;
-import es.ucm.fdi.business.workspace.project.ProjectManagerAS;
-import es.ucm.fdi.business.workspace.project.ProjectDTO;
-import es.ucm.fdi.business.workspace.project.WorkAS;
 import es.ucm.fdi.business.workspace.transformations.ScaleTransformation;
-import es.ucm.fdi.business.workspace.transformations.TransformationStrategy;
 
 import java.util.List;
 import static org.junit.Assert.assertEquals;

@@ -74,9 +74,9 @@ public class CommentDAOHashTableImp implements CommentDAO {
     @Override
     public List<CommentDTO> getComments() {
         ArrayList<CommentDTO> lista = new ArrayList<>();
-        for (String id : db.getIds()) {
+        db.getIds().forEach((id) -> {
             lista.add(db.find(id));
-        }
+        });
         return lista;
     }
 

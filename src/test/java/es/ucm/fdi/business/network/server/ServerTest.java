@@ -56,20 +56,20 @@ public class ServerTest {
     public void tearDown() {
         serverTest.stop();
     }
-    
+
     @Test
     public void testCreateAndStopServer() {
         System.out.println("Creation and stopping of server test");
         try {
             // Starts listening
             new Thread(serverTest).start();
-            Thread.sleep(500); 
+            Thread.sleep(500);
             // Stops the server
             serverTest.stop();
         } catch (Exception e) {
             fail("The server was correctly set up!");
         }
-        
+
     }
-    
+
 }
